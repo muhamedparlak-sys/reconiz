@@ -260,6 +260,17 @@ ol.steps li::before{content:counter(s);font-weight:600;font-size:15px;line-heigh
 .instdlg>*{margin-left:20px;margin-right:20px}
 .instsec{margin-top:16px;gap:10px}
 .instsec.first{order:-1}
+.insttabs{margin-top:14px}
+.instvar{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+.instvar h3{margin:0}
+.isteps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:is}
+.isteps li{counter-increment:is;display:grid;grid-template-columns:26px 1fr 40px;gap:12px;align-items:center;padding:10px 12px;border-radius:12px;background:var(--raised);border:1px solid var(--line);font-size:15px;line-height:1.4}
+.isteps li::before{content:counter(is);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600;background:var(--sea);color:var(--on-sea)}
+.isteps .ib{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--soft);color:var(--sea)}
+.isteps .ib svg{width:22px;height:22px}
+.isteps .ib:empty{visibility:hidden}
+.instnote{font-size:13.5px;color:var(--muted)}
+.instother summary{font-size:14px;font-weight:600;color:var(--sea);padding:6px 0}
 /* kaynaklar, künye */
 .usenotes{display:flex;flex-direction:column;gap:10px;padding:16px 18px;border-radius:14px;background:var(--soft);border:1px solid var(--line)}
 .usenotes p{font-size:15px;max-width:66ch}
@@ -328,8 +339,8 @@ footer a{color:var(--muted)}
   </div>
   <dialog id="instDlg" class="instdlg">
     <div class="dhead"><h2 data-i18n="instH"></h2><button class="dclose" id="instClose" data-i18n="instClose"></button></div>
-    <section class="instsec" data-os="ios"><h3 class="lab" data-i18n="instIosH"></h3><ol class="steps sm"><li data-i18n="instIos1"></li><li data-i18n="instIos2"></li><li data-i18n="instIos3"></li></ol></section>
-    <section class="instsec" data-os="android"><h3 class="lab" data-i18n="instAndH"></h3><ol class="steps sm"><li data-i18n="instAnd1"></li><li data-i18n="instAnd2"></li><li data-i18n="instAnd3"></li></ol></section>
+    <div class="seg insttabs" id="instTabs" role="group"><button data-v="ios" aria-pressed="true">iPhone · iPad</button><button data-v="android" aria-pressed="false">Android</button></div>
+    <div id="instBody"></div>
   </dialog>
 
   <section class="work" id="work" hidden aria-live="polite">
@@ -632,29 +643,77 @@ function applyLang(){ try{ renderAehList(); }catch(_){}
   setStatus(statusKeys);
   if(lastRes) showResults(lastRes,lastExample); else renderGrid();
   try{ themeLabel(); }catch(_){}
+  document.dispatchEvent(new Event("reconiz-lang"));
 }
 
 
 /* ---------- ana ekrana ekle ---------- */
+const IG_ICON={
+ more:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9.5"/><circle cx="7.5" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="16.5" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg>',
+ share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9H6.5A1.5 1.5 0 0 0 5 10.5v9A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 17.5 9H16"/><path d="M12 3v12M8.5 6.5 12 3l3.5 3.5"/></svg>',
+ add:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/></svg>',
+ app:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="7" width="19" height="10" rx="5"/><circle cx="16.5" cy="12" r="3.3" fill="currentColor" stroke="none"/></svg>',
+ done:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+ dots:'<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5.5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="18.5" r="1.8"/></svg>',
+ menu:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
+ install:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7v7M9 11l3 3 3-3"/></svg>',
+ compass:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z" fill="currentColor" stroke="none"/></svg>'
+};
+const IG={
+ tr:{ios26:"iPhone · Safari (iOS 26)",ios:"iPhone · Safari (iOS 18 ve öncesi)",ipad:"iPad · Safari",iosChrome:"iPhone · Chrome",inapp:"Instagram, Facebook ya da başka bir uygulamanın içinden açtıysanız",andChrome:"Android · Chrome",samsung:"Android · Samsung Internet",others:"Başka tarayıcı ya da sürüm için",
+  s:{more:"Adres çubuğunun sağındaki ⋯ düğmesine dokunun.",shareInMenu:"Açılan menüde “Paylaş”a dokunun.",shareBottom:"Alttaki Paylaş düğmesine dokunun (kare içinde yukarı ok).",shareTop:"Sağ üstteki Paylaş düğmesine dokunun (kare içinde yukarı ok).",shareBar:"Adres çubuğunun sağındaki Paylaş düğmesine dokunun.",add:"Listeyi aşağı kaydırıp “Ana Ekrana Ekle”ye dokunun.",webapp:"“Web Uygulaması Olarak Aç” seçeneği görünürse açık bırakın.",done:"Sağ üstte “Ekle”ye dokunun. RecOniz simgesi ana ekranınıza gelir.",openSafari:"Sağ üst ya da sağ alttaki ⋯ menüsünden “Safari’de Aç” (Android’de “Tarayıcıda aç”) seçeneğine dokunun.",thenAbove:"Sayfa Safari’de (Android’de Chrome’da) açılınca yukarıdaki adımları izleyin.",dots:"Sağ üstteki ⋮ menüsüne dokunun.",installApp:"“Uygulamayı yükle” ya da “Ana ekrana ekle”ye dokunun.",install:"“Yükle”ye dokunun. RecOniz simgesi ana ekranınıza gelir.",sMenu:"Alttaki ≡ menüsüne dokunun.",sAdd:"“Sayfayı ekle” → “Ana ekran”ı seçin.",sDone:"“Ekle”ye dokunun."},
+  note:"Tarayıcınızın düğme adları küçük farklılıklar gösterebilir."},
+ en:{ios26:"iPhone · Safari (iOS 26)",ios:"iPhone · Safari (iOS 18 and earlier)",ipad:"iPad · Safari",iosChrome:"iPhone · Chrome",inapp:"If you opened the link inside Instagram, Facebook or another app",andChrome:"Android · Chrome",samsung:"Android · Samsung Internet",others:"For another browser or version",
+  s:{more:"Tap the ⋯ button to the right of the address bar.",shareInMenu:"In the menu, tap “Share”.",shareBottom:"Tap the Share button at the bottom (a square with an arrow pointing up).",shareTop:"Tap the Share button in the top right (a square with an arrow pointing up).",shareBar:"Tap the Share button to the right of the address bar.",add:"Scroll down the list and tap “Add to Home Screen”.",webapp:"If you see “Open as Web App”, leave it switched on.",done:"Tap “Add” in the top right. The RecOniz icon appears on your Home Screen.",openSafari:"From the ⋯ menu (top or bottom right), tap “Open in Safari” (on Android, “Open in browser”).",thenAbove:"When the page opens in Safari (Chrome on Android), follow the steps above.",dots:"Tap the ⋮ menu in the top right.",installApp:"Tap “Install app” or “Add to home screen”.",install:"Tap “Install”. The RecOniz icon appears on your home screen.",sMenu:"Tap the ≡ menu at the bottom.",sAdd:"Choose “Add page to” → “Home screen”.",sDone:"Tap “Add”."},
+  note:"Button names may differ slightly in your browser."},
+ es:{ios26:"iPhone · Safari (iOS 26)",ios:"iPhone · Safari (iOS 18 y anteriores)",ipad:"iPad · Safari",iosChrome:"iPhone · Chrome",inapp:"Si abrió el enlace dentro de Instagram, Facebook u otra aplicación",andChrome:"Android · Chrome",samsung:"Android · Samsung Internet",others:"Para otro navegador o versión",
+  s:{more:"Toque el botón ⋯ a la derecha de la barra de direcciones.",shareInMenu:"En el menú, toque «Compartir».",shareBottom:"Toque el botón Compartir en la parte inferior (un cuadrado con una flecha hacia arriba).",shareTop:"Toque el botón Compartir arriba a la derecha (un cuadrado con una flecha hacia arriba).",shareBar:"Toque el botón Compartir a la derecha de la barra de direcciones.",add:"Desplácese por la lista y toque «Añadir a pantalla de inicio».",webapp:"Si aparece «Abrir como app web», déjelo activado.",done:"Toque «Añadir» arriba a la derecha. El icono de RecOniz aparecerá en su pantalla de inicio.",openSafari:"En el menú ⋯ (arriba o abajo a la derecha), toque «Abrir en Safari» (en Android, «Abrir en el navegador»).",thenAbove:"Cuando la página se abra en Safari (Chrome en Android), siga los pasos anteriores.",dots:"Toque el menú ⋮ arriba a la derecha.",installApp:"Toque «Instalar aplicación» o «Añadir a pantalla de inicio».",install:"Toque «Instalar». El icono de RecOniz aparecerá en su pantalla de inicio.",sMenu:"Toque el menú ≡ en la parte inferior.",sAdd:"Elija «Añadir página a» → «Pantalla de inicio».",sDone:"Toque «Añadir»."},
+  note:"Los nombres de los botones pueden variar ligeramente según el navegador."}
+};
+const IG_FLOWS={
+ ios26:[["more","more"],["shareInMenu","share"],["add","add"],["webapp","app"],["done","done"]],
+ ios:[["shareBottom","share"],["add","add"],["done","done"]],
+ ipad:[["shareTop","share"],["add","add"],["webapp","app"],["done","done"]],
+ iosChrome:[["shareBar","share"],["add","add"],["done","done"]],
+ inapp:[["openSafari","compass"],["thenAbove",""]],
+ andChrome:[["dots","dots"],["installApp","install"],["install","done"]],
+ samsung:[["sMenu","menu"],["sAdd","add"],["sDone","done"]]
+};
 (function(){
   const host=location.hostname, ok=/(^|\.)reconiz\.org$/.test(host)||host==="localhost"||host==="127.0.0.1";
   const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
   let dismissed=false; try{ dismissed=localStorage.getItem("amfora-inst-x")==="1"; }catch(_){}
   if(!ok||standalone) return;
-  const box=$("#install"), dlg=$("#instDlg"); let deferred=null;
+  const ua=navigator.userAgent, box=$("#install"), dlg=$("#instDlg"); let deferred=null;
   const ico=document.querySelector('link[rel="apple-touch-icon"]'); if(ico) $("#instIcon").src=ico.href;
-  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
-  const isAndroid=/Android/i.test(navigator.userAgent);
+  const isIPad=/iPad/.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+  const isIOS=/iPhone|iPod/.test(ua)||isIPad, isAndroid=/Android/i.test(ua);
+  const inApp=/Instagram|FBAN|FBAV|FB_IAB|Line\/|MicroMessenger|TikTok|musical_ly|Snapchat|LinkedInApp/i.test(ua);
+  const safariVer=+((ua.match(/Version\/(\d+)/)||[])[1]||0);
+  const variant= inApp?"inapp" : isIOS? (/CriOS/.test(ua)?"iosChrome": isIPad?"ipad": safariVer>=26?"ios26":"ios")
+               : isAndroid? (/SamsungBrowser/.test(ua)?"samsung":"andChrome") : "ios26";
+  let tab=isAndroid?"android":"ios";
+  function flowHTML(k,open){ const L=IG[LANG]||IG.tr;
+    const li=IG_FLOWS[k].map(([t,i])=>`<li><span>${L.s[t]}</span><span class="ib">${i?IG_ICON[i]:""}</span></li>`).join("");
+    return `<div class="instvar"><h3 class="lab">${L[k]}</h3><ol class="isteps">${li}</ol></div>`; }
+  function render(){ const L=IG[LANG]||IG.tr;
+    const set=tab==="ios"?["ios26","ios","ipad","iosChrome"]:["andChrome","samsung"];
+    const main=set.includes(variant)?variant:set[0];
+    const rest=set.filter(k=>k!==main).concat(inApp||variant==="inapp"?[]:["inapp"]);
+    $("#instBody").innerHTML=(variant==="inapp"?flowHTML("inapp"):"")+flowHTML(main)+
+      `<details class="instother"><summary>${L.others}</summary>${rest.map(k=>flowHTML(k)).join("")}</details><p class="instnote">${L.note}</p>`;
+    [...$("#instTabs").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===tab)); }
+  $("#instTabs").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; tab=b.dataset.v; render(); });
   if(!dismissed&&(isIOS||isAndroid)) box.hidden=false;
   window.addEventListener("beforeinstallprompt",e=>{ e.preventDefault(); deferred=e; if(!dismissed) box.hidden=false; });
   window.addEventListener("appinstalled",()=>{ box.hidden=true; });
   $("#instBtn").addEventListener("click",async()=>{
     if(deferred){ deferred.prompt(); try{ await deferred.userChoice; }catch(_){} deferred=null; return; }
-    dlg.querySelectorAll(".instsec").forEach(x=>{ x.hidden = isIOS? x.dataset.os!=="ios" : isAndroid? x.dataset.os!=="android" : false; });
-    dlg.showModal(); });
+    render(); dlg.showModal(); });
   $("#instClose").addEventListener("click",()=>dlg.close());
   dlg.addEventListener("click",e=>{ if(e.target===dlg) dlg.close(); });
   $("#instX").addEventListener("click",()=>{ box.hidden=true; try{ localStorage.setItem("amfora-inst-x","1"); }catch(_){} });
+  document.addEventListener("reconiz-lang",()=>{ if(dlg.open) render(); });
   if("serviceWorker" in navigator && /reconiz\.org$/.test(host)) navigator.serviceWorker.register("/sw.js").catch(()=>{});
 })();
 /* ---------- tema (açık/koyu) ---------- */
