@@ -12,4 +12,4 @@ Analizler tamamen kullanıcının cihazında yapılır; fotoğraflar hiçbir yer
 
 ## Önerilen atıf / Suggested citation
 
-Öniz, H., & Parlak, M. (2026). *RecOniz: Underwater heritage recognizer* [Web application]. https://reconiz.org
+Parlak, M., & Öniz, H. (2026). *RecOniz: Underwater heritage recognizer* [Web application]. https://reconiz.org
