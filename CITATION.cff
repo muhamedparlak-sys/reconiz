@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Bu yazılımı kullanırsanız lütfen aşağıdaki gibi atıf yapın. If you use this software, please cite it as below."
+title: "RecOniz: Underwater heritage recognizer"
+type: software
+authors:
+  - family-names: Parlak
+    given-names: Muhammed
+  - family-names: Öniz
+    given-names: Hakan
+    affiliation: Akdeniz University
+url: "https://reconiz.org"
+repository-code: "https://github.com/muhamedparlak-sys/reconiz"
+date-released: 2026-09-30
+version: 1.0.0
+keywords:
+  - amphora
+  - underwater cultural heritage
+  - typology
+  - image recognition

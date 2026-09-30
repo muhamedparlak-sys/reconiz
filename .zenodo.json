@@ -1,0 +1,14 @@
+{
+  "title": "RecOniz: Underwater heritage recognizer",
+  "upload_type": "software",
+  "description": "<p>RecOniz, tek bir fotoğraftan bir amphoranın tipini belirlemeye yardımcı olmak için geliştirilmiş, tarayıcıda çalışan bir tanıma aracıdır. Karşılaştırmalar yayımlanmış akademik kaynaklara dayanır: Hakan Öniz ve ekibinin “Mediterranean Amphorae” şemasındaki 89 amphora tipi, Sezgin (2012) Arkaik İonia amphora kesitleri, Amphorae ex Hispania veritabanı ve ArchAIDE / University of Southampton Roma amphoraları kataloğu. Analizler kullanıcının cihazında yapılır; fotoğraflar hiçbir yere gönderilmez.</p><p>RecOniz is a browser-based recognition tool that helps identify the type of an amphora from a single photograph. Developed by Muhammed Parlak under the supervision of Hakan Öniz (2026).</p><p>Uygulama / App: https://reconiz.org</p>",
+  "creators": [
+    {"name": "Parlak, Muhammed"},
+    {"name": "Öniz, Hakan", "affiliation": "Akdeniz University"}
+  ],
+  "keywords": ["amphora", "amphorae", "underwater cultural heritage", "typology", "image recognition", "maritime archaeology", "Mediterranean"],
+  "language": "tur",
+  "related_identifiers": [
+    {"identifier": "https://reconiz.org", "relation": "isSupplementTo", "scheme": "url"}
+  ]
+}
