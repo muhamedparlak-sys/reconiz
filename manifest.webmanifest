@@ -3,6 +3,9 @@
  "short_name": "RecOniz",
  "start_url": "/",
  "display": "standalone",
+ "scope": "/",
+ "id": "/",
+ "description": "Tek bir fotoğraftan bir amphoranın tipini belirlemeye yardımcı olan tanıma aracı.",
  "background_color": "#F6F7F5",
  "theme_color": "#17495A",
  "lang": "tr",
@@ -18,7 +21,7 @@
    "type": "image/png"
   },
   {
-   "src": "/icon-512.png",
+   "src": "/icon-maskable-512.png",
    "sizes": "512x512",
    "type": "image/png",
    "purpose": "maskable"
