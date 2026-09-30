@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RecOniz · Parça Eşleştirici</title>
+<meta name="description" content="Kırık seramik parçalarını fotoğraflardan gruplayan ve birleşebilecek kenarları öneren araç. RecOniz ailesinden.">
+<meta name="theme-color" content="#17495A">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Düzen: RecOniz ile aynı tokenlar; tek sütun, 720px. Grup renkleri parçaları ayırt etmek için. */
+:root{
+  --bg:#F6F7F5; --ink:#152021; --muted:#5B6664; --faint:#8C9795; --line:#DCE2E0; --soft:#ECF0EE; --raised:#FFFFFF;
+  --sea:#17495A; --sea-soft:#DCE8EB; --on-sea:#FFFFFF; --clay:#9C5B38; --clay-soft:#F1E3D6;
+  --z-rim:#2F6DB3; --z-handle:#8A4BC4; --z-body:#2E8554; --z-base:#C9620C;
+  --paper:#FFFFFF; --paper-ink:#111111; --well-a:#EDF2F3; --well-b:#DCE6E8; --chartfill:#E9C9A0;
+  --bar:#CCD5D3; --map-sea:#CFE0E6; --map-land:#EFE8DC; --map-coast:#9A8F80; --map-ink:#3A2A20; --map-ink2:#1D3A4C; --map-pin:#A0461E; --map-pin-a:rgba(160,70,30,.45); --map-reg:#285A78; --map-reg-a:rgba(40,90,120,.18); --map-sel:#17495A; --map-sel-a:rgba(23,73,90,.75);
+  --shadow:0 1px 2px rgba(21,32,33,.06),0 8px 24px -12px rgba(21,32,33,.18);
+  --sans:"Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#111617; --ink:#E6EAE8; --muted:#A1ABA9; --faint:#6E7977; --line:#283133; --soft:#182022; --raised:#1A2224;
+    --sea:#8CC3D1; --sea-soft:#1B3037; --on-sea:#0C1A1E; --clay:#DB9A72; --clay-soft:#33251D;
+    --z-rim:#72AAEA; --z-handle:#C49AF0; --z-body:#66C28D; --z-base:#F2A259;
+    --paper:#D5DBD9; --paper-ink:#111111; --well-a:#1C2A2E; --well-b:#142024; --chartfill:#C9A47A;
+    --bar:#3A4749; --map-sea:#132329; --map-land:#243033; --map-coast:#47575A; --map-ink:#E6EAE8; --map-ink2:#CFE3E8; --map-pin:#E29A6E; --map-pin-a:rgba(226,154,110,.42); --map-reg:#8CC3D1; --map-reg-a:rgba(140,195,209,.16); --map-sel:#8CC3D1; --map-sel-a:rgba(140,195,209,.8);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#111617; --ink:#E6EAE8; --muted:#A1ABA9; --faint:#6E7977; --line:#283133; --soft:#182022; --raised:#1A2224;
+  --sea:#8CC3D1; --sea-soft:#1B3037; --on-sea:#0C1A1E; --clay:#DB9A72; --clay-soft:#33251D;
+  --z-rim:#72AAEA; --z-handle:#C49AF0; --z-body:#66C28D; --z-base:#F2A259;
+  --paper:#D5DBD9; --paper-ink:#111111; --well-a:#1C2A2E; --well-b:#142024; --chartfill:#C9A47A;
+  --bar:#3A4749; --map-sea:#132329; --map-land:#243033; --map-coast:#47575A; --map-ink:#E6EAE8; --map-ink2:#CFE3E8; --map-pin:#E29A6E; --map-pin-a:rgba(226,154,110,.42); --map-reg:#8CC3D1; --map-reg-a:rgba(140,195,209,.16); --map-sel:#8CC3D1; --map-sel-a:rgba(140,195,209,.8);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+}
+:root{--g1:#2F6DB3;--g2:#C9620C;--g3:#2E8554;--g4:#8A4BC4;--g5:#B23A48;--g6:#6B7A1E;--hit:#E0A030}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:12px 56px;-webkit-font-smoothing:antialiased}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+main{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(24px,5.4vw,30px);line-height:1.15}
+h2{font-size:19px}
+p{margin:0}
+a{color:var(--sea)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sea);outline-offset:3px}
+.sub{color:var(--muted);font-size:14.5px;max-width:64ch}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:6px}
+.brand{display:flex;flex-direction:column;gap:6px;color:var(--ink);text-decoration:none}
+.brand svg{height:28px;width:auto;display:block}
+.brand span{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.tools{display:flex;gap:8px;align-items:center}
+.themebtn{width:36px;height:36px;border-radius:999px;border:1px solid var(--line);background:var(--raised);display:grid;place-items:center;cursor:pointer;padding:0}
+.themebtn svg{width:18px;height:18px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;background:var(--raised)}
+.seg button{border:0;background:none;padding:4px 11px;min-height:30px;border-radius:999px;font-size:13px;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.head{display:flex;flex-direction:column;gap:8px}
+.card{background:var(--raised);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.guide ol{margin:0;padding:0;list-style:none;counter-reset:g;display:flex;flex-direction:column;gap:8px}
+.guide li{counter-increment:g;display:grid;grid-template-columns:24px 1fr;gap:10px;font-size:14.5px}
+.guide li::before{content:counter(g);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;font-weight:600;background:var(--sea-soft);color:var(--sea)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;background:var(--sea);color:var(--on-sea);font-weight:600;padding:12px 16px;min-height:52px;cursor:pointer;overflow:hidden;border:0}
+.pick input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.pick.alt{background:var(--sea-soft);color:var(--sea)}
+.pick:disabled{opacity:.45;cursor:default}
+.run{grid-column:1/-1}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.status{font-size:14px;color:var(--muted);min-height:1.4em}
+.link{background:none;border:0;color:var(--sea);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px}
+.th{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px;border-radius:10px;background:var(--soft)}
+.th canvas{max-width:100%;height:56px;width:auto;object-fit:contain;border-radius:6px}
+.th figcaption{font-size:12px;font-weight:600}
+.th.bad{outline:2px solid var(--z-base)}
+.groups{display:flex;flex-direction:column;gap:10px}
+.grow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px;border-radius:12px;border-left:4px solid var(--gc);background:var(--soft)}
+.glab{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);width:100%}
+.gp{margin:0;display:flex;flex-direction:column;align-items:center;gap:2px}
+.gp figcaption{font-size:12px;font-weight:600}
+.joins{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.join{border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;background:var(--bg)}
+.join canvas{display:block;align-self:center;background:repeating-conic-gradient(var(--soft) 0 25%,var(--bg) 0 50%) 0 0/16px 16px}
+.jmeta{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line)}
+.jt{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.jn{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.lvl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px}
+.lvl.strong{background:var(--sea);color:var(--on-sea)}.lvl.medium{background:var(--sea-soft);color:var(--sea)}.lvl.weak{background:var(--soft);color:var(--muted)}
+.jacts{display:flex;gap:8px}
+.mini{border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:5px 12px;font-size:13px;cursor:pointer}
+.mini[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.note{font-size:13.5px;color:var(--muted);padding:14px 16px;border-radius:14px;background:var(--soft)}
+footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line);padding-top:16px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <header class="bar">
+    <a class="brand" href="https://reconiz.org/" aria-label="RecOniz"><svg viewBox="0 -640 3491 652" fill="currentColor" aria-hidden="true"><path d="M73 0V-510H172V-383H177V0ZM177 -266 164 -387Q182 -452 226.0 -486.0Q270 -520 331 -520Q354 -520 363 -516V-418Q358 -420 349.0 -420.5Q340 -421 327 -421Q252 -421 214.5 -382.0Q177 -343 177 -266Z"/><path d="M676 10Q599 10 540.5 -24.0Q482 -58 449.0 -118.0Q416 -178 416 -256Q416 -335 448.5 -394.5Q481 -454 540.0 -487.0Q599 -520 675 -520Q749 -520 803.5 -488.5Q858 -457 887.5 -401.0Q917 -345 917 -268Q917 -256 916.5 -245.5Q916 -235 914 -224H486V-302H841L815 -271Q815 -353 778.0 -396.0Q741 -439 675 -439Q604 -439 562.5 -390.5Q521 -342 521 -256Q521 -169 562.5 -120.0Q604 -71 678 -71Q723 -71 756.0 -89.5Q789 -108 805 -144H903Q878 -72 818.5 -31.0Q759 10 676 10Z"/><path d="M1235 10Q1162 10 1105.0 -24.5Q1048 -59 1015.5 -119.0Q983 -179 983 -256Q983 -333 1015.5 -392.5Q1048 -452 1105.0 -486.0Q1162 -520 1234 -520Q1295 -520 1343.0 -497.0Q1391 -474 1422.0 -433.0Q1453 -392 1462 -336H1364Q1354 -381 1320.5 -408.0Q1287 -435 1236 -435Q1192 -435 1159.0 -413.0Q1126 -391 1108.0 -351.0Q1090 -311 1090 -256Q1090 -202 1108.0 -161.0Q1126 -120 1159.0 -97.5Q1192 -75 1237 -75Q1286 -75 1320.5 -101.5Q1355 -128 1365 -173H1463Q1453 -118 1421.5 -77.0Q1390 -36 1342.0 -13.0Q1294 10 1235 10Z"/><path d="M1788 10Q1710 10 1651.0 -24.5Q1592 -59 1559.0 -119.5Q1526 -180 1526 -257Q1526 -335 1559.5 -394.0Q1593 -453 1651.5 -486.5Q1710 -520 1788 -520Q1867 -520 1926.0 -486.5Q1985 -453 2017.5 -394.0Q2050 -335 2050 -257Q2050 -180 2017.5 -119.5Q1985 -59 1926.0 -24.5Q1867 10 1788 10ZM1788 -75Q1835 -75 1869.5 -98.0Q1904 -121 1924.0 -162.0Q1944 -203 1944 -258Q1944 -340 1900.5 -387.5Q1857 -435 1788 -435Q1720 -435 1676.5 -387.0Q1633 -339 1633 -258Q1633 -203 1652.5 -162.0Q1672 -121 1707.5 -98.0Q1743 -75 1788 -75Z"/><path d="M2157 0V-510H2256V-390H2261V0ZM2519 0V-328Q2519 -381 2492.5 -407.0Q2466 -433 2414 -433Q2369 -433 2334.5 -413.0Q2300 -393 2280.5 -358.0Q2261 -323 2261 -275L2248 -397Q2273 -454 2325.0 -487.0Q2377 -520 2446 -520Q2528 -520 2575.0 -474.0Q2622 -428 2622 -352V0Z"/><path d="M2783 -510L2893 -510L2893 -474L2873 -464L2873 -412C2873 -384 2914 -372 2914 -318C2914 -222 2870 -112 2861 -44L2857 -12Q2854 0 2838 0Q2822 0 2819 -12L2815 -44C2806 -112 2762 -222 2762 -318C2762 -372 2803 -384 2803 -412L2803 -464L2783 -474Z"/><path d="M2776 -560Q2776 -548 2788 -548L2888 -548Q2900 -548 2900 -560L2900 -578Q2900 -588 2890 -588L2864 -588L2864 -612Q2864 -626 2850 -626L2826 -626Q2812 -626 2812 -612L2812 -588L2786 -588Q2776 -588 2776 -578Z"/><path d="M2873 -452C2936 -452 2938 -410 2912 -346M2803 -452C2740 -452 2738 -410 2764 -346" fill="none" stroke="currentColor" stroke-width="30" stroke-linecap="round"/><path d="M3037 0V-73L3338 -469L3368 -427H3046V-510H3439V-437L3139 -43L3110 -83H3447V0Z"/></svg><span>Underwater Heritage Recognizer</span></a>
+    <div class="tools"><button class="themebtn" id="themeBtn" type="button" aria-label="Tema"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
+      <div class="seg" id="lang" role="group" aria-label="Dil / Language"><button data-v="tr" aria-pressed="true">TR</button><button data-v="en" aria-pressed="false">EN</button></div></div>
+  </header>
+  <section class="head"><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></section>
+  <section class="card">
+    <div class="actions">
+      <label class="pick"><span data-i18n="pick"></span><input type="file" id="file" accept="image/*" multiple></label>
+      <button class="pick alt" id="demo" type="button" data-i18n="demo"></button>
+      <button class="pick run" id="run" type="button" data-i18n="run" disabled></button>
+    </div>
+    <div class="row"><p class="status" id="status" role="status" aria-live="polite"></p><span class="sub" id="count"></span></div>
+    <p class="sub" id="demoNote" data-i18n="demoNote" hidden></p>
+    <div class="thumbs" id="thumbs"></div>
+    <div class="row"><span></span><button class="link" id="clear" type="button" data-i18n="clear"></button></div>
+  </section>
+  <div id="results" style="display:flex;flex-direction:column;gap:20px"></div>
+  <section class="card guide"><h2 data-i18n="guideH"></h2><ol><li data-i18n="g1"></li><li data-i18n="g2"></li><li data-i18n="g3"></li><li data-i18n="g4"></li></ol></section>
+  <p class="note" data-i18n="note"></p>
+  <footer><p data-i18n="privacy"></p><a href="https://reconiz.org/" data-i18n="back"></a></footer>
+</main>
+<script>
+"use strict";
+/* ---------- dil ---------- */
+const I18N={
+ tr:{title:"Parça Eşleştirici",sub:"Kırık seramik parçalarını fotoğraflardan gruplar ve birleşebilecek kenarları önerir.",
+  guideH:"Fotoğrafları nasıl çekmeli",g1:"Her fotoğrafta tek parça olsun; parçayı düz, koyu renkli bir zemine koyun.",g2:"Telefonu tam tepeden ve her parçada aynı yükseklikten tutun. Yakınlaştırma yapmayın.",g3:"Parçanın dış (bezemeli) yüzünü çekin; hepsinde aynı yüzü kullanın.",g4:"Parçaları numaralayın; araç fotoğrafları seçtiğiniz sırayla P1, P2… diye adlandırır.",
+  pick:"Fotoğrafları seç",demo:"Örnek parçalarla dene",run:"Analiz et",clear:"Temizle",n:"{n} parça",
+  status0:"Fotoğrafları seçin ya da örnek parçalarla deneyin.",sLoad:"Fotoğraflar okunuyor…",sSeg:"Parçalar zeminden ayrılıyor… {i}/{n}",sMatch:"Kenarlar karşılaştırılıyor… %{p}",sDone:"{n} parça incelendi: {g} olası kap grubu, {m} birleşme adayı.",sNone:"{n} parça incelendi; güvenilir bir birleşme adayı bulunamadı.",sBad:"{k} fotoğrafta parça zeminden ayrılamadı; koyu ve düz bir zeminle yeniden çekin.",
+  groupsH:"Olası kap grupları",groupsNote:"Renk, doku ve bulunan birleşmelere göre aynı kaba ait olabilecek parçalar.",grp:"Grup {k}",
+  joinsH:"Birleşme adayları",joinsNote:"En güçlü adaylar üstte. Önizleme, iki parçanın önerilen kenardan birleşmiş halini gösterir; kararı parçaları elinizde deneyerek verin.",
+  edge:"Eşleşen kenar",fit:"Uyum",strong:"güçlü",medium:"orta",weak:"zayıf",yes:"Doğru",no:"Yanlış",markedY:"Doğru olarak işaretlendi",markedN:"Yanlış olarak işaretlendi",
+  more:"Daha fazla aday göster",privacy:"Fotoğraflarınız cihazınızda işlenir; hiçbir yere gönderilmez.",back:"RecOniz’e dön",
+  note:"Bu araç yalnızca birleştirme çalışmasına yardımcı olmak için tasarlanmıştır; öneriler parçalar elde denenerek doğrulanmalıdır. Deneme sürümüdür.",demoNote:"Örnek: iki farklı tabaktan yapay olarak kırılmış parçalar."},
+ en:{title:"Sherd Matcher",sub:"Groups broken ceramic sherds from photographs and suggests edges that may join.",
+  guideH:"How to take the photographs",g1:"One sherd per photo, on a plain dark background.",g2:"Hold the phone straight above, at the same height for every sherd. Do not zoom.",g3:"Photograph the outer (decorated) face, the same face for every sherd.",g4:"Number the sherds; the tool names the photos P1, P2… in the order you select them.",
+  pick:"Choose photos",demo:"Try with sample sherds",run:"Analyse",clear:"Clear",n:"{n} sherds",
+  status0:"Choose photos or try the sample sherds.",sLoad:"Reading photos…",sSeg:"Separating sherds from the background… {i}/{n}",sMatch:"Comparing edges… {p}%",sDone:"{n} sherds analysed: {g} possible vessel groups, {m} join candidates.",sNone:"{n} sherds analysed; no reliable join candidate found.",sBad:"The sherd could not be separated in {k} photo(s); retake them on a plain dark background.",
+  groupsH:"Possible vessel groups",groupsNote:"Sherds that may belong to the same vessel, by colour, texture and joins found.",grp:"Group {k}",
+  joinsH:"Join candidates",joinsNote:"Strongest candidates first. The preview shows the two sherds joined along the suggested edge; confirm by trying the sherds in hand.",
+  edge:"Matching edge",fit:"Fit",strong:"strong",medium:"medium",weak:"weak",yes:"Correct",no:"Wrong",markedY:"Marked correct",markedN:"Marked wrong",
+  more:"Show more candidates",privacy:"Your photos are processed on your device and are never uploaded.",back:"Back to RecOniz",
+  note:"This tool is designed only to assist reassembly; suggestions must be checked by trying the sherds in hand. Trial version.",demoNote:"Sample: sherds broken artificially from two different plates."}
+};
+let LANG=(navigator.language||"tr").toLowerCase().startsWith("tr")?"tr":"en";
+try{ const s=localStorage.getItem("amfora-lang"); if(s==="tr"||s==="en") LANG=s; }catch(_){}
+const T=(k,v)=>{ let s=(I18N[LANG]||I18N.tr)[k]||k; if(v) for(const x in v) s=s.replace("{"+x+"}",v[x]); return s; };
+const $=s=>document.querySelector(s);
+function applyLang(){ document.documentElement.lang=LANG; document.querySelectorAll("[data-i18n]").forEach(e=>e.textContent=T(e.dataset.i18n)); document.title="RecOniz · "+T("title");
+  [...$("#lang").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===LANG)); renderThumbs(); if(lastResult) renderResults(lastResult); else setStatus(T("status0")); }
+$("#lang").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; LANG=b.dataset.v; try{ localStorage.setItem("amfora-lang",LANG); }catch(_){} applyLang(); });
+
+/* ---------- durum ---------- */
+let pieces=[]; let lastResult=null; let isDemo=false;
+const setStatus=t=>{ $("#status").textContent=t; };
+const tick=()=>new Promise(r=>setTimeout(r,0));
+
+/* ---------- görüntü yükleme ---------- */
+async function loadFiles(files){
+  setStatus(T("sLoad")); const bmps=[];
+  for(const f of files){ try{ const b=await createImageBitmap(f,{imageOrientation:"from-image"}); bmps.push({bmp:b,name:f.name}); }catch(e){ try{ const b=await imgBitmap(f); bmps.push({bmp:b,name:f.name}); }catch(_){} } }
+  const long=Math.max(...bmps.map(x=>Math.max(x.bmp.width,x.bmp.height))); const k=Math.min(1,900/long);
+  pieces=bmps.map((x,i)=>({id:i,label:"P"+(i+1),src:toCanvas(x.bmp,k),name:x.name}));
+  isDemo=false; lastResult=null; renderThumbs(); $("#results").innerHTML=""; setStatus(T("n",{n:pieces.length})); $("#run").disabled=pieces.length<2;
+}
+function imgBitmap(f){ return new Promise((res,rej)=>{ const u=URL.createObjectURL(f), im=new Image(); im.onload=()=>{ URL.revokeObjectURL(u); res(im); }; im.onerror=rej; im.src=u; }); }
+function toCanvas(bmp,k){ const w=Math.max(1,Math.round(bmp.width*k)), h=Math.max(1,Math.round(bmp.height*k)); const c=document.createElement("canvas"); c.width=w; c.height=h; c.getContext("2d").drawImage(bmp,0,0,w,h); return c; }
+function renderThumbs(){ const g=$("#thumbs"); g.innerHTML=""; pieces.forEach(p=>{ const d=document.createElement("figure"); d.className="th"; const c=document.createElement("canvas"); const s=Math.min(1,120/Math.max(p.src.width,p.src.height)); c.width=Math.round(p.src.width*s); c.height=Math.round(p.src.height*s); c.getContext("2d").drawImage(p.src,0,0,c.width,c.height); const f=document.createElement("figcaption"); f.textContent=p.label; if(p.bad) d.classList.add("bad"); d.append(c,f); g.append(d); });
+  $("#count").textContent=pieces.length?T("n",{n:pieces.length}):""; $("#demoNote").hidden=!isDemo; }
+$("#file").addEventListener("change",e=>{ const f=[...e.target.files]; if(f.length) loadFiles(f); e.target.value=""; });
+$("#clear").addEventListener("click",()=>{ pieces=[]; lastResult=null; isDemo=false; renderThumbs(); $("#results").innerHTML=""; setStatus(T("status0")); $("#run").disabled=true; });
+
+/* ---------- ayırma (koyu düz zemin) ---------- */
+function segment(p){
+  const c=p.src, w=c.width, h=c.height, d=c.getContext("2d").getImageData(0,0,w,h).data;
+  // zemin rengi: kenar piksellerinin ortancası
+  const bs=[[],[],[]]; const push=i=>{ bs[0].push(d[i]); bs[1].push(d[i+1]); bs[2].push(d[i+2]); };
+  for(let x=0;x<w;x+=2){ push((x)*4); push(((h-1)*w+x)*4); } for(let y=0;y<h;y+=2){ push((y*w)*4); push((y*w+w-1)*4); }
+  const med=a=>{ a.sort((u,v)=>u-v); return a[a.length>>1]; }; const bg=bs.map(med);
+  const dist=new Float32Array(w*h); let mx=1;
+  for(let i=0,j=0;i<w*h;i++,j+=4){ const r=d[j]-bg[0], g=d[j+1]-bg[1], b=d[j+2]-bg[2]; const v=Math.sqrt(r*r+g*g+b*b); dist[i]=v; if(v>mx) mx=v; }
+  // Otsu eşiği
+  const H=new Float64Array(256); for(let i=0;i<w*h;i++) H[Math.min(255,dist[i]/mx*255|0)]++;
+  let sum=0; for(let i=0;i<256;i++) sum+=i*H[i]; let sB=0,wB=0,best=0,th=40; const N=w*h;
+  for(let t=0;t<256;t++){ wB+=H[t]; if(!wB) continue; const wF=N-wB; if(!wF) break; sB+=t*H[t]; const mB=sB/wB, mF=(sum-sB)/wF, v=wB*wF*(mB-mF)*(mB-mF); if(v>best){ best=v; th=t; } }
+  const thr=Math.max(18,th/255*mx);
+  let m=new Uint8Array(w*h); for(let i=0;i<w*h;i++) m[i]=dist[i]>thr?1:0;
+  m=morph(m,w,h,2,false); m=morph(m,w,h,2,true); // kapama
+  m=largest(m,w,h); if(!m) return null; fillHoles(m,w,h);
+  let area=0; for(let i=0;i<w*h;i++) area+=m[i];
+  if(area<400||area>0.9*w*h) return null;
+  return {mask:m,w,h,area,bg};
+}
+function morph(m,w,h,r,erode){ const o=new Uint8Array(w*h), t=new Uint8Array(w*h);
+  for(let y=0;y<h;y++){ for(let x=0;x<w;x++){ let v=erode?1:0; for(let k=-r;k<=r;k++){ const xx=x+k; const q=(xx<0||xx>=w)?0:m[y*w+xx]; if(erode){ if(!q){v=0;break;} } else if(q){v=1;break;} } t[y*w+x]=v; } }
+  for(let y=0;y<h;y++){ for(let x=0;x<w;x++){ let v=erode?1:0; for(let k=-r;k<=r;k++){ const yy=y+k; const q=(yy<0||yy>=h)?0:t[yy*w+x]; if(erode){ if(!q){v=0;break;} } else if(q){v=1;break;} } o[y*w+x]=v; } }
+  return o; }
+function largest(m,w,h){ const lab=new Int32Array(w*h); let n=0,best=0,bestN=0; const st=[];
+  for(let i=0;i<w*h;i++){ if(!m[i]||lab[i]) continue; n++; let c=0; st.push(i); lab[i]=n;
+    while(st.length){ const p=st.pop(); c++; const x=p%w, y=(p/w)|0; for(const q of [x>0?p-1:-1,x<w-1?p+1:-1,y>0?p-w:-1,y<h-1?p+w:-1]) if(q>=0&&m[q]&&!lab[q]){ lab[q]=n; st.push(q); } }
+    if(c>bestN){ bestN=c; best=n; } }
+  if(!best) return null; const o=new Uint8Array(w*h); for(let i=0;i<w*h;i++) o[i]=lab[i]===best?1:0; return o; }
+function fillHoles(m,w,h){ const v=new Uint8Array(w*h), st=[]; for(let x=0;x<w;x++){ st.push(x, (h-1)*w+x); } for(let y=0;y<h;y++){ st.push(y*w, y*w+w-1); }
+  while(st.length){ const p=st.pop(); if(v[p]||m[p]) continue; v[p]=1; const x=p%w, y=(p/w)|0; if(x>0) st.push(p-1); if(x<w-1) st.push(p+1); if(y>0) st.push(p-w); if(y<h-1) st.push(p+w); }
+  for(let i=0;i<w*h;i++) if(!v[i]) m[i]=1; }
+
+/* ---------- dış çizgi ---------- */
+function trace(m,w,h){ // Moore komşuluğu
+  let s=-1; for(let i=0;i<w*h;i++) if(m[i]){ s=i; break; } if(s<0) return [];
+  const dx=[1,1,0,-1,-1,-1,0,1], dy=[0,1,1,1,0,-1,-1,-1]; const at=(x,y)=>x>=0&&y>=0&&x<w&&y<h&&m[y*w+x];
+  let x=s%w, y=(s/w)|0; const sx=x, sy=y; let dir=7; const pts=[[x,y]]; let guard=0;
+  do{ let found=false; for(let k=0;k<8;k++){ const d=(dir+6+k)%8; const nx=x+dx[d], ny=y+dy[d]; if(at(nx,ny)){ x=nx; y=ny; dir=d; found=true; break; } }
+    if(!found) break; pts.push([x,y]); if(++guard>w*h) break; } while(!(x===sx&&y===sy));
+  return pts; }
+function resample(pts,step){ const out=[]; let acc=0; out.push(pts[0].slice());
+  for(let i=1;i<pts.length;i++){ let [x0,y0]=pts[i-1]; const [x1,y1]=pts[i]; let seg=Math.hypot(x1-x0,y1-y0);
+    while(acc+seg>=step){ const t=(step-acc)/seg; x0=x0+(x1-x0)*t; y0=y0+(y1-y0)*t; out.push([x0,y0]); seg=Math.hypot(x1-x0,y1-y0); acc=0; }
+    acc+=seg; }
+  return out; }
+function smoothC(P,s){ const n=P.length, o=[]; const K=[]; let ks=0; for(let k=-2*s;k<=2*s;k++){ const v=Math.exp(-k*k/(2*s*s)); K.push(v); ks+=v; }
+  for(let i=0;i<n;i++){ let x=0,y=0; for(let k=-2*s;k<=2*s;k++){ const q=P[(i+k+n)%n], v=K[k+2*s]; x+=q[0]*v; y+=q[1]*v; } o.push([x/ks,y/ks]); } return o; }
+function curvature(P){ const n=P.length, th=new Float32Array(n), k=new Float32Array(n);
+  for(let i=0;i<n;i++){ const a=P[(i-1+n)%n], b=P[(i+1)%n]; th[i]=Math.atan2(b[1]-a[1],b[0]-a[0]); }
+  for(let i=0;i<n;i++){ let d=th[(i+1)%n]-th[i]; while(d>Math.PI) d-=2*Math.PI; while(d<-Math.PI) d+=2*Math.PI; k[i]=d; } return k; }
+
+/* ---------- renk ve doku ---------- */
+function rgb2lab(r,g,b){ const f=c=>{ c/=255; return c>0.04045?Math.pow((c+0.055)/1.055,2.4):c/12.92; }; r=f(r); g=f(g); b=f(b);
+  let X=(r*0.4124+g*0.3576+b*0.1805)/0.95047, Y=(r*0.2126+g*0.7152+b*0.0722), Z=(r*0.0193+g*0.1192+b*0.9505)/1.08883;
+  const h=t=>t>0.008856?Math.cbrt(t):7.787*t+16/116; X=h(X); Y=h(Y); Z=h(Z); return [116*Y-16,500*(X-Y),200*(Y-Z)]; }
+function colorFeat(p){ const {mask,w,h}=p.seg; const d=p.src.getContext("2d").getImageData(0,0,w,h).data;
+  // kenardan 4 px içeriyi kullan (gölge ve kenar pikselleri dışarıda)
+  const inner=morph(mask,w,h,4,true); const hist=new Float32Array(8*6*6); let n=0; const mean=[0,0,0]; let tex=0;
+  for(let y=1;y<h-1;y+=2) for(let x=1;x<w-1;x+=2){ const i=y*w+x; if(!inner[i]) continue; const j=i*4; const L=rgb2lab(d[j],d[j+1],d[j+2]);
+    mean[0]+=L[0]; mean[1]+=L[1]; mean[2]+=L[2]; n++;
+    const bl=Math.min(7,Math.max(0,L[0]/12.5|0)), ba=Math.min(5,Math.max(0,(L[1]+30)/10|0)), bb=Math.min(5,Math.max(0,(L[2]+20)/12|0)); hist[bl*36+ba*6+bb]++;
+    const gx=d[j+4]-d[j-4], gy=d[j+4*w]-d[j-4*w]; tex+=Math.hypot(gx,gy); }
+  if(!n) return {mean:[0,0,0],hist,tex:0};
+  for(let i=0;i<hist.length;i++) hist[i]/=n; return {mean:mean.map(v=>v/n),hist,tex:tex/n}; }
+function colorDist(a,b){ let bh=0; for(let i=0;i<a.hist.length;i++) bh+=Math.sqrt(a.hist[i]*b.hist[i]); const dE=Math.hypot(a.mean[0]-b.mean[0],a.mean[1]-b.mean[1],a.mean[2]-b.mean[2]);
+  return 0.5*dE/20 + 0.5*(1-bh)*3 + Math.abs(a.tex-b.tex)/Math.max(8,(a.tex+b.tex)/2)*0.5; }
+
+/* ---------- hazırlık ---------- */
+const STEP=4, L=34, SIG=2;
+function prep(p){ p.seg=segment(p); if(!p.seg){ p.bad=true; return; } p.bad=false;
+  let pts=trace(p.seg.mask,p.seg.w,p.seg.h); let P=resample(pts,STEP);
+  // saat yönünün tersine (y aşağı koordinatta alan < 0) sabitle
+  let A=0; for(let i=0;i<P.length;i++){ const a=P[i], b=P[(i+1)%P.length]; A+=a[0]*b[1]-b[0]*a[1]; } if(A<0) P.reverse();
+  p.P=smoothC(P,SIG); p.k=curvature(p.P);
+  // parça içinden örnek noktalar (çakışma denetimi)
+  const {mask,w,h}=p.seg; const inner=morph(mask,w,h,3,true); p.inner=[]; for(let y=0;y<h;y+=6) for(let x=0;x<w;x+=6) if(inner[y*w+x]) p.inner.push([x,y]);
+  p.col=colorFeat(p);
+  // kenar ızgarası (yakınlık araması)
+  p.grid=new Map(); p.P.forEach((q,i)=>{ const key=((q[0]/8)|0)+","+((q[1]/8)|0); if(!p.grid.has(key)) p.grid.set(key,[]); p.grid.get(key).push(i); });
+}
+function nearest(p,x,y,r){ r=r||1; const gx=(x/8)|0, gy=(y/8)|0; let best=1e9,bi=-1; for(let a=-r;a<=r;a++) for(let b=-r;b<=r;b++){ const l=p.grid.get((gx+a)+","+(gy+b)); if(l) for(const i of l){ const q=p.P[i]; const d=Math.hypot(q[0]-x,q[1]-y); if(d<best){ best=d; bi=i; } } } return [best,bi]; }
+function nearDist(p,x,y){ return nearest(p,x,y)[0]; }
+function pix(p,x,y){ if(!p._px) p._px=p.src.getContext("2d").getImageData(0,0,p.src.width,p.src.height).data; x=Math.round(x); y=Math.round(y); if(x<0||y<0||x>=p.src.width||y>=p.src.height) return null; const j=(y*p.src.width+x)*4; return rgb2lab(p._px[j],p._px[j+1],p._px[j+2]); }
+// eşleşen kenarın iki yanındaki renkler: gerçek birleşmede bezeme ve hamur rengi kenardan kenara süreklidir
+function edgeColor(a,b,tr){ const X=q=>[tr.c*q[0]-tr.s*q[1]+tr.tx, tr.s*q[0]+tr.c*q[1]+tr.ty]; const nb=b.P.length; let s=0,c=0; const D=6;
+  for(let t=0;t<nb;t+=2){ const q=b.P[t], r=X(q); const [d,ai]=nearest(a,r[0],r[1],1); if(d>=1.6*STEP||ai<0) continue;
+    const pa=a.P[ai], pa1=a.P[(ai+1)%a.P.length], pa0=a.P[(ai-1+a.P.length)%a.P.length]; let nx=-(pa1[1]-pa0[1]), ny=pa1[0]-pa0[0]; const nl=Math.hypot(nx,ny)||1; nx/=nl; ny/=nl;
+    // A içine doğru normal (saat yönünün tersi dolaşımda sol taraf)
+    let ax=pa[0]+nx*D, ay=pa[1]+ny*D; if(!inside(a,ax,ay)){ ax=pa[0]-nx*D; ay=pa[1]-ny*D; }
+    const qb1=b.P[(t+1)%nb], qb0=b.P[(t-1+nb)%nb]; let mx=-(qb1[1]-qb0[1]), my=qb1[0]-qb0[0]; const ml=Math.hypot(mx,my)||1; mx/=ml; my/=ml;
+    let bx=q[0]+mx*D, by=q[1]+my*D; if(!inside(b,bx,by)){ bx=q[0]-mx*D; by=q[1]-my*D; }
+    const ca=pix(a,ax,ay), cb=pix(b,bx,by); if(!ca||!cb) continue; s+=Math.hypot(ca[0]-cb[0],ca[1]-cb[1],ca[2]-cb[2]); c++; }
+  return c?s/c:99; }
+function inside(p,x,y){ const {mask,w,h}=p.seg; x=Math.round(x); y=Math.round(y); return x>=0&&y>=0&&x<w&&y<h&&mask[y*w+x]===1; }
+
+/* ---------- kenar eşleştirme ---------- */
+function kabsch(A,B){ // B'yi A'ya getiren dönme+öteleme
+  let ax=0,ay=0,bx=0,by=0; const n=A.length; for(let i=0;i<n;i++){ ax+=A[i][0]; ay+=A[i][1]; bx+=B[i][0]; by+=B[i][1]; } ax/=n; ay/=n; bx/=n; by/=n;
+  let sxx=0,sxy=0; for(let i=0;i<n;i++){ const px=B[i][0]-bx, py=B[i][1]-by, qx=A[i][0]-ax, qy=A[i][1]-ay; sxx+=px*qx+py*qy; sxy+=px*qy-py*qx; }
+  const th=Math.atan2(sxy,sxx), c=Math.cos(th), s=Math.sin(th); const tx=ax-(c*bx-s*by), ty=ay-(s*bx+c*by);
+  let e=0; for(let i=0;i<n;i++){ const x=c*B[i][0]-s*B[i][1]+tx, y=s*B[i][0]+c*B[i][1]+ty; e+=(x-A[i][0])**2+(y-A[i][1])**2; }
+  return {c,s,tx,ty,th,rms:Math.sqrt(e/n)}; }
+function matchPair(a,b){
+  const na=a.k.length, nb=b.k.length; if(na<L*2||nb<L*2) return null;
+  const cand=[];
+  // her iki parçada da bilgi taşıyan (düz olmayan) bölütler
+  const varA=segVar(a.k), varB=segVar(b.k);
+  for(let i=0;i<na;i+=2){ if(varA[i]<0.004) continue;
+    for(let j=0;j<nb;j++){ if(varB[(j)%nb]<0.004) continue; let s=0;
+      for(let t=0;t<L;t++){ const d=a.k[(i+t)%na]+b.k[(j+L-1-t)%nb]; s+=d*d; if(s>1e9) break; }
+      const sc=s/L/(0.5*(varA[i]+varB[j])+0.002);
+      if(cand.length<60||sc<cand[cand.length-1].sc){ cand.push({i,j,sc}); cand.sort((u,v)=>u.sc-v.sc); if(cand.length>60) cand.pop(); } } }
+  let best=null;
+  for(const c of cand){ const A=[],B=[]; for(let t=0;t<L;t++){ A.push(a.P[(c.i+t)%na]); B.push(b.P[(c.j+L-1-t)%nb]); }
+    let tr=kabsch(A,B); if(tr.rms>3*STEP) continue;
+    // ICP ile ince ayar: B'nin A'ya yakın noktalarını en yakın A noktalarıyla eşle
+    for(let it=0;it<10;it++){ const PA=[],PB=[]; const X=q=>[tr.c*q[0]-tr.s*q[1]+tr.tx, tr.s*q[0]+tr.c*q[1]+tr.ty];
+      const lim=it<3?3*STEP:1.8*STEP;
+      for(let t=0;t<nb;t++){ const q=X(b.P[t]); const [d,ai]=nearest(a,q[0],q[1],1); if(d<lim&&ai>=0){ PA.push(a.P[ai]); PB.push(b.P[t]); } }
+      if(PA.length<L/2) break; const n2=kabsch(PA,PB); tr=n2; }
+    const X=q=>[tr.c*q[0]-tr.s*q[1]+tr.tx, tr.s*q[0]+tr.c*q[1]+tr.ty];
+    let hits=0,err=0; for(let t=0;t<nb;t++){ const q=X(b.P[t]); const dd=nearDist(a,q[0],q[1]); if(dd<1.6*STEP){ hits++; err+=dd*dd; } }
+    if(hits<L/2) continue; const rms=Math.sqrt(err/hits);
+    let ov=0; for(const q of b.inner){ const r=X(q); if(inside(a,r[0],r[1])) ov++; } const ovr=ov/Math.max(1,b.inner.length);
+    if(ovr>0.05) continue;
+    const len=hits*STEP; const score=len*(1-ovr*8)/(1+rms/STEP);
+    const ec=edgeColor(a,b,tr); const sc2=score*Math.exp(-Math.max(0,ec-8)/14);
+    if(!best||sc2>best.score) best={a:a.id,b:b.id,tr,len,rms,ov:ovr,ec,score:sc2,i:c.i,j:c.j}; }
+  return best; }
+function segVar(k){ const n=k.length, v=new Float32Array(n); for(let i=0;i<n;i++){ let m=0,s=0; for(let t=0;t<L;t++) m+=k[(i+t)%n]; m/=L; for(let t=0;t<L;t++){ const d=k[(i+t)%n]-m; s+=d*d; } v[i]=s/L+m*m*0.2; } return v; }
+
+/* ---------- analiz ---------- */
+async function analyse(){
+  if(pieces.length<2) return; $("#run").disabled=true; $("#results").innerHTML="";
+  for(let i=0;i<pieces.length;i++){ setStatus(T("sSeg",{i:i+1,n:pieces.length})); await tick(); prep(pieces[i]); }
+  renderThumbs(); const ok=pieces.filter(p=>!p.bad);
+  const pairs=[]; for(let i=0;i<ok.length;i++) for(let j=i+1;j<ok.length;j++) pairs.push([ok[i],ok[j]]);
+  const found=[]; let t0=performance.now();
+  for(let q=0;q<pairs.length;q++){ const [a,b]=pairs[q]; const m=matchPair(a,b); if(m) found.push(m);
+    if(performance.now()-t0>60){ setStatus(T("sMatch",{p:Math.round(q/pairs.length*100)})); await tick(); t0=performance.now(); } }
+  found.sort((u,v)=>v.score-u.score); found.forEach(m=>{ m.cd=colorDist(pieces[m.a].col,pieces[m.b].col); }); window.__found=found.map(m=>({a:m.a,b:m.b,len:m.len,rms:m.rms,ov:m.ov,ec:m.ec,score:m.score,cd:m.cd}));
+  // güven düzeyi: eşleşen kenar uzunluğu ve uyum
+  // renkçe çok farklı parçalar aynı kaptan olamaz; kalanlar puana göre sıralanır
+  const joins=found.filter(m=>m.cd<1.2&&m.score>=55&&m.len>=100);
+  joins.forEach(m=>{ m.level=m.score>=110?"strong":m.score>=80?"medium":"weak"; });
+  // gruplar: renk benzerliği + birleşmeler
+  const par=new Map(ok.map(p=>[p.id,p.id])); const f=x=>{ while(par.get(x)!==x){ par.set(x,par.get(par.get(x))); x=par.get(x); } return x; }; const u=(x,y)=>par.set(f(x),f(y));
+  for(let i=0;i<ok.length;i++) for(let j=i+1;j<ok.length;j++) if(colorDist(ok[i].col,ok[j].col)<1.0) u(ok[i].id,ok[j].id);
+  joins.filter(m=>m.level!=="weak").forEach(m=>u(m.a,m.b));
+  const gm=new Map(); ok.forEach(p=>{ const r=f(p.id); if(!gm.has(r)) gm.set(r,[]); gm.get(r).push(p.id); });
+  const groups=[...gm.values()].sort((x,y)=>y.length-x.length||x[0]-y[0]);
+  lastResult={joins,groups,bad:pieces.filter(p=>p.bad).length,n:pieces.length,shown:6,marks:{}};
+  renderResults(lastResult); $("#run").disabled=false; }
+$("#run").addEventListener("click",analyse);
+
+/* ---------- sonuçlar ---------- */
+const GC=["var(--g1)","var(--g2)","var(--g3)","var(--g4)","var(--g5)","var(--g6)"];
+function renderResults(R){
+  const box=$("#results"); box.innerHTML="";
+  let st=R.joins.length?T("sDone",{n:R.n,g:R.groups.length,m:R.joins.length}):T("sNone",{n:R.n}); if(R.bad) st+=" "+T("sBad",{k:R.bad}); setStatus(st);
+  const gidx=new Map(); R.groups.forEach((g,k)=>g.forEach(id=>gidx.set(id,k)));
+  // gruplar
+  const gs=document.createElement("section"); gs.className="card"; gs.innerHTML=`<h2>${T("groupsH")}</h2><p class="sub">${T("groupsNote")}</p>`;
+  const gl=document.createElement("div"); gl.className="groups";
+  R.groups.forEach((g,k)=>{ const row=document.createElement("div"); row.className="grow"; row.style.setProperty("--gc",GC[k%GC.length]);
+    const lab=document.createElement("span"); lab.className="glab"; lab.textContent=T("grp",{k:k+1}); row.append(lab);
+    g.forEach(id=>{ const p=pieces[id]; const c=mini(p,56); c.title=p.label; const w=document.createElement("figure"); w.className="gp"; const cap=document.createElement("figcaption"); cap.textContent=p.label; w.append(c,cap); row.append(w); });
+    gl.append(row); });
+  gs.append(gl); box.append(gs);
+  // adaylar
+  if(R.joins.length){ const js=document.createElement("section"); js.className="card"; js.innerHTML=`<h2>${T("joinsH")}</h2><p class="sub">${T("joinsNote")}</p>`;
+    const list=document.createElement("div"); list.className="joins";
+    R.joins.slice(0,R.shown).forEach((m,idx)=>{ const a=pieces[m.a], b=pieces[m.b]; const card=document.createElement("article"); card.className="join"; card.style.setProperty("--gc",GC[(gidx.get(m.a)||0)%GC.length]);
+      const cv=document.createElement("canvas"); drawJoin(cv,a,b,m);
+      const pct=Math.round(Math.max(0,Math.min(1,m.score/170))*100);
+      const meta=document.createElement("div"); meta.className="jmeta";
+      meta.innerHTML=`<div class="jt"><b>${a.label} ↔ ${b.label}</b><span class="lvl ${m.level}">${T(m.level)}</span></div><div class="jn">${T("edge")}: ${Math.round(m.len)} px · ${T("fit")}: %${pct}</div>`;
+      const acts=document.createElement("div"); acts.className="jacts"; const key=m.a+"-"+m.b;
+      const mk=(v,lab)=>{ const bt=document.createElement("button"); bt.type="button"; bt.className="mini"; bt.textContent=lab; bt.setAttribute("aria-pressed",R.marks[key]===v); bt.onclick=()=>{ R.marks[key]=R.marks[key]===v?undefined:v; renderResults(R); }; return bt; };
+      acts.append(mk("y",T("yes")),mk("n",T("no"))); meta.append(acts);
+      if(R.marks[key]) { const s=document.createElement("div"); s.className="jn"; s.textContent=R.marks[key]==="y"?T("markedY"):T("markedN"); meta.append(s); }
+      card.append(cv,meta); list.append(card); });
+    js.append(list);
+    if(R.joins.length>R.shown){ const mb=document.createElement("button"); mb.className="link"; mb.type="button"; mb.textContent=T("more"); mb.onclick=()=>{ R.shown+=6; renderResults(R); }; js.append(mb); }
+    box.append(js); }
+}
+function mini(p,s){ const c=document.createElement("canvas"); const {w,h}=p.seg||{w:p.src.width,h:p.src.height}; const bb=bbox(p); const k=s/Math.max(bb.w,bb.h); c.width=Math.round(bb.w*k); c.height=Math.round(bb.h*k);
+  const x=c.getContext("2d"); x.drawImage(cut(p),bb.x0,bb.y0,bb.w,bb.h,0,0,c.width,c.height); return c; }
+function bbox(p){ if(!p.P) return {x0:0,y0:0,w:p.src.width,h:p.src.height}; let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9; p.P.forEach(q=>{ x0=Math.min(x0,q[0]); y0=Math.min(y0,q[1]); x1=Math.max(x1,q[0]); y1=Math.max(y1,q[1]); }); return {x0:Math.floor(x0)-2,y0:Math.floor(y0)-2,w:Math.ceil(x1-x0)+4,h:Math.ceil(y1-y0)+4}; }
+function cut(p){ if(p._cut) return p._cut; const {mask,w,h}=p.seg; const c=document.createElement("canvas"); c.width=w; c.height=h; const x=c.getContext("2d"); x.drawImage(p.src,0,0); const im=x.getImageData(0,0,w,h); for(let i=0;i<w*h;i++) if(!mask[i]) im.data[i*4+3]=0; x.putImageData(im,0,0); p._cut=c; return c; }
+function drawJoin(cv,a,b,m){ const tr=m.tr; const X=q=>[tr.c*q[0]-tr.s*q[1]+tr.tx, tr.s*q[0]+tr.c*q[1]+tr.ty];
+  let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9; const acc=q=>{ x0=Math.min(x0,q[0]); y0=Math.min(y0,q[1]); x1=Math.max(x1,q[0]); y1=Math.max(y1,q[1]); };
+  a.P.forEach(acc); b.P.forEach(q=>acc(X(q)));
+  const W=320, H=220, pad=12, k=Math.min((W-2*pad)/(x1-x0),(H-2*pad)/(y1-y0)); const dpr=Math.min(2,window.devicePixelRatio||1);
+  cv.width=W*dpr; cv.height=H*dpr; cv.style.width="100%"; cv.style.maxWidth=W+"px"; const g=cv.getContext("2d"); g.scale(dpr,dpr);
+  const ox=(W-(x1-x0)*k)/2-x0*k, oy=(H-(y1-y0)*k)/2-y0*k;
+  g.save(); g.setTransform(dpr*k,0,0,dpr*k,dpr*ox,dpr*oy); g.drawImage(cut(a),0,0); g.restore();
+  g.save(); g.setTransform(dpr*k*tr.c,dpr*k*tr.s,-dpr*k*tr.s,dpr*k*tr.c,dpr*(ox+k*tr.tx),dpr*(oy+k*tr.ty)); g.drawImage(cut(b),0,0); g.restore();
+  // eşleşen kenar
+  g.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--hit").trim()||"#e0a030"; g.lineWidth=3; g.lineCap="round"; g.beginPath(); let on=false;
+  b.P.forEach(q=>{ const r=X(q); const d=nearDist(a,r[0],r[1]); const px=ox+r[0]*k, py=oy+r[1]*k; if(d<1.6*STEP){ if(!on){ g.moveTo(px,py); on=true; } else g.lineTo(px,py); } else on=false; }); g.stroke();
+  // etiketler
+  const lab=(p,q)=>{ g.font="600 13px 'Instrument Sans',system-ui,sans-serif"; g.fillStyle="rgba(0,0,0,.55)"; const t=p.label, w=g.measureText(t).width+10; g.fillRect(q[0]-w/2,q[1]-10,w,20); g.fillStyle="#fff"; g.textAlign="center"; g.fillText(t,q[0],q[1]+4.5); };
+  const ca=centroid(a.P), cb=centroid(b.P.map(X)); lab(a,[ox+ca[0]*k,oy+ca[1]*k]); lab(b,[ox+cb[0]*k,oy+cb[1]*k]); }
+function centroid(P){ let x=0,y=0; P.forEach(q=>{ x+=q[0]; y+=q[1]; }); return [x/P.length,y/P.length]; }
+
+/* ---------- örnek parçalar (yapay kırılmış tabaklar) ---------- */
+function rng(seed){ return ()=>{ seed=(seed*1664525+1013904223)>>>0; return seed/4294967296; }; }
+function makePlate(R,base,band,motif,seed){ const S=2*R+8; const c=document.createElement("canvas"); c.width=S; c.height=S; const g=c.getContext("2d"); const r=rng(seed);
+  g.translate(S/2,S/2); g.fillStyle=base; g.beginPath(); g.arc(0,0,R,0,7); g.fill();
+  g.strokeStyle=band; g.lineWidth=R*0.07; g.beginPath(); g.arc(0,0,R*0.9,0,7); g.stroke(); g.lineWidth=R*0.025; g.beginPath(); g.arc(0,0,R*0.55,0,7); g.stroke();
+  g.fillStyle=motif; for(let i=0;i<12;i++){ const a=i/12*Math.PI*2; g.save(); g.rotate(a); g.beginPath(); g.ellipse(R*0.72,0,R*0.09,R*0.04,0,0,7); g.fill(); g.restore(); }
+  g.beginPath(); g.arc(0,0,R*0.18,0,7); g.fill();
+  const im=g.getImageData(0,0,S,S); for(let i=0;i<im.data.length;i+=4){ const n=(r()-0.5)*18; im.data[i]+=n; im.data[i+1]+=n; im.data[i+2]+=n; } g.putImageData(im,0,0); return c; }
+function breakPlate(plate,R,k,seed){ const S=plate.width, g=plate.getContext("2d"), im=g.getImageData(0,0,S,S); const r=rng(seed);
+  const seeds=[]; for(let i=0;i<k;i++){ const a=r()*Math.PI*2, d=Math.sqrt(r())*R*0.8; seeds.push([S/2+Math.cos(a)*d,S/2+Math.sin(a)*d]); }
+  const ph=[r()*6,r()*6,r()*6,r()*6]; const noise=(x,y)=>Math.sin(x*0.09+ph[0])*6+Math.sin(y*0.11+ph[1])*6+Math.sin((x+y)*0.23+ph[2])*3+Math.sin((x-y)*0.37+ph[3])*2;
+  const lab=new Int8Array(S*S).fill(-1);
+  for(let y=0;y<S;y++) for(let x=0;x<S;x++){ if(Math.hypot(x-S/2,y-S/2)>R) continue; let b=0,bd=1e9; for(let s=0;s<k;s++){ const d=Math.hypot(x-seeds[s][0],y-seeds[s][1])+noise(x*(1+s*0.07),y); if(d<bd){ bd=d; b=s; } } lab[y*S+x]=b; }
+  const adj={}; for(let y=0;y<S-1;y++) for(let x=0;x<S-1;x++){ const a=lab[y*S+x]; if(a<0) continue; for(const b of [lab[y*S+x+1],lab[(y+1)*S+x]]) if(b>=0&&b!==a){ const key=Math.min(a,b)+'-'+Math.max(a,b); adj[key]=(adj[key]||0)+1; } }
+  const out=[]; out.adj=adj;
+  for(let s=0;s<k;s++){ let x0=S,y0=S,x1=0,y1=0; for(let y=0;y<S;y++) for(let x=0;x<S;x++) if(lab[y*S+x]===s){ x0=Math.min(x0,x); y0=Math.min(y0,y); x1=Math.max(x1,x); y1=Math.max(y1,y); }
+    if(x1<=x0) continue; const w=x1-x0+1, h=y1-y0+1; const c=document.createElement("canvas"); c.width=w; c.height=h; const pi=c.getContext("2d").createImageData(w,h);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){ const i=(y+y0)*S+(x+x0); if(lab[i]!==s) continue; const o=(y*w+x)*4, q=i*4; pi.data[o]=im.data[q]; pi.data[o+1]=im.data[q+1]; pi.data[o+2]=im.data[q+2]; pi.data[o+3]=255; }
+    c.getContext("2d").putImageData(pi,0,0); c.idx=s; out.push(c); }
+  return out; }
+function photo(piece,seed){ const r=rng(seed); const P=Math.ceil(Math.hypot(piece.width,piece.height))+120; const c=document.createElement("canvas"); c.width=P; c.height=P; const g=c.getContext("2d");
+  g.fillStyle="#1b1c1e"; g.fillRect(0,0,P,P); const im=g.getImageData(0,0,P,P); for(let i=0;i<im.data.length;i+=4){ const n=(r()-0.5)*10; im.data[i]+=n; im.data[i+1]+=n; im.data[i+2]+=n; } g.putImageData(im,0,0);
+  g.save(); g.translate(P/2+(r()-0.5)*30,P/2+(r()-0.5)*30); g.rotate(r()*Math.PI*2); g.shadowColor="rgba(0,0,0,.6)"; g.shadowBlur=6; g.drawImage(piece,-piece.width/2,-piece.height/2); g.restore(); return c; }
+async function demo(){ setStatus(T("sLoad")); await tick();
+  const A=breakPlate(makePlate(170,"#c9a27c","#6b3b22","#8a4a2a",7),170,5,11), B=breakPlate(makePlate(150,"#e7e1cf","#2f5d7c","#2f5d7c",21),150,4,5);
+  const all=[...A.map((p,i)=>({c:p,t:"A"+i})),...B.map((p,i)=>({c:p,t:"B"+i}))]; const r=rng(99); for(let i=all.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [all[i],all[j]]=[all[j],all[i]]; }
+  pieces=all.map((x,i)=>({id:i,label:"P"+(i+1),src:photo(x.c,100+i),truth:x.t}));
+  window.__truth=pieces.map(p=>p.truth); window.__adj={A:A.adj,B:B.adj,Aidx:A.map(c=>c.idx),Bidx:B.map(c=>c.idx)}; isDemo=true; lastResult=null; renderThumbs(); $("#results").innerHTML=""; $("#run").disabled=false; await analyse(); }
+$("#demo").addEventListener("click",demo);
+
+/* ---------- tema ---------- */
+const isDark=()=>{ const t=document.documentElement.dataset.theme; return t? t==="dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+try{ const t=localStorage.getItem("amfora-theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch(_){}
+$("#themeBtn").addEventListener("click",()=>{ const t=isDark()?"light":"dark"; document.documentElement.dataset.theme=t; try{ localStorage.setItem("amfora-theme",t); }catch(_){} if(lastResult) renderResults(lastResult); });
+applyLang(); $("#run").disabled=true;
+
+</script>
+</body>
+</html>
