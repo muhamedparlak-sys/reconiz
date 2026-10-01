@@ -180,6 +180,22 @@ details.all .sub{margin-bottom:12px}
 .family{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;border-radius:16px;background:var(--sea-soft);color:var(--sea);text-decoration:none;font-weight:600}
 .family span{font-weight:400;color:var(--muted);font-size:14px;display:block}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* adımlar ve önizleme rehberi */
+h2 .stepn{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sea);color:var(--on-sea);font-size:15px;margin-right:10px;vertical-align:3px;letter-spacing:0}
+[id^="st-"],.capture,.plate{scroll-margin-top:16px}
+.nextstep{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:9px 16px;font-weight:600;font-size:14.5px;color:var(--sea);cursor:pointer;margin-top:4px}
+.nextstep:hover{border-color:var(--sea)}
+.coach{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));width:min(688px,calc(100% - 24px));z-index:40;background:var(--raised);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 44px -12px rgba(0,0,0,.45);padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px}
+.coach p{font-size:15.5px;line-height:1.5}
+.chead{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cx{border:0;background:none;color:var(--muted);font-size:22px;line-height:1;padding:2px 6px;cursor:pointer}
+.cbtns{display:grid;grid-template-columns:1fr 2fr;gap:10px}
+.cbtns .pick{min-height:46px;padding:10px 14px}
+.cbtns .pick:disabled{opacity:.45;cursor:default;filter:none}
+.hl{outline:3px solid var(--sea);outline-offset:6px;border-radius:18px}
+.capture.hl{outline-offset:4px}
+body.touring{padding-bottom:240px}
+
 </style>
 </head>
 <body>
@@ -229,6 +245,12 @@ details.all .sub{margin-bottom:12px}
     <p class="sub rights" data-i18n="rights"></p>
   </section>
 
+  <div class="coach" id="coach" hidden role="region" aria-live="polite">
+    <div class="chead"><span class="lab" id="coachStep"></span><button class="cx" id="coachX" type="button" data-i18n-aria="tourClose" aria-label="Kapat">×</button></div>
+    <p id="coachTxt"></p>
+    <div class="cbtns"><button class="pick alt" id="coachBack" type="button"></button><button class="pick" id="coachNext" type="button"></button></div>
+  </div>
+
   <a class="family" href="https://reconiz.org/"><div><span data-i18n="famSub"></span><b data-i18n="famH"></b></div><span aria-hidden="true">→</span></a>
 </main>
 <script>
@@ -236,7 +258,7 @@ details.all .sub{margin-bottom:12px}
 /* ---------- dil ---------- */
 const MAIL='<a href="mailto:muhammedparlak@outlook.com">muhammedparlak@outlook.com</a>';
 const I18N={
- tr:{title:"Heritage Rejoiner",hint:"Parçaları koyu, düz bir zemine birbirine değmeden yayın ve tepeden tek fotoğraf çekin.",shoot:"Fotoğraf çek",pick:"Galeriden seç",demo:"Nasıl çalıştığını önizle",clear:"Temizle",nPh:"{n} fotoğraf",ph:"Foto {i}",
+ tr:{title:"Heritage Rejoiner",nextStep:"Sonraki adım: {t}",tryOwn:"Kendi parçalarınızla deneyin",stepOf:"Önizleme · adım {i}/{n}",back:"Geri",next:"Sonraki",tourClose:"Önizlemeyi kapat",tour1:"Bu tek bir masa fotoğrafı: {n} parça karışık halde duruyor. Araç her parçayı ayrı ayrı buldu ve aynı tabağa ait olanları aynı renk ve harfle işaretledi.",tour2:"Kap {k} tamamlandı: {m} parça birleşince ağız dairesinin ≈%{p} kısmı doluyor. Numaralar birleştirme sırasıdır; masada {k}1 ile başlayıp sırayla ekleyin.",tour3:"Parçaların masadan nasıl birleşeceğini izleyin: her parça numara sırasıyla yerine oturuyor. Bu canlandırmayı her kabın kartındaki düğmeyle yeniden oynatabilirsiniz.",tour4:"Kap {k} eksik: {m} parça birbirine uyuyor ama dairenin yalnızca ≈%{p} kısmını dolduruyor. Eksik parçalar başka bir kasada olabilir; bu yüzden ikinci planda gösteriliyor.",tour4n:"Kap {k}: {m} parça birbirine uyuyor ama ağız kenarı bulunamadığı için tamlığı ölçülemedi; ikinci planda gösteriliyor.",tour5:"Bu {m} parça hiçbir kapla eşleşmedi. Başka bir masa fotoğrafında ya da kasada eşleri çıkabilir.",tour6:"Sıra sizde. Parçalarınızı koyu, düz bir zemine birbirine değmeden yayın ve tepeden fotoğraf çekin; sonuçlar aynı adımlarla gelir.",hint:"Parçaları koyu, düz bir zemine birbirine değmeden yayın ve tepeden tek fotoğraf çekin.",shoot:"Fotoğraf çek",pick:"Galeriden seç",demo:"Nasıl çalıştığını önizle",clear:"Temizle",nPh:"{n} fotoğraf",ph:"Foto {i}",
   aboutH:"Heritage Rejoiner nedir?",lede:"Heritage Rejoiner, masaya yayılmış kırık seramik parçalarının tek bir fotoğrafından aynı kaba ait parçaları bulur ve kapları birleştirme sırasıyla gösterir.",
   howH:"Nasıl çalışır",how1:"Fotoğraftaki her parça zeminden ayrılır ve dış çizgisi çıkarılır.",how2:"Her parça çiftinin kırık kenarları karşılaştırılır: kenar biçiminin uyumu, kırığın iki yanında renk ve bezemenin sürüp sürmediği.",how3:"Parçalar yapboz gibi yerleştirilir. Bir parça, masada yerleşmiş komşularına oturuyorsa, hiçbirinin üstüne binmiyorsa ve ağız kenarı kabın ağız dairesine uyuyorsa kabul edilir.",how4:"Ağız kenarlarından kabın dairesi çıkarılır; dairenin ne kadarının parçalarla dolduğu tamlık oranını verir. Tamamlanan kaplar önce, eksikler sonra gösterilir; her kap bir renk ve harf, parçaları birleştirme sırasına göre numara alır.",
   priv:"Fotoğraflar cihazınızda işlenir; hiçbir yere gönderilmez. Sayfa bir kez açıldıktan sonra internet olmadan da çalışır.",
@@ -253,7 +275,7 @@ const I18N={
   joinsH:"Tüm birleşme adayları ({n})",joinsNote:"En güçlü adaylar üstte. Önizleme, iki parçanın önerilen kenardan birleşmiş halini gösterir; kararı parçaları elinizde deneyerek verin.",
   edge:"Eşleşen kenar",fit:"Uyum",strong:"güçlü",medium:"orta",weak:"zayıf",yes:"Doğru",no:"Yanlış",markedY:"Doğru olarak işaretlendi",markedN:"Yanlış olarak işaretlendi",more:"Daha fazla aday göster",
   demoNote:"Önizleme: beş tabaktan yapay olarak kırılmış 19 parça, tek masa fotoğrafında. İki tabağın bütün parçaları var, birinin yarısı eksik; iki parça da başka tabaklardan kalma."},
- en:{title:"Heritage Rejoiner",hint:"Spread the sherds on a plain dark surface without touching and take one photo from straight above.",shoot:"Take photo",pick:"Choose from library",demo:"Preview how it works",clear:"Clear",nPh:"Photos: {n}",ph:"Photo {i}",
+ en:{title:"Heritage Rejoiner",nextStep:"Next step: {t}",tryOwn:"Try it with your own sherds",stepOf:"Preview · step {i}/{n}",back:"Back",next:"Next",tourClose:"Close the preview",tour1:"This is a single table photo: {n} sherds lie mixed together. The tool found each sherd separately and marked those from the same plate with the same colour and letter.",tour2:"Vessel {k} is complete: joined, its {m} sherds fill ≈{p}% of the rim circle. The numbers are the joining order; start at the table with {k}1 and add them in turn.",tour3:"Watch how the sherds join from the table: each sherd settles into place in number order. You can replay this animation with the button on every vessel’s card.",tour4:"Vessel {k} is incomplete: its {m} sherds fit together but fill only ≈{p}% of the circle. The missing sherds may be in another box, so it is shown in second place.",tour4n:"Vessel {k}: its {m} sherds fit together, but no rim edge was found, so its completeness could not be measured; it is shown in second place.",tour5:"These {m} sherds did not match any vessel. Their partners may turn up in another table photo or box.",tour6:"Your turn. Spread your sherds on a plain dark surface without touching and photograph them from above; the results come in the same steps.",hint:"Spread the sherds on a plain dark surface without touching and take one photo from straight above.",shoot:"Take photo",pick:"Choose from library",demo:"Preview how it works",clear:"Clear",nPh:"Photos: {n}",ph:"Photo {i}",
   aboutH:"What is Heritage Rejoiner?",lede:"Heritage Rejoiner finds the sherds that belong to the same vessel from a single photograph of broken ceramic sherds spread on a table, and shows each vessel with the order in which to join it.",
   howH:"How it works",how1:"Each sherd in the photo is separated from the background and its outline is traced.",how2:"The broken edges of every pair of sherds are compared: how well the edge shapes fit, and whether colour and decoration continue across the break.",how3:"The sherds are placed like a jigsaw. A sherd is accepted where it fits the neighbours already placed, overlaps none of them, and its rim follows the vessel’s rim circle.",how4:"The vessel’s circle is found from the rim edges; how much of it is filled by sherds gives the completeness. Completed vessels are shown first and incomplete ones after; each vessel gets a colour and a letter, and its sherds are numbered in joining order.",
   priv:"Photos are processed on your device and are never uploaded. Once the page has been opened, it also works without internet.",
@@ -270,7 +292,7 @@ const I18N={
   joinsH:"All join candidates ({n})",joinsNote:"Strongest candidates first. The preview shows the two sherds joined along the suggested edge; confirm by trying the sherds in hand.",
   edge:"Matching edge",fit:"Fit",strong:"strong",medium:"medium",weak:"weak",yes:"Correct",no:"Wrong",markedY:"Marked correct",markedN:"Marked wrong",more:"Show more candidates",
   demoNote:"Preview: 19 sherds broken artificially from five plates, in one table photo. Two plates have all their sherds, one is missing about half, and two sherds are strays from other plates."},
- es:{title:"Heritage Rejoiner",hint:"Extienda los fragmentos sobre una superficie lisa y oscura, sin que se toquen, y tome una sola foto desde arriba.",shoot:"Tomar foto",pick:"Elegir de la galería",demo:"Ver cómo funciona",clear:"Borrar",nPh:"Fotos: {n}",ph:"Foto {i}",
+ es:{title:"Heritage Rejoiner",nextStep:"Siguiente paso: {t}",tryOwn:"Pruébelo con sus fragmentos",stepOf:"Vista previa · paso {i}/{n}",back:"Atrás",next:"Siguiente",tourClose:"Cerrar la vista previa",tour1:"Esta es una sola foto de mesa: {n} fragmentos mezclados. La herramienta encontró cada fragmento por separado y marcó con el mismo color y letra los que proceden del mismo plato.",tour2:"La pieza {k} está completa: unidos, sus {m} fragmentos cubren ≈{p} % de la circunferencia del borde. Los números indican el orden de unión; empiece en la mesa por {k}1 y añada los demás en orden.",tour3:"Vea cómo se unen los fragmentos desde la mesa: cada uno encaja en su lugar en orden numérico. Puede repetir esta animación con el botón de la ficha de cada pieza.",tour4:"La pieza {k} está incompleta: sus {m} fragmentos encajan entre sí pero solo cubren ≈{p} % de la circunferencia. Los que faltan pueden estar en otra caja, por eso aparece en segundo plano.",tour4n:"Pieza {k}: sus {m} fragmentos encajan entre sí, pero no se encontró el borde y no se pudo medir la compleción; aparece en segundo plano.",tour5:"Estos {m} fragmentos no encajan con ninguna pieza. Sus parejas pueden aparecer en otra foto de mesa o en otra caja.",tour6:"Es su turno. Extienda sus fragmentos sobre una superficie lisa y oscura, sin que se toquen, y fotografíelos desde arriba; los resultados llegan con los mismos pasos.",hint:"Extienda los fragmentos sobre una superficie lisa y oscura, sin que se toquen, y tome una sola foto desde arriba.",shoot:"Tomar foto",pick:"Elegir de la galería",demo:"Ver cómo funciona",clear:"Borrar",nPh:"Fotos: {n}",ph:"Foto {i}",
   aboutH:"¿Qué es Heritage Rejoiner?",lede:"Heritage Rejoiner encuentra, a partir de una sola fotografía de fragmentos cerámicos extendidos sobre una mesa, los que pertenecen a la misma pieza y muestra cada pieza con el orden en que deben unirse.",
   howH:"Cómo funciona",how1:"Cada fragmento de la foto se separa del fondo y se traza su contorno.",how2:"Se comparan los bordes de fractura de cada par de fragmentos: el ajuste de la forma del borde y si el color y la decoración continúan a ambos lados de la fractura.",how3:"Los fragmentos se colocan como un rompecabezas. Un fragmento se acepta cuando encaja con los vecinos ya colocados, no se superpone a ninguno y su borde sigue la circunferencia del borde de la pieza.",how4:"La circunferencia de la pieza se obtiene de los bordes; la parte que cubren los fragmentos da el grado de compleción. Primero se muestran las piezas completas y después las incompletas; cada pieza recibe un color y una letra, y sus fragmentos se numeran en el orden de unión.",
   priv:"Las fotos se procesan en su dispositivo y nunca se envían. Una vez abierta la página, funciona también sin internet.",
@@ -290,9 +312,9 @@ const I18N={
 };
 const NL=(navigator.language||"tr").toLowerCase(); let LANG=NL.startsWith("tr")?"tr":NL.startsWith("es")?"es":"en";
 try{ const s=localStorage.getItem("amfora-lang"); if(s==="tr"||s==="en"||s==="es") LANG=s; }catch(_){}
-const T=(k,v)=>{ let s=(I18N[LANG]||I18N.tr)[k]||k; if(v) for(const x in v) s=s.replace("{"+x+"}",v[x]); return s; };
+const T=(k,v)=>{ let s=(I18N[LANG]||I18N.tr)[k]||k; if(v) for(const x in v) s=s.split("{"+x+"}").join(v[x]); return s; };
 const $=s=>document.querySelector(s);
-function applyLang(){ document.documentElement.lang=LANG; document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=T(e.dataset.i18n)); document.title="RecOniz · "+T("title");
+function applyLang(){ document.documentElement.lang=LANG; document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=T(e.dataset.i18n)); document.querySelectorAll("[data-i18n-aria]").forEach(e=>e.setAttribute("aria-label",T(e.dataset.i18nAria))); document.title="RecOniz · "+T("title");
   [...$("#lang").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===LANG)); renderThumbs(); if(lastResult) renderResults(lastResult); else setStatus(T("status0")); }
 $("#lang").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; LANG=b.dataset.v; try{ localStorage.setItem("amfora-lang",LANG); }catch(_){} applyLang(); });
 
@@ -303,6 +325,7 @@ const tick=()=>new Promise(r=>setTimeout(r,0));
 
 /* ---------- görüntü yükleme ---------- */
 async function loadFiles(files){
+  endTour();
   setStatus(T("sLoad")); const bmps=[];
   for(const f of files){ try{ const b=await createImageBitmap(f,{imageOrientation:"from-image"}); bmps.push({bmp:b,name:f.name}); }catch(e){ try{ const b=await imgBitmap(f); bmps.push({bmp:b,name:f.name}); }catch(_){} } }
   photos=bmps; pieces=[]; isDemo=false; lastResult=null; renderThumbs(); $("#results").innerHTML=""; if(photos.length) await analyse(); else setStatus(T("status0"));
@@ -312,7 +335,7 @@ function toCanvas(bmp,k){ const w=Math.max(1,Math.round(bmp.width*k)), h=Math.ma
 function renderThumbs(){ const g=$("#thumbs"); g.innerHTML=""; photos.forEach((ph,i)=>{ const d=document.createElement("figure"); d.className="th"; const c=document.createElement("canvas"); const s=Math.min(1,160/Math.max(ph.bmp.width,ph.bmp.height)); c.width=Math.max(1,Math.round(ph.bmp.width*s)); c.height=Math.max(1,Math.round(ph.bmp.height*s)); c.getContext("2d").drawImage(ph.bmp,0,0,c.width,c.height); const f=document.createElement("figcaption"); f.textContent=T("ph",{i:i+1}); d.append(c,f); g.append(d); });
   $("#count").textContent=photos.length?T("nPh",{n:photos.length}):""; $("#demoNote").hidden=!isDemo; $("#workRow").hidden=!photos.length; }
 for(const id of ["#file","#cam"]) $(id).addEventListener("change",e=>{ const f=[...e.target.files]; if(f.length) loadFiles(f); e.target.value=""; });
-$("#clear").addEventListener("click",()=>{ photos=[]; pieces=[]; lastResult=null; isDemo=false; renderThumbs(); $("#results").innerHTML=""; setStatus(T("status0")); $("#run").disabled=true; });
+$("#clear").addEventListener("click",()=>{ endTour(); photos=[]; pieces=[]; lastResult=null; isDemo=false; renderThumbs(); $("#results").innerHTML=""; setStatus(T("status0")); $("#run").disabled=true; });
 
 /* ---------- parçaları bulma (koyu düz zemin, bir fotoğrafta çok parça) ---------- */
 function fgMask(c){
@@ -668,7 +691,7 @@ async function analyse(){
   lastResult={joins,plates,loose,edge:D.edge,n:pieces.length,shown:6,marks:{}};
   window.__plates=plates.map(P=>({ids:P.order,truth:P.order.map(id=>pieces[id].truth),frac:P.frac,rim:P.rim,complete:P.complete}));
   window.__truth=pieces.map(p=>p.truth);
-  renderResults(lastResult); $("#run").disabled=false; }
+  renderResults(lastResult); $("#run").disabled=false; if(isDemo) startTour(lastResult); }
 $("#run").addEventListener("click",analyse);
 
 /* ---------- sonuçlar ---------- */
@@ -681,12 +704,12 @@ function renderResults(R){
   const box=$("#results"); box.innerHTML="";
   const full=R.plates.filter(P=>P.complete), part=R.plates.filter(P=>!P.complete);
   let st=R.plates.length?T("sDone",{n:R.n,c:full.length,p:part.length,u:R.loose.length}):T("sNone",{n:R.n}); if(R.edge) st+=" "+T("sEdge",{k:R.edge}); setStatus(st);
-  const ts=section("tableH","tableNote","tablecard"); photos.forEach((ph,i)=>{ if(!ph.canvas) return; const wr=document.createElement("div"); wr.className="tzoom"; wr.tabIndex=0; wr.setAttribute("role","button"); wr.setAttribute("aria-label",T("tapZoom"));
+  const secs=[]; const ts=section("tableH","tableNote","tablecard"); secs.push({el:ts,key:"table",h:"tableH"}); photos.forEach((ph,i)=>{ if(!ph.canvas) return; const wr=document.createElement("div"); wr.className="tzoom"; wr.tabIndex=0; wr.setAttribute("role","button"); wr.setAttribute("aria-label",T("tapZoom"));
     const tog=()=>wr.classList.toggle("big"); wr.addEventListener("click",tog); wr.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); tog(); } }); wr.append(drawTable(i)); ts.append(wr); });
   const tz=document.createElement("p"); tz.className="jn"; tz.textContent=T("tapZoom"); ts.append(tz); box.append(ts);
-  if(full.length){ const s=section("fullH","fullNote"); const g=document.createElement("div"); g.className="plates"; full.forEach(P=>g.append(plateCard(P,false))); s.append(g); box.append(s); }
-  if(part.length){ const s=section("partH","partNote","second"); const g=document.createElement("div"); g.className="plates part"; part.forEach(P=>g.append(plateCard(P,true))); s.append(g); box.append(s); }
-  if(R.loose.length){ const s=section("looseH","looseNote","second"); const g=document.createElement("div"); g.className="loose"; R.loose.forEach(id=>{ const p=pieces[id]; if(p&&p.seg) g.append(mini(p,64)); }); s.append(g); box.append(s); }
+  if(full.length){ const s=section("fullH","fullNote"); secs.push({el:s,key:"full",h:"fullH"}); const g=document.createElement("div"); g.className="plates"; full.forEach(P=>g.append(plateCard(P,false))); s.append(g); box.append(s); }
+  if(part.length){ const s=section("partH","partNote","second"); secs.push({el:s,key:"part",h:"partH"}); const g=document.createElement("div"); g.className="plates part"; part.forEach(P=>g.append(plateCard(P,true))); s.append(g); box.append(s); }
+  if(R.loose.length){ const s=section("looseH","looseNote","second"); secs.push({el:s,key:"loose",h:"looseH"}); const g=document.createElement("div"); g.className="loose"; R.loose.forEach(id=>{ const p=pieces[id]; if(p&&p.seg) g.append(mini(p,64)); }); s.append(g); box.append(s); }
   if(R.joins.length){ const d=document.createElement("details"); d.className="all"; d.open=!!R.open; d.addEventListener("toggle",()=>{ R.open=d.open; });
     const sm=document.createElement("summary"); sm.textContent=T("joinsH",{n:R.joins.length}); const sp=document.createElement("p"); sp.className="sub"; sp.textContent=T("joinsNote"); d.append(sm,sp);
     const list=document.createElement("div"); list.className="joins";
@@ -703,7 +726,39 @@ function renderResults(R){
     d.append(list);
     if(R.joins.length>R.shown){ const mb=document.createElement("button"); mb.className="link"; mb.type="button"; mb.textContent=T("more"); mb.onclick=()=>{ R.shown+=6; renderResults(R); }; d.append(mb); }
     box.append(d); }
+  addSteps(secs);
+  if(tour) showTour(false);
 }
+// sonuç bölümleri numaralı adımlardır; her bölümün sonunda bir sonrakine geçiren düğme vardır
+const smooth=()=>matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth";
+function goTo(el){ if(el) el.scrollIntoView({behavior:smooth(),block:"start"}); }
+function addSteps(secs){ secs.forEach((x,i)=>{ x.el.id="st-"+x.key; const h=x.el.querySelector("h2"); const n=document.createElement("span"); n.className="stepn"; n.textContent=i+1; h.prepend(n);
+    const nx=secs[i+1]; const bt=document.createElement("button"); bt.type="button"; bt.className="nextstep";
+    if(nx){ bt.textContent=T("nextStep",{t:T(nx.h)})+" ↓"; bt.onclick=()=>goTo(nx.el); }
+    else { bt.textContent=T("tryOwn")+" ↑"; bt.onclick=()=>goTo(document.querySelector(".capture")); }
+    x.el.append(bt); }); }
+
+/* ---------- önizleme rehberi: adım adım ---------- */
+let tour=null;
+const pctOf=P=>P.frac!=null?Math.round(Math.min(1,P.frac)*100):null;
+function startTour(R){ const st=[]; const full=R.plates.filter(P=>P.complete), part=R.plates.filter(P=>!P.complete);
+  st.push({sel:"#st-table",txt:()=>T("tour1",{n:R.n})});
+  if(full.length){ const P=full[0];
+    st.push({sel:"#st-full .plate",txt:()=>T("tour2",{k:P.letter,m:P.order.length,p:pctOf(P)})});
+    st.push({sel:"#st-full .plate",txt:()=>T("tour3"),act:()=>{ const b=document.querySelector("#st-full .plate .play"); if(b) b.click(); }}); }
+  if(part.length){ const P=part[0]; st.push({sel:"#st-part .plate",txt:()=>pctOf(P)!=null?T("tour4",{k:P.letter,m:P.order.length,p:pctOf(P)}):T("tour4n",{k:P.letter,m:P.order.length})}); }
+  if(R.loose.length) st.push({sel:"#st-loose",txt:()=>T("tour5",{m:R.loose.length})});
+  st.push({sel:".capture",txt:()=>T("tour6"),last:true});
+  tour={st,i:0}; document.body.classList.add("touring"); showTour(true); }
+function endTour(){ tour=null; document.body.classList.remove("touring"); $("#coach").hidden=true; document.querySelectorAll(".hl").forEach(e=>e.classList.remove("hl")); }
+function showTour(scroll){ if(!tour) return; const S=tour.st[tour.i], c=$("#coach"); c.hidden=false;
+  $("#coachStep").textContent=T("stepOf",{i:tour.i+1,n:tour.st.length}); $("#coachTxt").textContent=S.txt();
+  const bk=$("#coachBack"), nx=$("#coachNext"); bk.textContent=T("back"); bk.disabled=tour.i===0; nx.textContent=S.last?T("shoot"):T("next");
+  document.querySelectorAll(".hl").forEach(e=>e.classList.remove("hl")); const el=document.querySelector(S.sel); if(el){ el.classList.add("hl"); if(scroll) goTo(el); }
+  if(scroll&&S.act) setTimeout(S.act,450); }
+$("#coachNext").addEventListener("click",()=>{ if(!tour) return; const S=tour.st[tour.i]; if(S.last){ endTour(); $("#cam").click(); return; } tour.i++; showTour(true); });
+$("#coachBack").addEventListener("click",()=>{ if(!tour||tour.i===0) return; tour.i--; showTour(true); });
+$("#coachX").addEventListener("click",endTour);
 function badge(g,x,y,t,col,u){ g.font=`600 ${Math.round(12*u)}px 'Instrument Sans',system-ui,sans-serif`; const w=Math.max(20*u,g.measureText(t).width+12*u), h=20*u;
   g.beginPath(); if(g.roundRect) g.roundRect(x-w/2,y-h/2,w,h,h/2); else g.rect(x-w/2,y-h/2,w,h); g.fillStyle=col; g.fill(); g.lineWidth=1.5*u; g.strokeStyle="rgba(255,255,255,.9)"; g.stroke();
   g.fillStyle="#fff"; g.textAlign="center"; g.textBaseline="middle"; g.fillText(t,x,y+0.5*u); g.textBaseline="alphabetic"; }
