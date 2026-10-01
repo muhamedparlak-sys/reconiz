@@ -584,6 +584,16 @@ function assemble(ok,cands){
     const Ca=cl.get(best.a), Cb=cl.get(best.b); Cb.mem.forEach(id=>{ Ca.mem.push(id); Ca.pose.set(id,best._np.get(id)); cl.set(id,Ca); }); Ca.edges.push(best,...Cb.edges); Ca.ver++; }
   return [...new Set(cl.values())];
 }
+// Birleştirme sonrası inceltme: her parça, kümedeki bütün komşularına birlikte oturacak biçimde yeniden konumlanır.
+// Parçalar tek tek eklendiğinde her kenardaki küçük açı hatası birikir; bu adım biriken hatayı dağıtıp kapanmayan boşlukları giderir.
+function refineCluster(C){ if(C.mem.length<3) return; const anchor=C.mem[0];
+  for(let round=0;round<8;round++){ let moved=0;
+    for(const id of C.mem){ if(id===anchor) continue; const x=pieces[id], Px=C.pose.get(id), bx=tbox(x,Px), A=[], B=[];
+      for(const jd of C.mem){ if(jd===id) continue; const y=pieces[jd], Py=C.pose.get(jd), by=tbox(y,Py); if(!boxHit([bx[0]-12,bx[1]-12,bx[2]+12,bx[3]+12],by)) continue; const iy=inv(Py);
+        for(const q of x.P){ const w=ap(Px,q), l=ap(iy,w); const [d,k]=nearest(y,l[0],l[1]); if(k>=0&&d<2.5*STEP){ A.push(ap(Py,y.P[k])); B.push(q); } } }
+      if(A.length<L) continue; const T2=kabsch(A,B); const c0=centroid(x.P), p0=ap(Px,c0), p1=ap(T2,c0); moved=Math.max(moved,Math.hypot(p0[0]-p1[0],p0[1]-p1[1]));
+      C.pose.set(id,{c:T2.c,s:T2.s,tx:T2.tx,ty:T2.ty}); }
+    if(moved<0.3) break; } }
 // birleştirme sırası: en çok bağlantısı olan parçadan başla, her adımda eldekilere en güçlü bağla eklenen parçayı al
 function orderOf(C){ const deg=new Map(C.mem.map(id=>[id,0])); C.edges.forEach(m=>{ deg.set(m.a,deg.get(m.a)+1); deg.set(m.b,deg.get(m.b)+1); });
   let start=C.mem[0]; C.mem.forEach(id=>{ const a=deg.get(id), b=deg.get(start); if(a>b||(a===b&&pieces[id].seg.area>pieces[start].seg.area)) start=id; });
@@ -671,7 +681,7 @@ async function analyse(){
   cands.forEach(m=>{ m.level=m.score>=110?"strong":m.score>=80?"medium":"weak"; });
   setStatus(T("sAsm")); await tick();
   const plates=[], loose=[];
-  assemble(ok,cands).forEach(C=>{ if(C.mem.length<2){ loose.push(C.mem[0]); return; } let st=plateStats(C);
+  assemble(ok,cands).forEach(C=>{ if(C.mem.length<2){ loose.push(C.mem[0]); return; } refineCluster(C); let st=plateStats(C);
     // ağız dairesi bulunamadıysa ya da dairenin çok küçük bir kısmı doluysa: daireyi bozan tek parçayı ayır
     if(C.mem.length>=3&&(st.frac==null||st.frac<0.1)){ let bestK=null;
       for(const id of C.mem){ const C2={mem:C.mem.filter(x=>x!==id),pose:C.pose,edges:C.edges.filter(m=>m.a!==id&&m.b!==id)}; const s2=plateStats(C2); if(s2.frac!=null&&s2.frac>=0.1&&(!bestK||s2.frac>bestK.st.frac)) bestK={id,C2,st:s2}; }
