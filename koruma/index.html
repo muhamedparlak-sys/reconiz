@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RecOniz · Sualtı Mirasının Korunmaya Başlanması</title>
-<meta name="description" content="Sualtı mirasının korunmaya başlanması: eski eserleri koruyan ilk kurallardan, sudaki eserler için ilk hükmü koyan 1884 nizamnamesine ve bugünkü düzenlemelere; canlandırmalarla.">
+<meta name="description" content="Sualtı mirasının korunmaya başlanması: dünyada eski eserleri koruyan ilk kurallar, kazı izinleri ve suistimaller, sudaki eserler için ilk hükmü koyan 1884 nizamnamesi ve bugünkü ilkeler; canlandırmalarla.">
 <meta name="theme-color" content="#17495A">
 <link rel="canonical" href="https://reconiz.org/koruma/">
 <meta name="apple-mobile-web-app-title" content="Koruma">
@@ -267,23 +267,23 @@ sup a{color:inherit;text-decoration:none}
 @keyframes wig{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
 @media (prefers-reduced-motion: reduce){ .wig{animation:none} .step p{transition:none} }
 /* Sualtı Mirasının Korunmaya Başlanması */
-:root{ --paper:#FBF7EC; --gold:#D8A93A; }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --paper:#2B2A24; --gold:#E0B64A; } }
-:root[data-theme="dark"]{ --paper:#2B2A24; --gold:#E0B64A; }
+:root{ --paper:#FBF7EC; --gold:#D8A93A; --stone:#DDD6C6; --night:#1E2B38; --night-w:#15202A; --night-g:#2F3B37; --moon:#EFE9D6; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --paper:#2B2A24; --gold:#E0B64A; --stone:#7C7667; } }
+:root[data-theme="dark"]{ --paper:#2B2A24; --gold:#E0B64A; --stone:#7C7667; }
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RecOniz">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:title" content="Sualtı Mirasının Korunmaya Başlanması">
-<meta property="og:description" content="Sudaki eski eserler için bilinen en eski devlet kuralını 1884’te Osman Hamdi Bey yazdı. 1846’dan bugüne korumanın hikâyesi, canlandırmalarla.">
+<meta property="og:description" content="Dünyada eski eser koruması nasıl başladı, denize ne zaman ulaştı? Roma’dan Osman Hamdi Bey’in 1884 nizamnamesine ve bugüne; canlandırmalarla.">
 <meta property="og:url" content="https://reconiz.org/koruma/">
 <meta property="og:image" content="https://reconiz.org/og-koruma.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="1869, 1874 ve 1884 nizamnamelerini gösteren çizim; 1884’ün 3. maddesinde deniz, göl, nehir, çay, dere">
+<meta property="og:image:alt" content="Fesli bir figür 1884 nizamnamesinin 3. maddesini yazıyor: deniz, göl, nehir, çay, dere">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sualtı Mirasının Korunmaya Başlanması">
-<meta name="twitter:description" content="Sudaki eski eserler için bilinen en eski devlet kuralını 1884’te Osman Hamdi Bey yazdı. 1846’dan bugüne korumanın hikâyesi, canlandırmalarla.">
+<meta name="twitter:description" content="Dünyada eski eser koruması nasıl başladı, denize ne zaman ulaştı? Roma’dan Osman Hamdi Bey’in 1884 nizamnamesine ve bugüne; canlandırmalarla.">
 <meta name="twitter:image" content="https://reconiz.org/og-koruma.jpg">
 </head>
 <body>
@@ -340,37 +340,41 @@ const n=k=>`<sup><a href="#n${k}">${k}</a></sup>`;
 const I18N={
 tr:{title:"Sualtı Mirasının Korunmaya Başlanması",
  h1:"Sualtı Mirasının Korunmaya Başlanması",
- lede:"Denizden çıkan eski eser kimindir? Bu soruya bir devletin verdiği bilinen en eski cevabı, 1884’te Osman Hamdi Bey yazdı. Hikâye ondan önce, karada başlar.",
- S:[`Osmanlı’da eski eserleri korumanın hikâyesi bir koleksiyonla başlar. 1846’da Sultan Abdülmecid, Yalova’da bulunan yazıtlı taşları İstanbul’daki Aya İrini’ye taşıtır; toplanan eserler orada korunur.${n(1)}`,
-  `Toplamak yetmez, çünkü eserler bir yandan da gider. 1840’lardan başlayarak yabancılara kazı izinleri verilir, başvurular çoğalır ve bu topraklardan çıkan eserler Avrupa’ya taşınır.${n(1)}`,
-  `Gidenlere karşı ilk yazılı kural 1869’da konur: yedi maddelik Âsâr-ı Atîka Nizamnamesi. Aya İrini’deki koleksiyon da aynı yıllarda Müze-i Hümayun adını alır.${n(2)}`,
-  `Beş yıl sonra, 1874’te, otuz altı maddelik ikinci nizamname gelir. Ama iki nizamname de yalnızca karayı düşünür; sualtından söz etmez.${n(3)}`,
-  `Oysa eser yalnızca karadan çıkmaz. Osmanlı denizlerinde geçimini denizin dibinden kazananlar oradaki eserlere de ulaşır; bulduklarını çıkarır ve satarlar. Hesabını soran olmaz.${n(4)}`,
-  `Bu eksiği görecek kişi 1881’de Müze-i Hümayun’un başına geçer: kendisi de kazı yapan bir arkeolog olan Osman Hamdi Bey.${n(5)}`,
-  `Osman Hamdi Bey üç yıl sonra, 1884’te, otuz yedi maddelik yeni bir nizamname hazırlar. Üçüncü maddesi eksiği kapatır: denizden, gölden, nehirden, çaydan ve dereden çıkarılacak her çeşit eski eser devlete aittir.${n(6)}`,
-  `Bu madde, bir devletin sualtı kültür mirasını korumak için koyduğu, dünyada bilinen en eski kuraldır. Öteki ülkelerde benzeri için uzun yıllar beklemek gerekir; sırada ilk gelen Danimarka’da yıl 1963’tür.${n(7)}`,
-  `Kural kâğıt üzerinde de kalmaz. 1891’de Formako Adası’nda resimli altınlar ortaya çıkınca Bahriye Nezareti’ne yazı yazılır: bir dalgıç tutulup adaya gönderilecek, buluntular yerinde incelenecektir.${n(8)}`,
-  `İş ertesi yıl da izlenir. Altınların otuz dördü bir çobanda, yetmiş dokuzu birkaç kişide bulunur; Nüzhet vapurunun süvarisi de işin içindedir. Sikkeler Rodos’ta hükümete teslim edilir.${n(8)}`,
-  `Böylece Osman Hamdi Bey, dalgıcı yüzeyden bağımsız kılan donanımın bulunmasından en az elli yıl önce, devlet eliyle bir sualtı çalışması yürütmüş olur. Dalgıç bulmak, ulaşımı ve ödeneği ayarlamak, yerinde keşif yapmak, eserleri toplamak: yaptığı iş, bugünkü sualtı çalışmasından çok farklı değildir.${n(9)}`,
-  `Nizamname sonra da yenilenir. Osman Hamdi Bey’in 1906’da hazırladığı dördüncü nizamname 1973’e kadar yürürlükte kalır; yerini önce 1710 sayılı Eski Eserler Kanunu, 1983’te de bugünkü 2863 sayılı Kanun alır.${n(10)}`,
-  `Bugünkü kanun sualtını adıyla anar. Korunması gereken kültür varlıklarının bulunduğu sualtı bölgeleri belirlenir ve ilan edilir; bu bölgelerde sportif amaçlı dalış yapılamaz. Eser bulan da bunu en geç üç gün içinde bildirmek zorundadır.${n(11)}`,
-  `Aynı düşünce uluslararası ilkelerde de yaşar. ICOMOS’un 1996 tarihli tüzüğü sualtı kültür mirasının nasıl korunacağını ve yönetileceğini belirler; ilk seçenek, mirası yerinde korumaktır.${n(12)}`],
- L:{aya:"Aya İrini",eur:"Avrupa’ya",noSea:"sualtı yok",land:"kara",sea:"deniz",mus:"Müze-i Hümayun",art:"3. madde",w:["deniz","göl","nehir","çay","dere"],isl:"Formako Adası",nuz:"Nüzhet vapuru",c34:"34",c79:"79",rod:"Rodos’a",
-   reg:"nizamname",k1:"1710 sayılı Kanun",k2:"2863 sayılı Kanun",zone:"korunan sualtı bölgesi",insitu:"yerinde koruma",
+ lede:"Denizden çıkan eski eser kimindir? Dünya bu soruyu çok geç sordu. Hikâye karada, yapıları ve mezarları koruyan ilk kurallarla başlar; denize ise ancak 1884’te, Osman Hamdi Bey’in yazdığı bir maddeyle ulaşır.",
+ S:[`Eski eserleri koruma düşüncesi yeni değildir. Daha 458’de Roma İmparatoru Maiorianus, ayakta kalmış güzel ve yararlı yapıların yıkılmasını yasaklar.${n(1)}`,
+  `Aynı kentte yasaklar yüzyıllar boyunca yinelenir. 1462’de Papa II. Pius antik yapılara izinsiz dokunulmasını, 1624’te bir kardinal fermanı izinsiz kazıyı yasaklar; bulunan her şey yirmi dört saat içinde bildirilecektir.${n(1)}`,
+  `Koruma Roma’yla sınırlı kalmaz. İsveç’te 1666’da kral adına çıkarılan bir buyruk kaleleri, höyükleri, runik yazıtlı taşları ve mezarları korumaya alır.${n(2)}`,
+  `On sekiz yıl sonra aynı ülkede bir kural suyun adını da anar: toprakta ya da göl ve deniz dibinde bulunan altın, gümüş ve bakır sikkeler ile madenî kaplar bildirilecek, üçte ikisi krala kalacaktır. Ama bu bir define kuralıdır; amacı eseri korumak değil, hazineyi paylaştırmaktır.${n(3)}`,
+  `19. yüzyılda eski eserlere duyulan ilgi kazıya dönüşür. Kazmak isteyen, toprağın sahibi olan devletten izin alır; çıkanın nasıl paylaşılacağı da izinde yazar.${n(4)}`,
+  `İzin, eseri her zaman yerinde tutmaz. İngiliz elçisi Lord Elgin, Osmanlı makamlarından aldığı izinle 1801–1805 arasında Atina’da Parthenon’dan kalan heykellerin yaklaşık yarısını söker; heykeller bugün Londra’dadır.${n(5)}`,
+  `Kimi zaman izin açıkça çiğnenir. Heinrich Schliemann, 1871’de Troya için aldığı izne göre bulduklarının yarısını müzeye bırakacaktır; 1873’te bulduğu altın ve gümüş hazineyi ise gizlice ülke dışına çıkarır. Açılan dava uzar ve devlet sonunda 50.000 frankla yetinir.${n(6)}`,
+  `Ülkeler bu gidişe kanunla karşılık verir. Yunanistan 1834’te kazılardan çıkan eski eserleri devlet malı sayar, Mısır 1835’te izinsiz çıkarmayı yasaklar; Osmanlı’da 1869’da yedi, 1874’te otuz altı maddelik iki nizamname çıkar.${n(7)}`,
+  `Ne var ki Osmanlı’nın iki nizamnamesi de yalnızca karayı düşünür; sualtından söz etmez. Oysa eser yalnızca karadan çıkmaz: geçimini denizin dibinden kazananlar oradaki eserlere de ulaşır, bulduklarını çıkarır ve satarlar.${n(8)}`,
+  `Bu eksiği görecek kişi 1881’de Müze-i Hümayun’un başına geçer: kendisi de kazı yapan bir arkeolog olan Osman Hamdi Bey.${n(9)}`,
+  `Osman Hamdi Bey üç yıl sonra, 1884’te, otuz yedi maddelik yeni bir nizamname hazırlar. Üçüncü maddesi eksiği kapatır: denizden, gölden, nehirden, çaydan ve dereden çıkarılacak her çeşit eski eser devlete aittir.${n(10)}`,
+  `Bu madde, bir devletin sualtı kültür mirasını korumak için koyduğu, dünyada bilinen en eski kuraldır. Öteki ülkelerde benzeri için uzun yıllar beklemek gerekir; sırada ilk gelen Danimarka’da yıl 1963’tür.${n(11)}`,
+  `Kural kâğıt üzerinde de kalmaz. 1891’de Formako Adası’nda resimli altınlar ortaya çıkınca Bahriye Nezareti’ne yazı yazılır: bir dalgıç tutulup adaya gönderilecek, buluntular yerinde incelenecektir.${n(12)}`,
+  `Ertesi yıl altınların izi sürülür. Otuz dördü bir çobanda, yetmiş dokuzu birkaç kişide bulunur; Nüzhet vapurunun süvarisi de işin içindedir. Toplanan sikkeler Rodos’ta hükümete teslim edilir.${n(12)}`,
+  `Böylece Osman Hamdi Bey, devlet eliyle bir sualtı çalışması yürütmüş olur. Sünger dalgıçlarının Antikythera’da ilk antik batığı bulmasına daha dokuz yıl, dalgıcı yüzeyden bağımsız kılan donanımın bulunmasına ise yarım yüzyıl vardır.${n(13)}`,
+  `O donanım 1940’larda gelir ve dibe inmeyi kolaylaştırır; batıklar zarar görmeye başlar. Ülkeler sualtı kültür mirası için özel kanunlarını ancak 1960’larda ve 1970’lerde çıkarır.${n(14)}`,
+  `Bugün ilke açıktır. ICOMOS’un 1996 tarihli tüzüğü sualtı kültür mirasının nasıl korunacağını ve yönetileceğini belirler; ilk seçenek, mirası yerinde korumaktır.${n(15)}`],
+ L:{h24:"bulunan, 24 saatte bildirilir",crownS:"⅔ krala",finderS:"⅓ bulana",permit:"KAZI İZNİ",lon:"Londra’ya",share:"müzenin payı: ½",fr:"50.000 frank",gr:"Yunanistan",eg:"Mısır",ot:"Osmanlı",
+   noSea:"sualtı yok",land:"kara",sea:"deniz",mus:"Müze-i Hümayun",art:"3. madde",w:["deniz","göl","nehir","çay","dere"],isl:"Formako Adası",bah:"Bahriye Nezareti’ne",nuz:"Nüzhet vapuru",c34:"34",c79:"79",rod:"Rodos’a",
+   ax:["Formako","Antikythera","aletli dalış"],y40:"1940’lar",laws:"1960’lar–1970’ler: ilk sualtı kanunları",insitu:"yerinde koruma",
    tl:["Osmanlı Devleti","Danimarka","Almanya","Avustralya","Hollanda","Mısır","ABD","Polonya","Lübnan","İtalya"]},
  aH:"İki belge",
- aP:`Formako Adası’ndaki çalışmayı iki belgeden biliyoruz. İkisi de Osmanlı Arşivi’ndedir: ilki 8 Ağustos 1891, ikincisi 23 Mayıs 1892 tarihlidir. Anlattıkları çalışma, devlet eliyle yürütülen sualtı çalışmalarının dünyadaki en erken örneklerinden biridir.${n(8)}`,
+ aP:`Formako Adası’ndaki çalışmayı iki belgeden biliyoruz. İkisi de Osmanlı Arşivi’ndedir: ilki 8 Ağustos 1891, ikincisi 23 Mayıs 1892 tarihlidir. Anlattıkları çalışma, devlet eliyle yürütülen sualtı çalışmalarının dünyadaki en erken örneklerinden biridir.${n(12)}`,
  bH:"Öteki ülkeler ne zaman?",
- bP:`1884’ün ne kadar erken olduğunu görmek için öteki ülkelere bakmak yeter. Benzer kurallar Danimarka’da 1963’te, Almanya’da 1970’te, Avustralya’da 1976’da, Hollanda’da 1985’te, Mısır’da 1986’da, ABD’de 1988’de, Polonya’da 1996’da, Lübnan’da 2006’da, İtalya’da 2009’da gelir. Osmanlı kuralı bunların en eskisinden 79 yıl öncedir.${n(7)}`,
- dH:"Bugün bir eser bulursanız",
- dP:`2863 sayılı Kanun’a göre bir kültür varlığı bulan kişi, bunu en geç üç gün içinde en yakın müze müdürlüğüne, köy muhtarına ya da mülki idare amirine bildirmekle yükümlüdür. Eser sualtındaysa yapılacak ilk iş, ona dokunmamak ve yerini kaydetmektir.${n(11)}`,
+ bP:`1884’ün ne kadar erken olduğunu görmek için öteki ülkelere bakmak yeter. Sualtı kültür mirasını koruyan kurallar Danimarka’da 1963’te, Almanya’da 1970’te, Avustralya’da 1976’da, Hollanda’da 1985’te, Mısır’da 1986’da, ABD’de 1988’de, Polonya’da 1996’da, Lübnan’da 2006’da, İtalya’da 2009’da gelir. Osmanlı kuralı bunların en eskisinden 79 yıl öncedir.${n(11)}`,
+ dH:"Türkiye’de bugün",
+ dP:`Osmanlı nizamnamesi 1906’da yenilenir ve 1973’e kadar yürürlükte kalır; yerini önce 1710 sayılı Eski Eserler Kanunu, 1983’te de 2863 sayılı Kanun alır. Bugünkü kanuna göre korunması gereken kültür varlıklarının bulunduğu sualtı bölgeleri belirlenir ve ilan edilir; bu bölgelerde sportif amaçlı dalış yapılamaz. Bir kültür varlığı bulan kişi de bunu en geç üç gün içinde en yakın müze müdürlüğüne, köy muhtarına ya da mülki idare amirine bildirmekle yükümlüdür.${n(16)}`,
  cH:"Neden önemli?",
- cP:`Çünkü 1884’teki madde bugün de geçerli olan düşünceyi söyler: sualtındaki eski eser onu bulanın malı değildir; kamuya aittir. Bu mirası korumanın yolu çoğu zaman ona dokunmamak ve yerini bildirmektir.${n(12)}`,
- N:["Öniz ve Sütçüoğlu (2016, s. 242).","Öniz ve Sütçüoğlu (2016, s. 242); Asan (2023).","Asan (2023); Öniz ve Sütçüoğlu (2016, s. 243–244).","Öniz ve Sütçüoğlu (2016, s. 242–243).","Öniz ve Sütçüoğlu (2016, s. 242–243).","Öniz ve Sütçüoğlu (2016, s. 243–244); Asan (2023).","Öniz ve Sütçüoğlu (2016, s. 243).","Öniz ve Sütçüoğlu (2016, s. 244–245).","Öniz ve Sütçüoğlu (2016, s. 242, 244–245).","Asan (2023); Kültür ve Tabiat Varlıklarını Koruma Kanunu (1983).","Kültür ve Tabiat Varlıklarını Koruma Kanunu (1983, md. 4, 35).","Underwood (2024, s. 22); International Council on Monuments and Sites [ICOMOS] (1996)."],
+ cP:`Çünkü 1884’teki madde bugün de geçerli olan düşünceyi söyler: sualtındaki eski eser onu bulanın malı değildir; kamuya aittir. Bu mirası korumanın yolu çoğu zaman ona dokunmamak ve yerini bildirmektir.${n(15)}`,
+ N:["Adlercreutz (2017, s. 12).","Adlercreutz (2017, s. 6–7).","Adlercreutz (2017, s. 9).","Uslu (2015, s. 55–56).","British Museum (t.y.).","Uslu (2015, s. 55–60).","Siegel (t.y.); Asan (2023); Uslu (2015, s. 63).","Öniz ve Sütçüoğlu (2016, s. 242–244).","Öniz ve Sütçüoğlu (2016, s. 242–243).","Öniz ve Sütçüoğlu (2016, s. 243–244); Asan (2023).","Öniz ve Sütçüoğlu (2016, s. 243).","Öniz ve Sütçüoğlu (2016, s. 244–245).","Öniz ve Sütçüoğlu (2016, s. 242, 244–245); Dromgoole (2013).","Dromgoole (2013).","Underwood (2024, s. 22); International Council on Monuments and Sites [ICOMOS] (1996).","Asan (2023); Kültür ve Tabiat Varlıklarını Koruma Kanunu (1983, md. 4, 35)."],
  refH:"Kaynaklar", notesH:"Notlar", refNote:"Kaynakça APA 7. baskı biçimindedir.",
  hint:"Kaydırarak ilerleyin",
  useH:"Kullanım",
- useSimple:"Bu sayfa konuyu herkesin anlayabileceği biçimde anlatmak için hazırlanmıştır; çizimler ve canlandırma şematiktir, ölçekli değildir. Dalgıç, tekne ve vapur çizimleri dönemin gerçek donanımını göstermez.",
+ useSimple:"Bu sayfa konuyu herkesin anlayabileceği biçimde anlatmak için hazırlanmıştır; çizimler ve canlandırma şematiktir, ölçekli değildir. İnsan figürleri gerçek kişilerin portresi değildir; yapı, tekne ve donanım çizimleri dönemin gerçek görünümünü göstermez.",
  credDev:"Hakan Öniz’in danışmanlığında Muhammed Parlak tarafından hazırlanmıştır (2026).",
  priv:"Sayfa ziyaretleri, çerez kullanılmadan ve kişisel veri toplanmadan anonim olarak sayılır.",
  rights:"© 2026 Muhammed Parlak. Tüm hakları saklıdır. Sayfa akademik, eğitsel ve kişisel amaçlarla ücretsiz kullanılabilir; kopyalanması, değiştirilmesi ya da yeniden dağıtılması yazılı izne bağlıdır.",
@@ -378,37 +382,41 @@ tr:{title:"Sualtı Mirasının Korunmaya Başlanması",
  famSub:"RecOniz ailesi", famH:"Amphora tanıma: Underwater Heritage Recognizer"},
 en:{title:"The Beginnings of Underwater Heritage Protection",
  h1:"The Beginnings of Underwater Heritage Protection",
- lede:"To whom does an antiquity taken from the sea belong? The oldest known answer given by a state was written in 1884 by Osman Hamdi Bey. The story begins before him, on land.",
- S:[`In the Ottoman Empire, the story of protecting antiquities begins with a collection. In 1846 Sultan Abdülmecid has inscribed stones found at Yalova carried to Hagia Eirene (Aya İrini) in Istanbul; the objects gathered are kept there.${n(1)}`,
-  `Gathering is not enough, because antiquities are also leaving. From the 1840s excavation permits are granted to foreigners, applications multiply, and what comes out of these lands is carried off to Europe.${n(1)}`,
-  `The first written rule against this is set in 1869: the Antiquities Regulation (Âsâr-ı Atîka Nizamnamesi), in seven articles. In the same years the collection at Hagia Eirene takes the name Imperial Museum (Müze-i Hümayun).${n(2)}`,
-  `Five years later, in 1874, a second regulation follows, in thirty-six articles. But both regulations think only of the land; neither mentions what lies under water.${n(3)}`,
-  `Yet antiquities do not come only from the land. In Ottoman waters, those who earn their living from the bottom of the sea reach the antiquities there too; they bring up what they find and sell it. No one asks any questions.${n(4)}`,
-  `The man who will see this gap becomes director of the Imperial Museum in 1881: Osman Hamdi Bey, himself an excavating archaeologist.${n(5)}`,
-  `Three years later, in 1884, Osman Hamdi Bey prepares a new regulation, in thirty-seven articles. Its third article closes the gap: every kind of antiquity brought out of the sea, lakes, rivers, streams and brooks belongs to the state.${n(6)}`,
-  `This article is the oldest known rule in the world set by a state to protect underwater cultural heritage. Other countries wait many years for its like; in Denmark, the next in line, the year is 1963.${n(7)}`,
-  `Nor does the rule stay on paper. When gold pieces bearing images come to light on Formako Island in 1891, a letter goes to the Ministry of the Navy: a diver is to be hired and sent to the island, and the finds are to be examined on the spot.${n(8)}`,
-  `The matter is followed up the next year as well. Thirty-four of the gold pieces are found with a shepherd and seventy-nine with several other people; the commander of the steamer Nüzhet is involved too. The coins are handed over to the government in Rhodes.${n(8)}`,
-  `In this way Osman Hamdi Bey carries out underwater work on behalf of the state at least fifty years before the invention of the equipment that made the diver independent of the surface. Finding a diver, arranging transport and funds, surveying on the spot, collecting the finds: what he does is not very different from underwater work today.${n(9)}`,
-  `The regulation is renewed later as well. The fourth regulation, prepared by Osman Hamdi Bey in 1906, remains in force until 1973; it is replaced first by the Antiquities Law no. 1710 and then, in 1983, by today’s Law no. 2863.${n(10)}`,
-  `Today’s law names the underwater world explicitly. Underwater zones containing cultural property that must be protected are designated and announced; sport diving is not allowed in them. Whoever finds an object must also report it within three days at the latest.${n(11)}`,
-  `The same idea lives on in international principles. The ICOMOS Charter of 1996 sets out how underwater cultural heritage is to be protected and managed; the first option is to preserve it in place.${n(12)}`],
- L:{aya:"Hagia Eirene",eur:"to Europe",noSea:"nothing under water",land:"land",sea:"sea",mus:"Müze-i Hümayun",art:"Article 3",w:["sea","lake","river","stream","brook"],isl:"Formako Island",nuz:"steamer Nüzhet",c34:"34",c79:"79",rod:"to Rhodes",
-   reg:"regulation",k1:"Law no. 1710",k2:"Law no. 2863",zone:"protected underwater zone",insitu:"preservation in place",
+ lede:"To whom does an antiquity taken from the sea belong? The world asked this question very late. The story begins on land, with the first rules protecting buildings and graves; it reaches the sea only in 1884, with an article written by Osman Hamdi Bey.",
+ S:[`The idea of protecting antiquities is not new. As early as 458 the Roman emperor Majorian forbids the destruction of buildings of beauty or use that are still standing.${n(1)}`,
+  `In the same city the prohibitions are repeated over the centuries. In 1462 Pope Pius II forbids unauthorised interference with ancient buildings, and in 1624 a cardinal’s edict forbids unauthorised excavation; whatever is found must be reported within twenty-four hours.${n(1)}`,
+  `Protection does not stay confined to Rome. In Sweden in 1666 a proclamation issued in the king’s name places castles, mounds, rune stones and graves under protection.${n(2)}`,
+  `Eighteen years later, in the same country, a rule mentions water as well: gold, silver and copper coins and metal vessels found in the earth or on the bed of a lake or the sea must be reported, and two thirds go to the king. But this is a treasure rule; its aim is not to protect the object but to share out the treasure.${n(3)}`,
+  `In the 19th century the interest in antiquities turns into excavation. Whoever wants to dig obtains a permit from the state that owns the land; how the finds will be shared is written in the permit too.${n(4)}`,
+  `A permit does not always keep the object in its place. Lord Elgin, the British ambassador, acting under a permit from the Ottoman authorities, removes about half of the remaining sculptures of the Parthenon in Athens between 1801 and 1805; the sculptures are in London today.${n(5)}`,
+  `Sometimes the permit is openly broken. Under the permit Heinrich Schliemann obtains for Troy in 1871, he is to leave half of what he finds to the museum; the treasure of gold and silver he finds in 1873 he smuggles out of the country. The lawsuit drags on, and in the end the state settles for 50,000 francs.${n(6)}`,
+  `Countries answer with law. Greece declares antiquities from excavations state property in 1834, Egypt bans unauthorised removal in 1835; in the Ottoman Empire two regulations follow, of seven articles in 1869 and of thirty-six in 1874.${n(7)}`,
+  `Yet both Ottoman regulations think only of the land; neither mentions what lies under water. And antiquities do not come only from the land: those who earn their living from the bottom of the sea reach the antiquities there too, bring up what they find and sell it.${n(8)}`,
+  `The man who will see this gap becomes director of the Imperial Museum (Müze-i Hümayun) in 1881: Osman Hamdi Bey, himself an excavating archaeologist.${n(9)}`,
+  `Three years later, in 1884, Osman Hamdi Bey prepares a new regulation of thirty-seven articles. Its third article closes the gap: every kind of antiquity brought out of the sea, lakes, rivers, streams and brooks belongs to the state.${n(10)}`,
+  `This article is the oldest known rule in the world set by a state to protect underwater cultural heritage. Other countries wait many years for its like; in Denmark, the next in line, the year is 1963.${n(11)}`,
+  `Nor does the rule stay on paper. When gold pieces bearing images come to light on Formako Island in 1891, a letter goes to the Ministry of the Navy: a diver is to be hired and sent to the island, and the finds are to be examined on the spot.${n(12)}`,
+  `The following year the gold is traced. Thirty-four pieces are found with a shepherd and seventy-nine with several other people; the commander of the steamer Nüzhet is involved too. The coins collected are handed over to the government in Rhodes.${n(12)}`,
+  `In this way Osman Hamdi Bey carries out underwater work on behalf of the state. It will be nine more years before sponge divers find the first ancient wreck at Antikythera, and half a century before the invention of the equipment that makes the diver independent of the surface.${n(13)}`,
+  `That equipment arrives in the 1940s and makes it easy to go down; wrecks begin to suffer. Countries pass their own laws for underwater cultural heritage only in the 1960s and 1970s.${n(14)}`,
+  `Today the principle is clear. The ICOMOS Charter of 1996 sets out how underwater cultural heritage is to be protected and managed; the first option is to preserve it in place.${n(15)}`],
+ L:{h24:"finds reported within 24 hours",crownS:"⅔ to the king",finderS:"⅓ to the finder",permit:"EXCAVATION PERMIT",lon:"to London",share:"the museum’s share: ½",fr:"50,000 francs",gr:"Greece",eg:"Egypt",ot:"Ottoman",
+   noSea:"nothing under water",land:"land",sea:"sea",mus:"Müze-i Hümayun",art:"Article 3",w:["sea","lake","river","stream","brook"],isl:"Formako Island",bah:"to the Ministry of the Navy",nuz:"steamer Nüzhet",c34:"34",c79:"79",rod:"to Rhodes",
+   ax:["Formako","Antikythera","aqualung"],y40:"1940s",laws:"1960s–1970s: first underwater laws",insitu:"preservation in place",
    tl:["Ottoman Empire","Denmark","Germany","Australia","Netherlands","Egypt","USA","Poland","Lebanon","Italy"]},
  aH:"Two documents",
- aP:`We know the work on Formako Island from two documents. Both are in the Ottoman Archives: the first is dated 8 August 1891, the second 23 May 1892. The work they record is one of the earliest examples in the world of underwater work carried out by a state.${n(8)}`,
+ aP:`We know the work on Formako Island from two documents. Both are in the Ottoman Archives: the first is dated 8 August 1891, the second 23 May 1892. The work they record is one of the earliest examples in the world of underwater work carried out by a state.${n(12)}`,
  bH:"When did other countries follow?",
- bP:`To see how early 1884 is, it is enough to look at other countries. Comparable rules arrive in Denmark in 1963, in Germany in 1970, in Australia in 1976, in the Netherlands in 1985, in Egypt in 1986, in the USA in 1988, in Poland in 1996, in Lebanon in 2006 and in Italy in 2009. The Ottoman rule is 79 years older than the earliest of them.${n(7)}`,
- dH:"If you find an object today",
- dP:`Under Law no. 2863 of Türkiye, anyone who finds cultural property must report it within three days at the latest to the nearest museum directorate, the village headman or the local administrative authority. If the object is under water, the first thing to do is not to touch it and to record where it is.${n(11)}`,
+ bP:`To see how early 1884 is, it is enough to look at other countries. Rules protecting underwater cultural heritage arrive in Denmark in 1963, in Germany in 1970, in Australia in 1976, in the Netherlands in 1985, in Egypt in 1986, in the USA in 1988, in Poland in 1996, in Lebanon in 2006 and in Italy in 2009. The Ottoman rule is 79 years older than the earliest of them.${n(11)}`,
+ dH:"In Türkiye today",
+ dP:`The Ottoman regulation is renewed in 1906 and stays in force until 1973; it is replaced first by the Antiquities Law no. 1710 and then, in 1983, by Law no. 2863. Under today’s law, underwater zones containing cultural property that must be protected are designated and announced, and sport diving is not allowed in them. Anyone who finds cultural property must also report it within three days at the latest to the nearest museum directorate, the village headman or the local administrative authority.${n(16)}`,
  cH:"Why does it matter?",
- cP:`Because the article of 1884 states the idea that still holds today: an antiquity under water does not belong to whoever finds it; it belongs to the public. The way to protect that heritage is, most of the time, not to touch it and to report where it is.${n(12)}`,
- N:["Öniz and Sütçüoğlu (2016, p. 242).","Öniz and Sütçüoğlu (2016, p. 242); Asan (2023).","Asan (2023); Öniz and Sütçüoğlu (2016, pp. 243–244).","Öniz and Sütçüoğlu (2016, pp. 242–243).","Öniz and Sütçüoğlu (2016, pp. 242–243).","Öniz and Sütçüoğlu (2016, pp. 243–244); Asan (2023).","Öniz and Sütçüoğlu (2016, p. 243).","Öniz and Sütçüoğlu (2016, pp. 244–245).","Öniz and Sütçüoğlu (2016, pp. 242, 244–245).","Asan (2023); Kültür ve Tabiat Varlıklarını Koruma Kanunu (1983).","Kültür ve Tabiat Varlıklarını Koruma Kanunu (1983, arts. 4, 35).","Underwood (2024, p. 22); International Council on Monuments and Sites [ICOMOS] (1996)."],
+ cP:`Because the article of 1884 states the idea that still holds today: an antiquity under water does not belong to whoever finds it; it belongs to the public. The way to protect that heritage is, most of the time, not to touch it and to report where it is.${n(15)}`,
+ N:["Adlercreutz (2017, p. 12).","Adlercreutz (2017, pp. 6–7).","Adlercreutz (2017, p. 9).","Uslu (2015, pp. 55–56).","British Museum (n.d.).","Uslu (2015, pp. 55–60).","Siegel (n.d.); Asan (2023); Uslu (2015, p. 63).","Öniz and Sütçüoğlu (2016, pp. 242–244).","Öniz and Sütçüoğlu (2016, pp. 242–243).","Öniz and Sütçüoğlu (2016, pp. 243–244); Asan (2023).","Öniz and Sütçüoğlu (2016, p. 243).","Öniz and Sütçüoğlu (2016, pp. 244–245).","Öniz and Sütçüoğlu (2016, pp. 242, 244–245); Dromgoole (2013).","Dromgoole (2013).","Underwood (2024, p. 22); International Council on Monuments and Sites [ICOMOS] (1996).","Asan (2023); Kültür ve Tabiat Varlıklarını Koruma Kanunu (1983, arts. 4, 35)."],
  refH:"References", notesH:"Notes", refNote:"The reference list follows APA 7th edition.",
  hint:"Scroll to continue",
  useH:"Use",
- useSimple:"This page was prepared to explain the subject in a way everyone can follow; the drawings and the animation are schematic and not to scale. The drawings of the diver, the boat and the steamer do not show the actual equipment of the period.",
+ useSimple:"This page was prepared to explain the subject in a way everyone can follow; the drawings and the animation are schematic and not to scale. The human figures are not portraits of real people; the drawings of buildings, boats and equipment do not show how they actually looked at the time.",
  credDev:"Prepared by Muhammed Parlak under the supervision of Hakan Öniz (2026).",
  priv:"Page visits are counted anonymously, without cookies and without collecting personal data.",
  rights:"© 2026 Muhammed Parlak. All rights reserved. The page may be used free of charge for academic, educational and personal purposes; copying, modification or redistribution requires written permission.",
@@ -416,49 +424,61 @@ en:{title:"The Beginnings of Underwater Heritage Protection",
  famSub:"The RecOniz family", famH:"Amphora recognition: Underwater Heritage Recognizer"},
 es:{title:"Los inicios de la protección del patrimonio subacuático",
  h1:"Los inicios de la protección del patrimonio subacuático",
- lede:"¿A quién pertenece una antigüedad extraída del mar? La respuesta más antigua que se conoce dada por un Estado la escribió Osman Hamdi Bey en 1884. La historia empieza antes de él, en tierra.",
- S:[`En el Imperio otomano, la historia de la protección de las antigüedades empieza con una colección. En 1846 el sultán Abdülmecid hace llevar a Santa Irene (Aya İrini), en Estambul, unas piedras con inscripciones halladas en Yalova; las piezas reunidas se guardan allí.${n(1)}`,
-  `Reunir no basta, porque las antigüedades también se van. Desde la década de 1840 se conceden permisos de excavación a extranjeros, las solicitudes se multiplican y lo que sale de estas tierras se lleva a Europa.${n(1)}`,
-  `La primera norma escrita contra ello se dicta en 1869: el Reglamento de Antigüedades (Âsâr-ı Atîka Nizamnamesi), de siete artículos. En los mismos años la colección de Santa Irene toma el nombre de Museo Imperial (Müze-i Hümayun).${n(2)}`,
-  `Cinco años después, en 1874, llega un segundo reglamento, de treinta y seis artículos. Pero los dos reglamentos piensan solo en la tierra; ninguno menciona lo que está bajo el agua.${n(3)}`,
-  `Y sin embargo las antigüedades no salen solo de la tierra. En los mares otomanos, quienes se ganan la vida en el fondo del mar alcanzan también las antigüedades que hay allí; sacan lo que encuentran y lo venden. Nadie pide cuentas.${n(4)}`,
-  `El hombre que verá ese vacío pasa a dirigir el Museo Imperial en 1881: Osman Hamdi Bey, él mismo un arqueólogo que excava.${n(5)}`,
-  `Tres años después, en 1884, Osman Hamdi Bey prepara un nuevo reglamento, de treinta y siete artículos. Su artículo tercero cierra el vacío: toda clase de antigüedad extraída del mar, de los lagos, de los ríos, de los arroyos y de los riachuelos pertenece al Estado.${n(6)}`,
-  `Este artículo es la norma más antigua que se conoce en el mundo dictada por un Estado para proteger el patrimonio cultural subacuático. En los demás países hay que esperar muchos años algo parecido; en Dinamarca, el siguiente, el año es 1963.${n(7)}`,
-  `La norma tampoco se queda en el papel. Cuando en 1891 aparecen en la isla de Formako unas piezas de oro con imágenes, se escribe al Ministerio de Marina: hay que contratar a un buzo, enviarlo a la isla y examinar los hallazgos en el lugar.${n(8)}`,
-  `El asunto se sigue también al año siguiente. Treinta y cuatro de las piezas de oro se hallan en manos de un pastor y setenta y nueve en las de varias personas; interviene también el comandante del vapor Nüzhet. Las monedas se entregan al gobierno en Rodas.${n(8)}`,
-  `Así, Osman Hamdi Bey lleva a cabo un trabajo subacuático en nombre del Estado al menos cincuenta años antes de que se inventara el equipo que independizó al buzo de la superficie. Encontrar un buzo, organizar el transporte y los fondos, reconocer el lugar, recoger los hallazgos: lo que hace no es muy distinto del trabajo subacuático actual.${n(9)}`,
-  `El reglamento se renueva también más tarde. El cuarto reglamento, preparado por Osman Hamdi Bey en 1906, sigue en vigor hasta 1973; lo sustituyen primero la Ley de Antigüedades n.º 1710 y después, en 1983, la actual Ley n.º 2863.${n(10)}`,
-  `La ley actual nombra expresamente el mundo subacuático. Las zonas subacuáticas que contienen bienes culturales que deben protegerse se delimitan y se anuncian; en ellas no se permite el buceo deportivo. Quien encuentra un objeto debe además comunicarlo en un plazo máximo de tres días.${n(11)}`,
-  `La misma idea vive en los principios internacionales. La Carta del ICOMOS de 1996 establece cómo se protege y se gestiona el patrimonio cultural subacuático; la primera opción es conservarlo en su lugar.${n(12)}`],
- L:{aya:"Santa Irene",eur:"a Europa",noSea:"nada bajo el agua",land:"tierra",sea:"mar",mus:"Müze-i Hümayun",art:"Artículo 3",w:["mar","lago","río","arroyo","riachuelo"],isl:"isla de Formako",nuz:"vapor Nüzhet",c34:"34",c79:"79",rod:"a Rodas",
-   reg:"reglamento",k1:"Ley n.º 1710",k2:"Ley n.º 2863",zone:"zona subacuática protegida",insitu:"conservación in situ",
+ lede:"¿A quién pertenece una antigüedad extraída del mar? El mundo se hizo esta pregunta muy tarde. La historia empieza en tierra, con las primeras normas que protegen edificios y tumbas; al mar solo llega en 1884, con un artículo escrito por Osman Hamdi Bey.",
+ S:[`La idea de proteger las antigüedades no es nueva. Ya en 458 el emperador romano Mayoriano prohíbe destruir los edificios bellos o útiles que siguen en pie.${n(1)}`,
+  `En la misma ciudad las prohibiciones se repiten a lo largo de los siglos. En 1462 el papa Pío II prohíbe intervenir sin autorización en los edificios antiguos, y en 1624 un edicto cardenalicio prohíbe excavar sin autorización; todo lo que se encuentre debe comunicarse en veinticuatro horas.${n(1)}`,
+  `La protección no se queda en Roma. En Suecia, en 1666, una proclama dictada en nombre del rey pone bajo protección castillos, túmulos, piedras rúnicas y tumbas.${n(2)}`,
+  `Dieciocho años después, en el mismo país, una norma menciona también el agua: las monedas de oro, plata y cobre y las vasijas de metal halladas en la tierra o en el fondo de un lago o del mar deben comunicarse, y dos tercios son para el rey. Pero es una norma sobre tesoros; su fin no es proteger el objeto, sino repartir el tesoro.${n(3)}`,
+  `En el siglo XIX el interés por las antigüedades se convierte en excavación. Quien quiere excavar obtiene un permiso del Estado dueño de la tierra; en el permiso consta también cómo se repartirá lo hallado.${n(4)}`,
+  `Un permiso no siempre mantiene el objeto en su sitio. Lord Elgin, embajador británico, con un permiso de las autoridades otomanas, retira entre 1801 y 1805 aproximadamente la mitad de las esculturas que quedaban en el Partenón de Atenas; las esculturas están hoy en Londres.${n(5)}`,
+  `A veces el permiso se incumple abiertamente. Según el permiso que Heinrich Schliemann obtiene para Troya en 1871, debe dejar al museo la mitad de lo que halle; el tesoro de oro y plata que encuentra en 1873 lo saca del país a escondidas. El pleito se alarga y el Estado acaba conformándose con 50 000 francos.${n(6)}`,
+  `Los países responden con leyes. Grecia declara propiedad del Estado las antigüedades procedentes de excavaciones en 1834, Egipto prohíbe la extracción no autorizada en 1835; en el Imperio otomano llegan dos reglamentos, de siete artículos en 1869 y de treinta y seis en 1874.${n(7)}`,
+  `Sin embargo, los dos reglamentos otomanos piensan solo en la tierra; ninguno menciona lo que está bajo el agua. Y las antigüedades no salen solo de la tierra: quienes se ganan la vida en el fondo del mar alcanzan también las que hay allí, sacan lo que encuentran y lo venden.${n(8)}`,
+  `El hombre que verá ese vacío pasa a dirigir el Museo Imperial (Müze-i Hümayun) en 1881: Osman Hamdi Bey, él mismo un arqueólogo que excava.${n(9)}`,
+  `Tres años después, en 1884, Osman Hamdi Bey prepara un nuevo reglamento de treinta y siete artículos. Su artículo tercero cierra el vacío: toda clase de antigüedad extraída del mar, de los lagos, de los ríos, de los arroyos y de los riachuelos pertenece al Estado.${n(10)}`,
+  `Este artículo es la norma más antigua que se conoce en el mundo dictada por un Estado para proteger el patrimonio cultural subacuático. En los demás países hay que esperar muchos años algo parecido; en Dinamarca, el siguiente, el año es 1963.${n(11)}`,
+  `La norma tampoco se queda en el papel. Cuando en 1891 aparecen en la isla de Formako unas piezas de oro con imágenes, se escribe al Ministerio de Marina: hay que contratar a un buzo, enviarlo a la isla y examinar los hallazgos en el lugar.${n(12)}`,
+  `Al año siguiente se sigue el rastro del oro. Treinta y cuatro piezas se hallan en manos de un pastor y setenta y nueve en las de varias personas; interviene también el comandante del vapor Nüzhet. Las monedas reunidas se entregan al gobierno en Rodas.${n(12)}`,
+  `Así, Osman Hamdi Bey lleva a cabo un trabajo subacuático en nombre del Estado. Faltan aún nueve años para que unos pescadores de esponjas encuentren en Anticitera el primer pecio antiguo, y medio siglo para que se invente el equipo que independiza al buzo de la superficie.${n(13)}`,
+  `Ese equipo llega en la década de 1940 y hace fácil bajar al fondo; los pecios empiezan a sufrir daños. Los países no dictan sus propias leyes para el patrimonio cultural subacuático hasta las décadas de 1960 y 1970.${n(14)}`,
+  `Hoy el principio está claro. La Carta del ICOMOS de 1996 establece cómo se protege y se gestiona el patrimonio cultural subacuático; la primera opción es conservarlo en su lugar.${n(15)}`],
+ L:{h24:"lo hallado se comunica en 24 horas",crownS:"⅔ para el rey",finderS:"⅓ para quien lo halla",permit:"PERMISO DE EXCAVACIÓN",lon:"a Londres",share:"la parte del museo: ½",fr:"50 000 francos",gr:"Grecia",eg:"Egipto",ot:"otomano",
+   noSea:"nada bajo el agua",land:"tierra",sea:"mar",mus:"Müze-i Hümayun",art:"Artículo 3",w:["mar","lago","río","arroyo","riachuelo"],isl:"isla de Formako",bah:"al Ministerio de Marina",nuz:"vapor Nüzhet",c34:"34",c79:"79",rod:"a Rodas",
+   ax:["Formako","Anticitera","escafandra autónoma"],y40:"década de 1940",laws:"décadas de 1960 y 1970: primeras leyes subacuáticas",insitu:"conservación in situ",
    tl:["Imperio otomano","Dinamarca","Alemania","Australia","Países Bajos","Egipto","EE. UU.","Polonia","Líbano","Italia"]},
  aH:"Dos documentos",
- aP:`Conocemos el trabajo de la isla de Formako por dos documentos. Ambos están en el Archivo Otomano: el primero está fechado el 8 de agosto de 1891 y el segundo el 23 de mayo de 1892. El trabajo que recogen es uno de los ejemplos más tempranos del mundo de trabajo subacuático realizado por un Estado.${n(8)}`,
+ aP:`Conocemos el trabajo de la isla de Formako por dos documentos. Ambos están en el Archivo Otomano: el primero está fechado el 8 de agosto de 1891 y el segundo el 23 de mayo de 1892. El trabajo que recogen es uno de los ejemplos más tempranos del mundo de trabajo subacuático realizado por un Estado.${n(12)}`,
  bH:"¿Cuándo llegaron los demás países?",
- bP:`Para ver lo temprano que es 1884 basta mirar a los demás países. Normas comparables llegan a Dinamarca en 1963, a Alemania en 1970, a Australia en 1976, a los Países Bajos en 1985, a Egipto en 1986, a EE. UU. en 1988, a Polonia en 1996, al Líbano en 2006 y a Italia en 2009. La norma otomana es 79 años anterior a la más antigua de ellas.${n(7)}`,
- dH:"Si hoy encuentra un objeto",
- dP:`Según la Ley n.º 2863 de Türkiye, quien encuentra un bien cultural debe comunicarlo en un plazo máximo de tres días a la dirección del museo más cercano, al alcalde pedáneo o a la autoridad administrativa local. Si el objeto está bajo el agua, lo primero es no tocarlo y anotar dónde está.${n(11)}`,
+ bP:`Para ver lo temprano que es 1884 basta mirar a los demás países. Las normas que protegen el patrimonio cultural subacuático llegan a Dinamarca en 1963, a Alemania en 1970, a Australia en 1976, a los Países Bajos en 1985, a Egipto en 1986, a EE. UU. en 1988, a Polonia en 1996, al Líbano en 2006 y a Italia en 2009. La norma otomana es 79 años anterior a la más antigua de ellas.${n(11)}`,
+ dH:"En Türkiye hoy",
+ dP:`El reglamento otomano se renueva en 1906 y sigue en vigor hasta 1973; lo sustituyen primero la Ley de Antigüedades n.º 1710 y después, en 1983, la Ley n.º 2863. Según la ley actual, las zonas subacuáticas que contienen bienes culturales que deben protegerse se delimitan y se anuncian, y en ellas no se permite el buceo deportivo. Quien encuentra un bien cultural debe además comunicarlo en un plazo máximo de tres días a la dirección del museo más cercano, al alcalde pedáneo o a la autoridad administrativa local.${n(16)}`,
  cH:"¿Por qué importa?",
- cP:`Porque el artículo de 1884 expresa la idea que sigue vigente hoy: una antigüedad bajo el agua no pertenece a quien la encuentra; pertenece al conjunto de la sociedad. La manera de proteger ese patrimonio es, la mayoría de las veces, no tocarlo y comunicar dónde está.${n(12)}`,
- N:["Öniz y Sütçüoğlu (2016, p. 242).","Öniz y Sütçüoğlu (2016, p. 242); Asan (2023).","Asan (2023); Öniz y Sütçüoğlu (2016, pp. 243–244).","Öniz y Sütçüoğlu (2016, pp. 242–243).","Öniz y Sütçüoğlu (2016, pp. 242–243).","Öniz y Sütçüoğlu (2016, pp. 243–244); Asan (2023).","Öniz y Sütçüoğlu (2016, p. 243).","Öniz y Sütçüoğlu (2016, pp. 244–245).","Öniz y Sütçüoğlu (2016, pp. 242, 244–245).","Asan (2023); Kültür ve Tabiat Varlıklarını Koruma Kanunu (1983).","Kültür ve Tabiat Varlıklarını Koruma Kanunu (1983, arts. 4, 35).","Underwood (2024, p. 22); International Council on Monuments and Sites [ICOMOS] (1996)."],
+ cP:`Porque el artículo de 1884 expresa la idea que sigue vigente hoy: una antigüedad bajo el agua no pertenece a quien la encuentra; pertenece al conjunto de la sociedad. La manera de proteger ese patrimonio es, la mayoría de las veces, no tocarlo y comunicar dónde está.${n(15)}`,
+ N:["Adlercreutz (2017, p. 12).","Adlercreutz (2017, pp. 6–7).","Adlercreutz (2017, p. 9).","Uslu (2015, pp. 55–56).","British Museum (s. f.).","Uslu (2015, pp. 55–60).","Siegel (s. f.); Asan (2023); Uslu (2015, p. 63).","Öniz y Sütçüoğlu (2016, pp. 242–244).","Öniz y Sütçüoğlu (2016, pp. 242–243).","Öniz y Sütçüoğlu (2016, pp. 243–244); Asan (2023).","Öniz y Sütçüoğlu (2016, p. 243).","Öniz y Sütçüoğlu (2016, pp. 244–245).","Öniz y Sütçüoğlu (2016, pp. 242, 244–245); Dromgoole (2013).","Dromgoole (2013).","Underwood (2024, p. 22); International Council on Monuments and Sites [ICOMOS] (1996).","Asan (2023); Kültür ve Tabiat Varlıklarını Koruma Kanunu (1983, arts. 4, 35)."],
  refH:"Referencias", notesH:"Notas", refNote:"La lista de referencias sigue la 7.ª edición de APA.",
  hint:"Desliza para continuar",
  useH:"Uso",
- useSimple:"Esta página se ha preparado para explicar el tema de forma que todos puedan seguirlo; los dibujos y la animación son esquemáticos y no están a escala. Los dibujos del buzo, la barca y el vapor no muestran el equipo real de la época.",
+ useSimple:"Esta página se ha preparado para explicar el tema de forma que todos puedan seguirlo; los dibujos y la animación son esquemáticos y no están a escala. Las figuras humanas no son retratos de personas reales; los dibujos de edificios, barcos y equipos no muestran su aspecto real en la época.",
  credDev:"Preparada por Muhammed Parlak bajo la supervisión de Hakan Öniz (2026).",
  priv:"Las visitas a la página se cuentan de forma anónima, sin cookies y sin recopilar datos personales.",
  rights:"© 2026 Muhammed Parlak. Todos los derechos reservados. La página puede utilizarse gratuitamente con fines académicos, educativos y personales; su copia, modificación o redistribución requiere autorización por escrito.",
  prevSub:"Página relacionada", prevH:"Patrimonio subacuático para todos: ¿Qué queda de un pecio?",
  famSub:"La familia RecOniz", famH:"Identificación de ánforas: Underwater Heritage Recognizer"}};
 const REFLIST=[
+ `Adlercreutz, T. (2017). The Royal Placat of 1666: Briefly about background and further importance. In R. Alatalu, A. Randla, L. Ingerpuu, &amp; D. Haapsal (Eds.), <i>Historical perspective of heritage legislation: Balance between laws and values</i> (pp. 6–15). ICOMOS Estonia NC; ICLAFI; Estonian Academy of Arts. <a href="https://uu.diva-portal.org/smash/get/diva2:1270718/FULLTEXT01.pdf" target="_blank" rel="noopener">https://uu.diva-portal.org/smash/get/diva2:1270718/FULLTEXT01.pdf</a>`,
  `Asan, H. (2023). Âsâr-ı Atîka Nizamnameleri. In N. Kozak (Ed.), <i>Online Türkiye Turizm Ansiklopedisi</i>. <a href="https://turkiyeturizmansiklopedisi.com/asar-i-atika-nizamnameleri" target="_blank" rel="noopener">https://turkiyeturizmansiklopedisi.com/asar-i-atika-nizamnameleri</a>`,
+ `British Museum. (n.d.). <i>The Parthenon Sculptures</i>. <a href="https://www.britishmuseum.org/about-us/british-museum-story/contested-objects-collection/parthenon-sculptures" target="_blank" rel="noopener">https://www.britishmuseum.org/about-us/british-museum-story/contested-objects-collection/parthenon-sculptures</a>`,
+ `Dromgoole, S. (2013). <i>Underwater cultural heritage and international law</i>. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9781139020503" target="_blank" rel="noopener">https://doi.org/10.1017/CBO9781139020503</a>`,
  `International Council on Monuments and Sites. (1996). <i>Charter on the protection and management of underwater cultural heritage</i>. <a href="https://icuch.icomos.org/resources/charters-and-conventions/" target="_blank" rel="noopener">https://icuch.icomos.org/resources/charters-and-conventions/</a>`,
  `Kültür ve Tabiat Varlıklarını Koruma Kanunu, Kanun No. 2863. (1983, 23 Temmuz). <i>Resmî Gazete</i> (Sayı: 18113). <a href="https://www.mevzuat.gov.tr/mevzuatmetin/1.5.2863.pdf" target="_blank" rel="noopener">https://www.mevzuat.gov.tr/mevzuatmetin/1.5.2863.pdf</a>`,
  `Öniz, H., &amp; Sütçüoğlu, O. (2016). Sualtı kültür mirası, Osmanlı İmparatorluğu ve Osman Hamdi Bey. <i>Arkeoloji ve Sanat</i>, <i>153</i>, 241–248. <a href="https://www.academia.edu/31171383" target="_blank" rel="noopener">https://www.academia.edu/31171383</a>`,
- `Underwood, C. (2024). ICOMOS and underwater cultural heritage. In H. Öniz, E. Khalil, &amp; G. Vivar (Eds.), <i>Protection of underwater cultural heritage</i> (pp. 22–24). World Underwater Federation (CMAS). <a href="https://www.cmas.org/images/cmas_articles/237/PROTECTION-OF-UNDERWATER-CULTURAL-HERITAGE.pdf" target="_blank" rel="noopener">https://www.cmas.org/images/cmas_articles/237/PROTECTION-OF-UNDERWATER-CULTURAL-HERITAGE.pdf</a>`];
-const refLoc=r=>LANG==="tr"?r.replace("In N. Kozak (Ed.), <i>Online Türkiye Turizm Ansiklopedisi</i>.","N. Kozak (Ed.), <i>Online Türkiye Turizm Ansiklopedisi</i> içinde.").replace("In H. Öniz, E. Khalil, &amp; G. Vivar (Eds.), <i>Protection of underwater cultural heritage</i> (pp. 22–24).","H. Öniz, E. Khalil ve G. Vivar (Ed.), <i>Protection of underwater cultural heritage</i> içinde (s. 22–24).").replace(", &amp; "," ve "):LANG==="es"?r.replace("In N. Kozak","En N. Kozak").replace("In H. Öniz","En H. Öniz").replace(/, &amp; /g," y "):r;
+ `Siegel, L. (n.d.). <i>Antiquities law primer</i>. Bowdoin College Museum of Art. <a href="https://bcma.bowdoin.edu/antiquity/antiquities-law-primer/" target="_blank" rel="noopener">https://bcma.bowdoin.edu/antiquity/antiquities-law-primer/</a>`,
+ `Underwood, C. (2024). ICOMOS and underwater cultural heritage. In H. Öniz, E. Khalil, &amp; G. Vivar (Eds.), <i>Protection of underwater cultural heritage</i> (pp. 22–24). World Underwater Federation (CMAS). <a href="https://www.cmas.org/images/cmas_articles/237/PROTECTION-OF-UNDERWATER-CULTURAL-HERITAGE.pdf" target="_blank" rel="noopener">https://www.cmas.org/images/cmas_articles/237/PROTECTION-OF-UNDERWATER-CULTURAL-HERITAGE.pdf</a>`,
+ `Uslu, G. (2015). <i>Homer, Troy and the Turks: Heritage &amp; identity in the late Ottoman Empire 1870–1915</i> [Doctoral dissertation, University of Amsterdam]. UvA-DARE. <a href="https://pure.uva.nl/ws/files/2580604/165846_01.pdf" target="_blank" rel="noopener">https://pure.uva.nl/ws/files/2580604/165846_01.pdf</a>`];
+const refLoc=r=>{ if(LANG==="en") return r; const tr=LANG==="tr";
+  r=r.replace(/\bIn ((?:[A-Z]\. )+[^<]*?)\((Eds?\.)\), (<i>[^<]*<\/i>)( \(pp\. ([0-9–]+)\))?\./g,(m,ed,e,t,pp,rg)=>tr?`${ed}(Ed.), ${t} içinde${rg?` (s. ${rg})`:""}.`:`En ${ed}(${e==="Eds."?"Eds.":"Ed."}), ${t}${rg?` (pp. ${rg})`:""}.`);
+  r=r.replace(/, &amp; /g,tr?" ve ":" y ").replace(/\(n\.d\.\)/g,tr?"(t.y.)":"(s. f.)").replace("[Doctoral dissertation, University of Amsterdam]",tr?"[Doktora tezi, University of Amsterdam]":"[Tesis doctoral, University of Amsterdam]");
+  return r; };
 
 const NL=(navigator.language||"tr").toLowerCase(); let LANG=NL.startsWith("tr")?"tr":NL.startsWith("es")?"es":"en";
 try{ const s=localStorage.getItem("amfora-lang"); if(s==="tr"||s==="en"||s==="es") LANG=s; }catch(_){}
@@ -470,129 +490,235 @@ const rng=s=>()=>{ s=(s*1664525+1013904223)>>>0; return s/4294967296; };
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2, seg=(t,a,b)=>clamp((t-a)/(b-a),0,1), lerp=(a,b,k)=>a+(b-a)*k;
 const FF="Instrument Sans,system-ui,sans-serif";
 const YEARS=[1884,1963,1970,1976,1985,1986,1988,1996,2006,2009];
+/* sahnelerin başladığı adımlar: A harabe 0 · B İsveç 2 · C define 3 · D izin 4 · E tapınak 5 · F gece 6 · G kanunlar 7 · H deniz 8 · I Osman Hamdi Bey 9 · J ülkeler 11 · K Formako 12 · L sikkeler 13 · M eksen 14 · N dalgıçlar 15 · O yerinde koruma 16 */
+const START=[0,2,3,4,5,6,7,8,9,11,12,13,14,15,16];
 
 /* ================= sahne ================= */
-const SC={}; const SURF=128, BED=372;
+const SC={waves:[],sc:[]}; const SURF=128, BED=372, GR=352;
 (function build(){ const s=$("#scene");
   const d=el(s,"defs",{}); const g=el(d,"linearGradient",{id:"wG",x1:0,y1:0,x2:0,y2:1}); el(g,"stop",{offset:0,style:"stop-color:var(--water-a)"}); el(g,"stop",{offset:1,style:"stop-color:var(--water-b)"});
   el(el(d,"clipPath",{id:"fr"}),"rect",{x:0,y:0,width:720,height:440});
   const root=el(s,"g",{"clip-path":"url(#fr)"});
+  const INK="fill:var(--ink)", STONE="fill:var(--stone);stroke:var(--wood-d)";
+  const scene=(bg)=>{ const gg=el(root,"g",{}); el(gg,"rect",{x:0,y:0,width:720,height:440,style:"fill:var("+(bg||"--sky")+")"}); SC.sc.push(gg); return gg; };
   const txt=(p,x,y,size,anchor,weight)=>el(p,"text",{x,y,"text-anchor":anchor||"middle","font-family":FF,"font-size":size,"font-weight":weight||600,style:"fill:var(--ink)"});
   const halo=t=>{ t.setAttribute("style","fill:var(--ink);stroke:var(--bg);paint-order:stroke"); t.setAttribute("stroke-width",5); t.setAttribute("stroke-linejoin","round"); return t; };
   const lab=(p,x,y,x2,y2,anchor,tx)=>{ const gg=el(p,"g",{opacity:0}); el(gg,"path",{d:`M${x} ${y} L${x2} ${y2}`,fill:"none",style:"stroke:var(--ink)","stroke-width":1.4}); gg.t=halo(txt(gg,tx==null?x:tx,y+(y<y2?-9:26),25,anchor)); return gg; };
-  /* --- 1. görünüm: deniz --- */
-  const v1=SC.v1=el(root,"g",{});
-  el(v1,"rect",{x:0,y:0,width:720,height:SURF,style:"fill:var(--sky)"});
-  el(v1,"path",{d:`M452 ${SURF} Q500 100 560 92 Q628 80 684 100 L720 106 V${SURF}Z`,style:"fill:var(--sand-d);stroke:var(--wood-d)","stroke-width":1.5});
-  el(v1,"rect",{x:0,y:SURF,width:720,height:440-SURF,fill:"url(#wG)"});
-  el(v1,"path",{d:`M456 ${SURF} Q500 300 396 ${BED} H720 V${SURF}Z`,style:"fill:var(--sand-d)",opacity:.42});
-  SC.wave=el(v1,"path",{fill:"none",style:"stroke:var(--tube)","stroke-width":2.5,opacity:.85});
-  el(v1,"path",{d:`M0 ${BED} Q180 ${BED-8} 360 ${BED} T720 ${BED-2} V440 H0Z`,style:"fill:var(--sand)"});
-  const pot="M-3 -13 h6 v3 q0 3 4 6 q3 4 1 10 q-2 6 -5 9 l-1 3 h-4 l-1 -3 q-3 -3 -5 -9 q-2 -6 1 -10 q4 -3 4 -6 Z";
-  const mkPot=(x,y,rot)=>{ const gg=el(v1,"g",{transform:`translate(${x} ${y}) rotate(${rot}) scale(1.9)`}); el(gg,"path",{d:pot,style:"fill:var(--pot);stroke:var(--cavity)","stroke-width":.6}); return gg; };
-  mkPot(288,BED-12,-22); SC.lift=mkPot(334,BED-15,14); mkPot(374,BED-5,-74);
-  el(v1,"path",{d:`M250 ${BED+3} Q320 ${BED-9} 400 ${BED+3} V${BED+16} H250Z`,style:"fill:var(--sand)"});
-  // korunan bölge
-  SC.zone=el(v1,"g",{opacity:0}); el(SC.zone,"rect",{x:246,y:BED-74,width:176,height:84,rx:10,fill:"none",style:"stroke:var(--sea)","stroke-width":2.4,"stroke-dasharray":"9 6"});
-  el(SC.zone,"path",{d:`M334 ${BED-74} V${SURF+10}`,fill:"none",style:"stroke:var(--sea)","stroke-width":1.4,"stroke-dasharray":"3 5"}); SC.buoy=el(SC.zone,"circle",{cx:334,cy:SURF,r:9,style:"fill:var(--clay);stroke:var(--cavity)","stroke-width":1.2});
-  SC.lZone=halo(txt(v1,334,236,25)); SC.lZone.setAttribute("opacity",0); SC.lIns=halo(txt(v1,334,236,25)); SC.lIns.setAttribute("opacity",0);
-  // tekne
-  SC.boat=el(v1,"g",{}); el(SC.boat,"path",{d:"M-56 -8 Q-44 16 0 16 Q44 16 56 -8 Z",style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2});
-  el(SC.boat,"path",{d:"M-12 -8 V-24",fill:"none",style:"stroke:var(--ink)","stroke-width":7,"stroke-linecap":"round"}); el(SC.boat,"circle",{cx:-12,cy:-34,r:6.5,style:"fill:var(--ink)"});
-  // vapur
-  SC.stm=el(v1,"g",{}); el(SC.stm,"path",{d:"M-104 -10 L-88 16 H84 L108 -10 Z",style:"fill:var(--cavity)"}); el(SC.stm,"rect",{x:-52,y:-30,width:88,height:20,rx:2,style:"fill:var(--sail);stroke:var(--wood-d)","stroke-width":1.4});
-  el(SC.stm,"rect",{x:-18,y:-62,width:18,height:32,style:"fill:var(--pot2);stroke:var(--cavity)","stroke-width":1.2}); el(SC.stm,"path",{d:"M60 -10 V-58",fill:"none",style:"stroke:var(--wood-d)","stroke-width":3});
-  SC.smoke=[]; for(let i=0;i<5;i++) SC.smoke.push(el(SC.stm,"circle",{r:6+i*2.2,style:"fill:var(--tube-l)",opacity:.6}));
-  SC.cargo=el(SC.stm,"g",{opacity:0}); for(let i=0;i<7;i++) el(SC.cargo,"circle",{cx:56+i*5-(i>3?18:0),cy:-14-(i>3?5:0),r:3.4,style:"fill:var(--gold);stroke:var(--cavity)","stroke-width":.8});
-  // halat ve dalgıç
-  SC.rope=el(v1,"path",{fill:"none",style:"stroke:var(--ink)","stroke-width":1.5,opacity:.7});
-  SC.div=el(v1,"g",{}); { const k=el(SC.div,"g",{style:"stroke:var(--ink)","stroke-linecap":"round",fill:"none"});
-    el(k,"path",{d:"M10 0 L-14 3","stroke-width":10}); el(k,"path",{d:"M-14 3 L-36 9 M-14 3 L-34 -2","stroke-width":5.5}); el(k,"path",{d:"M8 3 L22 12","stroke-width":4.5}); el(SC.div,"circle",{cx:18,cy:-2,r:7.5,style:"fill:var(--ink)"}); }
-  // adadaki sikkeler
-  const pile=(x,y,nn)=>{ const gg=el(v1,"g",{opacity:0}); for(let i=0;i<nn;i++) el(gg,"circle",{cx:(i%4)*7-10+(Math.floor(i/4)%2)*3,cy:-Math.floor(i/4)*5,r:3.6,style:"fill:var(--gold);stroke:var(--cavity)","stroke-width":.8}); gg.x=x; gg.y=y; return gg; };
-  SC.pA=pile(560,88,8); SC.pB=pile(650,88,14);
-  SC.lA=halo(txt(v1,560,62,25)); SC.lB=halo(txt(v1,650,56,25)); SC.lIsl=lab(v1,600,190,590,112); SC.lNuz=lab(v1,150,206,150,150); SC.lRod=halo(txt(v1,24,200,25,"start"));
-  /* --- 2. görünüm: belgeler --- */
-  const v2=SC.v2=el(root,"g",{}); el(v2,"rect",{x:0,y:0,width:720,height:440,style:"fill:var(--sky)"});
-  const card=(x,y,w,h,year)=>{ const gg=el(v2,"g",{opacity:0}); el(gg,"rect",{x,y,width:w,height:h,rx:14,style:"fill:var(--raised);stroke:var(--line)","stroke-width":1.6}); const t=txt(gg,x+w/2,y+42,32,"middle",700); t.textContent=year; gg.t=txt(gg,x+w/2,y+h-14,23); return gg; };
-  const sheet=(x,y,w,h,year,big)=>{ const gg=el(v2,"g",{opacity:0}); el(gg,"rect",{x,y,width:w,height:h,rx:8,style:"fill:var(--paper);stroke:var(--tube-l)","stroke-width":1.6});
-    txt(gg,x+w/2,y+(big?50:44),big?40:32,"middle",700).textContent=year; const r2=rng(year);
-    const rows=big?2:5; for(let i=0;i<rows;i++) el(gg,"line",{x1:x+18,y1:y+68+i*15+(big?4:0),x2:x+w-18-r2()*30,y2:y+68+i*15+(big?4:0),style:"stroke:var(--tube-l)","stroke-width":4,"stroke-linecap":"round"});
+  const ground=(p,y,v)=>el(p,"path",{d:`M0 ${y} Q180 ${y-6} 360 ${y} T720 ${y-2} V440 H0Z`,style:"fill:var("+(v||"--sand")+")"});
+  /* yıl kartı */
+  const yc=(p,x,y,year,w)=>{ w=w||84; const gg=el(p,"g",{opacity:0}); el(gg,"rect",{x,y,width:w,height:58,rx:7,style:"fill:var(--paper);stroke:var(--tube-l)","stroke-width":1.6}); const t=txt(gg,x+w/2,y+31,24,"middle",700); t.textContent=year; el(gg,"circle",{cx:x+w/2,cy:y+46,r:4.5,style:"fill:var(--clay)"}); gg.x=x; gg.y=y; return gg; };
+  const card=(p,x,y,w,h,year)=>{ const gg=el(p,"g",{opacity:0}); el(gg,"rect",{x,y,width:w,height:h,rx:14,style:"fill:var(--raised);stroke:var(--line)","stroke-width":1.6}); const t=txt(gg,x+w/2,y+40,32,"middle",700); t.textContent=year; gg.t=txt(gg,x+w/2,y+h-16,22); return gg; };
+  const sheet=(p,x,y,w,h,year,big)=>{ const gg=el(p,"g",{opacity:0}); el(gg,"rect",{x,y,width:w,height:h,rx:8,style:"fill:var(--paper);stroke:var(--tube-l)","stroke-width":1.6});
+    if(year){ txt(gg,x+w/2,y+(big?50:44),big?40:32,"middle",700).textContent=year; }
+    const r2=rng(+year||7), rows=big?2:4; for(let i=0;i<rows;i++) el(gg,"line",{x1:x+18,y1:y+68+i*15+(big?4:0),x2:x+w-18-r2()*30,y2:y+68+i*15+(big?4:0),style:"stroke:var(--tube-l)","stroke-width":4,"stroke-linecap":"round"});
     return gg; };
   const chip=(p,x,y,w,kind,on)=>{ const gg=el(p,"g",{}); el(gg,"rect",{x,y,width:w,height:34,rx:17,style:on?"fill:var(--sea)":"fill:none;stroke:var(--faint)","stroke-width":1.6,"stroke-dasharray":on?"":"5 4"});
     const c=on?"var(--on-sea)":"var(--faint)";
     if(kind==="land"){ el(gg,"path",{d:`M${x+15} ${y+26} h14 M${x+18} ${y+26} v-14 M${x+26} ${y+26} v-14 M${x+14} ${y+10} h16`,fill:"none",style:`stroke:${c}`,"stroke-width":2.4,"stroke-linecap":"round"}); }
     else { el(gg,"path",{d:`M${x+12} ${y+19} q5 -8 10 0 t10 0`,fill:"none",style:`stroke:${c}`,"stroke-width":2.4,"stroke-linecap":"round"}); }
     gg.t=el(gg,"text",{x:x+40,y:y+24,"font-family":FF,"font-size":20,"font-weight":600,style:`fill:${c}`}); return gg; };
-  const slab=(p,x,y,sc)=>{ const gg=el(p,"g",{transform:`translate(${x} ${y}) scale(${sc})`}); el(gg,"rect",{x:-22,y:-28,width:44,height:56,rx:3,style:"fill:var(--sand-d);stroke:var(--wood-d)","stroke-width":1.6}); for(let i=0;i<4;i++) el(gg,"line",{x1:-14,y1:-16+i*11,x2:i%2?8:14,y2:-16+i*11,style:"stroke:var(--wood-d)","stroke-width":2.2,"stroke-linecap":"round"}); return gg; };
-  // 1846: Aya İrini
-  SC.c46=card(40,104,256,216,1846); slab(SC.c46,140,222,1); slab(SC.c46,196,228,.8);
-  SC.out=[]; for(let i=0;i<3;i++){ const o=slab(v2,0,0,.72); o.setAttribute("opacity",0); SC.out.push(o); }
-  SC.lEur=txt(v2,560,150,25); SC.lEur.setAttribute("opacity",0);
-  // 1869, 1874
-  SC.s1=sheet(34,96,170,230,1869); SC.s2=sheet(222,96,170,230,1874);
-  SC.ch=[chip(SC.s1,48,238,142,"land",true),chip(SC.s1,48,278,142,"sea",false),chip(SC.s2,236,238,142,"land",true),chip(SC.s2,236,278,142,"sea",false)];
-  SC.lNo=halo(txt(v2,213,372,25)); SC.lNo.setAttribute("opacity",0);
-  // 1881
-  SC.mus=card(430,130,256,170,1881); el(SC.mus,"path",{d:"M540 252 h36 M546 252 v-52 M570 252 v-52 M536 196 h44 M542 190 h32",fill:"none",style:"stroke:var(--clay)","stroke-width":5,"stroke-linecap":"round"});
-  // 1884
-  SC.s3=sheet(418,62,280,296,1884,true);
-  SC.art=el(SC.s3,"text",{x:558,y:182,"text-anchor":"middle","font-family":FF,"font-size":23,"font-weight":600,style:"fill:var(--muted)"});
-  SC.words=[]; const wp=[[440,206],[572,206],[440,250],[572,250],[506,294]]; for(let i=0;i<5;i++){ const c=chip(SC.s3,wp[i][0],wp[i][1],122,"sea",true); c.setAttribute("opacity",0); c.t.setAttribute("font-size",21); SC.words.push(c); }
-  // 1906, 1973, 1983
-  SC.laws=[1906,1973,1983].map((y,i)=>{ const gg=sheet(40+i*225,96,190,210,y); gg.t=txt(gg,135+i*225,346,22); if(i===2) SC.seaNow=chip(gg,64+i*225,254,142,"sea",true); return gg; });
-  /* --- 3. görünüm: zaman çizgisi --- */
-  const v3=SC.v3=el(root,"g",{opacity:0}); el(v3,"rect",{x:0,y:0,width:720,height:440,style:"fill:var(--sky)"});
-  const X=y=>250+(y-1880)*2.9; el(v3,"line",{x1:X(1884),y1:36,x2:X(1884),y2:420,style:"stroke:var(--sea)","stroke-width":1.6,"stroke-dasharray":"5 5",opacity:.6});
-  SC.rows=YEARS.map((y,i)=>{ const yy=56+i*38.5, gg=el(v3,"g",{opacity:0}), first=i===0;
-    if(!first) el(gg,"line",{x1:X(1884),y1:yy,x2:X(y),y2:yy,style:"stroke:var(--line)","stroke-width":5,"stroke-linecap":"round"});
-    el(gg,"circle",{cx:X(y),cy:yy,r:first?9:6.5,style:first?"fill:var(--sea)":"fill:var(--bg);stroke:var(--ink)","stroke-width":2});
-    gg.t=txt(gg,236,yy+7,first?22:21,"end",first?700:500); const t2=txt(gg,X(y)+(first?16:14),yy+7,first?22:20,"start",first?700:600); t2.textContent=y; if(first){ gg.t.setAttribute("style","fill:var(--sea)"); t2.setAttribute("style","fill:var(--sea)"); }
-    return gg; });
+  /* insan silueti: ayak ucu (0,0), sağa bakar, boy ~120 */
+  const person=(p,o)=>{ o=o||{}; const gg=el(p,"g",{});
+    el(gg,"path",{d:"M-10 0 L-8 -48 L0 -48 L-1 0Z M2 0 L1 -48 L9 -48 L12 0Z",style:INK});
+    el(gg,"path",{d:o.cloak?"M-19 -22 Q-23 -70 -12 -95 Q0 -102 12 -95 Q23 -70 19 -22Z":"M-13 -40 Q-17 -70 -11 -94 Q0 -101 11 -94 Q17 -70 14 -40Z",style:INK});
+    el(gg,"circle",{cx:1,cy:-110,r:9.5,style:INK});
+    if(o.beard) el(gg,"path",{d:"M2 -105 q10 -1 9 9 q-7 5 -12 -3Z",style:INK});
+    if(o.fez){ el(gg,"path",{d:"M-6 -117 L-4 -131 L8 -131 L10 -117Z",style:"fill:var(--clay)"}); el(gg,"path",{d:"M2 -131 q-9 1 -11 11",fill:"none",style:"stroke:var(--ink)","stroke-width":1.5,"stroke-linecap":"round"}); }
+    if(o.cap) el(gg,"path",{d:"M-8 -116 q9 -10 18 0 l9 2 l-1 3 h-26Z",style:INK});
+    if(o.hat) el(gg,"path",{d:"M-7 -118 v-15 h16 v15 h6 v3.5 h-28 v-3.5Z",style:INK});
+    if(o.scarf) el(gg,"path",{d:"M-9 -114 q10 -11 20 0 l-2 4 h-16Z",style:INK});
+    gg.arm=el(gg,"path",{d:o.arm||"M3 -88 L8 -66 L12 -50",fill:"none",style:"stroke:var(--ink)","stroke-width":7.5,"stroke-linecap":"round","stroke-linejoin":"round"});
+    return gg; };
+  const place=(gg,x,y,sc,flip)=>gg.setAttribute("transform",`translate(${x} ${y}) scale(${(flip?-1:1)*(sc||1)} ${sc||1})`);
+  const pot="M-3 -13 h6 v3 q0 3 4 6 q3 4 1 10 q-2 6 -5 9 l-1 3 h-4 l-1 -3 q-3 -3 -5 -9 q-2 -6 1 -10 q4 -3 4 -6 Z";
+  const mkPot=(p,x,y,rot,sc)=>{ const gg=el(p,"g",{transform:`translate(${x} ${y}) rotate(${rot}) scale(${sc||1.9})`}); el(gg,"path",{d:pot,style:"fill:var(--pot);stroke:var(--cavity)","stroke-width":.6}); gg.x=x; gg.y=y; gg.r=rot; return gg; };
+  const coin=(p,x,y,r)=>el(p,"circle",{cx:x||0,cy:y||0,r:r||4,style:"fill:var(--gold);stroke:var(--cavity)","stroke-width":.8});
+  const crown=(p,x,y,sc)=>el(p,"path",{d:"M-15 9 L-17 -8 L-8 1 L0 -12 L8 1 L17 -8 L15 9Z",transform:`translate(${x} ${y}) scale(${sc||1})`,style:"fill:var(--gold);stroke:var(--cavity)","stroke-width":1,"stroke-linejoin":"round"});
+  const sea=(p,isl)=>{ el(p,"rect",{x:0,y:0,width:720,height:SURF,style:"fill:var(--sky)"});
+    if(isl) el(p,"path",{d:`M452 ${SURF} Q500 100 560 92 Q628 80 684 100 L720 106 V${SURF}Z`,style:"fill:var(--sand-d);stroke:var(--wood-d)","stroke-width":1.5});
+    el(p,"rect",{x:0,y:SURF,width:720,height:440-SURF,fill:"url(#wG)"});
+    if(isl) el(p,"path",{d:`M456 ${SURF} Q500 300 396 ${BED} H720 V${SURF}Z`,style:"fill:var(--sand-d)",opacity:.42});
+    SC.waves.push(el(p,"path",{fill:"none",style:"stroke:var(--tube)","stroke-width":2.5,opacity:.85}));
+    el(p,"path",{d:`M0 ${BED} Q180 ${BED-8} 360 ${BED} T720 ${BED-2} V440 H0Z`,style:"fill:var(--sand)"}); };
+  const boat=(p,ms)=>{ const gg=el(p,"g",{}); el(gg,"path",{d:"M-58 -8 Q-46 17 0 17 Q46 17 58 -8 Z",style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2}); const m=person(gg,{scarf:1}); place(m,-16,-2,ms||.42); return gg; };
+  /* dalgıç: yatay, sağa yüzer; merkez göğüs */
+  const diver=(p,scuba)=>{ const gg=el(p,"g",{});
+    if(scuba) el(gg,"rect",{x:-14,y:-15,width:26,height:8,rx:4,style:"fill:var(--pot2);stroke:var(--cavity)","stroke-width":.8});
+    el(gg,"path",{d:"M-17 -6 Q0 -10 15 -5 L15 5 Q0 9 -17 6Z",style:INK}); el(gg,"circle",{cx:23,cy:-1,r:7.6,style:INK});
+    el(gg,"path",{d:"M-16 -5 L-45 -10 L-46 -4 L-16 2Z M-16 1 L-43 8 L-42 14 L-15 6Z",style:INK});
+    if(scuba) el(gg,"path",{d:"M-45 -10 l-13 -5 l3 12Z M-43 8 l-12 9 l10 2Z",style:INK});
+    el(gg,"path",{d:"M9 1 L24 14 L28 10 L14 -3Z",style:INK}); return gg; };
+  const steamer=p=>{ const gg=el(p,"g",{}); el(gg,"path",{d:"M-104 -10 L-88 16 H84 L108 -10 Z",style:"fill:var(--cavity)"}); el(gg,"rect",{x:-52,y:-30,width:88,height:20,rx:2,style:"fill:var(--sail);stroke:var(--wood-d)","stroke-width":1.4});
+    el(gg,"rect",{x:-18,y:-62,width:18,height:32,style:"fill:var(--pot2);stroke:var(--cavity)","stroke-width":1.2}); el(gg,"path",{d:"M60 -10 V-58",fill:"none",style:"stroke:var(--wood-d)","stroke-width":3});
+    gg.smoke=[]; for(let i=0;i<5;i++) gg.smoke.push(el(gg,"circle",{r:6+i*2.2,style:"fill:var(--tube-l)",opacity:.6})); return gg; };
+  const col=(p,x,top,base,w)=>{ w=w||26; el(p,"rect",{x:x-w/2,y:top,width:w,height:base-top,style:STONE,"stroke-width":1.4}); el(p,"path",{d:`M${x-w/6} ${top+6} V${base-10} M${x+w/6} ${top+6} V${base-10}`,fill:"none",style:"stroke:var(--wood-d)","stroke-width":1,opacity:.5}); el(p,"rect",{x:x-w/2-6,y:top-10,width:w+12,height:10,style:STONE,"stroke-width":1.4}); el(p,"rect",{x:x-w/2-7,y:base-8,width:w+14,height:8,style:STONE,"stroke-width":1.4}); };
+  const crate=(p,x,y,w,h)=>{ const gg=el(p,"g",{}); el(gg,"rect",{x,y,width:w,height:h,rx:2,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":1.6}); el(gg,"path",{d:`M${x} ${y+h/2} h${w} M${x+w/3} ${y} v${h} M${x+2*w/3} ${y} v${h}`,fill:"none",style:"stroke:var(--wood-d)","stroke-width":1.1,opacity:.7}); return gg; };
+
+  /* ===== A · Roma: harabe ve yasaklar (0–1) ===== */
+  { const A=SC.A=scene(); ground(A,GR);
+    col(A,110,176,GR); col(A,186,176,GR); col(A,262,176,GR); el(A,"path",{d:"M84 166 V140 H292 L286 152 L296 166Z",style:STONE,"stroke-width":1.4});
+    el(A,"rect",{x:325,y:270,width:26,height:GR-270,style:STONE,"stroke-width":1.4}); el(A,"path",{d:"M325 270 l6 -9 l7 6 l6 -8 l7 11Z",style:STONE,"stroke-width":1.4}); el(A,"rect",{x:318,y:GR-8,width:40,height:8,style:STONE,"stroke-width":1.4});
+    A.cart=el(A,"g",{}); el(A.cart,"rect",{x:-26,y:-44,width:52,height:28,rx:3,style:STONE,"stroke-width":1.4}); el(A.cart,"path",{d:"M-36 -14 H34 M34 -14 L56 -30",fill:"none",style:"stroke:var(--wood-d)","stroke-width":4,"stroke-linecap":"round"}); el(A.cart,"circle",{cx:-10,cy:-7,r:8,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2});
+    A.pull=person(A.cart,{arm:"M3 -88 L-6 -70 L-14 -62"}); place(A.pull,74,7,.92);
+    A.man=person(A,{arm:"M3 -88 L16 -92 L26 -104"}); A.pick=el(A.man,"g",{}); el(A.pick,"path",{d:"M26 -104 L52 -138",fill:"none",style:"stroke:var(--wood-d)","stroke-width":4,"stroke-linecap":"round"}); el(A.pick,"path",{d:"M38 -146 Q54 -144 64 -128",fill:"none",style:"stroke:var(--ink)","stroke-width":4.5,"stroke-linecap":"round"});
+    A.c=[yc(A,452,44,"458"),yc(A,540,44,"1462"),yc(A,628,44,"1624")]; A.l=halo(txt(A,704,140,23,"end")); A.l.setAttribute("opacity",0); }
+  /* ===== B · İsveç 1666 (2) ===== */
+  { const B=SC.B=scene(); ground(B,GR,"--sand-d");
+    B.mound=el(B,"path",{d:`M40 ${GR} Q190 215 350 ${GR}Z`,style:"fill:var(--sand);stroke:var(--wood-d)","stroke-width":1.4});
+    el(B,"path",{d:`M410 ${GR} Q404 236 432 208 Q462 190 480 226 Q494 270 488 ${GR}Z`,style:STONE,"stroke-width":1.6});
+    el(B,"path",{d:"M424 330 Q416 250 438 226 Q458 214 466 244 Q474 288 468 330 Q446 318 446 286 Q446 258 452 250",fill:"none",style:"stroke:var(--clay)","stroke-width":5,"stroke-linecap":"round",opacity:.85});
+    for(const [x,h] of [[548,56],[596,74],[648,48]]) el(B,"path",{d:`M${x-13} ${GR} Q${x-12} ${GR-h} ${x} ${GR-h-6} Q${x+13} ${GR-h} ${x+12} ${GR}Z`,style:STONE,"stroke-width":1.4});
+    B.c=yc(B,552,44,"1666",96); crown(B.c,642,42,.6);
+    B.guard=el(B,"g",{fill:"none",style:"stroke:var(--sea)","stroke-width":2.6,"stroke-dasharray":"9 7","stroke-linecap":"round"}); el(B.guard,"path",{d:`M22 ${GR+8} Q190 186 368 ${GR+8}`}); el(B.guard,"path",{d:`M396 ${GR+8} V214 Q446 166 502 214 V${GR+8}`}); el(B.guard,"path",{d:`M526 ${GR+8} V262 H672 V${GR+8}`}); }
+  /* ===== C · 1684: suyun dibindeki define (3) ===== */
+  { const C=SC.C=scene(); sea(C,false);
+    el(C,"path",{d:`M0 ${SURF} Q60 96 150 100 Q210 104 236 ${SURF}Z`,style:"fill:var(--sand-d);stroke:var(--wood-d)","stroke-width":1.5});
+    C.vase=el(C,"path",{d:"M-9 -30 h18 v5 q12 6 12 20 q0 14 -21 15 q-21 -1 -21 -15 q0 -14 12 -20Z",transform:`translate(452 ${BED-3}) rotate(64)`,style:"fill:var(--pot2);stroke:var(--cavity)","stroke-width":1});
+    C.boat=boat(C); C.c=yc(C,24,30,"1684",96); crown(C.c,114,28,.6);
+    C.crown=crown(C,176,62,1.5); C.crown.setAttribute("opacity",0);
+    C.p=[]; for(let i=0;i<3;i++){ const gg=el(C,"g",{}); for(let k=0;k<5;k++) coin(gg,(k%3)*8-8,-Math.floor(k/3)*7,4.4); C.p.push(gg); }
+    C.l1=halo(txt(C,212,72,26,"start",700)); C.l2=halo(txt(C,560,58,26,"middle",700)); }
+  /* ===== D · kazı izni (4) ===== */
+  { const D=SC.D=scene(); ground(D,330);
+    el(D,"path",{d:"M372 330 L384 404 H664 L676 330Z",style:"fill:var(--sand-d);stroke:var(--wood-d)","stroke-width":1.4});
+    el(D,"rect",{x:548,y:374,width:40,height:28,rx:4,style:STONE,"stroke-width":1.4}); D.find=mkPot(D,520,390,-58,2.2);
+    D.w=[]; for(const [x,f] of [[446,1],[600,0]]){ const m=person(D,{scarf:1,arm:"M3 -88 L18 -70 L30 -58"}); place(m,x,402,1,f); m.sh=el(m,"g",{}); el(m.sh,"path",{d:"M12 -84 L44 -34",fill:"none",style:"stroke:var(--wood-d)","stroke-width":4,"stroke-linecap":"round"}); el(m.sh,"path",{d:"M40 -40 l14 4 l-6 16 l-14 -8Z",style:INK}); D.w.push(m); }
+    el(D,"path",{d:"M372 330 H676 V336 H372Z",style:"fill:var(--sand)"});
+    D.doc=sheet(D,40,60,214,256); D.doc.setAttribute("opacity",1); D.t=txt(D.doc,147,98,22,"middle",700);
+    for(let i=0;i<3;i++) el(D.doc,"line",{x1:58,y1:196+i*15,x2:212-i*22,y2:196+i*15,style:"stroke:var(--tube-l)","stroke-width":4,"stroke-linecap":"round"});
+    D.seal=el(D.doc,"g",{}); el(D.seal,"circle",{r:25,style:"fill:var(--clay)"}); el(D.seal,"circle",{r:17,fill:"none",style:"stroke:var(--paper)","stroke-width":2}); el(D.seal,"path",{d:"M-8 0 l6 6 l11 -12",fill:"none",style:"stroke:var(--paper)","stroke-width":3.4,"stroke-linecap":"round","stroke-linejoin":"round"}); }
+  /* ===== E · tapınak ve sökülen heykeller (5) ===== */
+  { const E=SC.E=scene(); el(E,"path",{d:`M0 ${GR+8} L70 ${GR-6} H560 L640 ${GR+12} L720 ${GR+6} V440 H0Z`,style:"fill:var(--sand-d)"});
+    el(E,"rect",{x:92,y:GR-18,width:416,height:12,style:STONE,"stroke-width":1.4}); el(E,"rect",{x:104,y:GR-30,width:392,height:12,style:STONE,"stroke-width":1.4});
+    for(let i=0;i<6;i++) col(E,130+i*68,196,GR-30,24);
+    el(E,"rect",{x:104,y:166,width:392,height:20,style:STONE,"stroke-width":1.4}); el(E,"rect",{x:104,y:136,width:392,height:30,style:"fill:var(--wood-d)",opacity:.55}); el(E,"path",{d:"M96 136 L300 70 L504 136Z",style:STONE,"stroke-width":1.4});
+    E.cr=[crate(E,560,GR-44,58,38),crate(E,624,GR-40,58,38),crate(E,592,GR-82,58,38)];
+    E.m=[]; for(let i=0;i<6;i++){ const gg=el(E,"g",{}); el(gg,"rect",{x:-25,y:-13,width:50,height:26,rx:2,style:"fill:var(--paper);stroke:var(--wood-d)","stroke-width":1.3}); el(gg,"path",{d:"M-12 9 v-10 q4 -8 8 0 v10 M4 9 l4 -14 l7 6 v8",fill:"none",style:"stroke:var(--wood-d)","stroke-width":1.8,"stroke-linecap":"round","stroke-linejoin":"round"}); gg.x=138+i*65; gg.y=151; E.m.push(gg); }
+    E.c=yc(E,30,30,"1801–1805",150); E.l=halo(txt(E,640,GR-112,24)); E.l.setAttribute("opacity",0); }
+  /* ===== F · gece kaçırılan hazine (6) ===== */
+  { const F=SC.F=scene("--night"); el(F,"circle",{cx:604,cy:78,r:30,style:"fill:var(--moon)"}); el(F,"circle",{cx:617,cy:70,r:27,style:"fill:var(--night)"});
+    const r=rng(11); for(let i=0;i<22;i++) el(F,"circle",{cx:r()*700+10,cy:r()*190+8,r:.8+r()*1.3,style:"fill:var(--moon)",opacity:.35+r()*.5});
+    el(F,"rect",{x:470,y:GR-4,width:260,height:100,style:"fill:var(--night-w)"}); F.wave=el(F,"path",{fill:"none",style:"stroke:var(--moon)","stroke-width":2,opacity:.45});
+    el(F,"path",{d:`M0 ${GR} Q60 ${GR-8} 110 300 Q210 208 318 236 L334 316 L352 316 L372 240 Q440 250 486 ${GR-2} L520 ${GR+10} V440 H0Z`,style:"fill:var(--night-g)"});
+    F.gl=[]; for(const [x,y] of [[336,306],[346,298],[341,312]]){ const st=el(F,"path",{d:"M0 -7 L2 -2 L7 0 L2 2 L0 7 L-2 2 L-7 0 L-2 -2Z",transform:`translate(${x} ${y})`,style:"fill:var(--gold)"}); F.gl.push(st); }
+    F.boat=el(F,"g",{}); el(F.boat,"path",{d:"M-50 -6 Q-40 15 0 15 Q40 15 50 -6 Z",style:"fill:var(--wood-d);stroke:var(--cavity)","stroke-width":1.6}); el(F.boat,"path",{d:"M4 -6 V-66 M4 -62 L38 -14 H4",style:"fill:var(--tube-l);stroke:var(--cavity)","stroke-width":1.4,opacity:.9});
+    F.man=el(F,"g",{style:"stroke:var(--moon);stroke-width:1.1;stroke-opacity:.6"}); const m=person(F.man,{hat:1,arm:"M3 -88 L-8 -84 L-14 -92"}); F.sack=el(F.man,"g",{}); el(F.sack,"path",{d:"M-34 -74 q-4 -22 14 -26 q16 2 14 24 q-12 12 -28 2Z",style:"fill:var(--wood);stroke:var(--cavity)","stroke-width":1.2}); coin(F.sack,-20,-98,3.4); coin(F.sack,-13,-101,3);
+    F.c=yc(F,30,30,"1873"); F.share=el(F,"g",{opacity:0}); el(F.share,"rect",{x:130,y:36,width:236,height:52,rx:10,fill:"none",style:"stroke:var(--moon)","stroke-width":1.8,"stroke-dasharray":"7 6"}); F.shareT=el(F.share,"text",{x:248,y:66,"text-anchor":"middle","font-family":FF,"font-size":22,"font-weight":600,style:"fill:var(--moon)"});
+    F.fr=el(F,"g",{opacity:0}); el(F.fr,"rect",{x:420,y:150,width:226,height:54,rx:27,style:"fill:var(--gold)"}); F.frT=el(F.fr,"text",{x:533,y:185,"text-anchor":"middle","font-family":FF,"font-size":24,"font-weight":700,style:"fill:#2A2110"}); }
+  /* ===== G · ülkelerin kanunları (7) ===== */
+  { const G=SC.G=scene(); G.s=[1834,1835,1869,1874].map((y,i)=>{ const x=22+i*174, gg=sheet(G,x,84,154,222,y); gg.ch=chip(gg,x+10,250,134,"land",true); gg.t=txt(gg,x+77,344,22); return gg; }); }
+  /* ===== H · deniz: sualtı yok, ama eser çıkar (8) ===== */
+  { const H=SC.H=scene(); sea(H,true); mkPot(H,288,BED-12,-22); H.lift=mkPot(H,334,BED-15,14); mkPot(H,374,BED-5,-74);
+    el(H,"path",{d:`M250 ${BED+3} Q320 ${BED-9} 400 ${BED+3} V${BED+16} H250Z`,style:"fill:var(--sand)"});
+    H.rope=el(H,"path",{fill:"none",style:"stroke:var(--ink)","stroke-width":1.5,opacity:.7}); H.boat=boat(H); H.div=diver(H);
+    H.tag=el(H,"g",{opacity:0}); el(H.tag,"rect",{x:22,y:34,width:300,height:60,rx:12,style:"fill:var(--paper);stroke:var(--tube-l)","stroke-width":1.6}); txt(H.tag,38,72,23,"start",700).textContent="1869 · 1874"; H.ch=chip(H.tag,176,47,134,"sea",false); }
+  /* ===== I · Osman Hamdi Bey (9–10) ===== */
+  { const I=SC.I=scene(); el(I,"rect",{x:0,y:BED,width:720,height:68,style:"fill:var(--sand)"}); el(I,"path",{d:`M0 ${BED} H720`,fill:"none",style:"stroke:var(--wood-d)","stroke-width":1.6});
+    el(I,"rect",{x:36,y:BED-64,width:64,height:64,style:"fill:var(--tube-l);stroke:var(--wood-d)","stroke-width":1.2}); mkPot(I,68,BED-98,0,2.5);
+    el(I,"rect",{x:124,y:BED-40,width:70,height:40,style:"fill:var(--tube-l);stroke:var(--wood-d)","stroke-width":1.2}); el(I,"path",{d:`M138 ${BED-40} V${BED-122} Q160 ${BED-142} 181 ${BED-122} V${BED-40}Z`,style:STONE,"stroke-width":1.4}); for(let i=0;i<4;i++) el(I,"line",{x1:147,y1:BED-112+i*17,x2:i%2?166:173,y2:BED-112+i*17,style:"stroke:var(--wood-d)","stroke-width":2.2,"stroke-linecap":"round"});
+    I.c=card(I,36,32,236,86,"1881");
+    I.easel=el(I,"g",{opacity:0}); el(I.easel,"path",{d:`M474 326 L452 ${BED} M662 326 L684 ${BED} M568 326 V${BED-6}`,fill:"none",style:"stroke:var(--wood-d)","stroke-width":5,"stroke-linecap":"round"});
+    I.s=sheet(I,440,52,256,278,1884,true); I.art=el(I.s,"text",{x:568,y:172,"text-anchor":"middle","font-family":FF,"font-size":23,"font-weight":600,style:"fill:var(--muted)"});
+    I.w=[]; const wp=[[450,190],[572,190],[450,232],[572,232],[511,274]]; for(let i=0;i<5;i++){ const c=chip(I.s,wp[i][0],wp[i][1],116,"sea",true); c.setAttribute("opacity",0); c.t.setAttribute("font-size",21); I.w.push(c); }
+    I.bub=el(I,"g",{opacity:0}); el(I.bub,"ellipse",{cx:452,cy:92,rx:74,ry:48,style:"fill:var(--raised);stroke:var(--line)","stroke-width":1.6}); el(I.bub,"circle",{cx:372,cy:140,r:9,style:"fill:var(--raised);stroke:var(--line)","stroke-width":1.4}); el(I.bub,"circle",{cx:352,cy:156,r:5,style:"fill:var(--raised);stroke:var(--line)","stroke-width":1.4});
+    el(I.bub,"path",{d:"M400 112 q9 -13 18 0 t18 0 t18 0 t18 0 t18 0",fill:"none",style:"stroke:var(--sea)","stroke-width":3.4,"stroke-linecap":"round"}); mkPot(I.bub,452,88,24,1.6);
+    I.man=person(I,{fez:1,beard:1}); I.pen=el(I.man,"path",{d:"M40 -92 L52 -100",fill:"none",style:"stroke:var(--clay)","stroke-width":3,"stroke-linecap":"round",opacity:0}); }
+  /* ===== J · öteki ülkeler (11) ===== */
+  { const J=SC.J=scene(); const X=y=>250+(y-1880)*2.9; el(J,"line",{x1:X(1884),y1:36,x2:X(1884),y2:420,style:"stroke:var(--sea)","stroke-width":1.6,"stroke-dasharray":"5 5",opacity:.6});
+    J.rows=YEARS.map((y,i)=>{ const yy=56+i*38.5, gg=el(J,"g",{opacity:0}), first=i===0;
+      if(!first) el(gg,"line",{x1:X(1884),y1:yy,x2:X(y),y2:yy,style:"stroke:var(--line)","stroke-width":5,"stroke-linecap":"round"});
+      el(gg,"circle",{cx:X(y),cy:yy,r:first?9:6.5,style:first?"fill:var(--sea)":"fill:var(--bg);stroke:var(--ink)","stroke-width":2});
+      gg.t=txt(gg,236,yy+7,first?22:21,"end",first?700:500); const t2=txt(gg,X(y)+(first?16:14),yy+7,first?22:20,"start",first?700:600); t2.textContent=y; if(first){ gg.t.setAttribute("style","fill:var(--sea)"); t2.setAttribute("style","fill:var(--sea)"); }
+      return gg; }); }
+  /* ===== K · Formako 1891 (12) ===== */
+  { const K=SC.K=scene(); sea(K,true); K.rope=el(K,"path",{fill:"none",style:"stroke:var(--ink)","stroke-width":1.5,opacity:.7}); K.boat=boat(K); K.div=diver(K);
+    K.beam=el(K,"path",{style:"fill:var(--gold)",opacity:0});
+    K.doc=el(K,"g",{}); el(K.doc,"rect",{x:24,y:34,width:262,height:76,rx:8,style:"fill:var(--paper);stroke:var(--tube-l)","stroke-width":1.6}); txt(K.doc,40,66,26,"start",700).textContent="1891"; K.docT=txt(K.doc,40,96,20,"start",600); el(K.doc,"circle",{cx:258,cy:60,r:13,style:"fill:var(--clay)"});
+    K.lIsl=lab(K,612,186,598,112); }
+  /* ===== L · altınların bulunuşu, 1892 (13) ===== */
+  { const L=SC.L=scene(); el(L,"rect",{x:0,y:206,width:720,height:110,fill:"url(#wG)"}); el(L,"path",{d:"M0 206 H720",fill:"none",style:"stroke:var(--tube)","stroke-width":2,opacity:.8});
+    L.stm=steamer(L); el(L,"path",{d:`M0 300 Q200 268 420 296 T720 286 V440 H0Z`,style:"fill:var(--sand-d)"}); el(L,"path",{d:`M0 ${BED} Q240 ${BED-14} 480 ${BED-2} T720 ${BED-6} V440 H0Z`,style:"fill:var(--sand)"});
+    for(const x of [176,222]){ const sh=el(L,"g",{transform:`translate(${x} ${BED-4})`}); el(sh,"path",{d:"M-13 -8 v8 M-5 -8 v8 M6 -8 v8 M13 -8 v8",fill:"none",style:"stroke:var(--ink)","stroke-width":2.6,"stroke-linecap":"round"}); el(sh,"rect",{x:-19,y:-28,width:38,height:22,rx:11,style:"fill:var(--tube);stroke:var(--wood-d)","stroke-width":1.2}); el(sh,"circle",{cx:21,cy:-25,r:6.5,style:INK}); }
+    L.shep=person(L,{cloak:1,scarf:1,arm:"M3 -88 L20 -74 L26 -90"}); place(L.shep,112,BED-2,1.28); el(L.shep,"path",{d:"M26 -128 L27 0",fill:"none",style:"stroke:var(--wood-d)","stroke-width":3.4,"stroke-linecap":"round"});
+    L.grp=[[330,1.12,0,{scarf:1}],[372,1.2,1,{cap:1}],[414,1.08,1,{scarf:1}]].map(([x,sc,f,o])=>{ const m=person(L,o); place(m,x,BED-3,sc,f); return m; });
+    L.off=person(L,{cap:1,arm:"M3 -88 L24 -86 L44 -90"}); place(L.off,560,BED-2,1.3,1);
+    L.chest=el(L,"g",{transform:`translate(630 ${BED-2})`}); el(L.chest,"rect",{x:-38,y:-38,width:76,height:38,rx:3,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2}); el(L.chest,"path",{d:"M-38 -38 Q0 -62 38 -38",style:"fill:var(--wood-d);stroke:var(--cavity)","stroke-width":1.4}); el(L.chest,"rect",{x:-6,y:-26,width:12,height:12,rx:2,style:"fill:var(--gold);stroke:var(--cavity)","stroke-width":1});
+    L.fill=el(L.chest,"g",{}); for(let i=0;i<9;i++) coin(L.fill,-24+i*6,-42-(i%2)*4,4);
+    L.gl=[[128,BED-72],[352,BED-66],[394,BED-70]].map(([x,y])=>el(L,"path",{d:"M0 -11 L3 -3 L11 0 L3 3 L0 11 L-3 3 L-11 0 L-3 -3Z",transform:`translate(${x} ${y})`,style:"fill:var(--gold);stroke:var(--cavity)","stroke-width":.6,opacity:0}));
+    L.co=[]; for(let i=0;i<20;i++){ const c=coin(L,0,0,4.6); c.setAttribute("opacity",0); L.co.push(c); }
+    L.c=yc(L,30,30,"1892"); L.lA=halo(txt(L,116,BED-176,30,"middle",700)); L.lB=halo(txt(L,372,BED-166,30,"middle",700)); L.lNuz=lab(L,250,132,250,166,"middle"); L.lRod=halo(txt(L,700,150,24,"end")); }
+  /* ===== M · zamanın neresinde (14) ===== */
+  { const M=SC.M=scene(); sea(M,true); mkPot(M,288,BED-12,-22); mkPot(M,374,BED-5,-74); el(M,"path",{d:`M250 ${BED+3} Q320 ${BED-9} 400 ${BED+3} V${BED+16} H250Z`,style:"fill:var(--sand)"});
+    M.rope=el(M,"path",{fill:"none",style:"stroke:var(--ink)","stroke-width":1.5,opacity:.7}); M.boat=boat(M,.001); M.div=diver(M);
+    M.ax=el(M,"g",{}); el(M.ax,"rect",{x:16,y:30,width:688,height:82,rx:14,style:"fill:var(--bg)",opacity:.9}); const X=y=>70+(y-1891)*10.4; el(M.ax,"path",{d:`M${X(1889)} 70 H${X(1949)}`,fill:"none",style:"stroke:var(--ink)","stroke-width":2,"stroke-linecap":"round"});
+    M.pt=[[1891,1],[1900,0],[1945,0]].map(([y,f],i)=>{ const gg=el(M.ax,"g",{opacity:0}); el(gg,"circle",{cx:X(y),cy:70,r:f?9:7,style:f?"fill:var(--sea)":"fill:var(--bg);stroke:var(--ink)","stroke-width":2}); gg.y=txt(gg,i===0?X(y)-12:i===1?X(y)+2:X(y),56,21,i===0?"start":i===1?"start":"end",700); gg.t=txt(gg,i===0?X(y)-12:i===1?X(y)+2:X(y)+8,100,19,i===2?"end":"start",500); if(i<2) gg.y.textContent=y; return gg; }); }
+  /* ===== N · aletli dalış ve zarar (15) ===== */
+  { const N=SC.N=scene(); sea(N,false); N.pots=[[250,-20,2],[296,12,2.1],[340,-64,2],[384,26,2.1],[428,-12,2],[470,70,1.9]].map(([x,r,sc],i)=>mkPot(N,x,BED-10-(i%2)*4,r,sc));
+    el(N,"path",{d:`M214 ${BED+3} Q350 ${BED-10} 506 ${BED+3} V${BED+16} H214Z`,style:"fill:var(--sand)"});
+    N.dv=[0,1,2].map(()=>diver(N,true)); N.bub=[]; for(let i=0;i<9;i++) N.bub.push(el(N,"circle",{r:2+(i%3)*.8,fill:"none",style:"stroke:var(--tube)","stroke-width":1.3}));
+    N.c=yc(N,30,30,"1940+",104); N.l=halo(txt(N,360,96,23)); N.l.setAttribute("opacity",0); }
+  /* ===== O · yerinde koruma (16) ===== */
+  { const O=SC.O=scene(); sea(O,false); for(const [x,r,sc,dy] of [[296,12,2.1,-14],[384,26,2.1,-10],[340,-64,2,-10]]) mkPot(O,x,BED+dy,r,sc);
+    el(O,"path",{d:`M214 ${BED+3} Q350 ${BED-10} 506 ${BED+3} V${BED+16} H214Z`,style:"fill:var(--sand)"});
+    O.zone=el(O,"g",{opacity:0}); el(O.zone,"rect",{x:236,y:BED-84,width:206,height:96,rx:12,fill:"none",style:"stroke:var(--sea)","stroke-width":2.6,"stroke-dasharray":"9 6"}); el(O.zone,"path",{d:`M339 ${BED-84} V${SURF+10}`,fill:"none",style:"stroke:var(--sea)","stroke-width":1.4,"stroke-dasharray":"3 5"}); O.buoy=el(O.zone,"circle",{cx:339,cy:SURF,r:10,style:"fill:var(--clay);stroke:var(--cavity)","stroke-width":1.2});
+    O.fish=[0,1,2].map(i=>el(O,"path",{d:"M-12 0 Q0 -8 12 0 Q0 8 -12 0Z M-12 0 l-8 -6 v12Z",style:"fill:var(--pot2)",opacity:.75}));
+    O.c=yc(O,30,30,"1996"); O.l=halo(txt(O,339,226,25)); O.l.setAttribute("opacity",0); }
 })();
 
-/* p = adım + adım içi. Adımlar: 0 1846 · 1 Avrupa’ya · 2 1869 · 3 1874 · 4 deniz · 5 1881 · 6 1884 · 7 ülkeler · 8 Formako · 9 sikkeler · 10 elli yıl · 11 1906–1983 · 12 bugünkü kanun · 13 ICOMOS */
+/* p = adım + adım içi */
 let P=0, IDLE=0;
-function draw(p){ P=p;
-  let wv="M0 "+SURF; for(let x=40;x<=720;x+=40) wv+=` Q${x-20} ${(SURF+Math.sin(x*0.05+IDLE*1.6)*3).toFixed(1)} ${x} ${SURF}`; SC.wave.setAttribute("d",wv);
-  const bob=Math.sin(IDLE*1.3)*2.5;
-  /* tekne ve dönem dalgıcı */
-  const late=seg(p,7.5,8), bx=lerp(190,372,late), boatO=1-seg(p,10.8,10.98);
-  SC.boat.setAttribute("transform",`translate(${bx.toFixed(1)} ${(SURF+bob).toFixed(1)}) rotate(${(Math.sin(IDLE*0.9)*1.6).toFixed(2)})`); SC.boat.setAttribute("opacity",boatO);
-  let dx,dy,rot; const up=ease(seg(p,4.6,4.95));
-  if(p<7.5){ const dn=ease(seg(p,4.12,4.5)); dx=lerp(lerp(214,318,dn),222,up); dy=lerp(lerp(150,BED-34,dn),158,up); rot=lerp(lerp(70,18,seg(p,4.4,4.55)),-64,seg(p,4.58,4.7)); }
-  else { const dn=ease(seg(p,8.2,8.9)); dx=lerp(396,432,dn); dy=lerp(150,BED-30,dn)+(p>=10?Math.sin(IDLE*1.1)*4:0); rot=lerp(70,14,seg(p,8.75,8.95)); }
-  SC.div.setAttribute("transform",`translate(${dx.toFixed(1)} ${dy.toFixed(1)}) rotate(${rot.toFixed(1)})`); SC.div.setAttribute("opacity",boatO);
-  SC.rope.setAttribute("d",`M${(bx+22).toFixed(1)} ${(SURF+4+bob).toFixed(1)} Q${((bx+22+dx)/2+16).toFixed(1)} ${((SURF+dy)/2).toFixed(1)} ${(dx-10).toFixed(1)} ${(dy-2).toFixed(1)}`); SC.rope.setAttribute("opacity",0.7*boatO);
-  SC.lift.setAttribute("transform",`translate(${lerp(334,236,up).toFixed(1)} ${lerp(BED-15,150,up).toFixed(1)}) rotate(${lerp(14,-30,up).toFixed(1)}) scale(1.9)`); SC.lift.setAttribute("opacity",1-seg(p,4.95,5));
-  /* ada, vapur, sikkeler */
-  SC.lIsl.setAttribute("opacity",seg(p,8.05,8.3)*(1-seg(p,8.95,9.1)));
-  const sx=lerp(lerp(-140,150,ease(seg(p,9.05,9.5))),-160,ease(seg(p,9.9,10.6)));
-  SC.stm.setAttribute("transform",`translate(${sx.toFixed(1)} ${(SURF+bob*0.6).toFixed(1)})`);
-  SC.smoke.forEach((c,i)=>{ const t=((IDLE*0.5+i/5)%1); c.setAttribute("cx",(-9-t*46).toFixed(1)); c.setAttribute("cy",(-70-t*44).toFixed(1)); c.setAttribute("opacity",(0.55*(1-t)).toFixed(2)); });
-  SC.lNuz.setAttribute("opacity",seg(p,9.4,9.6)*(1-seg(p,9.88,9.98)));
-  const cin=seg(p,9.1,9.3), mv=ease(seg(p,9.55,9.85)), cOut=1-seg(p,9.85,9.9);
-  for(const [g,k] of [[SC.pA,0],[SC.pB,1]]){ g.setAttribute("opacity",cin*cOut); g.setAttribute("transform",`translate(${lerp(g.x,206+k*8,mv).toFixed(1)} ${(lerp(g.y,SURF-16,mv)-Math.sin(mv*Math.PI)*46).toFixed(1)})`); }
-  SC.lA.setAttribute("opacity",seg(p,9.15,9.35)*(1-seg(p,9.5,9.6))); SC.lB.setAttribute("opacity",seg(p,9.25,9.45)*(1-seg(p,9.5,9.6)));
-  SC.cargo.setAttribute("opacity",seg(p,9.82,9.9)); SC.lRod.setAttribute("opacity",seg(p,9.92,10.05)*(1-seg(p,10.4,10.6)));
-  /* korunan bölge ve yerinde koruma */
-  SC.zone.setAttribute("opacity",seg(p,12.1,12.4)); SC.buoy.setAttribute("cy",(SURF+bob*0.8).toFixed(1));
-  SC.lZone.setAttribute("opacity",seg(p,12.3,12.55)*(1-seg(p,12.95,13.08))); SC.lIns.setAttribute("opacity",seg(p,13.1,13.35));
-  /* belgeler */
-  const v2=clamp((1-seg(p,3.95,4.15))+seg(p,4.92,5.1)*(1-seg(p,6.92,7.08))+seg(p,10.92,11.1)*(1-seg(p,11.92,12.08)),0,1); SC.v2.setAttribute("opacity",v2); SC.v2.style.display=v2>0?"":"none";
-  SC.c46.setAttribute("opacity",seg(p,0.02,0.25)*(1-seg(p,1.95,2.12)));
-  SC.out.forEach((o,i)=>{ const k=seg(p,1.08+i*0.17,1.62+i*0.17); o.setAttribute("opacity",k>0&&k<1?1:0); o.setAttribute("transform",`translate(${lerp(300,760,ease(k)).toFixed(1)} ${212+i*4}) scale(.72)`); });
-  SC.lEur.setAttribute("opacity",seg(p,1.15,1.35)*(1-seg(p,1.9,2)));
-  const early=1-seg(p,10.5,10.9), dim=(1-0.6*seg(p,5,5.3))*early;
-  SC.s1.setAttribute("opacity",seg(p,2.1,2.35)*dim); SC.s2.setAttribute("opacity",seg(p,3.05,3.3)*dim); SC.lNo.setAttribute("opacity",seg(p,3.4,3.65)*(1-seg(p,3.9,3.97)));
-  SC.mus.setAttribute("opacity",seg(p,5.05,5.4)*(1-seg(p,6,6.25)));
-  const s3=ease(seg(p,6.05,6.4)); SC.s3.setAttribute("opacity",s3*early); SC.s3.setAttribute("transform",`translate(0 ${(40*(1-s3)).toFixed(1)})`);
-  SC.words.forEach((c,i)=>c.setAttribute("opacity",seg(p,6.42+i*0.08,6.52+i*0.08)));
-  SC.laws.forEach((g,i)=>{ const k=ease(seg(p,11.1+i*0.24,11.34+i*0.24)); g.setAttribute("opacity",k); g.setAttribute("transform",`translate(0 ${(30*(1-k)).toFixed(1)})`); });
-  /* zaman çizgisi */
-  const v3=seg(p,6.95,7.15)*(1-seg(p,7.9,8.05)); SC.v3.setAttribute("opacity",v3); SC.v3.style.display=v3>0?"":"none";
-  SC.rows.forEach((g,i)=>g.setAttribute("opacity",i===0?1:seg(p,7.22+i*0.055,7.3+i*0.055)));
+const setT=(g,x,y,r,s)=>g.setAttribute("transform",`translate(${x.toFixed(1)} ${y.toFixed(1)})${r?` rotate(${r.toFixed(1)})`:""}${s!=null?` scale(${s})`:""}`);
+const drop=(c,p,a)=>{ const k=ease(seg(p,a,a+.2)); c.setAttribute("opacity",k); c.setAttribute("transform",`translate(0 ${(-18*(1-k)).toFixed(1)})`); };
+function draw(p){ P=p; const t=IDLE, bob=Math.sin(t*1.3)*2.5;
+  /* hangi sahne görünür */
+  SC.sc.forEach((g,i)=>{ const a=START[i], b=START[i+1], o=i===0?1:seg(p,a-.04,a+.14), hide=o<=0||(b!==undefined&&p>b+.16); g.style.display=hide?"none":""; g.setAttribute("opacity",o); g.on=!hide; });
+  let wv="M0 "+SURF; for(let x=40;x<=720;x+=40) wv+=` Q${x-20} ${(SURF+Math.sin(x*0.05+t*1.6)*3).toFixed(1)} ${x} ${SURF}`; for(const w of SC.waves) w.setAttribute("d",wv);
+  const {A,B,C,D,E,F,G,H,I,J,K,L,M,N,O}=SC;
+  if(A.on){ const stop=seg(p,.5,.7), go=ease(seg(p,.08,.56)); setT(A.cart,lerp(396,560,go),GR,0); A.pick.setAttribute("transform",`rotate(${(lerp(-6+Math.sin(t*5)*20,64,stop)).toFixed(1)} 26 -104)`); place2(A.man,468,GR,1.05,true);
+    drop(A.c[0],p,.52); drop(A.c[1],p,1.12); drop(A.c[2],p,1.4); A.l.setAttribute("opacity",seg(p,1.62,1.82)); }
+  if(B.on){ drop(B.c,p,2.12); const k=seg(p,2.35,2.8); B.guard.setAttribute("opacity",k); B.guard.setAttribute("stroke-dashoffset",(t*-10).toFixed(1)); }
+  if(C.on){ setT(C.boat,560,SURF+bob,Math.sin(t*.9)*1.6); drop(C.c,p,3.1); C.crown.setAttribute("opacity",seg(p,3.3,3.5));
+    C.p.forEach((g,i)=>{ const k=ease(seg(p,3.4+i*.13,3.82+i*.13)), toK=i<2, ex=toK?150+i*34:560, ey=toK?108:SURF-22; setT(g,lerp(318+i*44,ex,k),lerp(BED-8,ey,k)-Math.sin(k*Math.PI)*30,0); });
+    C.l1.setAttribute("opacity",seg(p,3.78,3.95)); C.l2.setAttribute("opacity",seg(p,3.86,4)); }
+  if(D.on){ const k=ease(seg(p,4.22,4.4)); D.seal.setAttribute("transform",`translate(196 270) scale(${lerp(2.2,1,k).toFixed(2)})`); D.seal.setAttribute("opacity",k); const dig=seg(p,4.4,4.5);
+    D.w.forEach((m,i)=>m.sh.setAttribute("transform",`rotate(${(dig*(Math.sin(t*3.2+i*1.7)*16)).toFixed(1)} 12 -84)`)); D.find.setAttribute("opacity",seg(p,4.58,4.8)); }
+  if(E.on){ drop(E.c,p,5.08); const out=[1,3,4], go=ease(seg(p,5.78,5.98));
+    E.m.forEach((g,i)=>{ const j=out.indexOf(i); if(j<0){ setT(g,g.x,g.y,0); return; } const k=ease(seg(p,5.2+j*.16,5.56+j*.16)), tx=[589,653,621][j], ty=[GR-25,GR-21,GR-63][j]; setT(g,lerp(g.x,tx,k)+go*190,lerp(g.y,ty,k)-Math.sin(k*Math.PI)*36,0); g.setAttribute("opacity",1-seg(k,.88,1)); });
+    E.cr.forEach(c=>c.setAttribute("transform",`translate(${(go*190).toFixed(1)} 0)`)); E.l.setAttribute("opacity",seg(p,5.62,5.78)*(1-seg(p,5.9,5.98))); }
+  if(F.on){ let fw=`M470 ${GR-4}`; for(let x=500;x<=720;x+=30) fw+=` Q${x-15} ${(GR-4+Math.sin(x*0.06+t*1.4)*2.4).toFixed(1)} ${x} ${GR-4}`; F.wave.setAttribute("d",fw);
+    drop(F.c,p,6.06); F.share.setAttribute("opacity",seg(p,6.12,6.3)); const taken=seg(p,6.3,6.4); F.gl.forEach((s,i)=>s.setAttribute("opacity",(1-taken)*(0.5+0.5*Math.sin(t*4+i*2))));
+    const walk=ease(seg(p,6.38,6.78)), sail=ease(seg(p,6.8,6.97)), mx=lerp(344,548,walk)+sail*230, my=lerp(322,GR-12,walk)+(walk>=1?Math.sin(t*1.3)*1.5:0);
+    F.man.setAttribute("transform",`translate(${mx.toFixed(1)} ${my.toFixed(1)}) scale(.86)`); F.man.setAttribute("opacity",seg(p,6.3,6.4)); F.sack.setAttribute("opacity",seg(p,6.3,6.4));
+    setT(F.boat,560+sail*230,GR+Math.sin(t*1.3)*1.5,0); F.fr.setAttribute("opacity",seg(p,6.86,6.97)); }
+  if(G.on) G.s.forEach((g,i)=>{ const k=ease(seg(p,7.06+i*.2,7.3+i*.2)); g.setAttribute("opacity",k); g.setAttribute("transform",`translate(0 ${(26*(1-k)).toFixed(1)})`); });
+  if(H.on){ const dn=ease(seg(p,8.3,8.62)), up=ease(seg(p,8.66,8.96)), dx=lerp(lerp(214,318,dn),222,up), dy=lerp(lerp(152,BED-34,dn),160,up);
+    setT(H.boat,190,SURF+bob,Math.sin(t*.9)*1.6); setT(H.div,dx,dy,lerp(lerp(70,18,seg(p,8.52,8.64)),-64,seg(p,8.66,8.76))); H.rope.setAttribute("d",`M212 ${(SURF+4+bob).toFixed(1)} Q${((212+dx)/2+16).toFixed(1)} ${((SURF+dy)/2).toFixed(1)} ${(dx-10).toFixed(1)} ${(dy-2).toFixed(1)}`);
+    setT(H.lift,lerp(334,236,up),lerp(BED-15,150,up),lerp(14,-30,up),1.9); H.lift.setAttribute("opacity",1-seg(p,8.95,9)); H.tag.setAttribute("opacity",seg(p,8.04,8.22)); }
+  if(I.on){ I.c.setAttribute("opacity",seg(p,9.05,9.25)); const mv=ease(seg(p,10,10.3)), mx=lerp(306,356,mv), wr=seg(p,10.3,10.42), think=seg(p,9.25,9.45)*(1-seg(p,9.92,10.02));
+    I.man.setAttribute("transform",`translate(${mx.toFixed(1)} ${BED}) scale(1.82)`); const hx=46+Math.sin(t*7)*2*wr*(1-seg(p,10.86,10.9)), hy=-96+Math.cos(t*5)*1.4*wr;
+    I.man.arm.setAttribute("d",wr>0?`M3 -88 L${lerp(16,24,wr).toFixed(1)} ${lerp(-72,-82,wr).toFixed(1)} L${lerp(9,hx,wr).toFixed(1)} ${lerp(-99,hy,wr).toFixed(1)}`:think>0?`M2 -88 L${lerp(8,27,think).toFixed(1)} ${lerp(-66,-70,think).toFixed(1)} L${lerp(12,12,think).toFixed(1)} ${lerp(-50,-101,think).toFixed(1)}`:"M3 -88 L8 -66 L12 -50");
+    I.pen.setAttribute("opacity",wr); I.pen.setAttribute("d",`M${hx.toFixed(1)} ${hy.toFixed(1)} L${(hx+11).toFixed(1)} ${(hy-9).toFixed(1)}`);
+    I.bub.setAttribute("opacity",think*(0.82+0.18*Math.sin(t*2.2))); const s3=ease(seg(p,10.06,10.36)); I.s.setAttribute("opacity",s3); I.s.setAttribute("transform",`translate(0 ${(30*(1-s3)).toFixed(1)})`); I.easel.setAttribute("opacity",s3);
+    I.w.forEach((c,i)=>c.setAttribute("opacity",seg(p,10.42+i*.08,10.52+i*.08))); }
+  if(J.on) J.rows.forEach((g,i)=>g.setAttribute("opacity",i===0?1:seg(p,11.22+i*.055,11.3+i*.055)));
+  if(K.on){ drop(K.doc,p,12.06); const arr=ease(seg(p,12.22,12.56)), bx=lerp(-70,372,arr), dn=ease(seg(p,12.58,12.9)), dx=lerp(bx+24,438,dn), dy=lerp(152,BED-30,dn);
+    setT(K.boat,bx,SURF+bob,Math.sin(t*.9)*1.6); setT(K.div,dx,dy,lerp(70,12,seg(p,12.8,12.94))); K.div.setAttribute("opacity",seg(p,12.5,12.6)); K.rope.setAttribute("opacity",.7*seg(p,12.5,12.6));
+    K.rope.setAttribute("d",`M${(bx+22).toFixed(1)} ${(SURF+4+bob).toFixed(1)} Q${((bx+22+dx)/2+16).toFixed(1)} ${((SURF+dy)/2).toFixed(1)} ${(dx-10).toFixed(1)} ${(dy-2).toFixed(1)}`);
+    const sw=Math.sin(t*1.5)*14; K.beam.setAttribute("d",`M${(dx+26).toFixed(1)} ${(dy+8).toFixed(1)} L${(dx+96+sw).toFixed(1)} ${BED+4} L${(dx+36+sw).toFixed(1)} ${BED+6}Z`); K.beam.setAttribute("opacity",.3*seg(p,12.9,12.98)); K.lIsl.setAttribute("opacity",seg(p,12.3,12.5)); }
+  if(L.on){ drop(L.c,p,13.05); setT(L.stm,lerp(250,820,ease(seg(p,13.88,14.04))),206+bob*.4,0,.56); L.stm.smoke.forEach((c,i)=>{ const u=((t*0.5+i/5)%1); c.setAttribute("cx",(-9-u*46).toFixed(1)); c.setAttribute("cy",(-70-u*44).toFixed(1)); c.setAttribute("opacity",(0.55*(1-u)).toFixed(2)); });
+    const g1=seg(p,13.12,13.24)*(1-seg(p,13.52,13.6)), g2=seg(p,13.46,13.58)*(1-seg(p,13.86,13.92)); L.gl.forEach((s,i)=>s.setAttribute("opacity",((i===0?g1:g2)*(0.6+0.4*Math.sin(t*6+i))).toFixed(2)));
+    L.lA.setAttribute("opacity",seg(p,13.16,13.3)); L.lB.setAttribute("opacity",seg(p,13.5,13.64));
+    L.co.forEach((c,i)=>{ const a=i<8, j=a?i:i-8, t0=a?13.26+j*.03:13.6+j*.022, k=ease(seg(p,t0,t0+.2)), sx=a?128:(j%2?352:394), sy=BED-72, ex=614+(i%7)*5, ey=BED-46; c.setAttribute("opacity",k>0&&k<1?1:0); c.setAttribute("cx",lerp(sx,ex,k).toFixed(1)); c.setAttribute("cy",(lerp(sy,ey,k)-Math.sin(k*Math.PI)*(70+(i%4)*14)).toFixed(1)); });
+    [...L.fill.children].forEach((c,i)=>c.setAttribute("opacity",seg(p,13.42+i*.05,13.46+i*.05)));
+    L.lNuz.setAttribute("opacity",seg(p,13.3,13.46)*(1-seg(p,13.84,13.92))); L.lRod.setAttribute("opacity",seg(p,13.9,13.98)); }
+  if(M.on){ const dx=432, dy=BED-30+Math.sin(t*1.1)*4; setT(M.boat,372,SURF+bob,Math.sin(t*.9)*1.6); setT(M.div,dx,dy,14); M.rope.setAttribute("d",`M394 ${(SURF+4+bob).toFixed(1)} Q${((394+dx)/2+16).toFixed(1)} ${((SURF+dy)/2).toFixed(1)} ${(dx-10).toFixed(1)} ${(dy-2).toFixed(1)}`);
+    M.ax.setAttribute("opacity",seg(p,14.08,14.24)); M.pt.forEach((g,i)=>g.setAttribute("opacity",seg(p,14.18+i*.22,14.32+i*.22))); }
+  if(N.on){ drop(N.c,p,15.05); N.dv.forEach((g,i)=>{ const k=ease(seg(p,15.14+i*.13,15.6+i*.13)), x=lerp(-70,250+i*96,k), y=lerp(150+i*18,BED-62-(i%2)*14,k)+Math.sin(t*1.2+i)*4; setT(g,x,y,lerp(34,8,k)); N.bub.slice(i*3,i*3+3).forEach((b,j)=>{ const u=((t*0.5+j/3+i*.2)%1); b.setAttribute("cx",(x+24+Math.sin(u*9+j)*5).toFixed(1)); b.setAttribute("cy",(y-12-u*130).toFixed(1)); b.setAttribute("opacity",(k>0?1-u:0).toFixed(2)); }); });
+    N.pots.forEach((g,i)=>{ const gone=[0,4,5].indexOf(i); if(gone<0) return; const k=ease(seg(p,15.58+gone*.1,15.84+gone*.1)); setT(g,g.x,g.y-k*230,g.r+k*40,2); g.setAttribute("opacity",1-seg(k,.8,1)); }); N.l.setAttribute("opacity",seg(p,15.82,15.96)); }
+  if(O.on){ drop(O.c,p,16.05); O.zone.setAttribute("opacity",seg(p,16.12,16.4)); O.buoy.setAttribute("cy",(SURF+bob*.8).toFixed(1)); O.l.setAttribute("opacity",seg(p,16.36,16.6));
+    O.fish.forEach((f,i)=>{ const u=((t*0.035+i*.37)%1); setT(f,lerp(-30,750,u),210+i*36+Math.sin(t*1.4+i*2)*6,0,1+i*.2); }); }
 }
+function place2(g,x,y,sc,flip){ g.setAttribute("transform",`translate(${x} ${y}) scale(${(flip?-1:1)*sc} ${sc})`); }
 /* kaydırmayla ilerleme */
 let stepEls=[], curStep=-1;
 function progress(){ const sb=$("#stick").getBoundingClientRect().bottom, vh=window.innerHeight, trig=sb+(vh-sb)*0.42; let i=-1;
@@ -607,9 +733,12 @@ function applyLang(){ document.documentElement.lang=LANG; document.querySelector
   [...$("#lang").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===LANG));
   const S=T("S"), st=$("#steps"); if(!stepEls.length){ S.forEach(()=>{ const d=document.createElement("div"); d.className="step"; d.append(document.createElement("p")); st.append(d); stepEls.push(d); $("#dots").append(document.createElement("i")); }); }
   stepEls.forEach((e,k)=>e.firstChild.innerHTML=S[k]);
-  const L=T("L"); SC.ch[0].t.textContent=L.land; SC.ch[2].t.textContent=L.land; SC.ch[1].t.textContent=L.sea; SC.ch[3].t.textContent=L.sea; SC.seaNow.t.textContent=L.sea; SC.lNo.textContent=L.noSea; SC.mus.t.textContent=L.mus; SC.c46.t.textContent=L.aya; SC.lEur.textContent=L.eur+" →"; SC.art.textContent=L.art;
-  SC.words.forEach((c,i)=>c.t.textContent=L.w[i]); SC.lIsl.t.textContent=L.isl; SC.lNuz.t.textContent=L.nuz; SC.lA.textContent=L.c34; SC.lB.textContent=L.c79; SC.lRod.textContent="← "+L.rod; SC.rows.forEach((g,i)=>g.t.textContent=L.tl[i]);
-  SC.laws[0].t.textContent=L.reg; SC.laws[1].t.textContent=L.k1; SC.laws[2].t.textContent=L.k2; SC.lZone.textContent=L.zone; SC.lIns.textContent=L.insitu;
+  const L=T("L"), {A,C,D,E,F,G,H,I,J,K,M,N,O}=SC, Ls=SC.L;
+  A.l.textContent=L.h24; C.l1.textContent=L.crownS; C.l2.textContent=L.finderS; D.t.textContent=L.permit; E.l.textContent=L.lon+" →"; F.shareT.textContent=L.share; F.frT.textContent=L.fr;
+  G.s.forEach((g,i)=>{ g.t.textContent=[L.gr,L.eg,L.ot,L.ot][i]; g.ch.t.textContent=L.land; }); H.ch.t.textContent=L.sea;
+  I.c.t.textContent=L.mus; I.art.textContent=L.art; I.w.forEach((c,i)=>c.t.textContent=L.w[i]); J.rows.forEach((g,i)=>g.t.textContent=L.tl[i]);
+  K.docT.textContent=L.bah; K.lIsl.t.textContent=L.isl; Ls.lA.textContent=L.c34; Ls.lB.textContent=L.c79; Ls.lNuz.t.textContent=L.nuz; Ls.lRod.textContent=L.rod+" →";
+  M.pt.forEach((g,i)=>g.t.textContent=L.ax[i]); M.pt[2].y.textContent=L.y40; N.l.textContent=L.laws; O.l.textContent=L.insitu;
   $("#notes").innerHTML=T("N").map((x,k)=>`<li id="n${k+1}">${x}</li>`).join("");
   $("#refs").innerHTML=REFLIST.map(r=>`<li>${refLoc(r)}</li>`).join("");
   curStep=-1; onScroll(); }
