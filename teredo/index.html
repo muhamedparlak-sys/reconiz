@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RecOniz · Herkes için Sualtı Mirası</title>
-<meta name="description" content="Herkes için Sualtı Mirası, 1. bölüm: bir geminin nasıl battığını, ahşabını tüketen deniz kurdunu (Teredo navalis) ve batıktan geriye neyin, neden kaldığını canlandırmalarla anlatır.">
+<meta name="description" content="Herkes için Sualtı Mirası: bir geminin nasıl battığını, ahşabını tüketen deniz kurdunu (Teredo navalis) ve batıktan geriye neyin, neden kaldığını canlandırmalarla anlatır.">
 <meta name="theme-color" content="#17495A">
 <link rel="canonical" href="https://reconiz.org/teredo/">
 <meta name="apple-mobile-web-app-title" content="Teredo">
@@ -245,6 +245,7 @@ sup a{color:inherit;text-decoration:none}
 .limits b{font-weight:600}
 .txt{display:flex;flex-direction:column;gap:10px}
 .txt p{max-width:66ch}
+.kick{margin:2px 0 8px;font-size:19px;font-weight:600;color:var(--sea)}
 .chap{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 8px}
 .chap a{border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:14.5px;font-weight:600;text-decoration:none;color:var(--ink);background:var(--raised)}
 .chap a[aria-current]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
@@ -266,6 +267,20 @@ sup a{color:inherit;text-decoration:none}
 @keyframes wig{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
 @media (prefers-reduced-motion: reduce){ .wig{animation:none} .step p{transition:none} }
 </style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RecOniz">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Herkes için Sualtı Mirası: Batıktan geriye ne kalır?">
+<meta property="og:description" content="Bir gemi batar, ahşabını deniz kurdu tüketir, yükü kalır. Bir batığın hikâyesi, kaydırdıkça ilerleyen canlandırmalarla.">
+<meta property="og:url" content="https://reconiz.org/teredo/">
+<meta property="og:image" content="https://reconiz.org/og-teredo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Amphora yüklü ahşap bir ticaret gemisi çizimi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Herkes için Sualtı Mirası: Batıktan geriye ne kalır?">
+<meta name="twitter:description" content="Bir gemi batar, ahşabını deniz kurdu tüketir, yükü kalır. Bir batığın hikâyesi, kaydırdıkça ilerleyen canlandırmalarla.">
+<meta name="twitter:image" content="https://reconiz.org/og-teredo.jpg">
 </head>
 <body>
 <main>
@@ -275,12 +290,12 @@ sup a{color:inherit;text-decoration:none}
     <div class="seg lang" id="lang" role="group" aria-label="Dil / Language / Idioma">
       <button data-v="tr" aria-pressed="true">TR</button><button data-v="en" aria-pressed="false">EN</button><button data-v="es" aria-pressed="false">ES</button>
     </div></div>
-    <nav class="menu" id="menu" hidden data-i18n-aria="navH" aria-label="RecOniz"><p class="lab" data-i18n="navH"></p><a href="/"><b data-i18n="navAmp"></b><span data-i18n="navAmpSub"></span></a><a href="/rejoiner/"><b data-i18n="navRej"></b><span data-i18n="navRejSub"></span></a><a href="/coins/"><b data-i18n="navCoin"></b><span data-i18n="navCoinSub"></span></a><a href="/teredo/" aria-current="page"><b data-i18n="navTer"></b><span data-i18n="navTerSub"></span><i data-i18n="navHere"></i></a></nav>
+    <nav class="menu" id="menu" hidden data-i18n-aria="navH" aria-label="RecOniz"><p class="lab" data-i18n="navH"></p><a href="/"><b data-i18n="navAmp"></b><span data-i18n="navAmpSub"></span></a><a href="/rejoiner/"><b data-i18n="navRej"></b><span data-i18n="navRejSub"></span></a><a href="/coins/"><b data-i18n="navCoin"></b><span data-i18n="navCoinSub"></span></a><a href="/teredo/" aria-current="page"><b data-i18n="navTer"></b><span data-i18n="navTerSub"></span><i data-i18n="navHere"></i></a><a href="/koruma/"><b data-i18n="navKor"></b><span data-i18n="navKorSub"></span></a></nav>
   </header>
 
   <section class="hero" aria-labelledby="h-title">
     <h2 id="h-title" data-i18n="h1"></h2>
-    <nav class="chap" data-i18n-aria="chapL"><a href="/teredo/" aria-current="page" data-i18n="c1"></a><a href="/koruma/" data-i18n="c2"></a></nav>
+    <p class="kick" data-i18n="kick"></p>
     <p class="lead1" data-i18n="lede"></p>
   </section>
 
@@ -332,14 +347,14 @@ sup a{color:inherit;text-decoration:none}
 <script>
 const $=s=>document.querySelector(s);
 const NAV={
- tr:{navH:"Araçlar",navAmp:"Amphora tanıma",navAmpSub:"Underwater Heritage Recognizer · tek fotoğraftan amphora tipi",navRej:"Kırık seramik birleştirme",navRejSub:"Heritage Rejoiner · masadaki parçalardan kapları birleştirir",navCoin:"Sikke tanıma",navCoinSub:"Heritage Coin Recognizer · tek yüzden Roma imparatoru",navTer:"Herkes için Sualtı Mirası",navTerSub:"Heritage Explainer · batıktan geriye ne kalır · koruma nasıl başladı",navHere:"Bu sayfa",navMenu:"Menü"},
- en:{navH:"Tools",navAmp:"Amphora recognition",navAmpSub:"Underwater Heritage Recognizer · amphora type from a single photo",navRej:"Broken ceramic rejoining",navRejSub:"Heritage Rejoiner · reassembles vessels from the sherds on a table",navCoin:"Coin recognition",navCoinSub:"Heritage Coin Recognizer · Roman emperor from one face",navTer:"Underwater Heritage for Everyone",navTerSub:"Heritage Explainer · what is left of a wreck · how protection began",navHere:"This page",navMenu:"Menu"},
- es:{navH:"Herramientas",navAmp:"Identificación de ánforas",navAmpSub:"Underwater Heritage Recognizer · tipo de ánfora a partir de una foto",navRej:"Remontaje de cerámica fragmentada",navRejSub:"Heritage Rejoiner · reconstruye piezas a partir de los fragmentos de una mesa",navCoin:"Reconocimiento de monedas",navCoinSub:"Heritage Coin Recognizer · emperador romano a partir de una cara",navTer:"Patrimonio subacuático para todos",navTerSub:"Heritage Explainer · qué queda de un pecio · cómo empezó la protección",navHere:"Esta página",navMenu:"Menú"}};
+ tr:{navH:"Araçlar",navAmp:"Amphora tanıma",navAmpSub:"Underwater Heritage Recognizer · tek fotoğraftan amphora tipi",navRej:"Kırık seramik birleştirme",navRejSub:"Heritage Rejoiner · masadaki parçalardan kapları birleştirir",navCoin:"Sikke tanıma",navCoinSub:"Heritage Coin Recognizer · tek yüzden Roma imparatoru",navTer:"Herkes için Sualtı Mirası",navTerSub:"Heritage Explainer · batıktan geriye ne kalır",navKor:"Sualtı mirasının korunmaya başlanması",navKorSub:"Heritage Explainer · 1846’dan bugüne, Osman Hamdi Bey ve 1884 nizamnamesi",navHere:"Bu sayfa",navMenu:"Menü"},
+ en:{navH:"Tools",navAmp:"Amphora recognition",navAmpSub:"Underwater Heritage Recognizer · amphora type from a single photo",navRej:"Broken ceramic rejoining",navRejSub:"Heritage Rejoiner · reassembles vessels from the sherds on a table",navCoin:"Coin recognition",navCoinSub:"Heritage Coin Recognizer · Roman emperor from one face",navTer:"Underwater Heritage for Everyone",navTerSub:"Heritage Explainer · what is left of a wreck",navKor:"The beginnings of underwater heritage protection",navKorSub:"Heritage Explainer · from 1846 to today, Osman Hamdi Bey and the 1884 regulation",navHere:"This page",navMenu:"Menu"},
+ es:{navH:"Herramientas",navAmp:"Identificación de ánforas",navAmpSub:"Underwater Heritage Recognizer · tipo de ánfora a partir de una foto",navRej:"Remontaje de cerámica fragmentada",navRejSub:"Heritage Rejoiner · reconstruye piezas a partir de los fragmentos de una mesa",navCoin:"Reconocimiento de monedas",navCoinSub:"Heritage Coin Recognizer · emperador romano a partir de una cara",navTer:"Patrimonio subacuático para todos",navTerSub:"Heritage Explainer · qué queda de un pecio",navKor:"Los inicios de la protección del patrimonio subacuático",navKorSub:"Heritage Explainer · de 1846 a hoy, Osman Hamdi Bey y el reglamento de 1884",navHere:"Esta página",navMenu:"Menú"}};
 const n=k=>`<sup><a href="#n${k}">${k}</a></sup>`;
 const I18N={
 tr:{title:"Herkes için Sualtı Mirası",
  h1:"Herkes için Sualtı Mirası",
- c1:"1 · Batıktan geriye ne kalır?", c2:"2 · Koruma nasıl başladı?", chapL:"Bölümler", nextSub:"Sonraki bölüm", nextH:"Sualtı mirasının korunması nasıl başladı?",
+ kick:"Batıktan geriye ne kalır?", nextSub:"İlgili sayfa", nextH:"Sualtı mirasının korunmaya başlanması",
  lede:"Deniz dibindeki bir batıkta neden amphoralar durur da geminin kendisi yoktur? Cevabını, bir geminin hikâyesini baştan izleyerek görelim.",
  S:[`Akdeniz’de bir ticaret gemisi yol alır. Gövdesi ahşaptır, ambarı amphora doludur.`,
   `Altındaki su derin görünür, ama yüzey derinliği gizler. Bugün dip sonarla görülür, fırtına önceden bilinir; bu geminin denizcileri ikisinden de yoksundur.`,
@@ -388,7 +403,7 @@ tr:{title:"Herkes için Sualtı Mirası",
  famSub:"RecOniz ailesi", famH:"Amphora tanıma: Underwater Heritage Recognizer"},
 en:{title:"Underwater Heritage for Everyone",
  h1:"Underwater Heritage for Everyone",
- c1:"1 · What is left of a wreck?", c2:"2 · How did protection begin?", chapL:"Chapters", nextSub:"Next chapter", nextH:"How did the protection of underwater heritage begin?",
+ kick:"What is left of a wreck?", nextSub:"Related page", nextH:"The beginnings of underwater heritage protection",
  lede:"Why, at a wreck on the seabed, are the amphorae still there while the ship itself is gone? Let us find the answer by following the story of one ship from the beginning.",
  S:[`A merchant ship makes her way across the Mediterranean. Her hull is wood; her hold is full of amphorae.`,
   `The water beneath her looks deep, but the surface hides the depth. Today the seabed is read by sonar and a storm is known in advance; this ship’s crew have neither.`,
@@ -437,7 +452,7 @@ en:{title:"Underwater Heritage for Everyone",
  famSub:"The RecOniz family", famH:"Amphora recognition: Underwater Heritage Recognizer"},
 es:{title:"Patrimonio subacuático para todos",
  h1:"Patrimonio subacuático para todos",
- c1:"1 · ¿Qué queda de un pecio?", c2:"2 · ¿Cómo empezó la protección?", chapL:"Capítulos", nextSub:"Capítulo siguiente", nextH:"¿Cómo empezó la protección del patrimonio subacuático?",
+ kick:"¿Qué queda de un pecio?", nextSub:"Página relacionada", nextH:"Los inicios de la protección del patrimonio subacuático",
  lede:"¿Por qué en un pecio del fondo marino siguen ahí las ánforas y el barco ha desaparecido? Busquemos la respuesta siguiendo desde el principio la historia de un barco.",
  S:[`Un barco mercante navega por el Mediterráneo. Su casco es de madera; su bodega va llena de ánforas.`,
   `El agua que tiene debajo parece profunda, pero la superficie oculta la profundidad. Hoy el fondo se lee con sonar y la tormenta se conoce de antemano; la tripulación de este barco no tiene ni lo uno ni lo otro.`,
