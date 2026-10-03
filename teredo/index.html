@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RecOniz · Herkes için Teredo navalis</title>
+<meta name="description" content="Herkes için Teredo navalis: ahşap batıkları tüketen deniz kurdunun nasıl yaşadığını ve bir batığın neden amphora yığınına dönüştüğünü canlandırmalarla anlatır.">
+<meta name="theme-color" content="#17495A">
+<link rel="canonical" href="https://reconiz.org/teredo/">
+<meta name="apple-mobile-web-app-title" content="Teredo">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Heritage Rejoiner: RecOniz ana sayfasıyla aynı tokenlar ve düzen (tek sütun, 720px, kutusuz bölümler, aynı başlık ve fotoğraf kartı) */
+/* Düzen: tek sütun, 720px okuma genişliği; çekim kartı en üstte, katalog bir "tip levhası" ızgarası.
+   Kimlik: deniz mavisi (sea) + pişmiş toprak (clay); tek yazı ailesi: Instrument Sans (başlık 600, metin 400). */
+:root{
+  --bg:#F6F7F5; --ink:#152021; --muted:#5B6664; --faint:#8C9795; --line:#DCE2E0; --soft:#ECF0EE; --raised:#FFFFFF;
+  --sea:#17495A; --sea-soft:#DCE8EB; --on-sea:#FFFFFF; --clay:#9C5B38; --clay-soft:#F1E3D6;
+  --z-rim:#2F6DB3; --z-handle:#8A4BC4; --z-body:#2E8554; --z-base:#C9620C;
+  --paper:#FFFFFF; --paper-ink:#111111; --well-a:#EDF2F3; --well-b:#DCE6E8; --chartfill:#E9C9A0;
+  --bar:#CCD5D3; --map-sea:#CFE0E6; --map-land:#EFE8DC; --map-coast:#9A8F80; --map-ink:#3A2A20; --map-ink2:#1D3A4C; --map-pin:#A0461E; --map-pin-a:rgba(160,70,30,.45); --map-reg:#285A78; --map-reg-a:rgba(40,90,120,.18); --map-sel:#17495A; --map-sel-a:rgba(23,73,90,.75);
+  --shadow:0 1px 2px rgba(21,32,33,.06),0 8px 24px -12px rgba(21,32,33,.18);
+  --sans:"Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#111617; --ink:#E6EAE8; --muted:#A1ABA9; --faint:#6E7977; --line:#283133; --soft:#182022; --raised:#1A2224;
+    --sea:#8CC3D1; --sea-soft:#1B3037; --on-sea:#0C1A1E; --clay:#DB9A72; --clay-soft:#33251D;
+    --z-rim:#72AAEA; --z-handle:#C49AF0; --z-body:#66C28D; --z-base:#F2A259;
+    --paper:#D5DBD9; --paper-ink:#111111; --well-a:#1C2A2E; --well-b:#142024; --chartfill:#C9A47A;
+    --bar:#3A4749; --map-sea:#132329; --map-land:#243033; --map-coast:#47575A; --map-ink:#E6EAE8; --map-ink2:#CFE3E8; --map-pin:#E29A6E; --map-pin-a:rgba(226,154,110,.42); --map-reg:#8CC3D1; --map-reg-a:rgba(140,195,209,.16); --map-sel:#8CC3D1; --map-sel-a:rgba(140,195,209,.8);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#111617; --ink:#E6EAE8; --muted:#A1ABA9; --faint:#6E7977; --line:#283133; --soft:#182022; --raised:#1A2224;
+  --sea:#8CC3D1; --sea-soft:#1B3037; --on-sea:#0C1A1E; --clay:#DB9A72; --clay-soft:#33251D;
+  --z-rim:#72AAEA; --z-handle:#C49AF0; --z-body:#66C28D; --z-base:#F2A259;
+  --paper:#D5DBD9; --paper-ink:#111111; --well-a:#1C2A2E; --well-b:#142024; --chartfill:#C9A47A;
+  --bar:#3A4749; --map-sea:#132329; --map-land:#243033; --map-coast:#47575A; --map-ink:#E6EAE8; --map-ink2:#CFE3E8; --map-pin:#E29A6E; --map-pin-a:rgba(226,154,110,.42); --map-reg:#8CC3D1; --map-reg-a:rgba(140,195,209,.16); --map-sel:#8CC3D1; --map-sel-a:rgba(140,195,209,.8);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:12px 56px;-webkit-font-smoothing:antialiased}
+main{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--sans);font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.02em}
+h2{font-size:clamp(21px,4.6vw,25px);line-height:1.2}
+p{margin:0}
+a{color:var(--sea);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sea);outline-offset:3px}
+section{display:flex;flex-direction:column;gap:16px;min-width:0}
+.sub{color:var(--muted);font-size:15px;max-width:66ch}
+.lab,.dlab,.citeLabel,.tagline,.eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.center{text-align:center}
+
+/* araçlar menüsü */
+.bar{position:relative}
+.menu{position:absolute;top:calc(100% + 6px);right:0;z-index:30;width:min(340px,100%);background:var(--raised);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 44px -12px rgba(0,0,0,.35);padding:12px;display:flex;flex-direction:column;gap:6px}
+.menu .lab{padding:4px 8px 6px}
+.menu a,.menu .soon{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:12px;text-decoration:none;color:var(--ink);position:relative}
+.menu a:hover{background:var(--soft)}
+.menu a[aria-current="page"]{background:var(--sea-soft)}
+.menu b{font-size:15.5px;font-weight:600;padding-right:72px}
+.menu span{font-size:13.5px;color:var(--muted);line-height:1.4}
+.menu i{position:absolute;top:12px;right:12px;font-style:normal;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sea)}
+.menu .soon{opacity:.55}
+@media (max-width:420px){ .tools .lang button{padding:4px 6px} .tools{gap:4px} .tools .themebtn{width:32px;height:32px} }
+/* başlık */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:6px}
+.brand{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
+.wm{margin:0;line-height:0;color:var(--ink)}
+.wm svg{display:block;height:34px;width:auto}
+.mark{flex:none;width:34px;height:48px;color:var(--sea)}
+.bar h1{font-size:32px;line-height:1}
+h1 .on{color:var(--sea);font-style:italic}
+.tagline{margin-top:5px;letter-spacing:.14em;white-space:nowrap;font-size:10.5px}
+
+.tools{display:flex;align-items:center;gap:8px;flex:none}
+.themebtn{width:38px;height:38px;border-radius:999px;border:1px solid var(--line);background:var(--raised);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.themebtn:hover{border-color:var(--faint)}
+.themebtn svg{width:18px;height:18px}
+.themebtn .i-sun{display:none}
+:root[data-theme="dark"] .themebtn .i-sun{display:block}:root[data-theme="dark"] .themebtn .i-moon{display:none}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .themebtn .i-sun{display:block} :root:not([data-theme="light"]) .themebtn .i-moon{display:none} }
+@media (max-width:420px){ .wm svg{height:29px} .tagline{letter-spacing:.1em;font-size:9.5px;white-space:normal;max-width:16.5em;line-height:1.35} .lang button{padding:4px 8px;min-height:30px} .tools{gap:6px} .themebtn{width:34px;height:34px} }
+/* segment düğmeleri */
+.seg{display:inline-flex;flex-wrap:nowrap;max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;background:var(--raised)}
+.seg button{border:0;background:none;padding:6px 14px;min-height:34px;border-radius:999px;font-size:14px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.lang button{padding:4px 11px;font-size:13px;min-height:30px;letter-spacing:.04em}
+
+/* çekim kartı */
+.capture{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px;border-radius:20px;background:var(--raised);box-shadow:var(--shadow);border:1px solid var(--line)}
+.guide{grid-column:1/-1;display:flex;align-items:center;gap:14px;padding:4px 2px 8px}
+.guide svg{flex:none;width:64px;height:84px;color:var(--sea)}
+.guide .sub{font-size:14.5px}
+.pick{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;background:var(--sea);color:var(--on-sea);font-weight:600;padding:12px 18px;cursor:pointer;overflow:hidden;border:0;transition:transform .12s ease,filter .12s ease}
+.pick:hover{filter:brightness(1.08)}
+.pick:active{transform:scale(.985)}
+.pick input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.pick:focus-within{outline:2px solid var(--sea);outline-offset:3px}
+.pick.alt{background:var(--sea-soft);color:var(--sea)}
+.pick.big{min-height:54px;font-size:16px;width:100%}
+.pick svg{width:20px;height:20px;flex:none}
+.scanbtn{grid-column:1/-1;cursor:pointer}
+.picks{display:flex;flex-wrap:wrap;gap:10px}
+@media (min-width:700px){ .capture{grid-template-columns:repeat(3,1fr);padding:22px 24px} .scanbtn{grid-column:auto} }
+
+/* hakkında */
+.about{gap:14px}
+.about{gap:18px}
+.about p{color:var(--muted);font-size:15px;max-width:66ch}
+.about .lead1{color:var(--ink);font-size:18px;line-height:1.5;font-weight:500;letter-spacing:-.01em;max-width:52ch}
+.ab{display:flex;flex-direction:column;gap:10px}
+.ab h3.lab{margin:0}
+ol.steps.sm{gap:10px}
+ol.steps.sm li{grid-template-columns:24px 1fr;gap:12px;font-size:15px;color:var(--ink);padding-top:0}
+ol.steps.sm li::before{width:24px;height:24px;line-height:24px;font-size:12.5px;background:var(--sea-soft);color:var(--sea)}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start;line-height:1.5;padding-top:2px}
+ol.steps li::before{content:counter(s);font-weight:600;font-size:15px;line-height:28px;width:28px;height:28px;border-radius:50%;text-align:center;background:var(--sea);color:var(--on-sea)}
+/* kaynaklar, künye */
+.usenotes{display:flex;flex-direction:column;gap:10px;padding:16px 18px;border-radius:14px;background:var(--soft);border:1px solid var(--line)}
+.usenotes p{font-size:15px;max-width:66ch}
+.usenotes p:first-child{font-weight:600}
+.rights{margin-top:14px}
+.refs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.refs li{padding-left:2em;text-indent:-2em;font-size:14.5px;line-height:1.5;overflow-wrap:anywhere}
+.credits p,.use p{max-width:66ch}
+.cite-tool{font-size:14.5px;overflow-wrap:anywhere;padding:12px 16px 12px calc(16px + 1.4em);text-indent:-1.4em;background:var(--raised);border:1px solid var(--line);border-radius:12px}
+footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:20px}
+footer a{color:var(--muted)}
+
+/* Heritage Rejoiner: masa, kaplar, adaylar */
+:root{--g1:#2F6DB3;--g2:#C9620C;--g3:#2E8554;--g4:#8A4BC4;--g5:#B23A48;--g6:#6B7A1E;--g7:#0E7C86;--g8:#A0527A;--hit:#E0A030}
+.capture .demo{grid-column:1/-1}
+@media (min-width:700px){ .capture .demo{grid-column:auto} }
+.work{display:flex;flex-direction:column;gap:12px}
+.status{font-size:15px;color:var(--ink);min-height:1.5em}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.link{background:none;border:0;color:var(--sea);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
+.th{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px;border-radius:12px;background:var(--soft);border:1px solid var(--line)}
+.th canvas{max-width:100%;height:56px;width:auto;border-radius:6px}
+.th figcaption{font-size:12px;font-weight:600;color:var(--muted)}
+#results{display:flex;flex-direction:column;gap:44px}
+#results:empty{display:none}
+.tzoom{overflow:auto;border-radius:16px;border:1px solid var(--line);cursor:zoom-in;-webkit-overflow-scrolling:touch}
+.tzoom.big{cursor:zoom-out}
+.tablecv{width:100%;height:auto;display:block}
+.tzoom.big .tablecv{width:260%;max-width:none}
+.jn{font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.plates{display:grid;grid-template-columns:1fr;gap:16px}
+.plates.part{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.plate{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--raised);box-shadow:var(--shadow);display:flex;flex-direction:column}
+.plate canvas{width:100%;height:auto;display:block;background:var(--soft)}
+.pmeta{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;border-top:3px solid var(--gc)}
+.ptitle{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.pname{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.pdot{width:24px;height:24px;border-radius:50%;background:var(--gc);color:#fff;display:grid;place-items:center;font-size:12.5px}
+.pct{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--gc);color:#fff;font-variant-numeric:tabular-nums}
+.pct.part{background:var(--soft);color:var(--muted)}
+.porder{font-size:13.5px;color:var(--muted);line-height:1.6}
+.mini{border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:6px 14px;font-size:13.5px;cursor:pointer}
+.mini[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.play{align-self:flex-start}
+.second .plate{box-shadow:none}
+.loose{display:flex;flex-wrap:wrap;gap:10px}
+.loose canvas{border-radius:6px}
+details.all{border:1px solid var(--line);border-radius:14px;padding:0 16px;background:var(--raised)}
+details.all summary{padding:14px 0;font-weight:600;font-size:15px;cursor:pointer}
+details.all[open]{padding-bottom:16px}
+details.all .sub{margin-bottom:12px}
+.joins{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.join{border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;background:var(--bg)}
+.join canvas{display:block;align-self:center;background:repeating-conic-gradient(var(--soft) 0 25%,var(--bg) 0 50%) 0 0/16px 16px}
+.jmeta{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--gc)}
+.jt{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lvl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px}
+.lvl.strong{background:var(--sea);color:var(--on-sea)}.lvl.medium{background:var(--sea-soft);color:var(--sea)}.lvl.weak{background:var(--soft);color:var(--muted)}
+.jacts{display:flex;gap:8px}
+.family{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;border-radius:16px;background:var(--sea-soft);color:var(--sea);text-decoration:none;font-weight:600}
+.family span{font-weight:400;color:var(--muted);font-size:14px;display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* adımlar ve önizleme rehberi */
+h2 .stepn{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sea);color:var(--on-sea);font-size:15px;margin-right:10px;vertical-align:3px;letter-spacing:0}
+[id^="st-"],.capture,.plate{scroll-margin-top:16px}
+.nextstep{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:9px 16px;font-weight:600;font-size:14.5px;color:var(--sea);cursor:pointer;margin-top:4px}
+.nextstep:hover{border-color:var(--sea)}
+.coach{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));width:min(688px,calc(100% - 24px));z-index:40;background:var(--raised);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 44px -12px rgba(0,0,0,.45);padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px}
+.coach p{font-size:15.5px;line-height:1.5}
+.chead{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cx{border:0;background:none;color:var(--muted);font-size:22px;line-height:1;padding:2px 6px;cursor:pointer}
+.cbtns{display:grid;grid-template-columns:1fr 2fr;gap:10px}
+.cbtns .pick{min-height:46px;padding:10px 14px}
+.cbtns .pick:disabled{opacity:.45;cursor:default;filter:none}
+.hl{outline:3px solid var(--sea);outline-offset:6px;border-radius:18px}
+.capture.hl{outline-offset:4px}
+body.touring{padding-bottom:240px}
+
+</style>
+<style>
+/* Herkes için Teredo navalis: RecOniz ailesiyle aynı tokenlar; sayfaya özgü renkler */
+:root{ --wood:#C9A27A; --wood-d:#A9825A; --grain:#B58E63; --cavity:#4A3120; --tube:#F4EFE3; --tube-l:#CFC6B2; --flesh:#E6B4A0; --sand:#E3D5B8; --sand-d:#CDBB97; --water-a:#DCEAF0; --water-b:#C3DAE4; --pot:#B8683E; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --wood:#8D6B48; --wood-d:#6E5236; --grain:#7A5B3C; --cavity:#1E140D; --tube:#E9E3D3; --tube-l:#9E9685; --flesh:#D9A08A; --sand:#4A4130; --sand-d:#39321F; --water-a:#17303A; --water-b:#10232B; --pot:#C97A50; } }
+:root[data-theme="dark"]{ --wood:#8D6B48; --wood-d:#6E5236; --grain:#7A5B3C; --cavity:#1E140D; --tube:#E9E3D3; --tube-l:#9E9685; --flesh:#D9A08A; --sand:#4A4130; --sand-d:#39321F; --water-a:#17303A; --water-b:#10232B; --pot:#C97A50; }
+.hero h2{font-size:clamp(28px,7vw,38px);line-height:1.1}
+.hero h2 i{font-style:italic;font-weight:600}
+.lead1{font-size:18px;line-height:1.5;max-width:60ch}
+.stage{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--raised)}
+.stage svg{display:block;width:100%;height:auto}
+.ctl{display:flex;align-items:center;gap:12px;padding:10px 14px;border-top:1px solid var(--line)}
+.ctl button{flex:none;min-width:92px;border:0;border-radius:999px;background:var(--sea);color:var(--on-sea);font-weight:600;padding:8px 16px;min-height:38px;cursor:pointer}
+.ctl input[type=range]{flex:1;min-width:0;accent-color:var(--sea);height:28px}
+.cap{font-size:16px;min-height:3.1em}
+.cap b{font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:5px 12px;font-size:13.5px;color:var(--muted);cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.meter{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.meter .tr{flex:1;height:8px;border-radius:999px;background:var(--soft);overflow:hidden;border:1px solid var(--line)}
+.meter .tr i{display:block;height:100%;background:var(--clay);width:100%}
+.meter b{color:var(--ink);font-weight:600;min-width:3.2em;text-align:right;font-variant-numeric:tabular-nums}
+.parts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:p}
+.parts li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;font-size:15.5px}
+.parts li::before{counter-increment:p;content:counter(p);width:26px;height:26px;border-radius:999px;background:var(--sea);color:var(--on-sea);font-size:13px;font-weight:600;display:grid;place-items:center}
+.parts b{font-weight:600}
+.where{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:560px){ .where{grid-template-columns:1fr} }
+.wc{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--raised);display:flex;flex-direction:column;gap:6px}
+.wc h3{font-size:16.5px;display:flex;align-items:center;gap:8px}
+.wc p{font-size:14.5px;color:var(--muted)}
+.wc .tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.wc.yes .tag{background:var(--clay-soft);color:var(--clay)}
+.wc.no .tag{background:var(--sea-soft);color:var(--sea)}
+.limits{display:flex;flex-wrap:wrap;gap:8px}
+.limits span{border-radius:12px;background:var(--soft);border:1px solid var(--line);padding:8px 12px;font-size:14.5px}
+.limits b{font-weight:600}
+.txt{display:flex;flex-direction:column;gap:10px}
+.txt p{max-width:66ch}
+.callout{padding:18px 20px;border-radius:18px;background:var(--sea-soft)}
+.callout h2{color:var(--sea)}
+.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
+.wig{animation:wig 1.6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes wig{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+@media (prefers-reduced-motion: reduce){ .wig{animation:none} }
+</style>
+</head>
+<body>
+<main>
+<header class="bar">
+    <div class="brand"><h1 class="wm"><span class="vh">RecOniz</span><svg viewBox="0 -640 3491 652" fill="currentColor" aria-hidden="true" focusable="false"><path d="M73 0V-510H172V-383H177V0ZM177 -266 164 -387Q182 -452 226.0 -486.0Q270 -520 331 -520Q354 -520 363 -516V-418Q358 -420 349.0 -420.5Q340 -421 327 -421Q252 -421 214.5 -382.0Q177 -343 177 -266Z"/><path d="M676 10Q599 10 540.5 -24.0Q482 -58 449.0 -118.0Q416 -178 416 -256Q416 -335 448.5 -394.5Q481 -454 540.0 -487.0Q599 -520 675 -520Q749 -520 803.5 -488.5Q858 -457 887.5 -401.0Q917 -345 917 -268Q917 -256 916.5 -245.5Q916 -235 914 -224H486V-302H841L815 -271Q815 -353 778.0 -396.0Q741 -439 675 -439Q604 -439 562.5 -390.5Q521 -342 521 -256Q521 -169 562.5 -120.0Q604 -71 678 -71Q723 -71 756.0 -89.5Q789 -108 805 -144H903Q878 -72 818.5 -31.0Q759 10 676 10Z"/><path d="M1235 10Q1162 10 1105.0 -24.5Q1048 -59 1015.5 -119.0Q983 -179 983 -256Q983 -333 1015.5 -392.5Q1048 -452 1105.0 -486.0Q1162 -520 1234 -520Q1295 -520 1343.0 -497.0Q1391 -474 1422.0 -433.0Q1453 -392 1462 -336H1364Q1354 -381 1320.5 -408.0Q1287 -435 1236 -435Q1192 -435 1159.0 -413.0Q1126 -391 1108.0 -351.0Q1090 -311 1090 -256Q1090 -202 1108.0 -161.0Q1126 -120 1159.0 -97.5Q1192 -75 1237 -75Q1286 -75 1320.5 -101.5Q1355 -128 1365 -173H1463Q1453 -118 1421.5 -77.0Q1390 -36 1342.0 -13.0Q1294 10 1235 10Z"/><path d="M1788 10Q1710 10 1651.0 -24.5Q1592 -59 1559.0 -119.5Q1526 -180 1526 -257Q1526 -335 1559.5 -394.0Q1593 -453 1651.5 -486.5Q1710 -520 1788 -520Q1867 -520 1926.0 -486.5Q1985 -453 2017.5 -394.0Q2050 -335 2050 -257Q2050 -180 2017.5 -119.5Q1985 -59 1926.0 -24.5Q1867 10 1788 10ZM1788 -75Q1835 -75 1869.5 -98.0Q1904 -121 1924.0 -162.0Q1944 -203 1944 -258Q1944 -340 1900.5 -387.5Q1857 -435 1788 -435Q1720 -435 1676.5 -387.0Q1633 -339 1633 -258Q1633 -203 1652.5 -162.0Q1672 -121 1707.5 -98.0Q1743 -75 1788 -75Z"/><path d="M2157 0V-510H2256V-390H2261V0ZM2519 0V-328Q2519 -381 2492.5 -407.0Q2466 -433 2414 -433Q2369 -433 2334.5 -413.0Q2300 -393 2280.5 -358.0Q2261 -323 2261 -275L2248 -397Q2273 -454 2325.0 -487.0Q2377 -520 2446 -520Q2528 -520 2575.0 -474.0Q2622 -428 2622 -352V0Z"/><path d="M2783 -510L2893 -510L2893 -474L2873 -464L2873 -412C2873 -384 2914 -372 2914 -318C2914 -222 2870 -112 2861 -44L2857 -12Q2854 0 2838 0Q2822 0 2819 -12L2815 -44C2806 -112 2762 -222 2762 -318C2762 -372 2803 -384 2803 -412L2803 -464L2783 -474Z"/><path d="M2776 -560Q2776 -548 2788 -548L2888 -548Q2900 -548 2900 -560L2900 -578Q2900 -588 2890 -588L2864 -588L2864 -612Q2864 -626 2850 -626L2826 -626Q2812 -626 2812 -612L2812 -588L2786 -588Q2776 -588 2776 -578Z"/><path d="M2873 -452C2936 -452 2938 -410 2912 -346M2803 -452C2740 -452 2738 -410 2764 -346" fill="none" stroke="currentColor" stroke-width="30" stroke-linecap="round"/><path d="M3037 0V-73L3338 -469L3368 -427H3046V-510H3439V-437L3139 -43L3110 -83H3447V0Z"/></svg></h1><p class="tagline" lang="en">Heritage Explainer</p></div>
+    <div class="tools"><button class="themebtn menubtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" data-i18n-aria="navMenu" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></button><button class="themebtn" id="themeBtn" type="button" aria-label="Tema"><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    <div class="seg lang" id="lang" role="group" aria-label="Dil / Language / Idioma">
+      <button data-v="tr" aria-pressed="true">TR</button><button data-v="en" aria-pressed="false">EN</button><button data-v="es" aria-pressed="false">ES</button>
+    </div></div>
+    <nav class="menu" id="menu" hidden data-i18n-aria="navH" aria-label="RecOniz"><p class="lab" data-i18n="navH"></p><a href="/"><b data-i18n="navAmp"></b><span data-i18n="navAmpSub"></span></a><a href="/rejoiner/"><b data-i18n="navRej"></b><span data-i18n="navRejSub"></span></a><a href="/coins/"><b data-i18n="navCoin"></b><span data-i18n="navCoinSub"></span></a><a href="/teredo/" aria-current="page"><b data-i18n="navTer"></b><span data-i18n="navTerSub"></span><i data-i18n="navHere"></i></a></nav>
+  </header>
+
+  <section class="hero" aria-labelledby="h-title">
+    <h2 id="h-title" data-i18n="h1"></h2>
+    <p class="lead1" data-i18n="lede"></p>
+  </section>
+
+  <section aria-labelledby="h-a">
+    <h2 id="h-a" data-i18n="aH"></h2>
+    <div class="stage"><svg id="svgA" viewBox="0 0 720 280" role="img" aria-labelledby="h-a"></svg>
+      <div class="ctl"><button id="aPlay" type="button"></button><input id="aT" type="range" min="0" max="1000" value="0" data-i18n-aria="tAria" aria-label="Zaman"></div></div>
+    <div class="chips" id="aChips" role="group"></div>
+    <p class="cap" id="aCap" aria-live="polite"></p>
+    <div class="meter"><span data-i18n="aMeter"></span><div class="tr"><i id="aBar"></i></div><b id="aPct"></b></div>
+    <p class="sub" data-i18n="aNote"></p>
+  </section>
+
+  <section aria-labelledby="h-b">
+    <h2 id="h-b" data-i18n="bH"></h2>
+    <p data-i18n="bP"></p>
+    <div class="stage"><svg id="svgB" viewBox="0 0 720 230" role="img" aria-labelledby="h-b"></svg></div>
+    <ol class="parts"><li data-i18n="b1"></li><li data-i18n="b2"></li><li data-i18n="b3"></li><li data-i18n="b4"></li><li data-i18n="b5"></li></ol>
+    <p data-i18n="bP2"></p>
+  </section>
+
+  <section aria-labelledby="h-c">
+    <h2 id="h-c" data-i18n="cH"></h2>
+    <div class="stage"><svg id="svgC" viewBox="0 0 720 300" role="img" aria-labelledby="h-c"></svg>
+      <div class="ctl"><button id="cPlay" type="button"></button><input id="cT" type="range" min="0" max="1000" value="0" data-i18n-aria="tAria" aria-label="Zaman"></div></div>
+    <div class="chips" id="cChips" role="group"></div>
+    <p class="cap" id="cCap" aria-live="polite"></p>
+    <p class="sub" data-i18n="cNote"></p>
+  </section>
+
+  <section aria-labelledby="h-d">
+    <h2 id="h-d" data-i18n="dH"></h2>
+    <p data-i18n="dP"></p>
+    <div class="limits"><span data-i18n="dL1"></span><span data-i18n="dL2"></span><span data-i18n="dL3"></span></div>
+    <div class="where">
+      <div class="wc yes"><h3><span data-i18n="w1H"></span><span class="tag" data-i18n="wYes"></span></h3><p data-i18n="w1P"></p></div>
+      <div class="wc no"><h3><span data-i18n="w2H"></span><span class="tag" data-i18n="wNo"></span></h3><p data-i18n="w2P"></p></div>
+      <div class="wc no"><h3><span data-i18n="w3H"></span><span class="tag" data-i18n="wNo"></span></h3><p data-i18n="w3P"></p></div>
+      <div class="wc no"><h3><span data-i18n="w4H"></span><span class="tag" data-i18n="wNo"></span></h3><p data-i18n="w4P"></p></div>
+    </div>
+  </section>
+
+  <section class="txt" aria-labelledby="h-e">
+    <h2 id="h-e" data-i18n="eH"></h2>
+    <p data-i18n="eP"></p>
+  </section>
+
+  <section class="txt" aria-labelledby="h-f">
+    <h2 id="h-f" data-i18n="fH"></h2>
+    <p data-i18n="fP"></p>
+  </section>
+
+  <section class="txt" aria-labelledby="h-g">
+    <h2 id="h-g" data-i18n="gH"></h2>
+    <p data-i18n="gP"></p>
+  </section>
+
+  <section class="txt" aria-labelledby="h-h">
+    <h2 id="h-h" data-i18n="hH"></h2>
+    <p data-i18n="hP"></p>
+  </section>
+
+  <section class="callout" aria-labelledby="h-i">
+    <h2 id="h-i" data-i18n="iH"></h2>
+    <ol class="steps"><li data-i18n="i1"></li><li data-i18n="i2"></li><li data-i18n="i3"></li><li data-i18n="i4"></li></ol>
+    <p class="sub" data-i18n="iSrc"></p>
+  </section>
+
+  <section aria-labelledby="h-ref">
+    <h2 id="h-ref" data-i18n="refH"></h2>
+    <p class="sub" data-i18n="refNote"></p>
+    <ul class="refs" id="refs"></ul>
+  </section>
+
+  <section class="use" aria-labelledby="h-use">
+    <h2 id="h-use" data-i18n="useH"></h2>
+    <div class="usenotes"><p data-i18n="useSimple"></p><p data-i18n="credDev"></p><p data-i18n="priv"></p></div>
+    <p class="sub rights" data-i18n="rights"></p>
+  </section>
+
+  <a class="family" href="/"><div><span data-i18n="famSub"></span><b data-i18n="famH"></b></div><span aria-hidden="true">→</span></a>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const NAV={
+ tr:{navH:"Araçlar",navAmp:"Amphora tanıma",navAmpSub:"Underwater Heritage Recognizer · tek fotoğraftan amphora tipi",navRej:"Kırık seramik birleştirme",navRejSub:"Heritage Rejoiner · masadaki parçalardan kapları birleştirir",navCoin:"Sikke tanıma",navCoinSub:"Heritage Coin Recognizer · tek yüzden Roma imparatoru",navTer:"Herkes için Teredo navalis",navTerSub:"Heritage Explainer · ahşap batıkları tüketen deniz kurdu",navHere:"Bu sayfa",navMenu:"Menü"},
+ en:{navH:"Tools",navAmp:"Amphora recognition",navAmpSub:"Underwater Heritage Recognizer · amphora type from a single photo",navRej:"Broken ceramic rejoining",navRejSub:"Heritage Rejoiner · reassembles vessels from the sherds on a table",navCoin:"Coin recognition",navCoinSub:"Heritage Coin Recognizer · Roman emperor from one face",navTer:"Teredo navalis for everyone",navTerSub:"Heritage Explainer · the shipworm that consumes wooden wrecks",navHere:"This page",navMenu:"Menu"},
+ es:{navH:"Herramientas",navAmp:"Identificación de ánforas",navAmpSub:"Underwater Heritage Recognizer · tipo de ánfora a partir de una foto",navRej:"Remontaje de cerámica fragmentada",navRejSub:"Heritage Rejoiner · reconstruye piezas a partir de los fragmentos de una mesa",navCoin:"Reconocimiento de monedas",navCoinSub:"Heritage Coin Recognizer · emperador romano a partir de una cara",navTer:"Teredo navalis para todos",navTerSub:"Heritage Explainer · la broma que consume los pecios de madera",navHere:"Esta página",navMenu:"Menú"}};
+const I18N={
+tr:{title:"Herkes için Teredo navalis",
+ h1:"Herkes için <i>Teredo navalis</i>",
+ lede:"Akdeniz’de batan ahşap bir gemiden geriye çoğu zaman yalnızca yükü kalır. Ahşabı tüketen, denizcilerin “deniz kurdu” dediği <i>Teredo navalis</i> ve akrabalarıdır. Bu sayfa onun ahşabı nasıl tükettiğini ve bir batığın neden amphora yığınına dönüştüğünü gösterir.",
+ play:"Oynat", pause:"Duraklat", replay:"Baştan", tAria:"Zaman",
+ aH:"Bir ahşabın içinde",
+ a1:"Yerleşme", a2:"Tünel açma", a3:"İçi boşalır", a4:"Dağılır",
+ aC1:"<b>Yerleşme.</b> Larvalar suda sürüklenir ve ahşabın yüzeyine tutunur.",
+ aC2:"<b>Tünel açma.</b> Her biri ahşaba girer ve boyuna doğru ilerler; arkasında kireçli bir astar bırakır. Sifonları girişte, suyun içinde kalır.",
+ aC3:"<b>İçi boşalır.</b> Hayvanlar gemiyi delip geçmek yerine ahşabın içinde ilerlediği için hasar dışarıdan az görünür.",
+ aC4:"<b>Dağılır.</b> Ahşap tükenir; geriye canlının kireçli tüpleri kalır. Yok olmuş bir ahşap bu tüplerden anlaşılır.",
+ aMeter:"Sağlam kalan ahşap",
+ aNote:"Canlandırma süreci basitleştirerek gösterir. Süre ahşabın cinsine ve denizin koşullarına göre değişir; tuzlu denizlerde açıkta kalan ahşap aylar ya da yıllar içinde yok olabilir (WreckProtect, 2011; Öniz, 2023, s. 10).",
+ bH:"Kurt değil, midye akrabası",
+ bP:"Adı deniz kurdu olsa da <i>Teredo navalis</i> bir kurt değil, çift kabuklu bir yumuşakçadır; gövdesinin büyük bölümü kabuğun dışında kaldığı için kurda benzer (Langley, 2023). Teredinidae ailesindendir; bu ailenin yaklaşık 75 türü bilinir (Pournou, 2020, akt. Öniz, 2023, s. 10).",
+ b1:"<span><b>Kabuklar.</b> Baş ucundaki iki küçük kabuğun üzerindeki diş sıraları hayvanın ahşaba tutunmasını ve ilerlemesini sağlar (Turner, 1971, akt. Öniz, 2023, s. 11).</span>",
+ b2:"<span><b>Gövde.</b> Yumuşak, uzun gövde tünelin içinde kalır; bazı türlerde nadiren 185 cm’ye ulaşır (Öniz, 2023, s. 11).</span>",
+ b3:"<span><b>Kireçli astar.</b> Hayvan ilerlerken tünelin çökmesini önleyen kireçli bir tabaka salgılar (Öniz, 2023, s. 11).</span>",
+ b4:"<span><b>Sifonlar.</b> Kuyruk ucundaki sifon ahşaptan dışarı uzanır ve deniz suyuyla teması sağlar (Öniz, 2023, s. 11).</span>",
+ b5:"<span><b>Paletler.</b> Sıcaklık ya da tuzluluk değiştiğinde paletler tünelin girişini kapatır; hayvan suyla temas etmeden 6 haftaya kadar yaşayabilir (Blum, 1928, akt. Öniz, 2023, s. 11).</span>",
+ bP2:"Deniz kurdu ahşabı yalnızca oymaz, sindirir (Langley, 2023). Yüzemez; yakınında besin kaynağı yoksa yaşayamaz (Grave, 1928, akt. Öniz, 2023, s. 11).",
+ cH:"Batığa ne olur?",
+ c1:"Dibe oturur", c2:"Ahşap tükenir", c3:"Gövde çöker", c4:"Yığın kalır",
+ cC1:"<b>Dibe oturur.</b> Gövdenin alt kısmı kuma gömülür; üst kısmı suyun içinde açıkta kalır.",
+ cC2:"<b>Ahşap tükenir.</b> Deniz tabanında açıkta kalan ahşap, deniz kurtlarınca bir süre sonra yok edilir (Öniz, 2023, s. 10).",
+ cC3:"<b>Gövde çöker.</b> Taşıyıcı ahşap kalmayınca yük dibe yayılır.",
+ cC4:"<b>Yığın kalır.</b> Geriye amphora yığını kalır. Kumun ya da balçığın altında kalan ahşap ise bütünlüğünü koruyabilir (Öniz, 2023, s. 10).",
+ cLabA:"amphora yığını", cLabB:"kumun altında korunan ahşap",
+ cNote:"Kıyıya yakın yerlerde dalgalar, açıkta güçlü akıntılar ya da dip trolleri gömülü ahşabın üstünü açabilir; açığa çıkan kısım da bir süre sonra yok olur (Öniz, 2023, s. 10).",
+ dH:"Nerede yaşar, nerede yaşayamaz",
+ dP:"<i>Teredo navalis</i> soğuk bölgelerden tropiklere geniş bir alana yayılmıştır, ama hızla çoğalması için üç koşul gerekir (Steinmayer ve Turfa, 1996, akt. Öniz, 2023, s. 11):",
+ dL1:"<b>Sıcaklık</b> 11 °C’nin üzerinde (larvalar için 12 °C)", dL2:"<b>Tuzluluk</b> 8 PSU’nun üzerinde", dL3:"<b>Çözünmüş oksijen</b> litrede 4 mg’ın üzerinde",
+ wYes:"Yaşar", wNo:"Yaşayamaz",
+ w1H:"Akdeniz", w1P:"Sıcaklık, tuzluluk ve oksijen uygundur. Batık gemilerin ahşap bölümleri, kullanılan ağacın cinsine bağlı olarak belli bir süre sonra yok olur (Öniz, 2023, s. 10).",
+ w2H:"Karadeniz’in derinleri", w2P:"Yaklaşık 100 metreden derinde su oksijensizdir; <i>Teredo navalis</i> ve benzeri deniz kurtları bulunmaz (Öniz, 2023, s. 11).",
+ w3H:"Baltık Denizi", w3P:"Tuzluluk çok düşüktür; saldırgan deniz oyucuları buraya yayılamamış, tarihî batıklar bozulmadan kalmıştır (WreckProtect, 2011).",
+ w4H:"Tatlı su", w4P:"Antalya kıyılarındaki ahşap tekne sahipleri teknelerini Manavgat Çayı gibi soğuk ve tatlı sulara sokup 5–6 hafta bekletir; teknenin altında üremiş deniz kurtları dökülür. Bu gelenek yüzyıllardır sürmektedir (Öniz, 2023, s. 11).",
+ eH:"Denizcilerin binlerce yıllık sorunu",
+ eP:"Gemilerin altının binlerce yıl boyunca önce bakır, sonra kurşun levhalarla kaplanmasının, ardından çeşitli kimyasal boyaların kullanılmasının ana nedeni bu canlı ailesidir (Öniz, 2023, s. 10). Doğu Akdeniz’de Eski Çağ’da gemi yapımında en çok kullanılan ağaç sedirdir; ahşabın yoğunluğuna bağlı olarak farklı ağaç türleri deniz kurdundan farklı oranlarda etkilenir (Öniz, 2023, s. 11–12).",
+ fH:"Amphoralardaki izleri",
+ fP:"Deniz kurdu amphoraların yüzeyinde de kireçli kalıntılar bırakabilir. Dağlık Kilikya açıklarından çıkarılan amphoralarda bu izlerin yoğun görülmesi, batığın ahşabında yaşayan canlıların yükü oluşturan amphoraların üzerine de yayılmış olmasıyla açıklanır. Sertleşen bu tabaka seramiğin yüzeyini parçalayabilir; bezemeleri, mühürleri ve grafitileri yok edebilir (Öniz, 2023, s. 12; Pearson, 1987, akt. Öniz, 2023).",
+ gH:"Ahşabı tüketen yalnızca o mu?",
+ gP:"Hayır. <i>Limnoria</i> gibi küçük kabuklular da ahşabı oyar; mantarlar ve bakteriler de ahşabı çürütür (Langley, 2023). Ancak yumuşak çürüklük mantarlarının ve erozyon bakterilerinin bozma hızı, deniz oyucularına göre genellikle çok yavaştır (WreckProtect, 2011). Tuzlu ve oksijenli sularda açıkta kalan ahşabı kısa sürede tüketen, deniz kurtlarıdır.",
+ hH:"Nasıl korunur?",
+ hP:"Ahşap bir batığı yerinde korumanın yolu, üstünü kapalı tutmaktır: kum torbaları, kum katmanları, jeotekstil ya da kumaş örtüler (WreckProtect, 2011; Öniz vd., 2024).",
+ iH:"Dalışta ahşap görürseniz",
+ i1:"Kumu, çamuru ya da üzerindeki örtüyü açmayın. Gömülü ahşabı koruyan o örtüdür.",
+ i2:"Dokunmayın, yerinden oynatmayın.",
+ i3:"Konumu kaydedin ve fotoğraflayın.",
+ i4:"En yakın müzeye bildirin.",
+ iSrc:"Kaynak: Öniz (2023, s. 10); Öniz vd. (2024).",
+ refH:"Kaynakça", refNote:"APA 7. baskı biçiminde. Metinde “akt.” ile verilen çalışmalara Öniz (2023) aracılığıyla atıf yapılmıştır.",
+ useH:"Kullanım",
+ useSimple:"Bu sayfa konuyu herkesin anlayabileceği biçimde anlatmak için hazırlanmıştır; çizimler ve canlandırmalar şematiktir, ölçekli değildir.",
+ credDev:"Hakan Öniz’in danışmanlığında Muhammed Parlak tarafından hazırlanmıştır (2026).",
+ priv:"Sayfa ziyaretleri, çerez kullanılmadan ve kişisel veri toplanmadan anonim olarak sayılır.",
+ rights:"© 2026 Muhammed Parlak. Tüm hakları saklıdır. Sayfa akademik, eğitsel ve kişisel amaçlarla ücretsiz kullanılabilir; kopyalanması, değiştirilmesi ya da yeniden dağıtılması yazılı izne bağlıdır.",
+ famSub:"RecOniz ailesi", famH:"Amphora tanıma: Underwater Heritage Recognizer"},
+en:{title:"Teredo navalis for everyone",
+ h1:"<i>Teredo navalis</i> for everyone",
+ lede:"When a wooden ship sinks in the Mediterranean, often only its cargo is left. The wood is consumed by <i>Teredo navalis</i>, which sailors call the shipworm, and its relatives. This page shows how it consumes timber and why a wreck turns into a mound of amphorae.",
+ play:"Play", pause:"Pause", replay:"Replay", tAria:"Time",
+ aH:"Inside a timber",
+ a1:"Settling", a2:"Tunnelling", a3:"Hollowed out", a4:"Falls apart",
+ aC1:"<b>Settling.</b> Larvae drift in the water and attach to the surface of the wood.",
+ aC2:"<b>Tunnelling.</b> Each one enters the wood and advances along its length, leaving a calcareous lining behind. Its siphons stay at the entrance, in the water.",
+ aC3:"<b>Hollowed out.</b> Because the animals advance inside the timber instead of boring through the hull, little of the damage shows from outside.",
+ aC4:"<b>Falls apart.</b> The wood is used up; the animal’s calcareous tubes remain. Timber that has disappeared can be recognised from these tubes.",
+ aMeter:"Sound wood remaining",
+ aNote:"The animation shows the process in simplified form. The time it takes depends on the kind of wood and the conditions of the sea; in saline seas exposed timber can be destroyed within months or years (WreckProtect, 2011; Öniz, 2023, p. 10).",
+ bH:"Not a worm but a relative of the mussel",
+ bP:"Despite its name, <i>Teredo navalis</i> is not a worm but a bivalve mollusc; it looks like a worm because most of its body lies outside the shell (Langley, 2023). It belongs to the family Teredinidae, of which about 75 species are known (Pournou, 2020, as cited in Öniz, 2023, p. 10).",
+ b1:"<span><b>Shells.</b> Rows of teeth on the two small shells at the head end let the animal grip the wood and advance (Turner, 1971, as cited in Öniz, 2023, p. 11).</span>",
+ b2:"<span><b>Body.</b> The long, soft body stays inside the tunnel; in some species it occasionally reaches 185 cm (Öniz, 2023, p. 11).</span>",
+ b3:"<span><b>Calcareous lining.</b> As it advances the animal secretes a calcareous layer that keeps the tunnel from collapsing (Öniz, 2023, p. 11).</span>",
+ b4:"<span><b>Siphons.</b> The siphon at the tail end extends out of the wood and keeps contact with the seawater (Öniz, 2023, p. 11).</span>",
+ b5:"<span><b>Pallets.</b> When temperature or salinity changes, the pallets close the entrance of the tunnel; the animal can survive for up to 6 weeks without contact with the water (Blum, 1928, as cited in Öniz, 2023, p. 11).</span>",
+ bP2:"The shipworm does not only bore the wood, it digests it (Langley, 2023). It cannot swim and cannot survive without a food source nearby (Grave, 1928, as cited in Öniz, 2023, p. 11).",
+ cH:"What happens to the wreck?",
+ c1:"Settles", c2:"Wood is consumed", c3:"Hull collapses", c4:"The mound remains",
+ cC1:"<b>Settles.</b> The lower part of the hull is buried in sand; the upper part stays exposed in the water.",
+ cC2:"<b>Wood is consumed.</b> Timber left exposed on the seabed is eventually destroyed by shipworms (Öniz, 2023, p. 10).",
+ cC3:"<b>Hull collapses.</b> With no timber left to hold it, the cargo spreads over the seabed.",
+ cC4:"<b>The mound remains.</b> What is left is a mound of amphorae. Timber lying under sand or mud, however, can keep its integrity (Öniz, 2023, p. 10).",
+ cLabA:"amphora mound", cLabB:"timber preserved under the sand",
+ cNote:"Near the coast waves, and offshore strong currents or bottom trawls, can uncover buried timber; the part that is exposed is in turn destroyed after a time (Öniz, 2023, p. 10).",
+ dH:"Where it lives and where it cannot",
+ dP:"<i>Teredo navalis</i> is found from cold regions to the tropics, but three conditions are needed for it to multiply rapidly (Steinmayer & Turfa, 1996, as cited in Öniz, 2023, p. 11):",
+ dL1:"<b>Temperature</b> above 11 °C (12 °C for larvae)", dL2:"<b>Salinity</b> above 8 PSU", dL3:"<b>Dissolved oxygen</b> above 4 mg per litre",
+ wYes:"Lives", wNo:"Cannot live",
+ w1H:"Mediterranean", w1P:"Temperature, salinity and oxygen are suitable. The wooden parts of sunken ships disappear after a time that depends on the kind of wood used (Öniz, 2023, p. 10).",
+ w2H:"The deep Black Sea", w2P:"Below about 100 metres the water has no oxygen; <i>Teredo navalis</i> and similar shipworms are absent (Öniz, 2023, p. 11).",
+ w3H:"Baltic Sea", w3P:"Salinity is very low; aggressive marine borers have not been able to spread here and historical shipwrecks have remained intact (WreckProtect, 2011).",
+ w4H:"Fresh water", w4P:"Owners of wooden boats on the Antalya coast take their boats into cold, fresh waters such as the Manavgat River and leave them there for 5–6 weeks; the shipworms that have grown under the boat fall off. This tradition has continued for centuries (Öniz, 2023, p. 11).",
+ eH:"A problem thousands of years old for sailors",
+ eP:"This family of animals is the main reason why, for thousands of years, the bottoms of ships were sheathed first in copper and then in lead, and later coated with various chemical paints (Öniz, 2023, p. 10). In the Eastern Mediterranean the wood most used for shipbuilding in antiquity was cedar; depending on its density, different kinds of wood are affected by the shipworm to different degrees (Öniz, 2023, pp. 11–12).",
+ fH:"Its traces on amphorae",
+ fP:"The shipworm can also leave calcareous remains on the surface of amphorae. The density of these traces on amphorae recovered off Rough Cilicia is explained by the animals living in the timber of the wreck having spread onto the amphorae of the cargo as well. This layer hardens and can break up the ceramic surface, destroying decoration, stamps and graffiti (Öniz, 2023, p. 12; Pearson, 1987, as cited in Öniz, 2023).",
+ gH:"Is it the only thing that consumes wood?",
+ gP:"No. Small crustaceans such as <i>Limnoria</i> (gribble) also bore into wood, and fungi and bacteria rot it (Langley, 2023). However, the rate of degradation by soft rot fungi and erosion bacteria is generally very slow compared with marine borers (WreckProtect, 2011). In saline, oxygenated waters it is the shipworms that consume exposed timber in a short time.",
+ hH:"How is it protected?",
+ hP:"The way to preserve a wooden wreck in situ is to keep it covered: sandbags, layers of sand, geotextile or fabric sheets (WreckProtect, 2011; Öniz et al., 2024).",
+ iH:"If you see timber on a dive",
+ i1:"Do not uncover sand, mud or any covering. That cover is what protects buried timber.",
+ i2:"Do not touch it or move it.",
+ i3:"Record the position and photograph it.",
+ i4:"Report it to the nearest museum.",
+ iSrc:"Source: Öniz (2023, p. 10); Öniz et al. (2024).",
+ refH:"References", refNote:"Formatted in APA 7th edition. Works given in the text with “as cited in” are cited through Öniz (2023).",
+ useH:"Use",
+ useSimple:"This page was prepared to explain the subject in a way everyone can follow; the drawings and animations are schematic and not to scale.",
+ credDev:"Prepared by Muhammed Parlak under the supervision of Hakan Öniz (2026).",
+ priv:"Page visits are counted anonymously, without cookies and without collecting personal data.",
+ rights:"© 2026 Muhammed Parlak. All rights reserved. The page may be used free of charge for academic, educational and personal purposes; copying, modifying or redistributing it requires written permission.",
+ famSub:"The RecOniz family", famH:"Amphora recognition: Underwater Heritage Recognizer"},
+es:{title:"Teredo navalis para todos",
+ h1:"<i>Teredo navalis</i> para todos",
+ lede:"Cuando un barco de madera se hunde en el Mediterráneo, a menudo solo queda su cargamento. La madera la consume <i>Teredo navalis</i>, la broma de los marinos, y sus parientes. Esta página muestra cómo consume la madera y por qué un pecio se convierte en un túmulo de ánforas.",
+ play:"Reproducir", pause:"Pausar", replay:"Repetir", tAria:"Tiempo",
+ aH:"Dentro de un madero",
+ a1:"Asentamiento", a2:"Perforación", a3:"Se vacía", a4:"Se deshace",
+ aC1:"<b>Asentamiento.</b> Las larvas derivan en el agua y se fijan a la superficie de la madera.",
+ aC2:"<b>Perforación.</b> Cada una entra en la madera y avanza a lo largo de ella, dejando tras de sí un revestimiento calcáreo. Sus sifones quedan en la entrada, en el agua.",
+ aC3:"<b>Se vacía.</b> Como los animales avanzan por dentro del madero en lugar de atravesar el casco, el daño apenas se ve desde fuera.",
+ aC4:"<b>Se deshace.</b> La madera se agota; quedan los tubos calcáreos del animal. Una madera desaparecida se reconoce por esos tubos.",
+ aMeter:"Madera sana restante",
+ aNote:"La animación muestra el proceso de forma simplificada. El tiempo depende del tipo de madera y de las condiciones del mar; en mares salinos la madera expuesta puede destruirse en meses o años (WreckProtect, 2011; Öniz, 2023, p. 10).",
+ bH:"No es un gusano, sino un pariente del mejillón",
+ bP:"A pesar de su nombre, <i>Teredo navalis</i> no es un gusano sino un molusco bivalvo; parece un gusano porque la mayor parte de su cuerpo queda fuera de la concha (Langley, 2023). Pertenece a la familia Teredinidae, de la que se conocen unas 75 especies (Pournou, 2020, citado en Öniz, 2023, p. 10).",
+ b1:"<span><b>Valvas.</b> Las hileras de dientes de las dos pequeñas valvas del extremo de la cabeza permiten al animal sujetarse a la madera y avanzar (Turner, 1971, citado en Öniz, 2023, p. 11).</span>",
+ b2:"<span><b>Cuerpo.</b> El cuerpo, largo y blando, queda dentro del túnel; en algunas especies llega ocasionalmente a 185 cm (Öniz, 2023, p. 11).</span>",
+ b3:"<span><b>Revestimiento calcáreo.</b> Al avanzar, el animal segrega una capa calcárea que impide que el túnel se derrumbe (Öniz, 2023, p. 11).</span>",
+ b4:"<span><b>Sifones.</b> El sifón del extremo de la cola sale de la madera y mantiene el contacto con el agua de mar (Öniz, 2023, p. 11).</span>",
+ b5:"<span><b>Paletas.</b> Cuando cambian la temperatura o la salinidad, las paletas cierran la entrada del túnel; el animal puede sobrevivir hasta 6 semanas sin contacto con el agua (Blum, 1928, citado en Öniz, 2023, p. 11).</span>",
+ bP2:"La broma no solo perfora la madera: la digiere (Langley, 2023). No puede nadar y no sobrevive sin una fuente de alimento cercana (Grave, 1928, citado en Öniz, 2023, p. 11).",
+ cH:"¿Qué le ocurre al pecio?",
+ c1:"Se asienta", c2:"La madera se consume", c3:"El casco se derrumba", c4:"Queda el túmulo",
+ cC1:"<b>Se asienta.</b> La parte inferior del casco queda enterrada en la arena; la superior queda expuesta en el agua.",
+ cC2:"<b>La madera se consume.</b> La madera que queda expuesta en el fondo marino acaba destruida por las bromas (Öniz, 2023, p. 10).",
+ cC3:"<b>El casco se derrumba.</b> Sin madera que lo sostenga, el cargamento se esparce por el fondo.",
+ cC4:"<b>Queda el túmulo.</b> Lo que queda es un túmulo de ánforas. La madera que yace bajo la arena o el fango, en cambio, puede conservar su integridad (Öniz, 2023, p. 10).",
+ cLabA:"túmulo de ánforas", cLabB:"madera conservada bajo la arena",
+ cNote:"Cerca de la costa el oleaje, y mar adentro las corrientes fuertes o la pesca de arrastre, pueden destapar la madera enterrada; la parte que queda expuesta acaba también destruida (Öniz, 2023, p. 10).",
+ dH:"Dónde vive y dónde no puede vivir",
+ dP:"<i>Teredo navalis</i> se encuentra desde las regiones frías hasta los trópicos, pero para multiplicarse con rapidez necesita tres condiciones (Steinmayer y Turfa, 1996, citado en Öniz, 2023, p. 11):",
+ dL1:"<b>Temperatura</b> superior a 11 °C (12 °C para las larvas)", dL2:"<b>Salinidad</b> superior a 8 PSU", dL3:"<b>Oxígeno disuelto</b> superior a 4 mg por litro",
+ wYes:"Vive", wNo:"No puede vivir",
+ w1H:"Mediterráneo", w1P:"La temperatura, la salinidad y el oxígeno son adecuados. Las partes de madera de los barcos hundidos desaparecen al cabo de un tiempo que depende del tipo de madera empleada (Öniz, 2023, p. 10).",
+ w2H:"El mar Negro profundo", w2P:"Por debajo de unos 100 metros el agua carece de oxígeno; <i>Teredo navalis</i> y las bromas similares están ausentes (Öniz, 2023, p. 11).",
+ w3H:"Mar Báltico", w3P:"La salinidad es muy baja; los perforadores marinos agresivos no han podido extenderse aquí y los pecios históricos se han conservado intactos (WreckProtect, 2011).",
+ w4H:"Agua dulce", w4P:"Los dueños de embarcaciones de madera de la costa de Antalya las llevan a aguas frías y dulces, como el río Manavgat, y las dejan allí 5–6 semanas; las bromas que han crecido bajo la embarcación se desprenden. Esta tradición se mantiene desde hace siglos (Öniz, 2023, p. 11).",
+ eH:"Un problema milenario para los marinos",
+ eP:"Esta familia de animales es la razón principal de que, durante miles de años, los fondos de los barcos se forraran primero con cobre y luego con plomo, y más tarde se cubrieran con diversas pinturas químicas (Öniz, 2023, p. 10). En el Mediterráneo oriental la madera más empleada en la construcción naval de la Antigüedad fue el cedro; según su densidad, las distintas maderas se ven afectadas por la broma en distinto grado (Öniz, 2023, pp. 11–12).",
+ fH:"Sus huellas en las ánforas",
+ fP:"La broma puede dejar también restos calcáreos en la superficie de las ánforas. La abundancia de estas huellas en las ánforas recuperadas frente a la Cilicia Traquea se explica porque los animales que vivían en la madera del pecio se extendieron también sobre las ánforas del cargamento. Esta capa se endurece y puede fragmentar la superficie cerámica, destruyendo decoración, sellos y grafitos (Öniz, 2023, p. 12; Pearson, 1987, citado en Öniz, 2023).",
+ gH:"¿Es lo único que consume la madera?",
+ gP:"No. Pequeños crustáceos como <i>Limnoria</i> también perforan la madera, y los hongos y las bacterias la pudren (Langley, 2023). Sin embargo, la velocidad de degradación de los hongos de pudrición blanda y de las bacterias de erosión es en general muy lenta en comparación con la de los perforadores marinos (WreckProtect, 2011). En aguas salinas y oxigenadas son las bromas las que consumen en poco tiempo la madera expuesta.",
+ hH:"¿Cómo se protege?",
+ hP:"La manera de conservar in situ un pecio de madera es mantenerlo cubierto: sacos de arena, capas de arena, geotextil o telas (WreckProtect, 2011; Öniz et al., 2024).",
+ iH:"Si ve madera durante una inmersión",
+ i1:"No destape la arena, el fango ni ninguna cubierta. Esa cubierta es lo que protege la madera enterrada.",
+ i2:"No la toque ni la mueva.",
+ i3:"Registre la posición y fotografíela.",
+ i4:"Comuníquelo al museo más cercano.",
+ iSrc:"Fuente: Öniz (2023, p. 10); Öniz et al. (2024).",
+ refH:"Referencias", refNote:"Formato APA, 7.ª edición. Los trabajos indicados en el texto con «citado en» se citan a través de Öniz (2023).",
+ useH:"Uso",
+ useSimple:"Esta página se ha preparado para explicar el tema de forma que todos puedan seguirlo; los dibujos y las animaciones son esquemáticos y no están a escala.",
+ credDev:"Preparada por Muhammed Parlak bajo la supervisión de Hakan Öniz (2026).",
+ priv:"Las visitas a la página se cuentan de forma anónima, sin cookies y sin recopilar datos personales.",
+ rights:"© 2026 Muhammed Parlak. Todos los derechos reservados. La página puede utilizarse gratuitamente con fines académicos, educativos y personales; su copia, modificación o redistribución requiere autorización por escrito.",
+ famSub:"La familia RecOniz", famH:"Identificación de ánforas: Underwater Heritage Recognizer"}};
+const REFLIST=[
+ `Langley, S. B. M. (2023, May 16). <i>Shipworms and gribbles and pill bugs, oh my!</i> Society for Historical Archaeology. <a href="https://sha-annex.org/2023/05/16/shipworms-and-gribbles-and-pill-bugs-oh-my/" target="_blank" rel="noopener">https://sha-annex.org/2023/05/16/shipworms-and-gribbles-and-pill-bugs-oh-my/</a>`,
+ `Öniz, H. (2023). <i>Alanya Kaptanoğlu Koleksiyonu’ndan amphoralar</i>. Arkeoloji ve Sanat Yayınları.`,
+ `Öniz, H., Khalil, E., &amp; Vivar, G. (Eds.). (2024). <i>Protection of underwater cultural heritage</i>. World Underwater Federation (CMAS). <a href="https://www.cmas.org/images/cmas_articles/237/PROTECTION-OF-UNDERWATER-CULTURAL-HERITAGE.pdf" target="_blank" rel="noopener">https://www.cmas.org/images/cmas_articles/237/PROTECTION-OF-UNDERWATER-CULTURAL-HERITAGE.pdf</a>`,
+ `WreckProtect. (2011). <i>Strategies for the protection of shipwrecks in the Baltic Sea against forthcoming attack by wood degrading marine borers</i> (Grant No. 226225) [Project report]. European Commission, CORDIS. <a href="https://cordis.europa.eu/project/id/226225/reporting" target="_blank" rel="noopener">https://cordis.europa.eu/project/id/226225/reporting</a>`];
+const refLoc=r=>LANG==="tr"?r.replace(", &amp; "," ve ").replace("(Eds.)","(Ed.)").replace("2023, May 16","16 Mayıs 2023").replace("[Project report]","[Proje raporu]").replace("Grant No.","Hibe No."):LANG==="es"?r.replace(", &amp; "," y ").replace("2023, May 16","16 de mayo de 2023").replace("[Project report]","[Informe de proyecto]").replace("Grant No.","Subvención n.º"):r;
+
+const NL=(navigator.language||"tr").toLowerCase(); let LANG=NL.startsWith("tr")?"tr":NL.startsWith("es")?"es":"en";
+try{ const s=localStorage.getItem("amfora-lang"); if(s==="tr"||s==="en"||s==="es") LANG=s; }catch(_){}
+const T=k=>(I18N[LANG][k]!==undefined?I18N[LANG][k]:(NAV[LANG][k]!==undefined?NAV[LANG][k]:k));
+const REDUCE=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+const NS="http://www.w3.org/2000/svg";
+const el=(p,n,a)=>{ const e=document.createElementNS(NS,n); for(const k in a) e.setAttribute(k,a[k]); p.append(e); return e; };
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2, seg=(t,a,b)=>clamp((t-a)/(b-a),0,1);
+function rng(s){ return ()=>{ s=(s*1664525+1013904223)%4294967296; return s/4294967296; }; }
+
+/* ---------- A: bir ahşabın içinde ---------- */
+const A={t:0,play:false,raf:0,tun:[]};
+(function buildA(){ const s=$("#svgA"), r=rng(7);
+  const d=el(s,"defs",{}); const g=el(d,"linearGradient",{id:"wA",x1:0,y1:0,x2:0,y2:1}); el(g,"stop",{offset:0,style:"stop-color:var(--water-a)"}); el(g,"stop",{offset:1,style:"stop-color:var(--water-b)"});
+  el(s,"rect",{x:0,y:0,width:720,height:280,fill:"url(#wA)"});
+  el(s,"path",{d:"M0 238 Q120 230 240 239 T480 236 T720 240 V280 H0Z",style:"fill:var(--sand)"});
+  A.wood=el(s,"g",{}); el(A.wood,"rect",{x:50,y:96,width:620,height:112,rx:9,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2});
+  for(let i=0;i<9;i++){ const y=106+i*11.5; let p=`M56 ${y}`; for(let x=96;x<=664;x+=40) p+=` Q${x-20} ${y+(r()-.5)*5} ${Math.min(x,664)} ${y+(r()-.5)*2}`; el(A.wood,"path",{d:p,fill:"none",style:"stroke:var(--grain)","stroke-width":1,opacity:.7}); }
+  A.gT=el(s,"g",{}); A.gL=el(s,"g",{});
+  const lanes=[112,123,134,146,157,168,180,191,200];
+  for(let i=0;i<22;i++){ const ex=78+i*26.5+(r()-.5)*14, ly=lanes[(i*4+2)%lanes.length], dir=(i%2?1:-1), len=170+r()*230;
+    let x=ex, y=96, pts=[[x,y],[x,y+ (ly-96)*0.55],[x+dir*14,ly]];
+    const n=Math.round(len/26); for(let k=1;k<=n;k++){ x=clamp(ex+dir*(14+k*26),62,658); pts.push([x, ly+Math.sin(k*1.3+i)*2.6]); if(x<=62||x>=658) break; }
+    let p=`M${pts[0][0].toFixed(1)} ${pts[0][1]} Q${pts[1][0].toFixed(1)} ${pts[2][1].toFixed(1)} ${pts[2][0].toFixed(1)} ${pts[2][1].toFixed(1)}`; for(let k=3;k<pts.length;k++) p+=` L${pts[k][0].toFixed(1)} ${pts[k][1].toFixed(1)}`;
+    const grp=el(A.gT,"g",{}), lin=el(grp,"path",{d:p,fill:"none",style:"stroke:var(--tube)","stroke-width":10.5,"stroke-linecap":"round","stroke-linejoin":"round"}),
+      edge=el(grp,"path",{d:p,fill:"none",style:"stroke:var(--tube-l)","stroke-width":8.5,"stroke-linecap":"round","stroke-linejoin":"round",opacity:.0}),
+      cav=el(grp,"path",{d:p,fill:"none",style:"stroke:var(--cavity)","stroke-width":7,"stroke-linecap":"round","stroke-linejoin":"round"}),
+      body=el(grp,"path",{d:p,fill:"none",style:"stroke:var(--flesh)","stroke-width":4.2,"stroke-linecap":"round","stroke-linejoin":"round"}),
+      head=el(grp,"circle",{r:4.4,style:"fill:var(--tube);stroke:var(--cavity)","stroke-width":1}),
+      sip=el(grp,"g",{class:REDUCE?"":"wig"}); el(sip,"path",{d:`M${ex-1.6} 96 l-1.5 -9 M${ex+1.6} 96 l1.8 -6.5`,fill:"none",style:"stroke:var(--flesh)","stroke-width":1.8,"stroke-linecap":"round"});
+    const L=lin.getTotalLength(); for(const q of [lin,edge,cav,body]){ q.setAttribute("stroke-dasharray",L); q.setAttribute("stroke-dashoffset",L); }
+    const lar=el(A.gL,"circle",{r:2.2,style:"fill:var(--flesh);stroke:var(--cavity)","stroke-width":.6});
+    A.tun.push({grp,lin,cav,body,head,sip,lar,L,ex,s:0.07+r()*0.36,d:0.34+r()*0.12,lx:ex+(r()-.5)*220,ly:18+r()*46,drop:(224-ly)*0.86+r()*4,rot:(r()-.5)*7}); }
+})();
+function drawA(t){ A.t=t; const fall=ease(seg(t,0.8,1));
+  A.wood.setAttribute("opacity",1-0.9*fall);
+  for(const q of A.tun){ const p=ease(seg(t,q.s,q.s+q.d)), off=q.L*(1-p);
+    q.lin.setAttribute("stroke-dashoffset",off); q.cav.setAttribute("stroke-dashoffset",off); q.body.setAttribute("stroke-dashoffset",off);
+    const pt=q.lin.getPointAtLength(q.L*p); q.head.setAttribute("cx",pt.x); q.head.setAttribute("cy",pt.y);
+    const on=t>=q.s; q.head.setAttribute("opacity",on?1-fall:0); q.sip.setAttribute("opacity",on?1-seg(t,0.78,0.86):0); q.body.setAttribute("opacity",1-seg(t,0.8,0.9)); q.cav.setAttribute("opacity",1-0.75*fall);
+    q.grp.setAttribute("transform",`translate(0 ${(q.drop*fall).toFixed(1)}) rotate(${(q.rot*fall).toFixed(2)} ${q.ex} 150)`);
+    const a=seg(t,q.s-0.09,q.s), drift=Math.sin(t*40+q.lx)*4; q.lar.setAttribute("cx",q.lx+(q.ex-q.lx)*ease(a)+drift*(1-a)); q.lar.setAttribute("cy",q.ly+(94-q.ly)*ease(a)); q.lar.setAttribute("opacity",t<q.s?1:0); }
+  const left=Math.round(100-88*ease(seg(t,0.1,0.82))); $("#aBar").style.width=left+"%"; $("#aPct").textContent=LANG==="tr"?"%"+left:left+"%";
+  setStage("a",t<0.12?0:t<0.5?1:t<0.8?2:3); }
+
+/* ---------- B: anatomi ---------- */
+(function buildB(){ const s=$("#svgB"); const d=el(s,"defs",{}); const g=el(d,"linearGradient",{id:"wB",x1:0,y1:0,x2:0,y2:1}); el(g,"stop",{offset:0,style:"stop-color:var(--water-a)"}); el(g,"stop",{offset:1,style:"stop-color:var(--water-b)"});
+  el(s,"rect",{x:0,y:0,width:720,height:230,fill:"url(#wB)"});
+  el(s,"rect",{x:120,y:36,width:600,height:158,style:"fill:var(--wood)"}); el(s,"line",{x1:120,y1:36,x2:120,y2:194,style:"stroke:var(--wood-d)","stroke-width":2.5});
+  for(let i=0;i<8;i++){ const y=50+i*19; if(Math.abs(y-115)<26) continue; el(s,"path",{d:`M124 ${y} Q300 ${y+4} 480 ${y-2} T720 ${y+1}`,fill:"none",style:"stroke:var(--grain)","stroke-width":1,opacity:.7}); }
+  // tünel: astar + boşluk
+  el(s,"path",{d:"M120 115 H640",fill:"none",style:"stroke:var(--tube)","stroke-width":46,"stroke-linecap":"round"});
+  el(s,"path",{d:"M120 115 H640",fill:"none",style:"stroke:var(--tube-l)","stroke-width":46,"stroke-linecap":"round",opacity:.35});
+  el(s,"path",{d:"M120 115 H640",fill:"none",style:"stroke:var(--cavity)","stroke-width":36,"stroke-linecap":"round"});
+  // gövde
+  el(s,"path",{d:"M150 115 C260 104 420 126 590 115",fill:"none",style:"stroke:var(--flesh)","stroke-width":24,"stroke-linecap":"round"});
+  // kabuklar (baş ucu)
+  const sh=el(s,"g",{style:"fill:var(--tube);stroke:var(--cavity)","stroke-width":1.6});
+  el(sh,"path",{d:"M596 98 a18 17 0 0 1 34 3 q-4 14 -16 14 q-14 0 -18 -17Z"}); el(sh,"path",{d:"M596 132 a18 17 0 0 0 34 -3 q-4 -14 -16 -14 q-14 0 -18 17Z"});
+  for(let k=0;k<5;k++){ el(s,"path",{d:`M${603+k*5} ${99+k*1.2} q4 6 2 14`,fill:"none",style:"stroke:var(--cavity)","stroke-width":.9}); el(s,"path",{d:`M${603+k*5} ${131-k*1.2} q4 -6 2 -14`,fill:"none",style:"stroke:var(--cavity)","stroke-width":.9}); }
+  // paletler ve sifonlar (kuyruk ucu, giriş)
+  el(s,"path",{d:"M150 109 L128 106 M150 121 L128 124",fill:"none",style:"stroke:var(--flesh)","stroke-width":7,"stroke-linecap":"round"});
+  const sg=el(s,"g",{class:REDUCE?"":"wig",style:"transform-origin:128px 115px;transform-box:view-box"});
+  el(sg,"path",{d:"M130 106 Q96 98 62 104",fill:"none",style:"stroke:var(--flesh)","stroke-width":6,"stroke-linecap":"round"}); el(sg,"path",{d:"M130 124 Q104 130 84 126",fill:"none",style:"stroke:var(--flesh)","stroke-width":6,"stroke-linecap":"round"});
+  const pal=el(s,"g",{style:"fill:var(--tube);stroke:var(--cavity)","stroke-width":1.3}); el(pal,"path",{d:"M140 100 l12 -2 l3 7 l-13 3Z"}); el(pal,"path",{d:"M140 130 l12 2 l3 -7 l-13 -3Z"});
+  // numaralar
+  const mk=(n,x,y,tx,ty)=>{ el(s,"line",{x1:x,y1:y,x2:tx,y2:ty,style:"stroke:var(--ink)","stroke-width":1.2}); el(s,"circle",{cx:x,cy:y,r:12,style:"fill:var(--sea)"}); const t=el(s,"text",{x:x,y:y+4.5,"text-anchor":"middle","font-size":13,"font-weight":600,"font-family":"Instrument Sans,system-ui,sans-serif",style:"fill:var(--on-sea)"}); t.textContent=n; };
+  mk(1,640,60,614,100); mk(2,380,172,380,122); mk(3,300,60,300,94); mk(4,64,60,84,100); mk(5,180,172,150,130);
+})();
+
+/* ---------- C: batığa ne olur ---------- */
+const C={t:0,play:false,raf:0,pots:[]};
+(function buildC(){ const s=$("#svgC"), r=rng(3); const d=el(s,"defs",{}); const g=el(d,"linearGradient",{id:"wC",x1:0,y1:0,x2:0,y2:1}); el(g,"stop",{offset:0,style:"stop-color:var(--water-a)"}); el(g,"stop",{offset:1,style:"stop-color:var(--water-b)"});
+  const SY=212, hull="M118 150 Q136 250 250 252 L470 252 Q584 250 604 150 L566 160 L156 160 Z";
+  el(el(d,"clipPath",{id:"up"}),"rect",{x:0,y:0,width:720,height:SY}); el(el(d,"clipPath",{id:"lo"}),"rect",{x:0,y:SY,width:720,height:100});
+  el(s,"rect",{x:0,y:0,width:720,height:300,fill:"url(#wC)"});
+  el(s,"path",{d:`M0 ${SY} Q180 ${SY-6} 360 ${SY} T720 ${SY-2} V300 H0Z`,style:"fill:var(--sand)"});
+  // gömülü alt gövde (kumun içinden görünür)
+  const lo=el(s,"g",{"clip-path":"url(#lo)"}); el(lo,"path",{d:hull,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2,opacity:.75});
+  for(let x=170;x<560;x+=30) el(lo,"line",{x1:x,y1:SY,x2:x+ (x<360?-6:6),y2:252,style:"stroke:var(--wood-d)","stroke-width":1.5,opacity:.6});
+  C.lo=lo;
+  // direk ve üst gövde
+  C.mast=el(s,"g",{}); el(C.mast,"line",{x1:360,y1:160,x2:360,y2:52,style:"stroke:var(--wood-d)","stroke-width":5,"stroke-linecap":"round"}); el(C.mast,"line",{x1:300,y1:78,x2:420,y2:78,style:"stroke:var(--wood-d)","stroke-width":3.5,"stroke-linecap":"round"});
+  C.up=el(s,"g",{"clip-path":"url(#up)"}); C.upHull=el(C.up,"path",{d:hull,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2});
+  C.ribs=el(C.up,"g",{}); for(let x=170;x<560;x+=30) el(C.ribs,"line",{x1:x,y1:160,x2:x+(x<360?-6:6),y2:SY,style:"stroke:var(--wood-d)","stroke-width":1.5,opacity:.7});
+  C.holes=el(C.up,"g",{}); for(let i=0;i<70;i++){ const x=140+r()*440, y=164+r()*44; el(C.holes,"circle",{cx:x,cy:y,r:1.4+r()*2.2,style:"fill:var(--cavity)"}).dataset.k=r().toFixed(3); }
+  // amphoralar
+  const pot="M-3 -13 h6 v3 q0 3 4 6 q3 4 1 10 q-2 6 -5 9 l-1 3 h-4 l-1 -3 q-3 -3 -5 -9 q-2 -6 1 -10 q4 -3 4 -6 Z";
+  C.gp=el(s,"g",{}); const rowsY=[178,202,228];
+  rowsY.forEach((y,ri)=>{ const n=ri===0?19:ri===1?17:15, x0=360-(n-1)*10.5; for(let i=0;i<n;i++){ const x=x0+i*21, edge=Math.abs(i-(n-1)/2)/((n-1)/2);
+      const p=el(C.gp,"g",{}); el(p,"path",{d:pot,style:"fill:var(--pot);stroke:var(--cavity)","stroke-width":.8});
+      C.pots.push({p,x,y,dx:ri===0?(x<360?-1:1)*(edge*34+r()*8):ri===1?(x<360?-1:1)*edge*14:0, dy:ri===0?14+edge*12:ri===1?6+edge*5:0, rot:ri===0?(x<360?-1:1)*(18+edge*52+r()*14):ri===1?(x<360?-1:1)*edge*26:0, del:r()*0.25}); } });
+  // üstte kum örtüsü (alt sıranın yarısı gömülü)
+  el(s,"path",{d:`M0 ${SY+22} Q180 ${SY+17} 360 ${SY+23} T720 ${SY+20} V300 H0Z`,style:"fill:var(--sand-d)",opacity:.55});
+  el(el(s,"g",{"clip-path":"url(#lo)"}),"path",{d:hull,fill:"none",style:"stroke:var(--wood-d)","stroke-width":2.2,"stroke-dasharray":"7 5"});
+  // etiketler
+  C.labs=el(s,"g",{"font-family":"Instrument Sans,system-ui,sans-serif","font-size":15,"font-weight":600,style:"fill:var(--ink)",opacity:0});
+  C.la=el(C.labs,"text",{x:360,y:132,"text-anchor":"middle"}); el(C.labs,"path",{d:"M360 140 V166",fill:"none",style:"stroke:var(--ink)","stroke-width":1.4});
+  C.lb=el(C.labs,"text",{x:360,y:288,"text-anchor":"middle"}); el(C.labs,"path",{d:"M360 272 V258",fill:"none",style:"stroke:var(--ink)","stroke-width":1.4});
+})();
+function drawC(t){ C.t=t; const eat=ease(seg(t,0.18,0.6)), col=ease(seg(t,0.5,0.82));
+  C.upHull.setAttribute("opacity",1-eat); C.ribs.setAttribute("opacity",1-ease(seg(t,0.3,0.7)));
+  [...C.holes.children].forEach(h=>{ const k=+h.dataset.k; h.setAttribute("opacity",t<0.6?seg(t,0.14+k*0.3,0.2+k*0.3)*(1-seg(t,0.5,0.62)):0); });
+  const m=ease(seg(t,0.28,0.55)); C.mast.setAttribute("transform",`rotate(${78*m} 360 160)`); C.mast.setAttribute("opacity",1-seg(t,0.4,0.6));
+  for(const q of C.pots){ const k=ease(seg(col,q.del,1)); q.p.setAttribute("transform",`translate(${(q.x+q.dx*k).toFixed(1)} ${(q.y+q.dy*k).toFixed(1)}) rotate(${(q.rot*k).toFixed(1)})`); }
+  C.labs.setAttribute("opacity",seg(t,0.86,0.97));
+  setStage("c",t<0.16?0:t<0.5?1:t<0.84?2:3); }
+
+/* ---------- ortak: oynatma, aşamalar, dil ---------- */
+const ST={a:-1,c:-1}, JUMP={a:[0,0.2,0.6,1],c:[0,0.3,0.66,1]};
+function setStage(w,i,force){ if(ST[w]===i&&!force) return; ST[w]=i; $("#"+w+"Cap").innerHTML=T(w+"C"+(i+1)); [...$("#"+w+"Chips").children].forEach((b,k)=>b.setAttribute("aria-pressed",k===i)); }
+function wire(w,S,draw,dur){ const btn=$("#"+w+"Play"), rg=$("#"+w+"T");
+  const lab=()=>{ btn.textContent=T(S.play?"pause":S.t>=0.999?"replay":"play"); };
+  const stop=()=>{ S.play=false; cancelAnimationFrame(S.raf); lab(); };
+  const run=()=>{ if(S.t>=0.999) S.t=0; S.play=true; lab(); let last=performance.now(); const step=now=>{ if(!S.play) return; S.t=Math.min(1,S.t+(now-last)/dur); last=now; rg.value=Math.round(S.t*1000); draw(S.t); if(S.t>=1){ stop(); return; } S.raf=requestAnimationFrame(step); }; S.raf=requestAnimationFrame(step); };
+  btn.addEventListener("click",()=>S.play?stop():run());
+  rg.addEventListener("input",()=>{ stop(); draw(rg.value/1000); lab(); });
+  const ch=$("#"+w+"Chips"); ch.innerHTML=""; for(let i=0;i<4;i++){ const b=document.createElement("button"); b.type="button"; b.dataset.i=i; ch.append(b); b.addEventListener("click",()=>{ stop(); rg.value=Math.round(JUMP[w][i]*1000); draw(JUMP[w][i]); lab(); }); }
+  S.lab=lab; S.run=run; S.stop=stop;
+  if(!REDUCE&&"IntersectionObserver" in window){ let seen=false; new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting&&!seen){ seen=true; run(); } else if(!e.isIntersecting&&S.play) stop(); }); },{threshold:0.6}).observe($("#svg"+w.toUpperCase())); } }
+wire("a",A,drawA,16000); wire("c",C,drawC,13000);
+function applyLang(){ document.documentElement.lang=LANG; document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=T(e.dataset.i18n)); document.querySelectorAll("[data-i18n-aria]").forEach(e=>e.setAttribute("aria-label",T(e.dataset.i18nAria).replace(/<[^>]+>/g,""))); document.title="RecOniz · "+T("title");
+  [...$("#lang").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===LANG));
+  for(const w of ["a","c"]) [...$("#"+w+"Chips").children].forEach((b,i)=>b.textContent=T(w+(i+1)));
+  C.la.textContent=T("cLabA"); C.lb.textContent=T("cLabB");
+  $("#refs").innerHTML=REFLIST.map(r=>`<li>${refLoc(r)}</li>`).join("");
+  drawA(A.t); drawC(C.t); setStage("a",ST.a,true); setStage("c",ST.c,true); A.lab(); C.lab(); }
+$("#lang").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; LANG=b.dataset.v; try{ localStorage.setItem("amfora-lang",LANG); }catch(_){} applyLang(); });
+const isDark=()=>{ const t=document.documentElement.dataset.theme; return t? t==="dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+try{ const t=localStorage.getItem("amfora-theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch(_){}
+$("#themeBtn").addEventListener("click",()=>{ const t=isDark()?"light":"dark"; document.documentElement.dataset.theme=t; try{ localStorage.setItem("amfora-theme",t); }catch(_){} });
+(()=>{ const b=document.getElementById("menuBtn"), m=document.getElementById("menu"); if(!b||!m) return;
+  const set=o=>{ m.hidden=!o; b.setAttribute("aria-expanded",o); };
+  b.addEventListener("click",e=>{ e.stopPropagation(); set(m.hidden); });
+  document.addEventListener("click",e=>{ if(!m.hidden&&!m.contains(e.target)) set(false); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!m.hidden){ set(false); b.focus(); } }); })();
+applyLang();
+</script>
+<script data-goatcounter="https://reconiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
