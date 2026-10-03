@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RecOniz · Herkes için Sualtı Mirası · Koruma nasıl başladı?</title>
+<meta name="description" content="Herkes için Sualtı Mirası, 2. bölüm: sualtı kültür mirasının korunması nasıl başladı? 1884 Âsâr-ı Atîka Nizamnamesi ve Osman Hamdi Bey dönemindeki ilk sualtı çalışması, canlandırmalarla.">
+<meta name="theme-color" content="#17495A">
+<link rel="canonical" href="https://reconiz.org/koruma/">
+<meta name="apple-mobile-web-app-title" content="Koruma">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Heritage Rejoiner: RecOniz ana sayfasıyla aynı tokenlar ve düzen (tek sütun, 720px, kutusuz bölümler, aynı başlık ve fotoğraf kartı) */
+/* Düzen: tek sütun, 720px okuma genişliği; çekim kartı en üstte, katalog bir "tip levhası" ızgarası.
+   Kimlik: deniz mavisi (sea) + pişmiş toprak (clay); tek yazı ailesi: Instrument Sans (başlık 600, metin 400). */
+:root{
+  --bg:#F6F7F5; --ink:#152021; --muted:#5B6664; --faint:#8C9795; --line:#DCE2E0; --soft:#ECF0EE; --raised:#FFFFFF;
+  --sea:#17495A; --sea-soft:#DCE8EB; --on-sea:#FFFFFF; --clay:#9C5B38; --clay-soft:#F1E3D6;
+  --z-rim:#2F6DB3; --z-handle:#8A4BC4; --z-body:#2E8554; --z-base:#C9620C;
+  --paper:#FFFFFF; --paper-ink:#111111; --well-a:#EDF2F3; --well-b:#DCE6E8; --chartfill:#E9C9A0;
+  --bar:#CCD5D3; --map-sea:#CFE0E6; --map-land:#EFE8DC; --map-coast:#9A8F80; --map-ink:#3A2A20; --map-ink2:#1D3A4C; --map-pin:#A0461E; --map-pin-a:rgba(160,70,30,.45); --map-reg:#285A78; --map-reg-a:rgba(40,90,120,.18); --map-sel:#17495A; --map-sel-a:rgba(23,73,90,.75);
+  --shadow:0 1px 2px rgba(21,32,33,.06),0 8px 24px -12px rgba(21,32,33,.18);
+  --sans:"Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#111617; --ink:#E6EAE8; --muted:#A1ABA9; --faint:#6E7977; --line:#283133; --soft:#182022; --raised:#1A2224;
+    --sea:#8CC3D1; --sea-soft:#1B3037; --on-sea:#0C1A1E; --clay:#DB9A72; --clay-soft:#33251D;
+    --z-rim:#72AAEA; --z-handle:#C49AF0; --z-body:#66C28D; --z-base:#F2A259;
+    --paper:#D5DBD9; --paper-ink:#111111; --well-a:#1C2A2E; --well-b:#142024; --chartfill:#C9A47A;
+    --bar:#3A4749; --map-sea:#132329; --map-land:#243033; --map-coast:#47575A; --map-ink:#E6EAE8; --map-ink2:#CFE3E8; --map-pin:#E29A6E; --map-pin-a:rgba(226,154,110,.42); --map-reg:#8CC3D1; --map-reg-a:rgba(140,195,209,.16); --map-sel:#8CC3D1; --map-sel-a:rgba(140,195,209,.8);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#111617; --ink:#E6EAE8; --muted:#A1ABA9; --faint:#6E7977; --line:#283133; --soft:#182022; --raised:#1A2224;
+  --sea:#8CC3D1; --sea-soft:#1B3037; --on-sea:#0C1A1E; --clay:#DB9A72; --clay-soft:#33251D;
+  --z-rim:#72AAEA; --z-handle:#C49AF0; --z-body:#66C28D; --z-base:#F2A259;
+  --paper:#D5DBD9; --paper-ink:#111111; --well-a:#1C2A2E; --well-b:#142024; --chartfill:#C9A47A;
+  --bar:#3A4749; --map-sea:#132329; --map-land:#243033; --map-coast:#47575A; --map-ink:#E6EAE8; --map-ink2:#CFE3E8; --map-pin:#E29A6E; --map-pin-a:rgba(226,154,110,.42); --map-reg:#8CC3D1; --map-reg-a:rgba(140,195,209,.16); --map-sel:#8CC3D1; --map-sel-a:rgba(140,195,209,.8);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:12px 56px;-webkit-font-smoothing:antialiased}
+main{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--sans);font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.02em}
+h2{font-size:clamp(21px,4.6vw,25px);line-height:1.2}
+p{margin:0}
+a{color:var(--sea);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sea);outline-offset:3px}
+section{display:flex;flex-direction:column;gap:16px;min-width:0}
+.sub{color:var(--muted);font-size:15px;max-width:66ch}
+.lab,.dlab,.citeLabel,.tagline,.eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.center{text-align:center}
+
+/* araçlar menüsü */
+.bar{position:relative}
+.menu{position:absolute;top:calc(100% + 6px);right:0;z-index:30;width:min(340px,100%);background:var(--raised);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 44px -12px rgba(0,0,0,.35);padding:12px;display:flex;flex-direction:column;gap:6px}
+.menu .lab{padding:4px 8px 6px}
+.menu a,.menu .soon{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:12px;text-decoration:none;color:var(--ink);position:relative}
+.menu a:hover{background:var(--soft)}
+.menu a[aria-current="page"]{background:var(--sea-soft)}
+.menu b{font-size:15.5px;font-weight:600;padding-right:72px}
+.menu span{font-size:13.5px;color:var(--muted);line-height:1.4}
+.menu i{position:absolute;top:12px;right:12px;font-style:normal;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sea)}
+.menu .soon{opacity:.55}
+@media (max-width:420px){ .tools .lang button{padding:4px 6px} .tools{gap:4px} .tools .themebtn{width:32px;height:32px} }
+/* başlık */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:6px}
+.brand{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
+.wm{margin:0;line-height:0;color:var(--ink)}
+.wm svg{display:block;height:34px;width:auto}
+.mark{flex:none;width:34px;height:48px;color:var(--sea)}
+.bar h1{font-size:32px;line-height:1}
+h1 .on{color:var(--sea);font-style:italic}
+.tagline{margin-top:5px;letter-spacing:.14em;white-space:nowrap;font-size:10.5px}
+
+.tools{display:flex;align-items:center;gap:8px;flex:none}
+.themebtn{width:38px;height:38px;border-radius:999px;border:1px solid var(--line);background:var(--raised);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.themebtn:hover{border-color:var(--faint)}
+.themebtn svg{width:18px;height:18px}
+.themebtn .i-sun{display:none}
+:root[data-theme="dark"] .themebtn .i-sun{display:block}:root[data-theme="dark"] .themebtn .i-moon{display:none}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .themebtn .i-sun{display:block} :root:not([data-theme="light"]) .themebtn .i-moon{display:none} }
+@media (max-width:420px){ .wm svg{height:29px} .tagline{letter-spacing:.1em;font-size:9.5px;white-space:normal;max-width:16.5em;line-height:1.35} .lang button{padding:4px 8px;min-height:30px} .tools{gap:6px} .themebtn{width:34px;height:34px} }
+/* segment düğmeleri */
+.seg{display:inline-flex;flex-wrap:nowrap;max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;background:var(--raised)}
+.seg button{border:0;background:none;padding:6px 14px;min-height:34px;border-radius:999px;font-size:14px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.lang button{padding:4px 11px;font-size:13px;min-height:30px;letter-spacing:.04em}
+
+/* çekim kartı */
+.capture{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px;border-radius:20px;background:var(--raised);box-shadow:var(--shadow);border:1px solid var(--line)}
+.guide{grid-column:1/-1;display:flex;align-items:center;gap:14px;padding:4px 2px 8px}
+.guide svg{flex:none;width:64px;height:84px;color:var(--sea)}
+.guide .sub{font-size:14.5px}
+.pick{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;background:var(--sea);color:var(--on-sea);font-weight:600;padding:12px 18px;cursor:pointer;overflow:hidden;border:0;transition:transform .12s ease,filter .12s ease}
+.pick:hover{filter:brightness(1.08)}
+.pick:active{transform:scale(.985)}
+.pick input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.pick:focus-within{outline:2px solid var(--sea);outline-offset:3px}
+.pick.alt{background:var(--sea-soft);color:var(--sea)}
+.pick.big{min-height:54px;font-size:16px;width:100%}
+.pick svg{width:20px;height:20px;flex:none}
+.scanbtn{grid-column:1/-1;cursor:pointer}
+.picks{display:flex;flex-wrap:wrap;gap:10px}
+@media (min-width:700px){ .capture{grid-template-columns:repeat(3,1fr);padding:22px 24px} .scanbtn{grid-column:auto} }
+
+/* hakkında */
+.about{gap:14px}
+.about{gap:18px}
+.about p{color:var(--muted);font-size:15px;max-width:66ch}
+.about .lead1{color:var(--ink);font-size:18px;line-height:1.5;font-weight:500;letter-spacing:-.01em;max-width:52ch}
+.ab{display:flex;flex-direction:column;gap:10px}
+.ab h3.lab{margin:0}
+ol.steps.sm{gap:10px}
+ol.steps.sm li{grid-template-columns:24px 1fr;gap:12px;font-size:15px;color:var(--ink);padding-top:0}
+ol.steps.sm li::before{width:24px;height:24px;line-height:24px;font-size:12.5px;background:var(--sea-soft);color:var(--sea)}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start;line-height:1.5;padding-top:2px}
+ol.steps li::before{content:counter(s);font-weight:600;font-size:15px;line-height:28px;width:28px;height:28px;border-radius:50%;text-align:center;background:var(--sea);color:var(--on-sea)}
+/* kaynaklar, künye */
+.usenotes{display:flex;flex-direction:column;gap:10px;padding:16px 18px;border-radius:14px;background:var(--soft);border:1px solid var(--line)}
+.usenotes p{font-size:15px;max-width:66ch}
+.usenotes p:first-child{font-weight:600}
+.rights{margin-top:14px}
+.refs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.refs li{padding-left:2em;text-indent:-2em;font-size:14.5px;line-height:1.5;overflow-wrap:anywhere}
+.credits p,.use p{max-width:66ch}
+.cite-tool{font-size:14.5px;overflow-wrap:anywhere;padding:12px 16px 12px calc(16px + 1.4em);text-indent:-1.4em;background:var(--raised);border:1px solid var(--line);border-radius:12px}
+footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:20px}
+footer a{color:var(--muted)}
+
+/* Heritage Rejoiner: masa, kaplar, adaylar */
+:root{--g1:#2F6DB3;--g2:#C9620C;--g3:#2E8554;--g4:#8A4BC4;--g5:#B23A48;--g6:#6B7A1E;--g7:#0E7C86;--g8:#A0527A;--hit:#E0A030}
+.capture .demo{grid-column:1/-1}
+@media (min-width:700px){ .capture .demo{grid-column:auto} }
+.work{display:flex;flex-direction:column;gap:12px}
+.status{font-size:15px;color:var(--ink);min-height:1.5em}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.link{background:none;border:0;color:var(--sea);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
+.th{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px;border-radius:12px;background:var(--soft);border:1px solid var(--line)}
+.th canvas{max-width:100%;height:56px;width:auto;border-radius:6px}
+.th figcaption{font-size:12px;font-weight:600;color:var(--muted)}
+#results{display:flex;flex-direction:column;gap:44px}
+#results:empty{display:none}
+.tzoom{overflow:auto;border-radius:16px;border:1px solid var(--line);cursor:zoom-in;-webkit-overflow-scrolling:touch}
+.tzoom.big{cursor:zoom-out}
+.tablecv{width:100%;height:auto;display:block}
+.tzoom.big .tablecv{width:260%;max-width:none}
+.jn{font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.plates{display:grid;grid-template-columns:1fr;gap:16px}
+.plates.part{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.plate{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--raised);box-shadow:var(--shadow);display:flex;flex-direction:column}
+.plate canvas{width:100%;height:auto;display:block;background:var(--soft)}
+.pmeta{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;border-top:3px solid var(--gc)}
+.ptitle{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.pname{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.pdot{width:24px;height:24px;border-radius:50%;background:var(--gc);color:#fff;display:grid;place-items:center;font-size:12.5px}
+.pct{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--gc);color:#fff;font-variant-numeric:tabular-nums}
+.pct.part{background:var(--soft);color:var(--muted)}
+.porder{font-size:13.5px;color:var(--muted);line-height:1.6}
+.mini{border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:6px 14px;font-size:13.5px;cursor:pointer}
+.mini[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.play{align-self:flex-start}
+.second .plate{box-shadow:none}
+.loose{display:flex;flex-wrap:wrap;gap:10px}
+.loose canvas{border-radius:6px}
+details.all{border:1px solid var(--line);border-radius:14px;padding:0 16px;background:var(--raised)}
+details.all summary{padding:14px 0;font-weight:600;font-size:15px;cursor:pointer}
+details.all[open]{padding-bottom:16px}
+details.all .sub{margin-bottom:12px}
+.joins{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.join{border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;background:var(--bg)}
+.join canvas{display:block;align-self:center;background:repeating-conic-gradient(var(--soft) 0 25%,var(--bg) 0 50%) 0 0/16px 16px}
+.jmeta{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--gc)}
+.jt{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lvl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px}
+.lvl.strong{background:var(--sea);color:var(--on-sea)}.lvl.medium{background:var(--sea-soft);color:var(--sea)}.lvl.weak{background:var(--soft);color:var(--muted)}
+.jacts{display:flex;gap:8px}
+.family{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;border-radius:16px;background:var(--sea-soft);color:var(--sea);text-decoration:none;font-weight:600}
+.family span{font-weight:400;color:var(--muted);font-size:14px;display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* adımlar ve önizleme rehberi */
+h2 .stepn{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sea);color:var(--on-sea);font-size:15px;margin-right:10px;vertical-align:3px;letter-spacing:0}
+[id^="st-"],.capture,.plate{scroll-margin-top:16px}
+.nextstep{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:9px 16px;font-weight:600;font-size:14.5px;color:var(--sea);cursor:pointer;margin-top:4px}
+.nextstep:hover{border-color:var(--sea)}
+.coach{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));width:min(688px,calc(100% - 24px));z-index:40;background:var(--raised);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 44px -12px rgba(0,0,0,.45);padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px}
+.coach p{font-size:15.5px;line-height:1.5}
+.chead{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cx{border:0;background:none;color:var(--muted);font-size:22px;line-height:1;padding:2px 6px;cursor:pointer}
+.cbtns{display:grid;grid-template-columns:1fr 2fr;gap:10px}
+.cbtns .pick{min-height:46px;padding:10px 14px}
+.cbtns .pick:disabled{opacity:.45;cursor:default;filter:none}
+.hl{outline:3px solid var(--sea);outline-offset:6px;border-radius:18px}
+.capture.hl{outline-offset:4px}
+body.touring{padding-bottom:240px}
+
+</style>
+<style>
+/* Herkes için Sualtı Mirası, 1. bölüm (Teredo navalis): tek bir geminin hikâyesi; sahne kaydırdıkça değişir */
+:root{ --wood:#C9A27A; --wood-d:#A9825A; --grain:#B58E63; --cavity:#4A3120; --tube:#F4EFE3; --tube-l:#CFC6B2; --flesh:#E6B4A0; --sand:#E3D5B8; --sand-d:#CDBB97; --water-a:#D6E8EF; --water-b:#B9D3DF; --sky:#F1F5F4; --pot:#B8683E; --pot2:#8C8472; --sail:#F7F3EA; --cu:#C7773F; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --wood:#8D6B48; --wood-d:#6E5236; --grain:#7A5B3C; --cavity:#1E140D; --tube:#E9E3D3; --tube-l:#9E9685; --flesh:#D9A08A; --sand:#4A4130; --sand-d:#39321F; --water-a:#17303A; --water-b:#0E2028; --sky:#141C1E; --pot:#C97A50; --pot2:#A39A86; --sail:#CFC9BC; --cu:#D38A52; } }
+:root[data-theme="dark"]{ --wood:#8D6B48; --wood-d:#6E5236; --grain:#7A5B3C; --cavity:#1E140D; --tube:#E9E3D3; --tube-l:#9E9685; --flesh:#D9A08A; --sand:#4A4130; --sand-d:#39321F; --water-a:#17303A; --water-b:#0E2028; --sky:#141C1E; --pot:#C97A50; --pot2:#A39A86; --sail:#CFC9BC; --cu:#D38A52; }
+.hero h2{font-size:clamp(28px,7vw,38px);line-height:1.1}
+.hero h2 i,.step i,.txt i,.wc i{font-style:italic}
+.lead1{font-size:18px;line-height:1.5;max-width:60ch}
+.story{gap:0}
+.stick{position:sticky;top:8px;z-index:5;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--bg);box-shadow:0 10px 26px -18px rgba(0,0,0,.45)}
+.stick svg{display:block;width:100%;height:auto}
+.dots{position:absolute;left:0;right:0;top:8px;display:flex;justify-content:center;gap:5px;pointer-events:none}
+.dots i{width:6px;height:6px;border-radius:999px;background:var(--ink);opacity:.18;transition:opacity .25s,transform .25s}
+.dots i.on{opacity:.75;transform:scale(1.25)}
+.steps2{display:flex;flex-direction:column}
+.step{min-height:78vh;display:flex;align-items:flex-start}
+.step:first-child{min-height:60vh}
+.step:last-child{min-height:70vh}
+.step p{position:sticky;top:calc(var(--stb,300px) + 22px);font-size:clamp(19px,4.9vw,22px);line-height:1.42;max-width:30em;opacity:0;transition:opacity .3s;padding-bottom:22px}
+.step.on p{opacity:1}
+.step.near p{opacity:.22}
+.step sup,.txt sup,.wc sup,.sub sup,.limits sup,section>p sup{font-size:.62em;line-height:0;color:var(--sea);font-weight:600;margin-left:1px}
+sup a{color:inherit;text-decoration:none}
+.where{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:560px){ .where{grid-template-columns:1fr} }
+.wc{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--raised);display:flex;flex-direction:column;gap:6px}
+.wc h3{font-size:16.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wc p{font-size:14.5px;color:var(--muted)}
+.wc .tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.wc.yes .tag{background:var(--clay-soft);color:var(--clay)}
+.wc.no .tag{background:var(--sea-soft);color:var(--sea)}
+.limits{display:flex;flex-wrap:wrap;gap:8px}
+.limits span{border-radius:12px;background:var(--soft);border:1px solid var(--line);padding:8px 12px;font-size:14.5px}
+.limits b{font-weight:600}
+.txt{display:flex;flex-direction:column;gap:10px}
+.txt p{max-width:66ch}
+.chap{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 8px}
+.chap a{border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:14.5px;font-weight:600;text-decoration:none;color:var(--ink);background:var(--raised)}
+.chap a[aria-current]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.callout{padding:18px 20px;border-radius:18px;background:var(--sea-soft)}
+.callout h2{color:var(--sea)}
+.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
+.notes{margin:0;padding-left:1.6em;display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--muted)}
+.wig{animation:wig 1.6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes wig{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+@media (prefers-reduced-motion: reduce){ .wig{animation:none} .step p{transition:none} }
+/* Herkes için Sualtı Mirası, 2. bölüm: korumanın başlangıcı */
+:root{ --paper:#FBF7EC; --gold:#D8A93A; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --paper:#2B2A24; --gold:#E0B64A; } }
+:root[data-theme="dark"]{ --paper:#2B2A24; --gold:#E0B64A; }
+</style>
+</head>
+<body>
+<main>
+<header class="bar">
+    <div class="brand"><h1 class="wm"><span class="vh">RecOniz</span><svg viewBox="0 -640 3491 652" fill="currentColor" aria-hidden="true" focusable="false"><path d="M73 0V-510H172V-383H177V0ZM177 -266 164 -387Q182 -452 226.0 -486.0Q270 -520 331 -520Q354 -520 363 -516V-418Q358 -420 349.0 -420.5Q340 -421 327 -421Q252 -421 214.5 -382.0Q177 -343 177 -266Z"/><path d="M676 10Q599 10 540.5 -24.0Q482 -58 449.0 -118.0Q416 -178 416 -256Q416 -335 448.5 -394.5Q481 -454 540.0 -487.0Q599 -520 675 -520Q749 -520 803.5 -488.5Q858 -457 887.5 -401.0Q917 -345 917 -268Q917 -256 916.5 -245.5Q916 -235 914 -224H486V-302H841L815 -271Q815 -353 778.0 -396.0Q741 -439 675 -439Q604 -439 562.5 -390.5Q521 -342 521 -256Q521 -169 562.5 -120.0Q604 -71 678 -71Q723 -71 756.0 -89.5Q789 -108 805 -144H903Q878 -72 818.5 -31.0Q759 10 676 10Z"/><path d="M1235 10Q1162 10 1105.0 -24.5Q1048 -59 1015.5 -119.0Q983 -179 983 -256Q983 -333 1015.5 -392.5Q1048 -452 1105.0 -486.0Q1162 -520 1234 -520Q1295 -520 1343.0 -497.0Q1391 -474 1422.0 -433.0Q1453 -392 1462 -336H1364Q1354 -381 1320.5 -408.0Q1287 -435 1236 -435Q1192 -435 1159.0 -413.0Q1126 -391 1108.0 -351.0Q1090 -311 1090 -256Q1090 -202 1108.0 -161.0Q1126 -120 1159.0 -97.5Q1192 -75 1237 -75Q1286 -75 1320.5 -101.5Q1355 -128 1365 -173H1463Q1453 -118 1421.5 -77.0Q1390 -36 1342.0 -13.0Q1294 10 1235 10Z"/><path d="M1788 10Q1710 10 1651.0 -24.5Q1592 -59 1559.0 -119.5Q1526 -180 1526 -257Q1526 -335 1559.5 -394.0Q1593 -453 1651.5 -486.5Q1710 -520 1788 -520Q1867 -520 1926.0 -486.5Q1985 -453 2017.5 -394.0Q2050 -335 2050 -257Q2050 -180 2017.5 -119.5Q1985 -59 1926.0 -24.5Q1867 10 1788 10ZM1788 -75Q1835 -75 1869.5 -98.0Q1904 -121 1924.0 -162.0Q1944 -203 1944 -258Q1944 -340 1900.5 -387.5Q1857 -435 1788 -435Q1720 -435 1676.5 -387.0Q1633 -339 1633 -258Q1633 -203 1652.5 -162.0Q1672 -121 1707.5 -98.0Q1743 -75 1788 -75Z"/><path d="M2157 0V-510H2256V-390H2261V0ZM2519 0V-328Q2519 -381 2492.5 -407.0Q2466 -433 2414 -433Q2369 -433 2334.5 -413.0Q2300 -393 2280.5 -358.0Q2261 -323 2261 -275L2248 -397Q2273 -454 2325.0 -487.0Q2377 -520 2446 -520Q2528 -520 2575.0 -474.0Q2622 -428 2622 -352V0Z"/><path d="M2783 -510L2893 -510L2893 -474L2873 -464L2873 -412C2873 -384 2914 -372 2914 -318C2914 -222 2870 -112 2861 -44L2857 -12Q2854 0 2838 0Q2822 0 2819 -12L2815 -44C2806 -112 2762 -222 2762 -318C2762 -372 2803 -384 2803 -412L2803 -464L2783 -474Z"/><path d="M2776 -560Q2776 -548 2788 -548L2888 -548Q2900 -548 2900 -560L2900 -578Q2900 -588 2890 -588L2864 -588L2864 -612Q2864 -626 2850 -626L2826 -626Q2812 -626 2812 -612L2812 -588L2786 -588Q2776 -588 2776 -578Z"/><path d="M2873 -452C2936 -452 2938 -410 2912 -346M2803 -452C2740 -452 2738 -410 2764 -346" fill="none" stroke="currentColor" stroke-width="30" stroke-linecap="round"/><path d="M3037 0V-73L3338 -469L3368 -427H3046V-510H3439V-437L3139 -43L3110 -83H3447V0Z"/></svg></h1><p class="tagline" lang="en">Heritage Explainer</p></div>
+    <div class="tools"><button class="themebtn menubtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" data-i18n-aria="navMenu" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></button><button class="themebtn" id="themeBtn" type="button" aria-label="Tema"><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    <div class="seg lang" id="lang" role="group" aria-label="Dil / Language / Idioma">
+      <button data-v="tr" aria-pressed="true">TR</button><button data-v="en" aria-pressed="false">EN</button><button data-v="es" aria-pressed="false">ES</button>
+    </div></div>
+    <nav class="menu" id="menu" hidden data-i18n-aria="navH" aria-label="RecOniz"><p class="lab" data-i18n="navH"></p><a href="/"><b data-i18n="navAmp"></b><span data-i18n="navAmpSub"></span></a><a href="/rejoiner/"><b data-i18n="navRej"></b><span data-i18n="navRejSub"></span></a><a href="/coins/"><b data-i18n="navCoin"></b><span data-i18n="navCoinSub"></span></a><a href="/teredo/" aria-current="page"><b data-i18n="navTer"></b><span data-i18n="navTerSub"></span><i data-i18n="navHere"></i></a></nav>
+  </header>
+
+  <section class="hero" aria-labelledby="h-title">
+    <h2 id="h-title" data-i18n="h1"></h2>
+    <nav class="chap" data-i18n-aria="chapL"><a href="/teredo/" data-i18n="c1"></a><a href="/koruma/" aria-current="page" data-i18n="c2"></a></nav>
+    <p class="lead1" data-i18n="lede"></p>
+  </section>
+
+  <section class="story" id="story" aria-label="Hikâye">
+    <div class="stick" id="stick"><svg id="scene" viewBox="0 0 720 440" aria-hidden="true" focusable="false"></svg><div class="dots" id="dots"></div></div>
+    <div class="steps2" id="steps"></div>
+  </section>
+
+  <section class="txt" aria-labelledby="h-a"><h2 id="h-a" data-i18n="aH"></h2><p data-i18n="aP"></p></section>
+  <section class="txt" aria-labelledby="h-b"><h2 id="h-b" data-i18n="bH"></h2><p data-i18n="bP"></p></section>
+  <section class="txt" aria-labelledby="h-c"><h2 id="h-c" data-i18n="cH"></h2><p data-i18n="cP"></p></section>
+
+  <section aria-labelledby="h-ref">
+    <h2 id="h-ref" data-i18n="refH"></h2>
+    <div class="ab"><h3 class="lab" data-i18n="notesH"></h3><ol class="notes" id="notes"></ol></div>
+    <p class="sub" data-i18n="refNote"></p>
+    <ul class="refs" id="refs"></ul>
+  </section>
+
+  <section class="use" aria-labelledby="h-use">
+    <h2 id="h-use" data-i18n="useH"></h2>
+    <div class="usenotes"><p data-i18n="useSimple"></p><p data-i18n="credDev"></p><p data-i18n="priv"></p></div>
+    <p class="sub rights" data-i18n="rights"></p>
+  </section>
+
+  <a class="family" href="/teredo/"><div><span data-i18n="prevSub"></span><b data-i18n="prevH"></b></div><span aria-hidden="true">→</span></a>
+  <a class="family" href="/"><div><span data-i18n="famSub"></span><b data-i18n="famH"></b></div><span aria-hidden="true">→</span></a>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const NAV={
+ tr:{navH:"Araçlar",navAmp:"Amphora tanıma",navAmpSub:"Underwater Heritage Recognizer · tek fotoğraftan amphora tipi",navRej:"Kırık seramik birleştirme",navRejSub:"Heritage Rejoiner · masadaki parçalardan kapları birleştirir",navCoin:"Sikke tanıma",navCoinSub:"Heritage Coin Recognizer · tek yüzden Roma imparatoru",navTer:"Herkes için Sualtı Mirası",navTerSub:"Heritage Explainer · batıktan geriye ne kalır · koruma nasıl başladı",navHere:"Bu sayfa",navMenu:"Menü"},
+ en:{navH:"Tools",navAmp:"Amphora recognition",navAmpSub:"Underwater Heritage Recognizer · amphora type from a single photo",navRej:"Broken ceramic rejoining",navRejSub:"Heritage Rejoiner · reassembles vessels from the sherds on a table",navCoin:"Coin recognition",navCoinSub:"Heritage Coin Recognizer · Roman emperor from one face",navTer:"Underwater Heritage for Everyone",navTerSub:"Heritage Explainer · what is left of a wreck · how protection began",navHere:"This page",navMenu:"Menu"},
+ es:{navH:"Herramientas",navAmp:"Identificación de ánforas",navAmpSub:"Underwater Heritage Recognizer · tipo de ánfora a partir de una foto",navRej:"Remontaje de cerámica fragmentada",navRejSub:"Heritage Rejoiner · reconstruye piezas a partir de los fragmentos de una mesa",navCoin:"Reconocimiento de monedas",navCoinSub:"Heritage Coin Recognizer · emperador romano a partir de una cara",navTer:"Patrimonio subacuático para todos",navTerSub:"Heritage Explainer · qué queda de un pecio · cómo empezó la protección",navHere:"Esta página",navMenu:"Menú"}};
+const n=k=>`<sup><a href="#n${k}">${k}</a></sup>`;
+const I18N={
+tr:{title:"Herkes için Sualtı Mirası · Koruma nasıl başladı?",
+ h1:"Herkes için Sualtı Mirası",
+ c1:"1 · Batıktan geriye ne kalır?", c2:"2 · Koruma nasıl başladı?", chapL:"Bölümler",
+ lede:"Denizden çıkan eski eser kimindir? Bir devletin bu soruya verdiği, bilinen en eski cevap 1884’te Osmanlı Devleti’nde yazıldı. Hikâyeyi baştan izleyelim.",
+ S:[`19. yüzyıl. Osmanlı denizlerinde pek çok insan geçimini denizin dibinden kazanıyor.${n(1)}`,
+  `Dipte eski eserler de vardır. Onlara ulaşabilenler bulduklarını denetimsizce çıkarır; çıkarılan satılır.${n(1)}`,
+  `Eski eserler için kurallar konmuştur: 1869 ve 1874 tarihli Âsâr-ı Atîka Nizamnameleri. Ama ikisinde de sualtından söz edilmez.${n(2)}`,
+  `1881’de Müze-i Hümayun’un başına Osman Hamdi Bey geçer. Kendisi de kazı yapan bir arkeologdur.${n(3)}`,
+  `1884’te onun hazırladığı yeni nizamname yürürlüğe girer. Üçüncü maddesi açıktır: denizden, gölden, nehirden, çaydan ve dereden çıkarılacak her çeşit eski eser devlete aittir.${n(4)}`,
+  `Makalenin yazarlarına göre bu, bir devletin sualtı kültür mirasını korumak için hazırladığı, dünyada bilinen en eski düzenlemedir. Sordukları ülkelerde benzer kurallar çok sonra gelir.${n(5)}`,
+  `Kural kâğıt üzerinde kalmaz. 1891’de Formako Adası’nda resimli altınlar ortaya çıkar. Bahriye Nezareti’ne yazılan bir yazı, bir dalgıç tutulup adaya gönderilmesini ve buluntuların yerinde incelenmesini ister.${n(6)}`,
+  `1892 tarihli ikinci belge sikkelerin izini sürer: otuz dördü bir çobanda, yetmiş dokuzu birkaç kişidedir. İşin içinde Nüzhet vapurunun süvarisi de vardır; sikkeler Rodos’ta hükümete teslim edilir.${n(6)}`,
+  `Bütün bunlar, dalgıcı yüzeyden bağımsız kılan donanımın bulunmasından en az elli yıl önce olur. Dalgıç bulmak, ulaşımı ve ödeneği ayarlamak, yerinde keşif yapmak, eserleri toplamak: yapılan iş, bugünkü sualtı çalışmasından çok farklı değildir.${n(7)}`,
+  `Bugün aynı düşünce uluslararası metinlerdedir. ICOMOS’un 1996 tarihli tüzüğü sualtı kültür mirasının korunması ve yönetimi için ilkeleri belirler; ilk seçenek, mirası yerinde korumaktır.${n(8)}`],
+ L:{noSea:"sualtı yok",land:"kara",sea:"deniz",mus:"Müze-i Hümayun",art:"3. madde",w:["deniz","göl","nehir","çay","dere"],isl:"Formako Adası",nuz:"Nüzhet vapuru",c34:"34",c79:"79",rod:"Rodos’a",
+   tl:["Osmanlı Devleti","Danimarka","Almanya","Avustralya","Hollanda","Mısır","ABD","Polonya","Lübnan","İtalya"]},
+ aH:"İki belge",
+ aP:`Hikâyenin dayandığı iki yazı Osmanlı Arşivi’ndedir ve makalede görüntüleriyle yayımlanmıştır. İlki 8 Ağustos 1891, ikincisi 23 Mayıs 1892 tarihlidir. Yazarlar bu çalışmayı, devlet eliyle yürütülen sualtı çalışmalarının dünyadaki en erken örneklerinden biri olarak değerlendirir.${n(6)}`,
+ bH:"“Bilinen en eski” ne demek?",
+ bP:`Öteki ülkelerin yılları yayımlanmış bir kaynaktan alınmamıştır; yazarlar bunları UNESCO UniTwin Sualtı Arkeolojisi Ağı’ndaki üniversitelere sorarak derlemiştir. Bu yüzden sonuç “ilk” değil, “bilinen en eski” diye verilir: daha eski bir örnek ortaya çıkarsa sıra değişir.${n(5)}`,
+ cH:"Neden önemli?",
+ cP:`1884’teki cümle bugün de geçerli bir düşünceyi söyler: sualtındaki eski eser onu bulanın malı değildir; kamuya aittir. Birinci bölümde gördüğümüz gibi, bu mirası korumanın yolu çoğu zaman ona dokunmamak ve yerini bildirmektir.${n(8)}`,
+ N:["Öniz ve Sütçüoğlu (2016, s. 242–244).","Öniz ve Sütçüoğlu (2016, s. 242–244).","Öniz ve Sütçüoğlu (2016, s. 243).","Öniz ve Sütçüoğlu (2016, s. 243–244).","Öniz ve Sütçüoğlu (2016, s. 243).","Öniz ve Sütçüoğlu (2016, s. 244–245).","Öniz ve Sütçüoğlu (2016, s. 242, 244–245).","Underwood (2024, s. 22); International Council on Monuments and Sites [ICOMOS] (1996)."],
+ refH:"Kaynaklar", notesH:"Notlar", refNote:"Kaynakça APA 7. baskı biçimindedir.",
+ useH:"Kullanım",
+ useSimple:"Bu sayfa konuyu herkesin anlayabileceği biçimde anlatmak için hazırlanmıştır; çizimler ve canlandırma şematiktir, ölçekli değildir. Dalgıç, tekne ve vapur çizimleri dönemin gerçek donanımını göstermez.",
+ credDev:"Hakan Öniz’in danışmanlığında Muhammed Parlak tarafından hazırlanmıştır (2026).",
+ priv:"Sayfa ziyaretleri, çerez kullanılmadan ve kişisel veri toplanmadan anonim olarak sayılır.",
+ rights:"© 2026 Muhammed Parlak. Tüm hakları saklıdır. Sayfa akademik, eğitsel ve kişisel amaçlarla ücretsiz kullanılabilir; kopyalanması, değiştirilmesi ya da yeniden dağıtılması yazılı izne bağlıdır.",
+ prevSub:"Önceki bölüm", prevH:"Batıktan geriye ne kalır?",
+ famSub:"RecOniz ailesi", famH:"Amphora tanıma: Underwater Heritage Recognizer"},
+en:{title:"Underwater Heritage for Everyone · How did protection begin?",
+ h1:"Underwater Heritage for Everyone",
+ c1:"1 · What is left of a wreck?", c2:"2 · How did protection begin?", chapL:"Chapters",
+ lede:"To whom does an antiquity taken from the sea belong? The oldest known answer given by a state was written in the Ottoman Empire in 1884. Let us follow the story from the beginning.",
+ S:[`The 19th century. In Ottoman waters, many people earn their living from the bottom of the sea.${n(1)}`,
+  `There are antiquities on the seabed too. Those who can reach them bring up what they find, unchecked; what is brought up is sold.${n(1)}`,
+  `Rules for antiquities already exist: the Antiquities Regulations (Âsâr-ı Atîka Nizamnamesi) of 1869 and 1874. But neither mentions what lies under water.${n(2)}`,
+  `In 1881 Osman Hamdi Bey becomes director of the Imperial Museum (Müze-i Hümayun). He is himself an excavating archaeologist.${n(3)}`,
+  `In 1884 the new regulation he prepared comes into force. Its third article is clear: every kind of antiquity brought out of the sea, lakes, rivers, streams and brooks belongs to the state.${n(4)}`,
+  `According to the authors of the article, this is the oldest known regulation in the world prepared by a state to protect underwater cultural heritage. In the countries they asked, comparable rules came much later.${n(5)}`,
+  `The rule does not stay on paper. In 1891 gold pieces bearing images come to light on Formako Island. A letter to the Ministry of the Navy asks that a diver be hired and sent to the island, and that the finds be examined on the spot.${n(6)}`,
+  `A second document, of 1892, traces the coins: thirty-four are with a shepherd, seventy-nine with several other people. The commander of the steamer Nüzhet is involved as well; the coins are handed over to the government in Rhodes.${n(6)}`,
+  `All this happens at least fifty years before the invention of equipment that made the diver independent of the surface. Finding a diver, arranging transport and funds, surveying on the spot, collecting the finds: the work is not very different from underwater work today.${n(7)}`,
+  `Today the same idea is found in international texts. The ICOMOS Charter of 1996 sets out principles for the protection and management of underwater cultural heritage; the first option is to preserve the heritage in place.${n(8)}`],
+ L:{noSea:"nothing under water",land:"land",sea:"sea",mus:"Müze-i Hümayun",art:"Article 3",w:["sea","lake","river","stream","brook"],isl:"Formako Island",nuz:"steamer Nüzhet",c34:"34",c79:"79",rod:"to Rhodes",
+   tl:["Ottoman Empire","Denmark","Germany","Australia","Netherlands","Egypt","USA","Poland","Lebanon","Italy"]},
+ aH:"Two documents",
+ aP:`The two letters on which the story rests are kept in the Ottoman Archives and are reproduced in the article. The first is dated 8 August 1891, the second 23 May 1892. The authors regard this work as one of the earliest examples in the world of underwater work carried out by a state.${n(6)}`,
+ bH:"What does “oldest known” mean?",
+ bP:`The years for the other countries were not taken from a published source; the authors compiled them by asking universities in the UNESCO UniTwin Network for Underwater Archaeology. That is why the result is given as “the oldest known”, not “the first”: if an older example comes to light, the order changes.${n(5)}`,
+ cH:"Why does it matter?",
+ cP:`The sentence of 1884 states an idea that still holds: an antiquity under water does not belong to whoever finds it; it belongs to the public. As Chapter 1 showed, the way to protect that heritage is, most of the time, not to touch it and to report where it is.${n(8)}`,
+ N:["Öniz and Sütçüoğlu (2016, pp. 242–244).","Öniz and Sütçüoğlu (2016, pp. 242–244).","Öniz and Sütçüoğlu (2016, p. 243).","Öniz and Sütçüoğlu (2016, pp. 243–244).","Öniz and Sütçüoğlu (2016, p. 243).","Öniz and Sütçüoğlu (2016, pp. 244–245).","Öniz and Sütçüoğlu (2016, pp. 242, 244–245).","Underwood (2024, p. 22); International Council on Monuments and Sites [ICOMOS] (1996)."],
+ refH:"References", notesH:"Notes", refNote:"The reference list follows APA 7th edition.",
+ useH:"Use",
+ useSimple:"This page was prepared to explain the subject in a way everyone can follow; the drawings and the animation are schematic and not to scale. The drawings of the diver, the boat and the steamer do not show the actual equipment of the period.",
+ credDev:"Prepared by Muhammed Parlak under the supervision of Hakan Öniz (2026).",
+ priv:"Page visits are counted anonymously, without cookies and without collecting personal data.",
+ rights:"© 2026 Muhammed Parlak. All rights reserved. The page may be used free of charge for academic, educational and personal purposes; copying, modification or redistribution requires written permission.",
+ prevSub:"Previous chapter", prevH:"What is left of a wreck?",
+ famSub:"The RecOniz family", famH:"Amphora recognition: Underwater Heritage Recognizer"},
+es:{title:"Patrimonio subacuático para todos · ¿Cómo empezó la protección?",
+ h1:"Patrimonio subacuático para todos",
+ c1:"1 · ¿Qué queda de un pecio?", c2:"2 · ¿Cómo empezó la protección?", chapL:"Capítulos",
+ lede:"¿A quién pertenece una antigüedad extraída del mar? La respuesta más antigua que se conoce dada por un Estado se escribió en el Imperio otomano en 1884. Sigamos la historia desde el principio.",
+ S:[`Siglo XIX. En los mares otomanos, mucha gente se gana la vida en el fondo del mar.${n(1)}`,
+  `En el fondo hay también antigüedades. Quienes pueden alcanzarlas extraen lo que encuentran, sin control; lo extraído se vende.${n(1)}`,
+  `Ya existen normas para las antigüedades: los Reglamentos de Antigüedades (Âsâr-ı Atîka Nizamnamesi) de 1869 y 1874. Pero ninguno menciona lo que está bajo el agua.${n(2)}`,
+  `En 1881 Osman Hamdi Bey pasa a dirigir el Museo Imperial (Müze-i Hümayun). Él mismo es un arqueólogo que excava.${n(3)}`,
+  `En 1884 entra en vigor el nuevo reglamento que él preparó. Su artículo tercero es claro: toda clase de antigüedad extraída del mar, de los lagos, de los ríos, de los arroyos y de los riachuelos pertenece al Estado.${n(4)}`,
+  `Según los autores del artículo, es la norma más antigua que se conoce en el mundo preparada por un Estado para proteger el patrimonio cultural subacuático. En los países que consultaron, las normas comparables llegaron mucho después.${n(5)}`,
+  `La norma no se queda en el papel. En 1891 aparecen en la isla de Formako unas piezas de oro con imágenes. Un escrito al Ministerio de Marina pide que se contrate a un buzo, que se le envíe a la isla y que los hallazgos se examinen en el lugar.${n(6)}`,
+  `Un segundo documento, de 1892, sigue el rastro de las monedas: treinta y cuatro están en manos de un pastor y setenta y nueve en las de varias personas. Interviene también el comandante del vapor Nüzhet; las monedas se entregan al gobierno en Rodas.${n(6)}`,
+  `Todo esto ocurre al menos cincuenta años antes de que se inventara el equipo que independizó al buzo de la superficie. Encontrar un buzo, organizar el transporte y los fondos, reconocer el lugar, recoger los hallazgos: el trabajo no es muy distinto del trabajo subacuático actual.${n(7)}`,
+  `Hoy la misma idea está en los textos internacionales. La Carta del ICOMOS de 1996 establece principios para la protección y la gestión del patrimonio cultural subacuático; la primera opción es conservar el patrimonio en su lugar.${n(8)}`],
+ L:{noSea:"nada bajo el agua",land:"tierra",sea:"mar",mus:"Müze-i Hümayun",art:"Artículo 3",w:["mar","lago","río","arroyo","riachuelo"],isl:"isla de Formako",nuz:"vapor Nüzhet",c34:"34",c79:"79",rod:"a Rodas",
+   tl:["Imperio otomano","Dinamarca","Alemania","Australia","Países Bajos","Egipto","EE. UU.","Polonia","Líbano","Italia"]},
+ aH:"Dos documentos",
+ aP:`Los dos escritos en que se apoya la historia se conservan en el Archivo Otomano y están reproducidos en el artículo. El primero está fechado el 8 de agosto de 1891 y el segundo el 23 de mayo de 1892. Los autores consideran este trabajo uno de los ejemplos más tempranos del mundo de trabajo subacuático realizado por un Estado.${n(6)}`,
+ bH:"¿Qué significa «la más antigua que se conoce»?",
+ bP:`Los años de los demás países no proceden de una fuente publicada; los autores los reunieron consultando a universidades de la Red UNESCO UniTwin de Arqueología Subacuática. Por eso el resultado se da como «la más antigua que se conoce» y no como «la primera»: si aparece un ejemplo más antiguo, el orden cambia.${n(5)}`,
+ cH:"¿Por qué importa?",
+ cP:`La frase de 1884 expresa una idea que sigue vigente: una antigüedad bajo el agua no pertenece a quien la encuentra; pertenece al conjunto de la sociedad. Como se vio en el capítulo 1, la manera de proteger ese patrimonio es, la mayoría de las veces, no tocarlo y comunicar dónde está.${n(8)}`,
+ N:["Öniz y Sütçüoğlu (2016, pp. 242–244).","Öniz y Sütçüoğlu (2016, pp. 242–244).","Öniz y Sütçüoğlu (2016, p. 243).","Öniz y Sütçüoğlu (2016, pp. 243–244).","Öniz y Sütçüoğlu (2016, p. 243).","Öniz y Sütçüoğlu (2016, pp. 244–245).","Öniz y Sütçüoğlu (2016, pp. 242, 244–245).","Underwood (2024, p. 22); International Council on Monuments and Sites [ICOMOS] (1996)."],
+ refH:"Referencias", notesH:"Notas", refNote:"La lista de referencias sigue la 7.ª edición de APA.",
+ useH:"Uso",
+ useSimple:"Esta página se ha preparado para explicar el tema de forma que todos puedan seguirlo; los dibujos y la animación son esquemáticos y no están a escala. Los dibujos del buzo, la barca y el vapor no muestran el equipo real de la época.",
+ credDev:"Preparada por Muhammed Parlak bajo la supervisión de Hakan Öniz (2026).",
+ priv:"Las visitas a la página se cuentan de forma anónima, sin cookies y sin recopilar datos personales.",
+ rights:"© 2026 Muhammed Parlak. Todos los derechos reservados. La página puede utilizarse gratuitamente con fines académicos, educativos y personales; su copia, modificación o redistribución requiere autorización por escrito.",
+ prevSub:"Capítulo anterior", prevH:"¿Qué queda de un pecio?",
+ famSub:"La familia RecOniz", famH:"Identificación de ánforas: Underwater Heritage Recognizer"}};
+const REFLIST=[
+ `International Council on Monuments and Sites. (1996). <i>Charter on the protection and management of underwater cultural heritage</i>. <a href="https://icuch.icomos.org/resources/charters-and-conventions/" target="_blank" rel="noopener">https://icuch.icomos.org/resources/charters-and-conventions/</a>`,
+ `Öniz, H., &amp; Sütçüoğlu, O. (2016). Sualtı kültür mirası, Osmanlı İmparatorluğu ve Osman Hamdi Bey. <i>Arkeoloji ve Sanat</i>, <i>153</i>, 241–248. <a href="https://www.academia.edu/31171383" target="_blank" rel="noopener">https://www.academia.edu/31171383</a>`,
+ `Underwood, C. (2024). ICOMOS and underwater cultural heritage. In H. Öniz, E. Khalil, &amp; G. Vivar (Eds.), <i>Protection of underwater cultural heritage</i> (pp. 22–24). World Underwater Federation (CMAS). <a href="https://www.cmas.org/images/cmas_articles/237/PROTECTION-OF-UNDERWATER-CULTURAL-HERITAGE.pdf" target="_blank" rel="noopener">https://www.cmas.org/images/cmas_articles/237/PROTECTION-OF-UNDERWATER-CULTURAL-HERITAGE.pdf</a>`];
+const refLoc=r=>LANG==="tr"?r.replace("In H. Öniz, E. Khalil, &amp; G. Vivar (Eds.), <i>Protection of underwater cultural heritage</i> (pp. 22–24).","H. Öniz, E. Khalil ve G. Vivar (Ed.), <i>Protection of underwater cultural heritage</i> içinde (s. 22–24).").replace(", &amp; "," ve "):LANG==="es"?r.replace("In H. Öniz","En H. Öniz").replace(/, &amp; /g," y "):r;
+
+const NL=(navigator.language||"tr").toLowerCase(); let LANG=NL.startsWith("tr")?"tr":NL.startsWith("es")?"es":"en";
+try{ const s=localStorage.getItem("amfora-lang"); if(s==="tr"||s==="en"||s==="es") LANG=s; }catch(_){}
+const T=k=>(I18N[LANG][k]!==undefined?I18N[LANG][k]:(NAV[LANG][k]!==undefined?NAV[LANG][k]:k));
+const REDUCE=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+const NS="http://www.w3.org/2000/svg";
+const el=(p,nm,a)=>{ const e=document.createElementNS(NS,nm); for(const k in a) e.setAttribute(k,a[k]); p.append(e); return e; };
+const rng=s=>()=>{ s=(s*1664525+1013904223)>>>0; return s/4294967296; };
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2, seg=(t,a,b)=>clamp((t-a)/(b-a),0,1), lerp=(a,b,k)=>a+(b-a)*k;
+const FF="Instrument Sans,system-ui,sans-serif";
+const YEARS=[1884,1963,1970,1976,1985,1986,1988,1996,2006,2009];
+
+/* ================= sahne ================= */
+const SC={}; const SURF=128, BED=372;
+(function build(){ const s=$("#scene"), r=rng(5);
+  const d=el(s,"defs",{}); const g=el(d,"linearGradient",{id:"wG",x1:0,y1:0,x2:0,y2:1}); el(g,"stop",{offset:0,style:"stop-color:var(--water-a)"}); el(g,"stop",{offset:1,style:"stop-color:var(--water-b)"});
+  el(el(d,"clipPath",{id:"fr"}),"rect",{x:0,y:0,width:720,height:440});
+  const root=el(s,"g",{"clip-path":"url(#fr)"});
+  const txt=(p,x,y,size,anchor,weight)=>el(p,"text",{x,y,"text-anchor":anchor||"middle","font-family":FF,"font-size":size,"font-weight":weight||600,style:"fill:var(--ink)"});
+  const halo=t=>{ t.setAttribute("style","fill:var(--ink);stroke:var(--bg);paint-order:stroke"); t.setAttribute("stroke-width",5); t.setAttribute("stroke-linejoin","round"); return t; };
+  const lab=(p,x,y,x2,y2,anchor,tx)=>{ const gg=el(p,"g",{opacity:0}); el(gg,"path",{d:`M${x} ${y} L${x2} ${y2}`,fill:"none",style:"stroke:var(--ink)","stroke-width":1.4}); gg.t=halo(txt(gg,tx==null?x:tx,y+(y<y2?-9:26),25,anchor)); return gg; };
+  /* --- 1. görünüm: deniz --- */
+  const v1=SC.v1=el(root,"g",{});
+  el(v1,"rect",{x:0,y:0,width:720,height:SURF,style:"fill:var(--sky)"});
+  SC.isl=el(v1,"path",{d:`M452 ${SURF} Q500 100 560 92 Q628 80 684 100 L720 106 V${SURF}Z`,style:"fill:var(--sand-d);stroke:var(--wood-d)","stroke-width":1.5});
+  el(v1,"rect",{x:0,y:SURF,width:720,height:440-SURF,fill:"url(#wG)"});
+  el(v1,"path",{d:`M456 ${SURF} Q500 300 396 ${BED} H720 V${SURF}Z`,style:"fill:var(--sand-d)",opacity:.42});
+  SC.wave=el(v1,"path",{fill:"none",style:"stroke:var(--tube)","stroke-width":2.5,opacity:.85});
+  el(v1,"path",{d:`M0 ${BED} Q180 ${BED-8} 360 ${BED} T720 ${BED-2} V440 H0Z`,style:"fill:var(--sand)"});
+  const pot="M-3 -13 h6 v3 q0 3 4 6 q3 4 1 10 q-2 6 -5 9 l-1 3 h-4 l-1 -3 q-3 -3 -5 -9 q-2 -6 1 -10 q4 -3 4 -6 Z";
+  const mkPot=(x,y,rot)=>{ const gg=el(v1,"g",{transform:`translate(${x} ${y}) rotate(${rot}) scale(1.9)`}); el(gg,"path",{d:pot,style:"fill:var(--pot);stroke:var(--cavity)","stroke-width":.6}); return gg; };
+  mkPot(288,BED-12,-22); SC.lift=mkPot(334,BED-15,14); mkPot(374,BED-5,-74);
+  el(v1,"path",{d:`M250 ${BED+3} Q320 ${BED-9} 400 ${BED+3} V${BED+16} H250Z`,style:"fill:var(--sand)"});
+  // tekne
+  SC.boat=el(v1,"g",{}); el(SC.boat,"path",{d:"M-56 -8 Q-44 16 0 16 Q44 16 56 -8 Z",style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2});
+  el(SC.boat,"path",{d:"M-12 -8 V-24",fill:"none",style:"stroke:var(--ink)","stroke-width":7,"stroke-linecap":"round"}); el(SC.boat,"circle",{cx:-12,cy:-34,r:6.5,style:"fill:var(--ink)"});
+  // vapur
+  SC.stm=el(v1,"g",{}); el(SC.stm,"path",{d:"M-104 -10 L-88 16 H84 L108 -10 Z",style:"fill:var(--cavity)"}); el(SC.stm,"rect",{x:-52,y:-30,width:88,height:20,rx:2,style:"fill:var(--sail);stroke:var(--wood-d)","stroke-width":1.4});
+  el(SC.stm,"rect",{x:-18,y:-62,width:18,height:32,style:"fill:var(--pot2);stroke:var(--cavity)","stroke-width":1.2}); el(SC.stm,"path",{d:"M60 -10 V-58",fill:"none",style:"stroke:var(--wood-d)","stroke-width":3});
+  SC.smoke=[]; for(let i=0;i<5;i++) SC.smoke.push(el(SC.stm,"circle",{r:6+i*2.2,style:"fill:var(--tube-l)",opacity:.6}));
+  SC.cargo=el(SC.stm,"g",{opacity:0}); for(let i=0;i<7;i++) el(SC.cargo,"circle",{cx:56+i*5-(i>3?18:0),cy:-14-(i>3?5:0),r:3.4,style:"fill:var(--gold);stroke:var(--cavity)","stroke-width":.8});
+  // halat ve dalgıçlar
+  SC.rope=el(v1,"path",{fill:"none",style:"stroke:var(--ink)","stroke-width":1.5,opacity:.7});
+  const diver=(modern)=>{ const gg=el(v1,"g",{}), k=el(gg,"g",{style:"stroke:var(--ink)","stroke-linecap":"round",fill:"none"});
+    el(k,"path",{d:"M10 0 L-14 3","stroke-width":10}); el(k,"path",{d:"M-14 3 L-36 9 M-14 3 L-34 -2","stroke-width":5.5}); el(k,"path",{d:"M8 3 L22 12","stroke-width":4.5}); el(gg,"circle",{cx:18,cy:-2,r:7.5,style:"fill:var(--ink)"});
+    if(modern){ el(gg,"rect",{x:-12,y:-12,width:22,height:7,rx:3.5,style:"fill:var(--pot2);stroke:var(--cavity)","stroke-width":.8}); el(gg,"path",{d:"M-36 9 l-12 6 l2 -10Z M-34 -2 l-13 -3 l4 9Z",style:"fill:var(--ink)"}); el(gg,"rect",{x:22,y:8,width:11,height:8,rx:2,style:"fill:var(--tube);stroke:var(--cavity)","stroke-width":.8}); }
+    return gg; };
+  SC.div=diver(false); SC.mod=diver(true); SC.bub=[]; for(let i=0;i<5;i++) SC.bub.push(el(v1,"circle",{r:2+i*.6,fill:"none",style:"stroke:var(--tube)","stroke-width":1.3}));
+  SC.flash=el(v1,"circle",{r:26,style:"fill:var(--tube)",opacity:0});
+  // adadaki sikkeler
+  const pile=(x,y,nn)=>{ const gg=el(v1,"g",{opacity:0}); for(let i=0;i<nn;i++) el(gg,"circle",{cx:(i%4)*7-10+(Math.floor(i/4)%2)*3,cy:-Math.floor(i/4)*5,r:3.6,style:"fill:var(--gold);stroke:var(--cavity)","stroke-width":.8}); gg.x=x; gg.y=y; return gg; };
+  SC.pA=pile(560,88,8); SC.pB=pile(650,88,14);
+  SC.lA=halo(txt(v1,560,62,25)); SC.lB=halo(txt(v1,650,56,25)); SC.lIsl=lab(v1,600,190,590,112); SC.lNuz=lab(v1,150,206,150,150); SC.lRod=halo(txt(v1,24,200,25,"start"));
+  /* --- 2. görünüm: belgeler --- */
+  const v2=SC.v2=el(root,"g",{opacity:0}); el(v2,"rect",{x:0,y:0,width:720,height:440,style:"fill:var(--sky)"});
+  const sheet=(x,y,w,h,year,big)=>{ const gg=el(v2,"g",{}); el(gg,"rect",{x,y,width:w,height:h,rx:8,style:"fill:var(--paper);stroke:var(--tube-l)","stroke-width":1.6});
+    txt(gg,x+w/2,y+(big?50:44),big?40:32,"middle",700).textContent=year; const r2=rng(year);
+    const rows=big?2:5; for(let i=0;i<rows;i++) el(gg,"line",{x1:x+18,y1:y+68+i*15+(big?4:0),x2:x+w-18-r2()*30,y2:y+68+i*15+(big?4:0),style:"stroke:var(--tube-l)","stroke-width":4,"stroke-linecap":"round"});
+    return gg; };
+  const chip=(p,x,y,w,kind,on)=>{ const gg=el(p,"g",{}); el(gg,"rect",{x,y,width:w,height:34,rx:17,style:on?"fill:var(--sea)":"fill:none;stroke:var(--faint)","stroke-width":1.6,"stroke-dasharray":on?"":"5 4"});
+    const c=on?"var(--on-sea)":"var(--faint)";
+    if(kind==="land"){ el(gg,"path",{d:`M${x+15} ${y+26} h14 M${x+18} ${y+26} v-14 M${x+26} ${y+26} v-14 M${x+14} ${y+10} h16`,fill:"none",style:`stroke:${c}`,"stroke-width":2.4,"stroke-linecap":"round"}); }
+    else { el(gg,"path",{d:`M${x+12} ${y+19} q5 -8 10 0 t10 0`,fill:"none",style:`stroke:${c}`,"stroke-width":2.4,"stroke-linecap":"round"}); }
+    gg.t=el(gg,"text",{x:x+40,y:y+24,"font-family":FF,"font-size":20,"font-weight":600,style:`fill:${c}`}); return gg; };
+  SC.s1=sheet(34,96,170,230,1869); SC.s2=sheet(222,96,170,230,1874);
+  SC.ch=[chip(SC.s1,48,238,142,"land",true),chip(SC.s1,48,278,142,"sea",false),chip(SC.s2,236,238,142,"land",true),chip(SC.s2,236,278,142,"sea",false)];
+  SC.lNo=halo(txt(v2,213,372,25)); SC.lNo.setAttribute("opacity",0);
+  SC.mus=el(v2,"g",{opacity:0}); el(SC.mus,"rect",{x:430,y:130,width:256,height:170,rx:14,style:"fill:var(--raised);stroke:var(--line)","stroke-width":1.6});
+  el(SC.mus,"path",{d:"M540 252 h36 M546 252 v-52 M570 252 v-52 M536 196 h44 M542 190 h32",fill:"none",style:"stroke:var(--clay)","stroke-width":5,"stroke-linecap":"round"});
+  SC.musY=txt(SC.mus,558,170,32,"middle",700); SC.musY.textContent="1881"; SC.musT=txt(SC.mus,558,286,23);
+  SC.s3=sheet(418,62,280,296,1884,true); SC.s3.setAttribute("opacity",0);
+  SC.art=el(SC.s3,"text",{x:558,y:182,"text-anchor":"middle","font-family":FF,"font-size":23,"font-weight":600,style:"fill:var(--muted)"});
+  SC.words=[]; const wp=[[440,206],[572,206],[440,250],[572,250],[506,294]]; for(let i=0;i<5;i++){ const c=chip(SC.s3,wp[i][0],wp[i][1],122,"sea",true); c.setAttribute("opacity",0); c.t.setAttribute("font-size",21); SC.words.push(c); }
+  /* --- 3. görünüm: zaman çizgisi --- */
+  const v3=SC.v3=el(root,"g",{opacity:0}); el(v3,"rect",{x:0,y:0,width:720,height:440,style:"fill:var(--sky)"});
+  const X=y=>250+(y-1880)*2.9; el(v3,"line",{x1:X(1884),y1:36,x2:X(1884),y2:420,style:"stroke:var(--sea)","stroke-width":1.6,"stroke-dasharray":"5 5",opacity:.6});
+  SC.rows=YEARS.map((y,i)=>{ const yy=56+i*38.5, gg=el(v3,"g",{opacity:0}), first=i===0;
+    if(!first) el(gg,"line",{x1:X(1884),y1:yy,x2:X(y),y2:yy,style:"stroke:var(--line)","stroke-width":5,"stroke-linecap":"round"});
+    el(gg,"circle",{cx:X(y),cy:yy,r:first?9:6.5,style:first?"fill:var(--sea)":"fill:var(--bg);stroke:var(--ink)","stroke-width":2});
+    gg.t=txt(gg,236,yy+7,first?22:21,"end",first?700:500); const t2=txt(gg,X(y)+(first?16:14),yy+7,first?22:20,"start",first?700:600); t2.textContent=y; if(first){ gg.t.setAttribute("style","fill:var(--sea)"); t2.setAttribute("style","fill:var(--sea)"); }
+    return gg; });
+})();
+
+let P=0, IDLE=0;
+function draw(p){ P=p;
+  const amp=3; let wv="M0 "+SURF; for(let x=40;x<=720;x+=40) wv+=` Q${x-20} ${(SURF+Math.sin(x*0.05+IDLE*1.6)*amp).toFixed(1)} ${x} ${SURF}`; SC.wave.setAttribute("d",wv);
+  const bob=Math.sin(IDLE*1.3)*2.5;
+  /* tekne: 0–1 solda, 6–8 adanın önünde, 9’da yok */
+  const late=seg(p,5.5,6), bx=lerp(190,372,late), boatO=1-seg(p,8.75,9.05);
+  SC.boat.setAttribute("transform",`translate(${bx.toFixed(1)} ${(SURF+bob).toFixed(1)}) rotate(${(Math.sin(IDLE*0.9)*1.6).toFixed(2)})`); SC.boat.setAttribute("opacity",boatO);
+  /* dönem dalgıcı */
+  let dx,dy,rot;
+  if(p<2){ const dn=ease(seg(p,0.12,0.85)), up=ease(seg(p,1.2,1.85)); dx=lerp(lerp(214,318,dn),222,up); dy=lerp(lerp(150,BED-34,dn),158,up); rot=lerp(lerp(70,18,seg(p,0.7,0.95)),-64,seg(p,1.15,1.35)); }
+  else { const dn=ease(seg(p,6.2,6.9)); dx=lerp(396,432,dn); dy=lerp(150,BED-30,dn)+(p>=8?Math.sin(IDLE*1.1)*4:0); rot=lerp(70,14,seg(p,6.75,6.95)); }
+  SC.div.setAttribute("transform",`translate(${dx.toFixed(1)} ${dy.toFixed(1)}) rotate(${rot.toFixed(1)})`); SC.div.setAttribute("opacity",boatO);
+  SC.rope.setAttribute("d",`M${(bx+22).toFixed(1)} ${(SURF+4+bob).toFixed(1)} Q${((bx+22+dx)/2+16).toFixed(1)} ${((SURF+dy)/2).toFixed(1)} ${(dx-10).toFixed(1)} ${(dy-2).toFixed(1)}`); SC.rope.setAttribute("opacity",0.7*boatO);
+  /* 1. adım: amphora yukarı */
+  { const up=ease(seg(p,1.2,1.85)), gone=seg(p,1.85,1.97)*(1-seg(p,8.7,8.72)); const back=p>=8.7;
+    const lx=back?334:lerp(334,236,up), ly=back?BED-15:lerp(BED-15,150,up), lr=back?14:lerp(14,-30,up);
+    SC.lift.setAttribute("transform",`translate(${lx.toFixed(1)} ${ly.toFixed(1)}) rotate(${lr.toFixed(1)}) scale(1.9)`); SC.lift.setAttribute("opacity",back?1:1-gone); }
+  /* ada, vapur, sikkeler */
+  SC.lIsl.setAttribute("opacity",seg(p,6.05,6.3)*(1-seg(p,6.95,7.1)));
+  const sIn=ease(seg(p,7.05,7.5)), sOut=ease(seg(p,7.9,8.6)), sx=lerp(lerp(-140,150,sIn),-160,sOut);
+  SC.stm.setAttribute("transform",`translate(${sx.toFixed(1)} ${(SURF+bob*0.6).toFixed(1)})`);
+  SC.smoke.forEach((c,i)=>{ const t=((IDLE*0.5+i/5)%1); c.setAttribute("cx",(-9-t*46).toFixed(1)); c.setAttribute("cy",(-70-t*44).toFixed(1)); c.setAttribute("opacity",(0.55*(1-t)).toFixed(2)); });
+  SC.lNuz.setAttribute("opacity",seg(p,7.4,7.6)*(1-seg(p,7.88,7.98)));
+  const cin=seg(p,7.1,7.3), mv=ease(seg(p,7.55,7.85)), cOut=1-seg(p,7.85,7.9);
+  for(const [g,k] of [[SC.pA,0],[SC.pB,1]]){ g.setAttribute("opacity",cin*cOut); g.setAttribute("transform",`translate(${lerp(g.x,206+k*8,mv).toFixed(1)} ${(lerp(g.y,SURF-16,mv)-Math.sin(mv*Math.PI)*46).toFixed(1)})`); }
+  SC.lA.setAttribute("opacity",seg(p,7.15,7.35)*(1-seg(p,7.5,7.6))); SC.lB.setAttribute("opacity",seg(p,7.25,7.45)*(1-seg(p,7.5,7.6)));
+  SC.cargo.setAttribute("opacity",seg(p,7.82,7.9)); SC.lRod.setAttribute("opacity",seg(p,7.92,8.05)*(1-seg(p,8.4,8.6)));
+  /* 9. adım: bugünün dalgıcı */
+  const mo=seg(p,9,9.25), mx=lerp(120,318,ease(seg(p,9,9.7))), my=BED-78+Math.sin(IDLE*1.2)*4;
+  SC.mod.setAttribute("opacity",mo); SC.mod.setAttribute("transform",`translate(${mx.toFixed(1)} ${my.toFixed(1)}) rotate(14)`);
+  SC.bub.forEach((c,i)=>{ const t=((IDLE*0.45+i/5)%1); c.setAttribute("cx",(mx+20+Math.sin(t*9+i)*5).toFixed(1)); c.setAttribute("cy",(my-10-t*150).toFixed(1)); c.setAttribute("opacity",(mo*(1-t)).toFixed(2)); });
+  { const f=seg(p,9.72,9.8)*(1-seg(p,9.8,9.95)); SC.flash.setAttribute("cx",mx+34); SC.flash.setAttribute("cy",my+16); SC.flash.setAttribute("opacity",0.8*f); }
+  /* belgeler */
+  const v2=seg(p,1.95,2.2)*(1-seg(p,4.95,5.15)); SC.v2.setAttribute("opacity",v2); SC.v2.style.display=v2>0?"":"none";
+  const dim=1-0.6*seg(p,3,3.3);
+  SC.s1.setAttribute("opacity",seg(p,2.05,2.3)*dim); SC.s2.setAttribute("opacity",seg(p,2.3,2.55)*dim); SC.lNo.setAttribute("opacity",seg(p,2.6,2.85)*(1-seg(p,2.98,3.1)));
+  SC.mus.setAttribute("opacity",seg(p,3.05,3.4)*(1-seg(p,4,4.25)));
+  const s3=ease(seg(p,4.05,4.4)); SC.s3.setAttribute("opacity",s3); SC.s3.setAttribute("transform",`translate(0 ${(40*(1-s3)).toFixed(1)})`);
+  SC.words.forEach((c,i)=>c.setAttribute("opacity",seg(p,4.42+i*0.08,4.52+i*0.08)));
+  /* zaman çizgisi */
+  const v3=seg(p,4.95,5.2)*(1-seg(p,5.9,6.05)); SC.v3.setAttribute("opacity",v3); SC.v3.style.display=v3>0?"":"none";
+  SC.rows.forEach((g,i)=>g.setAttribute("opacity",i===0?1:seg(p,5.22+i*0.055,5.3+i*0.055)));
+}
+/* kaydırmayla ilerleme */
+let stepEls=[], curStep=-1;
+function progress(){ const sb=$("#stick").getBoundingClientRect().bottom, vh=window.innerHeight, trig=sb+(vh-sb)*0.42; let i=-1;
+  for(let k=0;k<stepEls.length;k++){ if(stepEls[k].getBoundingClientRect().top<=trig) i=k; else break; }
+  if(i<0) return {p:0,i:0}; const r=stepEls[i].getBoundingClientRect(); return {p:i+clamp((trig-r.top)/Math.max(1,r.height),0,0.999),i}; }
+function onScroll(){ document.documentElement.style.setProperty('--stb',Math.round($("#stick").getBoundingClientRect().height+8)+'px'); const {p,i}=progress(); if(i!==curStep){ curStep=i; stepEls.forEach((e,k)=>{ e.classList.toggle("on",k===i); e.classList.toggle("near",k===i+1); }); [...$("#dots").children].forEach((d,k)=>d.classList.toggle("on",k===i)); } draw(p); }
+let ticking=false; addEventListener("scroll",()=>{ if(!ticking){ ticking=true; requestAnimationFrame(()=>{ ticking=false; onScroll(); }); } },{passive:true}); addEventListener("resize",onScroll);
+if(!REDUCE){ let vis=true; if("IntersectionObserver" in window) new IntersectionObserver(es=>{ vis=es[0].isIntersecting; }).observe($("#story")); const t0=performance.now(); const loop=now=>{ if(vis&&!document.hidden){ IDLE=(now-t0)/1000; draw(P); } requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+
+function applyLang(){ document.documentElement.lang=LANG; document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=T(e.dataset.i18n)); document.querySelectorAll("[data-i18n-aria]").forEach(e=>e.setAttribute("aria-label",T(e.dataset.i18nAria))); document.title="RecOniz · "+T("title");
+  [...$("#lang").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===LANG));
+  const S=T("S"), st=$("#steps"); if(!stepEls.length){ S.forEach(()=>{ const d=document.createElement("div"); d.className="step"; d.append(document.createElement("p")); st.append(d); stepEls.push(d); $("#dots").append(document.createElement("i")); }); }
+  stepEls.forEach((e,k)=>e.firstChild.innerHTML=S[k]);
+  const L=T("L"); SC.ch[0].t.textContent=L.land; SC.ch[2].t.textContent=L.land; SC.ch[1].t.textContent=L.sea; SC.ch[3].t.textContent=L.sea; SC.lNo.textContent=L.noSea; SC.musT.textContent=L.mus; SC.art.textContent=L.art;
+  SC.words.forEach((c,i)=>c.t.textContent=L.w[i]); SC.lIsl.t.textContent=L.isl; SC.lNuz.t.textContent=L.nuz; SC.lA.textContent=L.c34; SC.lB.textContent=L.c79; SC.lRod.textContent="← "+L.rod; SC.rows.forEach((g,i)=>g.t.textContent=L.tl[i]);
+  $("#notes").innerHTML=T("N").map((x,k)=>`<li id="n${k+1}">${x}</li>`).join("");
+  $("#refs").innerHTML=REFLIST.map(r=>`<li>${refLoc(r)}</li>`).join("");
+  curStep=-1; onScroll(); }
+$("#lang").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; LANG=b.dataset.v; try{ localStorage.setItem("amfora-lang",LANG); }catch(_){} applyLang(); });
+const isDark=()=>{ const t=document.documentElement.dataset.theme; return t? t==="dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+try{ const t=localStorage.getItem("amfora-theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch(_){}
+$("#themeBtn").addEventListener("click",()=>{ const t=isDark()?"light":"dark"; document.documentElement.dataset.theme=t; try{ localStorage.setItem("amfora-theme",t); }catch(_){} });
+(()=>{ const b=document.getElementById("menuBtn"), m=document.getElementById("menu"); if(!b||!m) return;
+  const set=o=>{ m.hidden=!o; b.setAttribute("aria-expanded",o); };
+  b.addEventListener("click",e=>{ e.stopPropagation(); set(m.hidden); });
+  document.addEventListener("click",e=>{ if(!m.hidden&&!m.contains(e.target)) set(false); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!m.hidden){ set(false); b.focus(); } }); })();
+applyLang();
+</script>
+<script data-goatcounter="https://reconiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

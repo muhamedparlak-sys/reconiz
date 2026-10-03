@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RecOniz · Herkes için Sualtı Mirası</title>
-<meta name="description" content="Herkes için Sualtı Mirası, 1. bölüm: bir geminin nasıl battığını, ahşabını tüketen deniz kurdunu (Teredo navalis) ve batıktan geriye neden amphora yığını kaldığını canlandırmalarla anlatır.">
+<meta name="description" content="Herkes için Sualtı Mirası, 1. bölüm: bir geminin nasıl battığını, ahşabını tüketen deniz kurdunu (Teredo navalis) ve batıktan geriye neyin, neden kaldığını canlandırmalarla anlatır.">
 <meta name="theme-color" content="#17495A">
 <link rel="canonical" href="https://reconiz.org/teredo/">
 <meta name="apple-mobile-web-app-title" content="Teredo">
@@ -245,7 +245,9 @@ sup a{color:inherit;text-decoration:none}
 .limits b{font-weight:600}
 .txt{display:flex;flex-direction:column;gap:10px}
 .txt p{max-width:66ch}
-.kick{margin:2px 0 10px;font-weight:600;color:var(--sea)}
+.chap{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 8px}
+.chap a{border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:14.5px;font-weight:600;text-decoration:none;color:var(--ink);background:var(--raised)}
+.chap a[aria-current]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .callout{padding:18px 20px;border-radius:18px;background:var(--sea-soft)}
 .callout h2{color:var(--sea)}
 .steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
@@ -268,7 +270,7 @@ sup a{color:inherit;text-decoration:none}
 
   <section class="hero" aria-labelledby="h-title">
     <h2 id="h-title" data-i18n="h1"></h2>
-    <p class="kick" data-i18n="kick"></p>
+    <nav class="chap" data-i18n-aria="chapL"><a href="/teredo/" aria-current="page" data-i18n="c1"></a><a href="/koruma/" data-i18n="c2"></a></nav>
     <p class="lead1" data-i18n="lede"></p>
   </section>
 
@@ -312,19 +314,20 @@ sup a{color:inherit;text-decoration:none}
     <p class="sub rights" data-i18n="rights"></p>
   </section>
 
+  <a class="family" href="/koruma/"><div><span data-i18n="nextSub"></span><b data-i18n="nextH"></b></div><span aria-hidden="true">→</span></a>
   <a class="family" href="/"><div><span data-i18n="famSub"></span><b data-i18n="famH"></b></div><span aria-hidden="true">→</span></a>
 </main>
 <script>
 const $=s=>document.querySelector(s);
 const NAV={
- tr:{navH:"Araçlar",navAmp:"Amphora tanıma",navAmpSub:"Underwater Heritage Recognizer · tek fotoğraftan amphora tipi",navRej:"Kırık seramik birleştirme",navRejSub:"Heritage Rejoiner · masadaki parçalardan kapları birleştirir",navCoin:"Sikke tanıma",navCoinSub:"Heritage Coin Recognizer · tek yüzden Roma imparatoru",navTer:"Herkes için Sualtı Mirası",navTerSub:"Heritage Explainer · 1. bölüm: batıktan geriye neden amphora yığını kalır",navHere:"Bu sayfa",navMenu:"Menü"},
- en:{navH:"Tools",navAmp:"Amphora recognition",navAmpSub:"Underwater Heritage Recognizer · amphora type from a single photo",navRej:"Broken ceramic rejoining",navRejSub:"Heritage Rejoiner · reassembles vessels from the sherds on a table",navCoin:"Coin recognition",navCoinSub:"Heritage Coin Recognizer · Roman emperor from one face",navTer:"Underwater Heritage for Everyone",navTerSub:"Heritage Explainer · chapter 1: why a wreck becomes a mound of amphorae",navHere:"This page",navMenu:"Menu"},
- es:{navH:"Herramientas",navAmp:"Identificación de ánforas",navAmpSub:"Underwater Heritage Recognizer · tipo de ánfora a partir de una foto",navRej:"Remontaje de cerámica fragmentada",navRejSub:"Heritage Rejoiner · reconstruye piezas a partir de los fragmentos de una mesa",navCoin:"Reconocimiento de monedas",navCoinSub:"Heritage Coin Recognizer · emperador romano a partir de una cara",navTer:"Patrimonio subacuático para todos",navTerSub:"Heritage Explainer · capítulo 1: por qué un pecio se convierte en un túmulo de ánforas",navHere:"Esta página",navMenu:"Menú"}};
+ tr:{navH:"Araçlar",navAmp:"Amphora tanıma",navAmpSub:"Underwater Heritage Recognizer · tek fotoğraftan amphora tipi",navRej:"Kırık seramik birleştirme",navRejSub:"Heritage Rejoiner · masadaki parçalardan kapları birleştirir",navCoin:"Sikke tanıma",navCoinSub:"Heritage Coin Recognizer · tek yüzden Roma imparatoru",navTer:"Herkes için Sualtı Mirası",navTerSub:"Heritage Explainer · batıktan geriye ne kalır · koruma nasıl başladı",navHere:"Bu sayfa",navMenu:"Menü"},
+ en:{navH:"Tools",navAmp:"Amphora recognition",navAmpSub:"Underwater Heritage Recognizer · amphora type from a single photo",navRej:"Broken ceramic rejoining",navRejSub:"Heritage Rejoiner · reassembles vessels from the sherds on a table",navCoin:"Coin recognition",navCoinSub:"Heritage Coin Recognizer · Roman emperor from one face",navTer:"Underwater Heritage for Everyone",navTerSub:"Heritage Explainer · what is left of a wreck · how protection began",navHere:"This page",navMenu:"Menu"},
+ es:{navH:"Herramientas",navAmp:"Identificación de ánforas",navAmpSub:"Underwater Heritage Recognizer · tipo de ánfora a partir de una foto",navRej:"Remontaje de cerámica fragmentada",navRejSub:"Heritage Rejoiner · reconstruye piezas a partir de los fragmentos de una mesa",navCoin:"Reconocimiento de monedas",navCoinSub:"Heritage Coin Recognizer · emperador romano a partir de una cara",navTer:"Patrimonio subacuático para todos",navTerSub:"Heritage Explainer · qué queda de un pecio · cómo empezó la protección",navHere:"Esta página",navMenu:"Menú"}};
 const n=k=>`<sup><a href="#n${k}">${k}</a></sup>`;
 const I18N={
 tr:{title:"Herkes için Sualtı Mirası",
  h1:"Herkes için Sualtı Mirası",
- kick:"1. bölüm · Bir batıktan geriye neden amphora yığını kalır?",
+ c1:"1 · Batıktan geriye ne kalır?", c2:"2 · Koruma nasıl başladı?", chapL:"Bölümler", nextSub:"Sonraki bölüm", nextH:"Sualtı mirasının korunması nasıl başladı?",
  lede:"Deniz dibindeki bir batıkta neden amphoralar durur da geminin kendisi yoktur? Cevabını, bir geminin hikâyesini baştan izleyerek görelim.",
  S:["Yüklü bir ticaret gemisi Akdeniz’de yol alıyor. Gövdesi ahşap, ambarı amphora dolu.",
   "Su yüzeyi, altındaki derinliği gizler. Bugün deniz dibi sonarla görülebiliyor, fırtınalar önceden tahmin edilebiliyor. O günün denizcisinin elinde bunların hiçbiri yoktur.",
@@ -338,11 +341,11 @@ tr:{title:"Herkes için Sualtı Mirası",
   `İlerlerken tünel çökmesin diye kireçli bir astar bırakır. Kuyruk ucundaki sifon girişte kalır, çünkü deniz suyuna ulaşması gerekir. Koşullar bozulursa iki palet girişi kapatır; hayvan böyle altı haftaya kadar yaşayabilir.${n(7)}`,
   `Aynı ahşabın içinde pek çoğu birlikte ilerler. Ne kadar çok canlı yerleşirse ahşap o kadar çabuk tükenir; süre ahşabın cinsine ve denizin koşullarına da bağlıdır.${n(8)}`,
   "İçi boşalan ahşap dayanımını yitirir. Direk devrilir, gövde çöker; parçaları akıntıyla dağılır.",
-  `Geriye geminin yükü kalır: bir amphora yığını. Seramik ve taş deniz kurdunun besini değildir; bu yüzden yerlerinde dururlar. Ahşabın yerinde ise canlının kireçli tüpleri kalır.${n(9)}`,
+  `Geriye geminin taşıdıkları kalır. Burada bir amphora yığını; başka batıklarda bakır külçeler, tabaklar, çatı kiremitleri, tuğlalar, ham cam ya da lahitler. Ahşap çapadan da yalnızca taş ya da kurşun parçaları kalır. Bunlar deniz kurdunun besini değildir; yerlerinde dururlar. Ahşabın yerinde ise canlının kireçli tüpleri kalır.${n(9)}`,
   `Ama gemi tümüyle yok olmaz. Deniz kurdu suyla temas etmek zorundadır; kumun ya da balçığın altında yaşayamaz. Gömülü kalan ahşap bu yüzden bütünlüğünü koruyabilir.${n(10)}`,
   `Dalgalar, güçlü akıntılar ya da dip trolleri bu örtüyü açarsa, açığa çıkan ahşap da bir süre sonra yok olur.${n(10)}`,
   `Aynı tehlikeli noktada başka gemiler de batar; bazen batıklar üst üste bulunur. Türkiye kıyılarında bunun en bilinen örneği Yassıada’dır. Gövdeleri kalmadığı için onları birbirinden ayıran, taşıdıkları yüktür.${n(11)}`],
- L:{deep:"derin su",shoal:"görünmeyen sığlık",second:"ikinci bir geminin yükü",cu:"bakır ve kurşun kaplama",lar:"larvalar",sh:"kabuklar",bo:"gövde",li:"kireçli astar",si:"sifon",pa:"paletler",mound:"amphora yığını",bur:"kumun altında korunan ahşap",open:"örtüsü açılan ahşap"},
+ L:{deep:"derin su",shoal:"görünmeyen sığlık",second:"ikinci bir geminin yükü",cu:"bakır ve kurşun kaplama",lar:"larvalar",sh:"kabuklar",bo:"gövde",li:"kireçli astar",si:"sifon",pa:"paletler",mound:"amphora yığını",stock:"çapanın kurşun çiposu",bur:"kumun altında korunan ahşap",open:"örtüsü açılan ahşap"},
  dH:"Her denizde böyle olmaz",
  dP:`<i>Teredo navalis</i> soğuk bölgelerden tropiklere geniş bir alana yayılmıştır, ama hızla çoğalması için üç koşul gerekir:${n(12)}`,
  dL1:"<b>Sıcaklık</b> 11 °C’nin üzerinde (larvalar için 12 °C)", dL2:"<b>Tuzluluk</b> 8 PSU’nun üzerinde", dL3:"<b>Çözünmüş oksijen</b> litrede 4 mg’ın üzerinde",
@@ -362,7 +365,7 @@ tr:{title:"Herkes için Sualtı Mirası",
  iH:"Dalışta ahşap görürseniz",
  i1:"Kumu, çamuru ya da üzerindeki örtüyü açmayın. Gömülü ahşabı koruyan o örtüdür.",
  i2:`Dokunmayın, yerinden oynatmayın. Yükü kaldırmak, altında korunmuş gemi kalıntılarını yok edebilir.${n(10)}`, i3:"Konumu kaydedin ve fotoğraflayın.", i4:"En yakın müzeye bildirin.",
- N:["Öniz (2024, s. 26).","Öniz (2023, s. 10); Öniz (2024, s. 27).","Öniz (2023, s. 11–12).","Öniz (2023, s. 11).","Langley (2023); Pournou (2020), akt. Öniz (2023, s. 10).","Turner (1971), akt. Öniz (2023, s. 11); Langley (2023).","Öniz (2023, s. 11); Blum (1928), akt. Öniz (2023, s. 11).","WreckProtect (2011); Öniz (2023, s. 10, 12); Öniz (2024, s. 27).","Öniz (2023, s. 12); Eriksen ve Gregory (2016), akt. Öniz (2023, s. 10).","Öniz (2023, s. 10–11); Öniz (2024, s. 27).","Öniz (2024, s. 26–27).","Steinmayer ve Turfa (1996), akt. Öniz (2023, s. 11).","Öniz (2023, s. 10–11).","WreckProtect (2011).","Öniz (2023, s. 11–12).","Öniz (2023, s. 12); Pearson (1987), akt. Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz vd. (2024)."],
+ N:["Öniz (2024, s. 26).","Öniz (2023, s. 10); Öniz (2024, s. 27).","Öniz (2023, s. 11–12).","Öniz (2023, s. 11).","Langley (2023); Pournou (2020), akt. Öniz (2023, s. 10).","Turner (1971), akt. Öniz (2023, s. 11); Langley (2023).","Öniz (2023, s. 11); Blum (1928), akt. Öniz (2023, s. 11).","WreckProtect (2011); Öniz (2023, s. 10, 12); Öniz (2024, s. 27).","Öniz (2024, s. 27, 29); Öniz vd. (2024, s. 7); Öniz (2023, s. 12); Eriksen ve Gregory (2016), akt. Öniz (2023, s. 10).","Öniz (2023, s. 10–11); Öniz (2024, s. 27).","Öniz (2024, s. 26–27).","Steinmayer ve Turfa (1996), akt. Öniz (2023, s. 11).","Öniz (2023, s. 10–11).","WreckProtect (2011).","Öniz (2023, s. 11–12).","Öniz (2023, s. 12); Pearson (1987), akt. Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz vd. (2024)."],
  refH:"Kaynaklar", notesH:"Notlar", refNote:"Kaynakça APA 7. baskı biçimindedir. Notlarda “akt.” ile verilen çalışmalara Öniz (2023) aracılığıyla atıf yapılmıştır.",
  useH:"Kullanım",
  useSimple:"Bu sayfa konuyu herkesin anlayabileceği biçimde anlatmak için hazırlanmıştır; çizimler ve canlandırma şematiktir, ölçekli değildir.",
@@ -372,7 +375,7 @@ tr:{title:"Herkes için Sualtı Mirası",
  famSub:"RecOniz ailesi", famH:"Amphora tanıma: Underwater Heritage Recognizer"},
 en:{title:"Underwater Heritage for Everyone",
  h1:"Underwater Heritage for Everyone",
- kick:"Chapter 1 · Why does a wreck become a mound of amphorae?",
+ c1:"1 · What is left of a wreck?", c2:"2 · How did protection begin?", chapL:"Chapters", nextSub:"Next chapter", nextH:"How did the protection of underwater heritage begin?",
  lede:"Why, at a wreck on the seabed, are the amphorae still there while the ship itself is gone? Let us find the answer by following the story of one ship from the beginning.",
  S:["A laden merchant ship is sailing the Mediterranean. Her hull is wood; her hold is full of amphorae.",
   "The surface of the water hides the depth beneath it. Today the seabed can be seen with sonar and storms can be forecast. The sailor of that day has neither.",
@@ -386,11 +389,11 @@ en:{title:"Underwater Heritage for Everyone",
   `As it advances it leaves a calcareous lining so that the tunnel does not collapse. The siphon at the tail end stays at the entrance, because it has to reach the seawater. If conditions turn bad, two pallets close the entrance; like this the animal can survive for up to six weeks.${n(7)}`,
   `Many of them advance together inside the same timber. The more animals settle, the sooner the wood is used up; the time also depends on the kind of wood and the conditions of the sea.${n(8)}`,
   "Hollowed out, the timber loses its strength. The mast falls and the hull collapses; its pieces are scattered by the current.",
-  `What is left is the ship’s cargo: a mound of amphorae. Ceramic and stone are not food for the shipworm, so they stay where they are. Where the wood was, the animal’s calcareous tubes remain.${n(9)}`,
+  `What is left is what the ship carried. Here, a mound of amphorae; at other wrecks, copper ingots, plates, roof tiles, bricks, raw glass or sarcophagi. Of a wooden anchor, only the stone or lead parts remain. None of these is food for the shipworm, so they stay where they are. Where the wood was, the animal’s calcareous tubes remain.${n(9)}`,
   `But the ship does not vanish completely. The shipworm must stay in contact with the water; it cannot live under sand or mud. That is why buried timber can keep its integrity.${n(10)}`,
   `If waves, strong currents or bottom trawls remove this cover, the timber that is exposed is in turn destroyed after a time.${n(10)}`,
   `Other ships sink at the same dangerous spot; sometimes wrecks are found lying one on top of another. On the Turkish coast the best-known example is Yassıada. With their hulls gone, what tells them apart is the cargo they carried.${n(11)}`],
- L:{deep:"deep water",shoal:"hidden shoal",second:"cargo of a second ship",cu:"copper and lead sheathing",lar:"larvae",sh:"shells",bo:"body",li:"calcareous lining",si:"siphon",pa:"pallets",mound:"amphora mound",bur:"timber preserved under the sand",open:"uncovered timber"},
+ L:{deep:"deep water",shoal:"hidden shoal",second:"cargo of a second ship",cu:"copper and lead sheathing",lar:"larvae",sh:"shells",bo:"body",li:"calcareous lining",si:"siphon",pa:"pallets",mound:"amphora mound",stock:"lead anchor stock",bur:"timber preserved under the sand",open:"uncovered timber"},
  dH:"It does not happen in every sea",
  dP:`<i>Teredo navalis</i> is found from cold regions to the tropics, but three conditions are needed for it to multiply rapidly:${n(12)}`,
  dL1:"<b>Temperature</b> above 11 °C (12 °C for larvae)", dL2:"<b>Salinity</b> above 8 PSU", dL3:"<b>Dissolved oxygen</b> above 4 mg per litre",
@@ -410,7 +413,7 @@ en:{title:"Underwater Heritage for Everyone",
  iH:"If you see timber on a dive",
  i1:"Do not uncover sand, mud or any covering. That cover is what protects buried timber.",
  i2:`Do not touch it or move it. Removing the cargo can destroy the remains of the ship preserved beneath it.${n(10)}`, i3:"Record the position and photograph it.", i4:"Report it to the nearest museum.",
- N:["Öniz (2024, p. 26).","Öniz (2023, p. 10); Öniz (2024, p. 27).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 11).","Langley (2023); Pournou (2020), as cited in Öniz (2023, p. 10).","Turner (1971), as cited in Öniz (2023, p. 11); Langley (2023).","Öniz (2023, p. 11); Blum (1928), as cited in Öniz (2023, p. 11).","WreckProtect (2011); Öniz (2023, pp. 10, 12); Öniz (2024, p. 27).","Öniz (2023, p. 12); Eriksen and Gregory (2016), as cited in Öniz (2023, p. 10).","Öniz (2023, pp. 10–11); Öniz (2024, p. 27).","Öniz (2024, pp. 26–27).","Steinmayer and Turfa (1996), as cited in Öniz (2023, p. 11).","Öniz (2023, pp. 10–11).","WreckProtect (2011).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 12); Pearson (1987), as cited in Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz et al. (2024)."],
+ N:["Öniz (2024, p. 26).","Öniz (2023, p. 10); Öniz (2024, p. 27).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 11).","Langley (2023); Pournou (2020), as cited in Öniz (2023, p. 10).","Turner (1971), as cited in Öniz (2023, p. 11); Langley (2023).","Öniz (2023, p. 11); Blum (1928), as cited in Öniz (2023, p. 11).","WreckProtect (2011); Öniz (2023, pp. 10, 12); Öniz (2024, p. 27).","Öniz (2024, pp. 27, 29); Öniz et al. (2024, p. 7); Öniz (2023, p. 12); Eriksen and Gregory (2016), as cited in Öniz (2023, p. 10).","Öniz (2023, pp. 10–11); Öniz (2024, p. 27).","Öniz (2024, pp. 26–27).","Steinmayer and Turfa (1996), as cited in Öniz (2023, p. 11).","Öniz (2023, pp. 10–11).","WreckProtect (2011).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 12); Pearson (1987), as cited in Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz et al. (2024)."],
  refH:"Sources", notesH:"Notes", refNote:"References are formatted in APA 7th edition. Works given in the notes with “as cited in” are cited through Öniz (2023).",
  useH:"Use",
  useSimple:"This page was prepared to explain the subject in a way everyone can follow; the drawings and the animation are schematic and not to scale.",
@@ -420,7 +423,7 @@ en:{title:"Underwater Heritage for Everyone",
  famSub:"The RecOniz family", famH:"Amphora recognition: Underwater Heritage Recognizer"},
 es:{title:"Patrimonio subacuático para todos",
  h1:"Patrimonio subacuático para todos",
- kick:"Capítulo 1 · ¿Por qué un pecio se convierte en un túmulo de ánforas?",
+ c1:"1 · ¿Qué queda de un pecio?", c2:"2 · ¿Cómo empezó la protección?", chapL:"Capítulos", nextSub:"Capítulo siguiente", nextH:"¿Cómo empezó la protección del patrimonio subacuático?",
  lede:"¿Por qué en un pecio del fondo marino siguen ahí las ánforas y el barco ha desaparecido? Busquemos la respuesta siguiendo desde el principio la historia de un barco.",
  S:["Un mercante cargado navega por el Mediterráneo. Su casco es de madera; su bodega va llena de ánforas.",
   "La superficie del agua oculta la profundidad que hay debajo. Hoy el fondo marino se ve con sonar y las tormentas se pueden prever. El marino de aquel día no tiene nada de eso.",
@@ -434,11 +437,11 @@ es:{title:"Patrimonio subacuático para todos",
   `Al avanzar deja un revestimiento calcáreo para que el túnel no se derrumbe. El sifón del extremo de la cola queda en la entrada, porque tiene que alcanzar el agua de mar. Si las condiciones empeoran, dos paletas cierran la entrada; así el animal puede sobrevivir hasta seis semanas.${n(7)}`,
   `Muchas avanzan juntas dentro del mismo madero. Cuantos más animales se asientan, antes se agota la madera; el tiempo depende también del tipo de madera y de las condiciones del mar.${n(8)}`,
   "Vaciada por dentro, la madera pierde su resistencia. El mástil cae y el casco se derrumba; la corriente dispersa sus restos.",
-  `Lo que queda es el cargamento del barco: un túmulo de ánforas. La cerámica y la piedra no son alimento para la broma, por eso permanecen en su sitio. Donde estaba la madera quedan los tubos calcáreos del animal.${n(9)}`,
+  `Queda lo que el barco transportaba. Aquí, un túmulo de ánforas; en otros pecios, lingotes de cobre, platos, tejas, ladrillos, vidrio en bruto o sarcófagos. De un ancla de madera solo quedan las partes de piedra o de plomo. Nada de esto es alimento para la broma, por eso permanece en su sitio. Donde estaba la madera quedan los tubos calcáreos del animal.${n(9)}`,
   `Pero el barco no desaparece por completo. La broma tiene que estar en contacto con el agua; no puede vivir bajo la arena o el fango. Por eso la madera enterrada puede conservar su integridad.${n(10)}`,
   `Si el oleaje, las corrientes fuertes o la pesca de arrastre retiran esa cubierta, la madera que queda expuesta acaba también destruida.${n(10)}`,
   `En el mismo punto peligroso se hunden otros barcos; a veces los pecios aparecen unos encima de otros. En la costa turca el ejemplo más conocido es Yassıada. Desaparecidos los cascos, lo que los distingue es el cargamento que llevaban.${n(11)}`],
- L:{deep:"aguas profundas",shoal:"bajío oculto",second:"cargamento de un segundo barco",cu:"forro de cobre y plomo",lar:"larvas",sh:"valvas",bo:"cuerpo",li:"revestimiento calcáreo",si:"sifón",pa:"paletas",mound:"túmulo de ánforas",bur:"madera conservada bajo la arena",open:"madera destapada"},
+ L:{deep:"aguas profundas",shoal:"bajío oculto",second:"cargamento de un segundo barco",cu:"forro de cobre y plomo",lar:"larvas",sh:"valvas",bo:"cuerpo",li:"revestimiento calcáreo",si:"sifón",pa:"paletas",mound:"túmulo de ánforas",stock:"cepo de plomo del ancla",bur:"madera conservada bajo la arena",open:"madera destapada"},
  dH:"No ocurre en todos los mares",
  dP:`<i>Teredo navalis</i> se encuentra desde las regiones frías hasta los trópicos, pero para multiplicarse con rapidez necesita tres condiciones:${n(12)}`,
  dL1:"<b>Temperatura</b> superior a 11 °C (12 °C para las larvas)", dL2:"<b>Salinidad</b> superior a 8 PSU", dL3:"<b>Oxígeno disuelto</b> superior a 4 mg por litro",
@@ -458,7 +461,7 @@ es:{title:"Patrimonio subacuático para todos",
  iH:"Si ve madera durante una inmersión",
  i1:"No destape la arena, el fango ni ninguna cubierta. Esa cubierta es lo que protege la madera enterrada.",
  i2:`No la toque ni la mueva. Retirar el cargamento puede destruir los restos del barco conservados debajo.${n(10)}`, i3:"Registre la posición y fotografíela.", i4:"Comuníquelo al museo más cercano.",
- N:["Öniz (2024, p. 26).","Öniz (2023, p. 10); Öniz (2024, p. 27).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 11).","Langley (2023); Pournou (2020), citado en Öniz (2023, p. 10).","Turner (1971), citado en Öniz (2023, p. 11); Langley (2023).","Öniz (2023, p. 11); Blum (1928), citado en Öniz (2023, p. 11).","WreckProtect (2011); Öniz (2023, pp. 10, 12); Öniz (2024, p. 27).","Öniz (2023, p. 12); Eriksen y Gregory (2016), citado en Öniz (2023, p. 10).","Öniz (2023, pp. 10–11); Öniz (2024, p. 27).","Öniz (2024, pp. 26–27).","Steinmayer y Turfa (1996), citado en Öniz (2023, p. 11).","Öniz (2023, pp. 10–11).","WreckProtect (2011).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 12); Pearson (1987), citado en Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz et al. (2024)."],
+ N:["Öniz (2024, p. 26).","Öniz (2023, p. 10); Öniz (2024, p. 27).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 11).","Langley (2023); Pournou (2020), citado en Öniz (2023, p. 10).","Turner (1971), citado en Öniz (2023, p. 11); Langley (2023).","Öniz (2023, p. 11); Blum (1928), citado en Öniz (2023, p. 11).","WreckProtect (2011); Öniz (2023, pp. 10, 12); Öniz (2024, p. 27).","Öniz (2024, pp. 27, 29); Öniz et al. (2024, p. 7); Öniz (2023, p. 12); Eriksen y Gregory (2016), citado en Öniz (2023, p. 10).","Öniz (2023, pp. 10–11); Öniz (2024, p. 27).","Öniz (2024, pp. 26–27).","Steinmayer y Turfa (1996), citado en Öniz (2023, p. 11).","Öniz (2023, pp. 10–11).","WreckProtect (2011).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 12); Pearson (1987), citado en Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz et al. (2024)."],
  refH:"Fuentes", notesH:"Notas", refNote:"Las referencias siguen el formato APA, 7.ª edición. Los trabajos indicados en las notas con «citado en» se citan a través de Öniz (2023).",
  useH:"Uso",
  useSimple:"Esta página se ha preparado para explicar el tema de forma que todos puedan seguirlo; los dibujos y la animación son esquemáticos y no están a escala.",
@@ -514,6 +517,8 @@ const SC={}; const SURF=120, BED=760, SYL=212;       // dünya: su yüzeyi, deni
   SC.gp=el(SC.ship,"g",{}); SC.pots=[]; [178,202,228].forEach((y,ri)=>{ const nn=ri===0?19:ri===1?17:15, x0=360-(nn-1)*10.5; for(let i=0;i<nn;i++){ const x=x0+i*21, edge=Math.abs(i-(nn-1)/2)/((nn-1)/2), sd=x<360?-1:1;
       const p=el(SC.gp,"g",{}); el(p,"path",{d:pot,style:"fill:var(--pot);stroke:var(--cavity)","stroke-width":.8});
       SC.pots.push({p,x,y,dx:ri===0?sd*(edge*34+r()*8):ri===1?sd*edge*14:0, dy:ri===0?14+edge*12:ri===1?6+edge*5:0, rot:ri===0?sd*(18+edge*52+r()*14):ri===1?sd*edge*26:0, del:r()*0.25}); } });
+  SC.anW=el(SC.ship,"g",{fill:"none",style:"stroke:var(--wood-d)","stroke-linecap":"round"}); el(SC.anW,"path",{d:"M612 152 V198 M597 186 Q612 206 627 186","stroke-width":4.5});
+  SC.anS=el(SC.ship,"rect",{x:598,y:153,width:28,height:8,rx:2.5,style:"fill:var(--pot2);stroke:var(--cavity)","stroke-width":.8});
   SC.chips=[]; SC.gc=el(SC.ship,"g",{}); for(let i=0;i<16;i++){ const c=el(SC.gc,"rect",{x:-9,y:-2.5,width:18,height:5,rx:1.5,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":.8,opacity:0}); SC.chips.push({c,x:150+r()*420,y:158+r()*46,vx:150+r()*260,vy:-20+r()*46,rot:r()*360,del:r()*0.5}); }
   // kum örtüsü (sol ve sağ), gömülü gövde çizgisi, etiketler: yalnızca dipteyken
   SC.bot=el(w,"g",{transform:`translate(60 ${BED-SYL})`,opacity:0});
@@ -521,7 +526,7 @@ const SC={}; const SURF=120, BED=760, SYL=212;       // dünya: su yüzeyi, deni
   SC.covR=el(SC.bot,"path",{d:`M372 ${SYL+23} Q740 ${SYL+26} 1120 ${SYL+20} V400 H372Z`,style:"fill:var(--sand-d)",opacity:.6});
   SC.dash=el(SC.bot,"g",{opacity:0}); el(el(SC.dash,"g",{"clip-path":"url(#loL)"}),"path",{d:hull,fill:"none",style:"stroke:var(--ink)","stroke-width":2.4,"stroke-dasharray":"7 5"}); SC.dashR=el(el(SC.dash,"g",{"clip-path":"url(#loR)"}),"path",{d:hull,fill:"none",style:"stroke:var(--ink)","stroke-width":2.4,"stroke-dasharray":"7 5"});
   const lab=(p,x,y,x2,y2,anchor,tx)=>{ const gg=el(p,"g",{opacity:0}); el(gg,"path",{d:`M${x} ${y} L${x2} ${y2}`,fill:"none",style:"stroke:var(--ink)","stroke-width":1.4}); const t=el(gg,"text",{x:tx==null?x:tx,y:y+(y<y2?-9:26),"text-anchor":anchor||"middle","font-family":FF,"font-size":25,"font-weight":600,style:"fill:var(--ink);stroke:var(--bg);paint-order:stroke","stroke-width":5,"stroke-linejoin":"round"}); gg.t=t; return gg; };
-  SC.lMound=lab(SC.bot,360,120,360,166); SC.lBur=lab(SC.bot,200,284,250,258,"start",14); SC.lOpen=lab(SC.bot,530,284,484,258,"end",706);
+  SC.lMound=lab(SC.bot,330,120,340,166); SC.lStock=lab(SC.bot,640,150,612,198,"end",706); SC.lBur=lab(SC.bot,200,284,250,258,"start",14); SC.lOpen=lab(SC.bot,530,284,484,258,"end",706);
   const pot2="M-4 -9 h8 v3 q7 3 7 10 q0 8 -11 9 q-11 -1 -11 -9 q0 -7 7 -10 Z"; SC.p2=[]; SC.gp2=el(SC.bot,"g",{}); for(let i=0;i<13;i++){ const x=236+i*21+(r()-.5)*6, pp=el(SC.gp2,"g",{opacity:0}); el(pp,"path",{d:pot2,style:"fill:var(--pot2);stroke:var(--cavity)","stroke-width":.8}); SC.p2.push({p:pp,x,y:181-Math.sin((i+.5)/13*Math.PI)*9+r()*4,rot:(r()-.5)*70,del:r()*0.3}); }
   SC.lSecond=lab(SC.bot,360,104,360,158);
   SC.storm=el(SC.v1,"rect",{x:0,y:0,width:720,height:440,style:"fill:#16222B",opacity:0}); SC.rain=el(SC.v1,"g",{opacity:0}); for(let i=0;i<46;i++){ const x=r()*820-60, y=r()*150-20; el(SC.rain,"line",{x1:x,y1:y,x2:x-9,y2:y+26,style:"stroke:var(--tube)","stroke-width":1.4,opacity:.7}); }
@@ -586,7 +591,8 @@ function draw(p){ P=p; const q=p-2;                       // q: larvalardan sonr
   for(const o of SC.pots){ const k=ease(seg(col,o.del,1)); o.p.setAttribute("transform",`translate(${(o.x+o.dx*k).toFixed(1)} ${(o.y+o.dy*k).toFixed(1)}) rotate(${(o.rot*k).toFixed(1)})`); }
   for(const o of SC.chips){ const k=seg(q,9.55+o.del,10.6+o.del); o.c.setAttribute("opacity",k>0&&k<1?Math.sin(k*Math.PI):0); o.c.setAttribute("transform",`translate(${(o.x+o.vx*ease(k)).toFixed(1)} ${(o.y+o.vy*k).toFixed(1)}) rotate(${(o.rot+k*140).toFixed(0)})`); }
   SC.bot.setAttribute("opacity",seg(p,3.6,3.9));
-  SC.lMound.setAttribute("opacity",seg(q,10.5,10.8)*(1-seg(q,11,11.2)));
+  SC.anW.setAttribute("opacity",1-eat); SC.anS.setAttribute("transform",`translate(${(-6*col).toFixed(1)} ${(47*col).toFixed(1)}) rotate(${(-12*col).toFixed(1)} 612 157)`);
+  { const o=seg(q,10.5,10.8)*(1-seg(q,11,11.2)); SC.lMound.setAttribute("opacity",o); SC.lStock.setAttribute("opacity",o); }
   const bur=seg(q,11,11.35)*(1-seg(q,13,13.2)); SC.dash.setAttribute("opacity",seg(q,11,11.35)); SC.lBur.setAttribute("opacity",bur);
   const un=ease(seg(q,12.05,12.5)), gone=ease(seg(q,12.4,12.95));
   SC.covR.setAttribute("opacity",0.6*(1-un)); SC.covR.setAttribute("transform",`translate(${(70*un).toFixed(1)} ${(26*un).toFixed(1)})`);
@@ -618,7 +624,7 @@ function applyLang(){ document.documentElement.lang=LANG; document.querySelector
   [...$("#lang").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===LANG));
   const S=T("S"), st=$("#steps"); if(!stepEls.length){ S.forEach(()=>{ const d=document.createElement("div"); d.className="step"; d.append(document.createElement("p")); st.append(d); stepEls.push(d); $("#dots").append(document.createElement("i")); }); }
   stepEls.forEach((e,k)=>e.firstChild.innerHTML=S[k]);
-  const L=T("L"); SC.lCu.t.textContent=L.cu; SC.lShoal.t.textContent=L.shoal; SC.lDeep.t.textContent=L.deep; SC.lSecond.t.textContent=L.second; SC.lLar.t.textContent=L.lar; SC.lSh.t.textContent=L.sh; SC.lBo.t.textContent=L.bo; SC.lLi.t.textContent=L.li; SC.lSi.t.textContent=L.si; SC.lPa.t.textContent=L.pa; SC.lMound.t.textContent=L.mound; SC.lBur.t.textContent=L.bur; SC.lOpen.t.textContent=L.open;
+  const L=T("L"); SC.lCu.t.textContent=L.cu; SC.lShoal.t.textContent=L.shoal; SC.lDeep.t.textContent=L.deep; SC.lSecond.t.textContent=L.second; SC.lLar.t.textContent=L.lar; SC.lSh.t.textContent=L.sh; SC.lBo.t.textContent=L.bo; SC.lLi.t.textContent=L.li; SC.lSi.t.textContent=L.si; SC.lPa.t.textContent=L.pa; SC.lMound.t.textContent=L.mound; SC.lStock.t.textContent=L.stock; SC.lBur.t.textContent=L.bur; SC.lOpen.t.textContent=L.open;
   $("#notes").innerHTML=T("N").map((x,k)=>`<li id="n${k+1}">${x}</li>`).join("");
   $("#refs").innerHTML=REFLIST.map(r=>`<li>${refLoc(r)}</li>`).join("");
   curStep=-1; onScroll(); }
