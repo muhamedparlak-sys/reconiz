@@ -248,6 +248,16 @@ sup a{color:inherit;text-decoration:none}
 .chap{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 8px}
 .chap a{border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:14.5px;font-weight:600;text-decoration:none;color:var(--ink);background:var(--raised)}
 .chap a[aria-current]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.hint{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:6;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--raised);color:var(--ink);border-radius:999px;padding:9px 13px 9px 16px;font:600 14.5px var(--sans);cursor:pointer;box-shadow:0 8px 22px -14px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .3s}
+.hint.show{opacity:1;pointer-events:auto}
+.scrim{position:fixed;left:0;right:0;bottom:0;height:104px;z-index:5;pointer-events:none;background:linear-gradient(to bottom,transparent,var(--bg) 58%);opacity:0;transition:opacity .3s}
+.scrim.show{opacity:1}
+.hint.mini{padding:9px;opacity:0}
+.hint.mini.show{opacity:.82}
+.hint.mini span{display:none}
+.hint svg{width:18px;height:18px;animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+@media (prefers-reduced-motion: reduce){ .hint svg{animation:none} }
 .callout{padding:18px 20px;border-radius:18px;background:var(--sea-soft)}
 .callout h2{color:var(--sea)}
 .steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
@@ -281,6 +291,8 @@ sup a{color:inherit;text-decoration:none}
   <section class="story" id="story" aria-label="Hikâye">
     <div class="stick" id="stick"><svg id="scene" viewBox="0 0 720 440" aria-hidden="true" focusable="false"></svg><div class="dots" id="dots"></div></div>
     <div class="steps2" id="steps"></div>
+    <div class="scrim" id="scrim"></div>
+    <button class="hint" id="hint" type="button" data-i18n-aria="hint"><span data-i18n="hint"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
   </section>
 
   <section class="txt" aria-labelledby="h-a"><h2 id="h-a" data-i18n="aH"></h2><p data-i18n="aP"></p></section>
@@ -316,15 +328,15 @@ tr:{title:"Herkes için Sualtı Mirası · Koruma nasıl başladı?",
  c1:"1 · Batıktan geriye ne kalır?", c2:"2 · Koruma nasıl başladı?", chapL:"Bölümler",
  lede:"Denizden çıkan eski eser kimindir? Bu soruya bir devletin verdiği bilinen en eski cevabı, 1884’te Osman Hamdi Bey yazdı. Hikâyeyi baştan izleyelim.",
  S:[`19. yüzyılda Osmanlı denizlerinde pek çok insan geçimini denizin dibinden kazanır.${n(1)}`,
-  `Dipte yalnızca onların aradığı yoktur; eski eserler de vardır. Dalgıç bulduğunu çıkarır, çıkarılan satılır; hesabını soran olmaz.${n(1)}`,
-  `Hesap soracak bir kural da yoktur. Eski eserleri koruyan iki nizamname vardır, 1869 ve 1874 tarihli Âsâr-ı Atîka Nizamnameleri; ama ikisinde de sualtından söz edilmez.${n(2)}`,
-  `Bu boşluğu görecek kişi 1881’de Müze-i Hümayun’un başına geçer: Osman Hamdi Bey. Kendisi de kazı yapan bir arkeologdur.${n(3)}`,
-  `Üç yıl sonra, 1884’te, hazırladığı yeni nizamname yürürlüğe girer. Üçüncü maddesi boşluğu kapatır: denizden, gölden, nehirden, çaydan ve dereden çıkarılacak her çeşit eski eser devlete aittir.${n(4)}`,
+  `Dipte aradıklarından başka şeyler de bulurlar: eski eserler. Bulduklarını çıkarırlar, çıkarılan satılır; hesabını soran olmaz.${n(1)}`,
+  `Hesap soracak bir kural da yoktur. Eski eserleri koruyan 1869 ve 1874 tarihli iki Âsâr-ı Atîka Nizamnamesi’nde sualtından söz edilmez.${n(2)}`,
+  `Bu eksiği görecek kişi 1881’de Müze-i Hümayun’un başına geçer: kendisi de kazı yapan bir arkeolog olan Osman Hamdi Bey.${n(3)}`,
+  `Osman Hamdi Bey üç yıl sonra, 1884’te, yeni bir nizamname hazırlar. Üçüncü maddesi eksiği kapatır: denizden, gölden, nehirden, çaydan ve dereden çıkarılacak her çeşit eski eser devlete aittir.${n(4)}`,
   `Bu madde, bir devletin sualtı kültür mirasını korumak için koyduğu, dünyada bilinen en eski kuraldır. Öteki ülkelerde benzeri için uzun yıllar beklemek gerekir; sırada ilk gelen Danimarka’da yıl 1963’tür.${n(5)}`,
-  `Osman Hamdi Bey kuralı kâğıt üzerinde bırakmaz. 1891’de Formako Adası’nda resimli altınlar ortaya çıkar; Bahriye Nezareti’ne yazı yazılır, bir dalgıç tutulup adaya gönderilmesi ve buluntuların yerinde incelenmesi istenir.${n(6)}`,
-  `Ertesi yıl işin ardı bırakılmaz. Sikkelerin otuz dördü bir çobanda, yetmiş dokuzu birkaç kişide bulunur; Nüzhet vapurunun süvarisi de işin içindedir. Sikkeler Rodos’ta hükümete teslim edilir.${n(6)}`,
+  `Kural kâğıt üzerinde de kalmaz. 1891’de Formako Adası’nda resimli altınlar ortaya çıkınca Bahriye Nezareti’ne yazı yazılır: bir dalgıç tutulup adaya gönderilecek, buluntular yerinde incelenecektir.${n(6)}`,
+  `İş ertesi yıl da izlenir. Altınların otuz dördü bir çobanda, yetmiş dokuzu birkaç kişide bulunur; Nüzhet vapurunun süvarisi de işin içindedir. Sikkeler Rodos’ta hükümete teslim edilir.${n(6)}`,
   `Böylece Osman Hamdi Bey, dalgıcı yüzeyden bağımsız kılan donanımın bulunmasından en az elli yıl önce, devlet eliyle bir sualtı çalışması yürütmüş olur. Dalgıç bulmak, ulaşımı ve ödeneği ayarlamak, yerinde keşif yapmak, eserleri toplamak: yaptığı iş, bugünkü sualtı çalışmasından çok farklı değildir.${n(7)}`,
-  `1884’te yazılan düşünce bugün uluslararası ilkelerde yaşar. ICOMOS’un 1996 tarihli tüzüğü sualtı kültür mirasının nasıl korunacağını ve yönetileceğini belirler; ilk seçenek, mirası yerinde korumaktır.${n(8)}`],
+  `O gün yazılan düşünce bugün uluslararası ilkelerde yaşar. ICOMOS’un 1996 tarihli tüzüğü sualtı kültür mirasının nasıl korunacağını ve yönetileceğini belirler; ilk seçenek, mirası yerinde korumaktır.${n(8)}`],
  L:{noSea:"sualtı yok",land:"kara",sea:"deniz",mus:"Müze-i Hümayun",art:"3. madde",w:["deniz","göl","nehir","çay","dere"],isl:"Formako Adası",nuz:"Nüzhet vapuru",c34:"34",c79:"79",rod:"Rodos’a",
    tl:["Osmanlı Devleti","Danimarka","Almanya","Avustralya","Hollanda","Mısır","ABD","Polonya","Lübnan","İtalya"]},
  aH:"İki belge",
@@ -334,6 +346,7 @@ tr:{title:"Herkes için Sualtı Mirası · Koruma nasıl başladı?",
  cH:"Neden önemli?",
  cP:`Çünkü 1884’teki madde bugün de geçerli olan düşünceyi söyler: sualtındaki eski eser onu bulanın malı değildir; kamuya aittir. Birinci bölümde gördüğümüz gibi, bu mirası korumanın yolu çoğu zaman ona dokunmamak ve yerini bildirmektir.${n(8)}`,
  N:["Öniz ve Sütçüoğlu (2016, s. 242–244).","Öniz ve Sütçüoğlu (2016, s. 242–244).","Öniz ve Sütçüoğlu (2016, s. 243).","Öniz ve Sütçüoğlu (2016, s. 243–244).","Öniz ve Sütçüoğlu (2016, s. 243).","Öniz ve Sütçüoğlu (2016, s. 244–245).","Öniz ve Sütçüoğlu (2016, s. 242, 244–245).","Underwood (2024, s. 22); International Council on Monuments and Sites [ICOMOS] (1996)."],
+ hint:"Kaydırarak ilerleyin",
  refH:"Kaynaklar", notesH:"Notlar", refNote:"Kaynakça APA 7. baskı biçimindedir.",
  useH:"Kullanım",
  useSimple:"Bu sayfa konuyu herkesin anlayabileceği biçimde anlatmak için hazırlanmıştır; çizimler ve canlandırma şematiktir, ölçekli değildir. Dalgıç, tekne ve vapur çizimleri dönemin gerçek donanımını göstermez.",
@@ -347,15 +360,15 @@ en:{title:"Underwater Heritage for Everyone · How did protection begin?",
  c1:"1 · What is left of a wreck?", c2:"2 · How did protection begin?", chapL:"Chapters",
  lede:"To whom does an antiquity taken from the sea belong? The oldest known answer given by a state was written in 1884 by Osman Hamdi Bey. Let us follow the story from the beginning.",
  S:[`In the 19th century, many people in Ottoman waters earn their living from the bottom of the sea.${n(1)}`,
-  `What they are after is not all that lies down there; there are antiquities too. A diver brings up what he finds, what is brought up is sold, and no one asks any questions.${n(1)}`,
-  `Nor is there a rule that would ask. Two regulations protect antiquities, the Âsâr-ı Atîka Nizamnamesi of 1869 and of 1874, but neither says a word about what lies under water.${n(2)}`,
-  `The man who will see this gap becomes director of the Imperial Museum (Müze-i Hümayun) in 1881: Osman Hamdi Bey. He is himself an excavating archaeologist.${n(3)}`,
-  `Three years later, in 1884, the new regulation he prepared comes into force. Its third article closes the gap: every kind of antiquity brought out of the sea, lakes, rivers, streams and brooks belongs to the state.${n(4)}`,
+  `Down there they find more than what they are looking for: antiquities. They bring up what they find, what is brought up is sold, and no one asks any questions.${n(1)}`,
+  `Nor is there a rule that would ask. The two regulations that protect antiquities, the Âsâr-ı Atîka Nizamnamesi of 1869 and of 1874, say nothing about what lies under water.${n(2)}`,
+  `The man who will see this gap becomes director of the Imperial Museum (Müze-i Hümayun) in 1881: Osman Hamdi Bey, himself an excavating archaeologist.${n(3)}`,
+  `Three years later, in 1884, Osman Hamdi Bey prepares a new regulation. Its third article closes the gap: every kind of antiquity brought out of the sea, lakes, rivers, streams and brooks belongs to the state.${n(4)}`,
   `This article is the oldest known rule in the world set by a state to protect underwater cultural heritage. Other countries wait many years for its like; in Denmark, the next in line, the year is 1963.${n(5)}`,
-  `Osman Hamdi Bey does not leave the rule on paper. In 1891 gold pieces bearing images come to light on Formako Island; a letter goes to the Ministry of the Navy, asking that a diver be hired and sent to the island and that the finds be examined on the spot.${n(6)}`,
-  `The following year the matter is followed through. Thirty-four of the coins are found with a shepherd and seventy-nine with several other people; the commander of the steamer Nüzhet is involved as well. The coins are handed over to the government in Rhodes.${n(6)}`,
+  `Nor does the rule stay on paper. When gold pieces bearing images come to light on Formako Island in 1891, a letter goes to the Ministry of the Navy: a diver is to be hired and sent to the island, and the finds are to be examined on the spot.${n(6)}`,
+  `The matter is followed up the next year as well. Thirty-four of the gold pieces are found with a shepherd and seventy-nine with several other people; the commander of the steamer Nüzhet is involved too. The coins are handed over to the government in Rhodes.${n(6)}`,
   `In this way Osman Hamdi Bey carries out underwater work on behalf of the state at least fifty years before the invention of the equipment that made the diver independent of the surface. Finding a diver, arranging transport and funds, surveying on the spot, collecting the finds: what he does is not very different from underwater work today.${n(7)}`,
-  `The idea written down in 1884 lives on today in international principles. The ICOMOS Charter of 1996 sets out how underwater cultural heritage is to be protected and managed; the first option is to preserve it in place.${n(8)}`],
+  `The idea written down that day lives on in today’s international principles. The ICOMOS Charter of 1996 sets out how underwater cultural heritage is to be protected and managed; the first option is to preserve it in place.${n(8)}`],
  L:{noSea:"nothing under water",land:"land",sea:"sea",mus:"Müze-i Hümayun",art:"Article 3",w:["sea","lake","river","stream","brook"],isl:"Formako Island",nuz:"steamer Nüzhet",c34:"34",c79:"79",rod:"to Rhodes",
    tl:["Ottoman Empire","Denmark","Germany","Australia","Netherlands","Egypt","USA","Poland","Lebanon","Italy"]},
  aH:"Two documents",
@@ -365,6 +378,7 @@ en:{title:"Underwater Heritage for Everyone · How did protection begin?",
  cH:"Why does it matter?",
  cP:`Because the article of 1884 states the idea that still holds today: an antiquity under water does not belong to whoever finds it; it belongs to the public. As Chapter 1 showed, the way to protect that heritage is, most of the time, not to touch it and to report where it is.${n(8)}`,
  N:["Öniz and Sütçüoğlu (2016, pp. 242–244).","Öniz and Sütçüoğlu (2016, pp. 242–244).","Öniz and Sütçüoğlu (2016, p. 243).","Öniz and Sütçüoğlu (2016, pp. 243–244).","Öniz and Sütçüoğlu (2016, p. 243).","Öniz and Sütçüoğlu (2016, pp. 244–245).","Öniz and Sütçüoğlu (2016, pp. 242, 244–245).","Underwood (2024, p. 22); International Council on Monuments and Sites [ICOMOS] (1996)."],
+ hint:"Scroll to continue",
  refH:"References", notesH:"Notes", refNote:"The reference list follows APA 7th edition.",
  useH:"Use",
  useSimple:"This page was prepared to explain the subject in a way everyone can follow; the drawings and the animation are schematic and not to scale. The drawings of the diver, the boat and the steamer do not show the actual equipment of the period.",
@@ -378,15 +392,15 @@ es:{title:"Patrimonio subacuático para todos · ¿Cómo empezó la protección?
  c1:"1 · ¿Qué queda de un pecio?", c2:"2 · ¿Cómo empezó la protección?", chapL:"Capítulos",
  lede:"¿A quién pertenece una antigüedad extraída del mar? La respuesta más antigua que se conoce dada por un Estado la escribió Osman Hamdi Bey en 1884. Sigamos la historia desde el principio.",
  S:[`En el siglo XIX, en los mares otomanos, mucha gente se gana la vida en el fondo del mar.${n(1)}`,
-  `Lo que buscan no es lo único que hay ahí abajo; hay también antigüedades. El buzo saca lo que encuentra, lo que se saca se vende, y nadie pide cuentas.${n(1)}`,
-  `Tampoco hay una norma que las pida. Dos reglamentos protegen las antigüedades, los Âsâr-ı Atîka Nizamnamesi de 1869 y de 1874, pero ninguno dice una palabra de lo que está bajo el agua.${n(2)}`,
-  `El hombre que verá ese vacío pasa a dirigir el Museo Imperial (Müze-i Hümayun) en 1881: Osman Hamdi Bey. Él mismo es un arqueólogo que excava.${n(3)}`,
-  `Tres años después, en 1884, entra en vigor el nuevo reglamento que él preparó. Su artículo tercero cierra el vacío: toda clase de antigüedad extraída del mar, de los lagos, de los ríos, de los arroyos y de los riachuelos pertenece al Estado.${n(4)}`,
+  `Allí abajo encuentran algo más que lo que buscan: antigüedades. Sacan lo que encuentran, lo que se saca se vende, y nadie pide cuentas.${n(1)}`,
+  `Tampoco hay una norma que las pida. Los dos reglamentos que protegen las antigüedades, los Âsâr-ı Atîka Nizamnamesi de 1869 y de 1874, no dicen nada de lo que está bajo el agua.${n(2)}`,
+  `El hombre que verá ese vacío pasa a dirigir el Museo Imperial (Müze-i Hümayun) en 1881: Osman Hamdi Bey, él mismo un arqueólogo que excava.${n(3)}`,
+  `Tres años después, en 1884, Osman Hamdi Bey prepara un nuevo reglamento. Su artículo tercero cierra el vacío: toda clase de antigüedad extraída del mar, de los lagos, de los ríos, de los arroyos y de los riachuelos pertenece al Estado.${n(4)}`,
   `Este artículo es la norma más antigua que se conoce en el mundo dictada por un Estado para proteger el patrimonio cultural subacuático. En los demás países hay que esperar muchos años algo parecido; en Dinamarca, el siguiente, el año es 1963.${n(5)}`,
-  `Osman Hamdi Bey no deja la norma en el papel. En 1891 aparecen en la isla de Formako unas piezas de oro con imágenes; se escribe al Ministerio de Marina y se pide que se contrate a un buzo, que se le envíe a la isla y que los hallazgos se examinen en el lugar.${n(6)}`,
-  `Al año siguiente el asunto no se abandona. Treinta y cuatro de las monedas se hallan en manos de un pastor y setenta y nueve en las de varias personas; interviene también el comandante del vapor Nüzhet. Las monedas se entregan al gobierno en Rodas.${n(6)}`,
+  `La norma tampoco se queda en el papel. Cuando en 1891 aparecen en la isla de Formako unas piezas de oro con imágenes, se escribe al Ministerio de Marina: hay que contratar a un buzo, enviarlo a la isla y examinar los hallazgos en el lugar.${n(6)}`,
+  `El asunto se sigue también al año siguiente. Treinta y cuatro de las piezas de oro se hallan en manos de un pastor y setenta y nueve en las de varias personas; interviene también el comandante del vapor Nüzhet. Las monedas se entregan al gobierno en Rodas.${n(6)}`,
   `Así, Osman Hamdi Bey lleva a cabo un trabajo subacuático en nombre del Estado al menos cincuenta años antes de que se inventara el equipo que independizó al buzo de la superficie. Encontrar un buzo, organizar el transporte y los fondos, reconocer el lugar, recoger los hallazgos: lo que hace no es muy distinto del trabajo subacuático actual.${n(7)}`,
-  `La idea escrita en 1884 vive hoy en los principios internacionales. La Carta del ICOMOS de 1996 establece cómo se protege y se gestiona el patrimonio cultural subacuático; la primera opción es conservarlo en su lugar.${n(8)}`],
+  `La idea escrita aquel día vive hoy en los principios internacionales. La Carta del ICOMOS de 1996 establece cómo se protege y se gestiona el patrimonio cultural subacuático; la primera opción es conservarlo en su lugar.${n(8)}`],
  L:{noSea:"nada bajo el agua",land:"tierra",sea:"mar",mus:"Müze-i Hümayun",art:"Artículo 3",w:["mar","lago","río","arroyo","riachuelo"],isl:"isla de Formako",nuz:"vapor Nüzhet",c34:"34",c79:"79",rod:"a Rodas",
    tl:["Imperio otomano","Dinamarca","Alemania","Australia","Países Bajos","Egipto","EE. UU.","Polonia","Líbano","Italia"]},
  aH:"Dos documentos",
@@ -396,6 +410,7 @@ es:{title:"Patrimonio subacuático para todos · ¿Cómo empezó la protección?
  cH:"¿Por qué importa?",
  cP:`Porque el artículo de 1884 expresa la idea que sigue vigente hoy: una antigüedad bajo el agua no pertenece a quien la encuentra; pertenece al conjunto de la sociedad. Como se vio en el capítulo 1, la manera de proteger ese patrimonio es, la mayoría de las veces, no tocarlo y comunicar dónde está.${n(8)}`,
  N:["Öniz y Sütçüoğlu (2016, pp. 242–244).","Öniz y Sütçüoğlu (2016, pp. 242–244).","Öniz y Sütçüoğlu (2016, p. 243).","Öniz y Sütçüoğlu (2016, pp. 243–244).","Öniz y Sütçüoğlu (2016, p. 243).","Öniz y Sütçüoğlu (2016, pp. 244–245).","Öniz y Sütçüoğlu (2016, pp. 242, 244–245).","Underwood (2024, p. 22); International Council on Monuments and Sites [ICOMOS] (1996)."],
+ hint:"Desliza para continuar",
  refH:"Referencias", notesH:"Notas", refNote:"La lista de referencias sigue la 7.ª edición de APA.",
  useH:"Uso",
  useSimple:"Esta página se ha preparado para explicar el tema de forma que todos puedan seguirlo; los dibujos y la animación son esquemáticos y no están a escala. Los dibujos del buzo, la barca y el vapor no muestran el equipo real de la época.",
@@ -540,10 +555,11 @@ let stepEls=[], curStep=-1;
 function progress(){ const sb=$("#stick").getBoundingClientRect().bottom, vh=window.innerHeight, trig=sb+(vh-sb)*0.42; let i=-1;
   for(let k=0;k<stepEls.length;k++){ if(stepEls[k].getBoundingClientRect().top<=trig) i=k; else break; }
   if(i<0) return {p:0,i:0}; const r=stepEls[i].getBoundingClientRect(); return {p:i+clamp((trig-r.top)/Math.max(1,r.height),0,0.999),i}; }
-function onScroll(){ document.documentElement.style.setProperty('--stb',Math.round($("#stick").getBoundingClientRect().height+8)+'px'); const {p,i}=progress(); if(i!==curStep){ curStep=i; stepEls.forEach((e,k)=>{ e.classList.toggle("on",k===i); e.classList.toggle("near",k===i+1); }); [...$("#dots").children].forEach((d,k)=>d.classList.toggle("on",k===i)); } draw(p); }
+function onScroll(){ document.documentElement.style.setProperty('--stb',Math.round($("#stick").getBoundingClientRect().height+8)+'px'); const {p,i}=progress(); { const h=$("#hint"), st=$("#story").getBoundingClientRect(); h.classList.toggle("show",st.top<innerHeight*0.9&&st.bottom>innerHeight&&i<stepEls.length-1); h.classList.toggle("mini",p>=1); $("#scrim").classList.toggle("show",h.classList.contains("show")&&p<1); } if(i!==curStep){ curStep=i; stepEls.forEach((e,k)=>{ e.classList.toggle("on",k===i); e.classList.toggle("near",k===i+1); }); [...$("#dots").children].forEach((d,k)=>d.classList.toggle("on",k===i)); } draw(p); }
 let ticking=false; addEventListener("scroll",()=>{ if(!ticking){ ticking=true; requestAnimationFrame(()=>{ ticking=false; onScroll(); }); } },{passive:true}); addEventListener("resize",onScroll);
 if(!REDUCE){ let vis=true; if("IntersectionObserver" in window) new IntersectionObserver(es=>{ vis=es[0].isIntersecting; }).observe($("#story")); const t0=performance.now(); const loop=now=>{ if(vis&&!document.hidden){ IDLE=(now-t0)/1000; draw(P); } requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
 
+$("#hint").addEventListener("click",()=>{ const sb=$("#stick").getBoundingClientRect().bottom, trig=sb+(innerHeight-sb)*0.42; for(const e of stepEls){ const r=e.getBoundingClientRect(); if(r.top>trig+1){ window.scrollBy({top:r.top-trig+r.height*0.3,behavior:REDUCE?"auto":"smooth"}); return; } } });
 function applyLang(){ document.documentElement.lang=LANG; document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=T(e.dataset.i18n)); document.querySelectorAll("[data-i18n-aria]").forEach(e=>e.setAttribute("aria-label",T(e.dataset.i18nAria))); document.title="RecOniz · "+T("title");
   [...$("#lang").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===LANG));
   const S=T("S"), st=$("#steps"); if(!stepEls.length){ S.forEach(()=>{ const d=document.createElement("div"); d.className="step"; d.append(document.createElement("p")); st.append(d); stepEls.push(d); $("#dots").append(document.createElement("i")); }); }

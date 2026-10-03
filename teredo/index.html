@@ -248,6 +248,16 @@ sup a{color:inherit;text-decoration:none}
 .chap{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 8px}
 .chap a{border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:14.5px;font-weight:600;text-decoration:none;color:var(--ink);background:var(--raised)}
 .chap a[aria-current]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.hint{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:6;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--raised);color:var(--ink);border-radius:999px;padding:9px 13px 9px 16px;font:600 14.5px var(--sans);cursor:pointer;box-shadow:0 8px 22px -14px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .3s}
+.hint.show{opacity:1;pointer-events:auto}
+.scrim{position:fixed;left:0;right:0;bottom:0;height:104px;z-index:5;pointer-events:none;background:linear-gradient(to bottom,transparent,var(--bg) 58%);opacity:0;transition:opacity .3s}
+.scrim.show{opacity:1}
+.hint.mini{padding:9px;opacity:0}
+.hint.mini.show{opacity:.82}
+.hint.mini span{display:none}
+.hint svg{width:18px;height:18px;animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+@media (prefers-reduced-motion: reduce){ .hint svg{animation:none} }
 .callout{padding:18px 20px;border-radius:18px;background:var(--sea-soft)}
 .callout h2{color:var(--sea)}
 .steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
@@ -277,6 +287,8 @@ sup a{color:inherit;text-decoration:none}
   <section class="story" id="story" aria-label="Hikâye">
     <div class="stick" id="stick"><svg id="scene" viewBox="0 0 720 440" aria-hidden="true" focusable="false"></svg><div class="dots" id="dots"></div></div>
     <div class="steps2" id="steps"></div>
+    <div class="scrim" id="scrim"></div>
+    <button class="hint" id="hint" type="button" data-i18n-aria="hint"><span data-i18n="hint"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
   </section>
 
   <section aria-labelledby="h-d">
@@ -330,21 +342,21 @@ tr:{title:"Herkes için Sualtı Mirası",
  c1:"1 · Batıktan geriye ne kalır?", c2:"2 · Koruma nasıl başladı?", chapL:"Bölümler", nextSub:"Sonraki bölüm", nextH:"Sualtı mirasının korunması nasıl başladı?",
  lede:"Deniz dibindeki bir batıkta neden amphoralar durur da geminin kendisi yoktur? Cevabını, bir geminin hikâyesini baştan izleyerek görelim.",
  S:[`Akdeniz’de bir ticaret gemisi yol alır. Gövdesi ahşaptır, ambarı amphora doludur.`,
-  `Denizcileri suyun altını göremez: yüzey, altındaki derinliği gizler. Bugün dip sonarla görülür, fırtına önceden bilinir. O gün ikisi de yoktur.`,
-  `Bu yüzden derin sandıkları su birden sığlaşabilir. Ani bir fırtına çıkar ve küçük ahşap gemiyi kimsenin görmediği bir sığlığa doğru sürükler.${n(1)}`,
+  `Altındaki su derin görünür, ama yüzey derinliği gizler. Bugün dip sonarla görülür, fırtına önceden bilinir; bu geminin denizcileri ikisinden de yoksundur.`,
+  `Derin sandıkları su birden sığlaşır. O sırada çıkan fırtına, küçük ahşap gemiyi kimsenin görmediği sığlığa sürükler.${n(1)}`,
   `Gemi sığlığa çarpar ve batar. Dibe oturduğunda gövdesinin altı kuma gömülür, üstü suyun içinde açıkta kalır.`,
-  `Yüzerken ona denizcileri bakardı: gemilerin altı binlerce yıl boyunca deniz kurduna karşı bakır ve kurşun levhalarla kaplanmış, düzenli bakımla korunmuştur. Dipte ise ona bakacak kimse kalmaz.${n(2)}`,
-  `Deniz de boş değildir. Oksijenli suda yaşayan bazı canlılar için ahşap doğal bir besindir; bunların başında deniz kurdu gelir. Suda sürüklenen larvaları geminin ahşabını bulur ve yüzeyine tutunur.${n(3)}`,
-  `Larvaların her biri ahşaba girer ve boyuna doğru ilerlemeye başlar. Gemiyi delip geçmez; hep ahşabın içinde kalır.${n(4)}`,
+  `Açıkta kalan ahşap artık korumasızdır. Gemi yüzerken altı deniz kurduna karşı bakır ve kurşun levhalarla kaplanır, düzenli bakımla korunurdu; dipte bu bakımı yapacak kimse yoktur.${n(2)}`,
+  `Korumasız ahşabı deniz kurdunun larvaları bulur. Oksijenli suda yaşayan bazı canlılar için ahşap doğal bir besindir ve deniz kurdu bunların başında gelir. Suda sürüklenen larvaları gövdeye tutunur.${n(3)}`,
+  `Tutunan her larva ahşaba girer ve boyuna doğru ilerlemeye başlar. Gövdeyi delip geçmez; hep ahşabın içinde kalır.${n(4)}`,
   `İçeride ilerleyen bu canlıya yakından bakalım. Adı kurt olsa da kurt değildir: çift kabuklu bir yumuşakça, yani midyenin akrabasıdır. Bilimsel adı <i>Teredo navalis</i>’tir.${n(5)}`,
   `Baş ucunda iki küçük kabuk taşır. Bu kabukların üzerindeki diş sıralarıyla ahşaba tutunur ve ilerler; ahşabı da sindirir.${n(6)}`,
   `İlerledikçe arkasında kireçli bir astar bırakır; tünel böylece çökmez. Kuyruk ucundaki sifon ise girişte kalır, çünkü deniz suyuna ulaşmak zorundadır. Koşullar bozulursa girişi iki paletiyle kapatır ve altı haftaya kadar böyle yaşayabilir.${n(7)}`,
-  `Gemide yalnız da değildir: aynı ahşabın içinde pek çoğu birlikte ilerler. Ne kadar çok canlı yerleşirse ahşap o kadar çabuk tükenir; süre ahşabın cinsine ve denizin koşullarına da bağlıdır.${n(8)}`,
-  `İçi böyle boşalan ahşap dayanımını yitirir. Önce direk devrilir, sonra gövde çöker; parçalarını akıntı dağıtır.`,
-  `Geriye geminin taşıdıkları kalır. Bu gemiden bir amphora yığını; başka gemilerden bakır külçeler, tabaklar, çatı kiremitleri, tuğlalar, ham cam ya da lahitler. Ahşap çapadan bile yalnızca taş ya da kurşun parçaları kalır. Çünkü bunların hiçbiri deniz kurdunun besini değildir. Ahşabın yerinde ise onun kireçli tüpleri durur.${n(9)}`,
-  `Yine de gemi tümüyle yok olmaz. Deniz kurdu suya ulaşmak zorundadır; kumun ve balçığın altında yaşayamaz. Geminin kuma gömülen bölümü bu yüzden bütünlüğünü koruyabilir.${n(10)}`,
-  `Bu koruma, örtü yerinde durdukça sürer. Dalgalar, güçlü akıntılar ya da dip trolleri kumu açarsa, açığa çıkan ahşap da bir süre sonra aynı yoldan yok olur.${n(10)}`,
-  `Hikâye burada bitmez, çünkü gemiyi batıran sığlık yerinde durur. Aynı noktada başka gemiler de batar ve batıklar bazen üst üste birikir; Türkiye kıyılarında bunun en bilinen örneği Yassıada’dır. Gövdeleri kalmadığı için onları birbirinden ayıran, taşıdıkları yüktür.${n(11)}`],
+  `Tünel tek değildir: aynı ahşabın içinde pek çok deniz kurdu yan yana ilerler. Sayıları arttıkça ahşap daha çabuk tükenir; süreyi ahşabın cinsi ve denizin koşulları da belirler.${n(8)}`,
+  `Tüneller çoğaldıkça ahşabın içi boşalır ve dayanımı kalmaz. Önce direk devrilir, sonra gövde çöker; parçalarını akıntı dağıtır.`,
+  `Akıntının götüremediği, deniz kurdunun da yiyemediği yerinde kalır: geminin yükü. Bu gemiden geriye bir amphora yığını kalır; başka gemilerden bakır külçeler, tabaklar, çatı kiremitleri, tuğlalar, ham cam ya da lahitler. Ahşap çapadan bile yalnızca taş ya da kurşun parçaları durur. Ahşabın yerinde ise deniz kurdunun kireçli tüpleri kalır.${n(9)}`,
+  `Yığının altında, geminin kendisinden bir parça hâlâ durur. Deniz kurdu suya ulaşmak zorundadır; kumun ve balçığın altında yaşayamaz. Kuma gömülen ahşap bu yüzden bütünlüğünü koruyabilir.${n(10)}`,
+  `Onu koruyan, üstündeki örtüdür. Dalgalar, güçlü akıntılar ya da dip trolleri kumu açarsa, açığa çıkan ahşap da aynı yoldan yok olur.${n(10)}`,
+  `Gemiyi batıran sığlık ise hâlâ yerindedir. Aynı noktada başka gemiler de batar ve batıklar bazen üst üste birikir; Türkiye kıyılarında bunun en bilinen örneği Yassıada’dır. Gövdeleri kalmadığı için onları birbirinden ayıran, taşıdıkları yüktür.${n(11)}`],
  L:{deep:"derin su",shoal:"görünmeyen sığlık",second:"ikinci bir geminin yükü",cu:"bakır ve kurşun kaplama",lar:"larvalar",sh:"kabuklar",bo:"gövde",li:"kireçli astar",si:"sifon",pa:"paletler",mound:"amphora yığını",stock:"çapanın kurşun çiposu",bur:"kumun altında korunan ahşap",open:"örtüsü açılan ahşap"},
  dH:"Her denizde böyle olmaz",
  dP:`<i>Teredo navalis</i> soğuk bölgelerden tropiklere geniş bir alana yayılmıştır, ama hızla çoğalması için üç koşul gerekir:${n(12)}`,
@@ -366,6 +378,7 @@ tr:{title:"Herkes için Sualtı Mirası",
  i1:"Kumu, çamuru ya da üzerindeki örtüyü açmayın. Gömülü ahşabı koruyan o örtüdür.",
  i2:`Dokunmayın, yerinden oynatmayın. Yükü kaldırmak, altında korunmuş gemi kalıntılarını yok edebilir.${n(10)}`, i3:"Konumu kaydedin ve fotoğraflayın.", i4:"En yakın müzeye bildirin.",
  N:["Öniz (2024, s. 26).","Öniz (2023, s. 10); Öniz (2024, s. 27).","Öniz (2023, s. 11–12).","Öniz (2023, s. 11).","Langley (2023); Pournou (2020), akt. Öniz (2023, s. 10).","Turner (1971), akt. Öniz (2023, s. 11); Langley (2023).","Öniz (2023, s. 11); Blum (1928), akt. Öniz (2023, s. 11).","WreckProtect (2011); Öniz (2023, s. 10, 12); Öniz (2024, s. 27).","Öniz (2024, s. 27, 29); Öniz vd. (2024, s. 7); Öniz (2023, s. 12); Eriksen ve Gregory (2016), akt. Öniz (2023, s. 10).","Öniz (2023, s. 10–11); Öniz (2024, s. 27).","Öniz (2024, s. 26–27).","Steinmayer ve Turfa (1996), akt. Öniz (2023, s. 11).","Öniz (2023, s. 10–11).","WreckProtect (2011).","Öniz (2023, s. 11–12).","Öniz (2023, s. 12); Pearson (1987), akt. Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz vd. (2024)."],
+ hint:"Kaydırarak ilerleyin",
  refH:"Kaynaklar", notesH:"Notlar", refNote:"Kaynakça APA 7. baskı biçimindedir. Notlarda “akt.” ile verilen çalışmalara Öniz (2023) aracılığıyla atıf yapılmıştır.",
  useH:"Kullanım",
  useSimple:"Bu sayfa konuyu herkesin anlayabileceği biçimde anlatmak için hazırlanmıştır; çizimler ve canlandırma şematiktir, ölçekli değildir.",
@@ -378,21 +391,21 @@ en:{title:"Underwater Heritage for Everyone",
  c1:"1 · What is left of a wreck?", c2:"2 · How did protection begin?", chapL:"Chapters", nextSub:"Next chapter", nextH:"How did the protection of underwater heritage begin?",
  lede:"Why, at a wreck on the seabed, are the amphorae still there while the ship itself is gone? Let us find the answer by following the story of one ship from the beginning.",
  S:[`A merchant ship makes her way across the Mediterranean. Her hull is wood; her hold is full of amphorae.`,
-  `Her crew cannot see beneath the water: the surface hides the depth below. Today the seabed is read by sonar and a storm is known in advance. On that day there is neither.`,
-  `So water they take to be deep can suddenly turn shallow. A sudden storm rises and drives the small wooden ship towards a shoal that no one can see.${n(1)}`,
+  `The water beneath her looks deep, but the surface hides the depth. Today the seabed is read by sonar and a storm is known in advance; this ship’s crew have neither.`,
+  `The water they take to be deep suddenly turns shallow. The storm that rises at that moment drives the small wooden ship onto a shoal that no one can see.${n(1)}`,
   `The ship strikes the shoal and sinks. When she settles on the seabed, the bottom of her hull is buried in sand and the rest stays exposed in the water.`,
-  `While she was afloat, her crew looked after her: for thousands of years ships’ bottoms were sheathed in copper and lead against the shipworm and kept sound by regular maintenance. On the seabed there is no one left to look after her.${n(2)}`,
-  `And the sea is not empty. For some creatures that live in oxygenated water, wood is natural food, and first among them is the shipworm. Its larvae, drifting in the water, find the ship’s timber and settle on its surface.${n(3)}`,
-  `Each larva bores into the wood and begins to advance along its length. It does not pass through the ship; it stays inside the timber.${n(4)}`,
+  `The exposed timber is now unprotected. While the ship was afloat, her bottom was sheathed in copper and lead against the shipworm and kept sound by regular maintenance; on the seabed there is no one to maintain her.${n(2)}`,
+  `The unprotected timber is found by the larvae of the shipworm. For some creatures living in oxygenated water, wood is natural food, and the shipworm is first among them. Its larvae, drifting in the water, settle on the hull.${n(3)}`,
+  `Each larva that settles bores into the wood and begins to advance along its length. It does not pass through the hull; it stays inside the timber.${n(4)}`,
   `Let us look closely at the creature advancing inside. It is called a worm, but it is not one: it is a bivalve mollusc, a relative of the mussel. Its scientific name is <i>Teredo navalis</i>.${n(5)}`,
   `At its head it carries two small shells. With the rows of teeth on these shells it grips the wood and advances; it digests the wood as well.${n(6)}`,
   `As it advances it leaves a calcareous lining behind, so the tunnel does not collapse. The siphon at its tail stays at the entrance, because it must reach sea water. If conditions turn bad it closes the entrance with its two pallets and can live like that for up to six weeks.${n(7)}`,
-  `Nor is it alone in the ship: many advance together inside the same timber. The more animals settle, the sooner the wood is consumed; the time also depends on the kind of wood and the conditions of the sea.${n(8)}`,
-  `Hollowed out in this way, the wood loses its strength. First the mast falls, then the hull collapses; the current scatters the pieces.`,
-  `What is left is what the ship carried. From this ship, a mound of amphorae; from others, copper ingots, plates, roof tiles, bricks, raw glass or sarcophagi. Even of a wooden anchor, only the stone or lead parts remain. For none of these is food for the shipworm. Where the wood was, its calcareous tubes remain.${n(9)}`,
-  `Yet the ship does not vanish entirely. The shipworm must reach the water; it cannot live under sand or mud. That is why the part of the ship buried in the sand can keep its integrity.${n(10)}`,
-  `This protection lasts as long as the cover stays in place. If waves, strong currents or bottom trawls open the sand, the exposed timber disappears in the same way after a while.${n(10)}`,
-  `The story does not end here, because the shoal that sank the ship is still there. Other ships sink at the same spot, and wrecks sometimes pile up on top of one another; on the Turkish coast the best-known example is Yassıada. With their hulls gone, what tells them apart is the cargo they carried.${n(11)}`],
+  `The tunnel is not the only one: many shipworms advance side by side inside the same timber. The more of them there are, the sooner the wood is consumed; the time also depends on the kind of wood and the conditions of the sea.${n(8)}`,
+  `As the tunnels multiply, the wood is hollowed out and loses its strength. First the mast falls, then the hull collapses; the current scatters the pieces.`,
+  `What the current cannot carry off and the shipworm cannot eat stays where it is: the ship’s cargo. From this ship a mound of amphorae remains; from others, copper ingots, plates, roof tiles, bricks, raw glass or sarcophagi. Even of a wooden anchor, only the stone or lead parts are left. Where the wood was, the shipworm’s calcareous tubes remain.${n(9)}`,
+  `Beneath the mound, a part of the ship herself is still there. The shipworm must reach the water; it cannot live under sand or mud. That is why the timber buried in the sand can keep its integrity.${n(10)}`,
+  `What protects it is the cover above it. If waves, strong currents or bottom trawls open the sand, the exposed timber disappears in the same way.${n(10)}`,
+  `As for the shoal that sank the ship, it is still there. Other ships sink at the same spot, and wrecks sometimes pile up on top of one another; on the Turkish coast the best-known example is Yassıada. With their hulls gone, what tells them apart is the cargo they carried.${n(11)}`],
  L:{deep:"deep water",shoal:"hidden shoal",second:"cargo of a second ship",cu:"copper and lead sheathing",lar:"larvae",sh:"shells",bo:"body",li:"calcareous lining",si:"siphon",pa:"pallets",mound:"amphora mound",stock:"lead anchor stock",bur:"timber preserved under the sand",open:"uncovered timber"},
  dH:"It does not happen in every sea",
  dP:`<i>Teredo navalis</i> is found from cold regions to the tropics, but three conditions are needed for it to multiply rapidly:${n(12)}`,
@@ -414,6 +427,7 @@ en:{title:"Underwater Heritage for Everyone",
  i1:"Do not uncover sand, mud or any covering. That cover is what protects buried timber.",
  i2:`Do not touch it or move it. Removing the cargo can destroy the remains of the ship preserved beneath it.${n(10)}`, i3:"Record the position and photograph it.", i4:"Report it to the nearest museum.",
  N:["Öniz (2024, p. 26).","Öniz (2023, p. 10); Öniz (2024, p. 27).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 11).","Langley (2023); Pournou (2020), as cited in Öniz (2023, p. 10).","Turner (1971), as cited in Öniz (2023, p. 11); Langley (2023).","Öniz (2023, p. 11); Blum (1928), as cited in Öniz (2023, p. 11).","WreckProtect (2011); Öniz (2023, pp. 10, 12); Öniz (2024, p. 27).","Öniz (2024, pp. 27, 29); Öniz et al. (2024, p. 7); Öniz (2023, p. 12); Eriksen and Gregory (2016), as cited in Öniz (2023, p. 10).","Öniz (2023, pp. 10–11); Öniz (2024, p. 27).","Öniz (2024, pp. 26–27).","Steinmayer and Turfa (1996), as cited in Öniz (2023, p. 11).","Öniz (2023, pp. 10–11).","WreckProtect (2011).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 12); Pearson (1987), as cited in Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz et al. (2024)."],
+ hint:"Scroll to continue",
  refH:"Sources", notesH:"Notes", refNote:"References are formatted in APA 7th edition. Works given in the notes with “as cited in” are cited through Öniz (2023).",
  useH:"Use",
  useSimple:"This page was prepared to explain the subject in a way everyone can follow; the drawings and the animation are schematic and not to scale.",
@@ -426,21 +440,21 @@ es:{title:"Patrimonio subacuático para todos",
  c1:"1 · ¿Qué queda de un pecio?", c2:"2 · ¿Cómo empezó la protección?", chapL:"Capítulos", nextSub:"Capítulo siguiente", nextH:"¿Cómo empezó la protección del patrimonio subacuático?",
  lede:"¿Por qué en un pecio del fondo marino siguen ahí las ánforas y el barco ha desaparecido? Busquemos la respuesta siguiendo desde el principio la historia de un barco.",
  S:[`Un barco mercante navega por el Mediterráneo. Su casco es de madera; su bodega va llena de ánforas.`,
-  `Su tripulación no puede ver bajo el agua: la superficie oculta la profundidad. Hoy el fondo se lee con sonar y la tormenta se conoce de antemano. Aquel día no hay ni lo uno ni lo otro.`,
-  `Por eso el agua que creen profunda puede volverse de pronto somera. Se levanta una tormenta repentina y empuja al pequeño barco de madera hacia un bajío que nadie ve.${n(1)}`,
+  `El agua que tiene debajo parece profunda, pero la superficie oculta la profundidad. Hoy el fondo se lee con sonar y la tormenta se conoce de antemano; la tripulación de este barco no tiene ni lo uno ni lo otro.`,
+  `El agua que creen profunda se vuelve de pronto somera. La tormenta que se levanta en ese momento empuja al pequeño barco de madera contra un bajío que nadie ve.${n(1)}`,
   `El barco choca contra el bajío y se hunde. Cuando se posa en el fondo, la parte baja del casco queda enterrada en la arena y el resto, expuesto en el agua.`,
-  `Mientras navegaba, su tripulación cuidaba de él: durante miles de años los fondos de los barcos se forraron con cobre y plomo contra la broma y se mantuvieron con un cuidado regular. En el fondo ya no queda nadie que lo cuide.${n(2)}`,
-  `Y el mar no está vacío. Para algunos seres que viven en agua oxigenada la madera es un alimento natural, y el primero de ellos es la broma. Sus larvas, arrastradas por el agua, encuentran la madera del barco y se fijan a su superficie.${n(3)}`,
-  `Cada larva penetra en la madera y empieza a avanzar a lo largo de ella. No atraviesa el barco; se queda dentro de la madera.${n(4)}`,
+  `La madera expuesta está ahora desprotegida. Mientras el barco navegaba, su fondo iba forrado de cobre y plomo contra la broma y se mantenía con un cuidado regular; en el fondo del mar no queda nadie que lo mantenga.${n(2)}`,
+  `La madera desprotegida la encuentran las larvas de la broma. Para algunos seres que viven en agua oxigenada la madera es un alimento natural, y la broma es el primero de ellos. Sus larvas, arrastradas por el agua, se fijan al casco.${n(3)}`,
+  `Cada larva que se fija penetra en la madera y empieza a avanzar a lo largo de ella. No atraviesa el casco; se queda dentro de la madera.${n(4)}`,
   `Miremos de cerca al ser que avanza ahí dentro. Se le llama gusano, pero no lo es: es un molusco bivalvo, pariente del mejillón. Su nombre científico es <i>Teredo navalis</i>.${n(5)}`,
   `En la cabeza lleva dos pequeñas valvas. Con las hileras de dientes de esas valvas se agarra a la madera y avanza; además, digiere la madera.${n(6)}`,
   `A medida que avanza deja tras de sí un revestimiento calcáreo, y así la galería no se hunde. El sifón de la cola se queda en la entrada, porque tiene que alcanzar el agua de mar. Si las condiciones empeoran cierra la entrada con sus dos paletas y puede vivir así hasta seis semanas.${n(7)}`,
-  `Tampoco está sola en el barco: muchas avanzan juntas dentro de la misma madera. Cuantos más animales se instalan, antes se consume la madera; el tiempo depende también del tipo de madera y de las condiciones del mar.${n(8)}`,
-  `Vaciada de este modo, la madera pierde su resistencia. Primero cae el mástil, luego se hunde el casco; la corriente dispersa los restos.`,
-  `Queda lo que el barco transportaba. De este barco, un túmulo de ánforas; de otros, lingotes de cobre, platos, tejas, ladrillos, vidrio en bruto o sarcófagos. Incluso de un ancla de madera solo quedan las partes de piedra o de plomo. Porque nada de esto es alimento para la broma. Donde estaba la madera quedan sus tubos calcáreos.${n(9)}`,
-  `Aun así, el barco no desaparece del todo. La broma tiene que alcanzar el agua; no puede vivir bajo la arena ni el fango. Por eso la parte del barco enterrada en la arena puede conservar su integridad.${n(10)}`,
-  `Esa protección dura mientras la cubierta sigue en su sitio. Si el oleaje, las corrientes fuertes o el arrastre de fondo abren la arena, la madera que queda al descubierto desaparece del mismo modo al cabo de un tiempo.${n(10)}`,
-  `La historia no acaba aquí, porque el bajío que hundió el barco sigue en su sitio. En el mismo punto se hunden otros barcos y a veces los pecios se acumulan unos sobre otros; en la costa turca el ejemplo más conocido es Yassıada. Desaparecidos los cascos, lo que los distingue es el cargamento que llevaban.${n(11)}`],
+  `La galería no es la única: muchas bromas avanzan una junto a otra dentro de la misma madera. Cuantas más son, antes se consume la madera; el tiempo depende también del tipo de madera y de las condiciones del mar.${n(8)}`,
+  `A medida que las galerías se multiplican, la madera se vacía y pierde su resistencia. Primero cae el mástil, luego se hunde el casco; la corriente dispersa los restos.`,
+  `Lo que la corriente no puede llevarse y la broma no puede comer se queda en su sitio: el cargamento del barco. De este barco queda un túmulo de ánforas; de otros, lingotes de cobre, platos, tejas, ladrillos, vidrio en bruto o sarcófagos. Incluso de un ancla de madera solo quedan las partes de piedra o de plomo. Donde estaba la madera quedan los tubos calcáreos de la broma.${n(9)}`,
+  `Bajo el túmulo sigue habiendo una parte del propio barco. La broma tiene que alcanzar el agua; no puede vivir bajo la arena ni el fango. Por eso la madera enterrada en la arena puede conservar su integridad.${n(10)}`,
+  `Lo que la protege es la cubierta que tiene encima. Si el oleaje, las corrientes fuertes o el arrastre de fondo abren la arena, la madera que queda al descubierto desaparece del mismo modo.${n(10)}`,
+  `En cuanto al bajío que hundió el barco, sigue en su sitio. En el mismo punto se hunden otros barcos y a veces los pecios se acumulan unos sobre otros; en la costa turca el ejemplo más conocido es Yassıada. Desaparecidos los cascos, lo que los distingue es el cargamento que llevaban.${n(11)}`],
  L:{deep:"aguas profundas",shoal:"bajío oculto",second:"cargamento de un segundo barco",cu:"forro de cobre y plomo",lar:"larvas",sh:"valvas",bo:"cuerpo",li:"revestimiento calcáreo",si:"sifón",pa:"paletas",mound:"túmulo de ánforas",stock:"cepo de plomo del ancla",bur:"madera conservada bajo la arena",open:"madera destapada"},
  dH:"No ocurre en todos los mares",
  dP:`<i>Teredo navalis</i> se encuentra desde las regiones frías hasta los trópicos, pero para multiplicarse con rapidez necesita tres condiciones:${n(12)}`,
@@ -462,6 +476,7 @@ es:{title:"Patrimonio subacuático para todos",
  i1:"No destape la arena, el fango ni ninguna cubierta. Esa cubierta es lo que protege la madera enterrada.",
  i2:`No la toque ni la mueva. Retirar el cargamento puede destruir los restos del barco conservados debajo.${n(10)}`, i3:"Registre la posición y fotografíela.", i4:"Comuníquelo al museo más cercano.",
  N:["Öniz (2024, p. 26).","Öniz (2023, p. 10); Öniz (2024, p. 27).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 11).","Langley (2023); Pournou (2020), citado en Öniz (2023, p. 10).","Turner (1971), citado en Öniz (2023, p. 11); Langley (2023).","Öniz (2023, p. 11); Blum (1928), citado en Öniz (2023, p. 11).","WreckProtect (2011); Öniz (2023, pp. 10, 12); Öniz (2024, p. 27).","Öniz (2024, pp. 27, 29); Öniz et al. (2024, p. 7); Öniz (2023, p. 12); Eriksen y Gregory (2016), citado en Öniz (2023, p. 10).","Öniz (2023, pp. 10–11); Öniz (2024, p. 27).","Öniz (2024, pp. 26–27).","Steinmayer y Turfa (1996), citado en Öniz (2023, p. 11).","Öniz (2023, pp. 10–11).","WreckProtect (2011).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 12); Pearson (1987), citado en Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz et al. (2024)."],
+ hint:"Desliza para continuar",
  refH:"Fuentes", notesH:"Notas", refNote:"Las referencias siguen el formato APA, 7.ª edición. Los trabajos indicados en las notas con «citado en» se citan a través de Öniz (2023).",
  useH:"Uso",
  useSimple:"Esta página se ha preparado para explicar el tema de forma que todos puedan seguirlo; los dibujos y la animación son esquemáticos y no están a escala.",
@@ -616,10 +631,11 @@ let stepEls=[], curStep=-1;
 function progress(){ const sb=$("#stick").getBoundingClientRect().bottom, vh=window.innerHeight, trig=sb+(vh-sb)*0.42; let i=-1;
   for(let k=0;k<stepEls.length;k++){ if(stepEls[k].getBoundingClientRect().top<=trig) i=k; else break; }
   if(i<0) return {p:0,i:0}; const r=stepEls[i].getBoundingClientRect(); return {p:i+clamp((trig-r.top)/Math.max(1,r.height),0,0.999),i}; }
-function onScroll(){ document.documentElement.style.setProperty('--stb',Math.round($("#stick").getBoundingClientRect().height+8)+'px'); const {p,i}=progress(); if(i!==curStep){ curStep=i; stepEls.forEach((e,k)=>{ e.classList.toggle("on",k===i); e.classList.toggle("near",k===i+1); }); [...$("#dots").children].forEach((d,k)=>d.classList.toggle("on",k===i)); } draw(p); }
+function onScroll(){ document.documentElement.style.setProperty('--stb',Math.round($("#stick").getBoundingClientRect().height+8)+'px'); const {p,i}=progress(); { const h=$("#hint"), st=$("#story").getBoundingClientRect(); h.classList.toggle("show",st.top<innerHeight*0.9&&st.bottom>innerHeight&&i<stepEls.length-1); h.classList.toggle("mini",p>=1); $("#scrim").classList.toggle("show",h.classList.contains("show")&&p<1); } if(i!==curStep){ curStep=i; stepEls.forEach((e,k)=>{ e.classList.toggle("on",k===i); e.classList.toggle("near",k===i+1); }); [...$("#dots").children].forEach((d,k)=>d.classList.toggle("on",k===i)); } draw(p); }
 let ticking=false; addEventListener("scroll",()=>{ if(!ticking){ ticking=true; requestAnimationFrame(()=>{ ticking=false; onScroll(); }); } },{passive:true}); addEventListener("resize",onScroll);
 if(!REDUCE){ let vis=true; if("IntersectionObserver" in window) new IntersectionObserver(es=>{ vis=es[0].isIntersecting; }).observe($("#story")); const t0=performance.now(); const loop=now=>{ if(vis&&!document.hidden){ IDLE=(now-t0)/1000; draw(P); } requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
 
+$("#hint").addEventListener("click",()=>{ const sb=$("#stick").getBoundingClientRect().bottom, trig=sb+(innerHeight-sb)*0.42; for(const e of stepEls){ const r=e.getBoundingClientRect(); if(r.top>trig+1){ window.scrollBy({top:r.top-trig+r.height*0.3,behavior:REDUCE?"auto":"smooth"}); return; } } });
 function applyLang(){ document.documentElement.lang=LANG; document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=T(e.dataset.i18n)); document.querySelectorAll("[data-i18n-aria]").forEach(e=>e.setAttribute("aria-label",T(e.dataset.i18nAria))); document.title="RecOniz · "+T("title");
   [...$("#lang").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===LANG));
   const S=T("S"), st=$("#steps"); if(!stepEls.length){ S.forEach(()=>{ const d=document.createElement("div"); d.className="step"; d.append(document.createElement("p")); st.append(d); stepEls.push(d); $("#dots").append(document.createElement("i")); }); }
