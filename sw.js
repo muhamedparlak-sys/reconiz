@@ -1,10 +1,10 @@
 // RecOniz service worker: çevrimdışı çalışma için uygulama, model ve kütüphaneler önbellekte tutulur
-const C='reconiz-v30';
-const CORE=['/','/rejoiner/','/coins/','/teredo/','/koruma/','/sorumluluk/','/coins/data.json','/coins/model.json','/manifest.webmanifest','/icon-192.png','/icon-512.png','/icon-maskable-512.png','/apple-touch-icon.png','/favicon.svg','/favicon-32.png','/ml/ort.wasm.min.js','/ml/three.min.js','/ml/ort-wasm-simd.wasm','/ml/ort-wasm.wasm','/ml/u2netp.onnx.b64.txt'];
+const C='reconiz-v31';
+const CORE=['/','/rejoiner/','/coins/','/onem/','/teredo/','/koruma/','/sorumluluk/','/coins/data.json','/coins/model.json','/manifest.webmanifest','/icon-192.png','/icon-512.png','/icon-maskable-512.png','/apple-touch-icon.png','/favicon.svg','/favicon-32.png','/ml/ort.wasm.min.js','/ml/three.min.js','/ml/ort-wasm-simd.wasm','/ml/ort-wasm.wasm','/ml/u2netp.onnx.b64.txt'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 // sayfa: ağ 3 saniyede yanıt vermezse (zayıf bağlantı) önbellekteki sürüm açılır; ağ gelince önbellek yenilenir
-function pageFetch(r){ const p=new URL(r.url).pathname, old=p.startsWith('/parca'), key=(old||p.startsWith('/rejoiner'))?'/rejoiner/':p.startsWith('/coins')?'/coins/':p.startsWith('/teredo')?'/teredo/':p.startsWith('/koruma')?'/koruma/':p.startsWith('/sorumluluk')?'/sorumluluk/':'/';
+function pageFetch(r){ const p=new URL(r.url).pathname, old=p.startsWith('/parca'), key=(old||p.startsWith('/rejoiner'))?'/rejoiner/':p.startsWith('/coins')?'/coins/':p.startsWith('/teredo')?'/teredo/':p.startsWith('/koruma')?'/koruma/':p.startsWith('/sorumluluk')?'/sorumluluk/':p.startsWith('/onem')?'/onem/':'/';
   const net=fetch(r).then(res=>{ if(res.ok&&!old){ const cp=res.clone(); caches.open(C).then(c=>c.put(key,cp)); } return res; });
   const cached=caches.match(key);
   const timeout=new Promise(ok=>setTimeout(ok,3000));
