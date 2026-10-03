@@ -210,35 +210,32 @@ body.touring{padding-bottom:240px}
 
 </style>
 <style>
-/* Herkes için Teredo navalis: RecOniz ailesiyle aynı tokenlar; sayfaya özgü renkler */
-:root{ --wood:#C9A27A; --wood-d:#A9825A; --grain:#B58E63; --cavity:#4A3120; --tube:#F4EFE3; --tube-l:#CFC6B2; --flesh:#E6B4A0; --sand:#E3D5B8; --sand-d:#CDBB97; --water-a:#DCEAF0; --water-b:#C3DAE4; --pot:#B8683E; }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --wood:#8D6B48; --wood-d:#6E5236; --grain:#7A5B3C; --cavity:#1E140D; --tube:#E9E3D3; --tube-l:#9E9685; --flesh:#D9A08A; --sand:#4A4130; --sand-d:#39321F; --water-a:#17303A; --water-b:#10232B; --pot:#C97A50; } }
-:root[data-theme="dark"]{ --wood:#8D6B48; --wood-d:#6E5236; --grain:#7A5B3C; --cavity:#1E140D; --tube:#E9E3D3; --tube-l:#9E9685; --flesh:#D9A08A; --sand:#4A4130; --sand-d:#39321F; --water-a:#17303A; --water-b:#10232B; --pot:#C97A50; }
+/* Herkes için Teredo navalis: tek bir geminin hikâyesi; sahne kaydırdıkça değişir */
+:root{ --wood:#C9A27A; --wood-d:#A9825A; --grain:#B58E63; --cavity:#4A3120; --tube:#F4EFE3; --tube-l:#CFC6B2; --flesh:#E6B4A0; --sand:#E3D5B8; --sand-d:#CDBB97; --water-a:#D6E8EF; --water-b:#B9D3DF; --sky:#F1F5F4; --pot:#B8683E; --sail:#F7F3EA; --cu:#C7773F; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --wood:#8D6B48; --wood-d:#6E5236; --grain:#7A5B3C; --cavity:#1E140D; --tube:#E9E3D3; --tube-l:#9E9685; --flesh:#D9A08A; --sand:#4A4130; --sand-d:#39321F; --water-a:#17303A; --water-b:#0E2028; --sky:#141C1E; --pot:#C97A50; --sail:#CFC9BC; --cu:#D38A52; } }
+:root[data-theme="dark"]{ --wood:#8D6B48; --wood-d:#6E5236; --grain:#7A5B3C; --cavity:#1E140D; --tube:#E9E3D3; --tube-l:#9E9685; --flesh:#D9A08A; --sand:#4A4130; --sand-d:#39321F; --water-a:#17303A; --water-b:#0E2028; --sky:#141C1E; --pot:#C97A50; --sail:#CFC9BC; --cu:#D38A52; }
 .hero h2{font-size:clamp(28px,7vw,38px);line-height:1.1}
-.hero h2 i{font-style:italic;font-weight:600}
+.hero h2 i,.step i,.txt i,.wc i{font-style:italic}
 .lead1{font-size:18px;line-height:1.5;max-width:60ch}
-.stage{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--raised)}
-.stage svg{display:block;width:100%;height:auto}
-.ctl{display:flex;align-items:center;gap:12px;padding:10px 14px;border-top:1px solid var(--line)}
-.ctl button{flex:none;min-width:92px;border:0;border-radius:999px;background:var(--sea);color:var(--on-sea);font-weight:600;padding:8px 16px;min-height:38px;cursor:pointer}
-.ctl input[type=range]{flex:1;min-width:0;accent-color:var(--sea);height:28px}
-.cap{font-size:16px;min-height:3.1em}
-.cap b{font-weight:600}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chips button{border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:5px 12px;font-size:13.5px;color:var(--muted);cursor:pointer}
-.chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.meter{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
-.meter .tr{flex:1;height:8px;border-radius:999px;background:var(--soft);overflow:hidden;border:1px solid var(--line)}
-.meter .tr i{display:block;height:100%;background:var(--clay);width:100%}
-.meter b{color:var(--ink);font-weight:600;min-width:3.2em;text-align:right;font-variant-numeric:tabular-nums}
-.parts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:p}
-.parts li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;font-size:15.5px}
-.parts li::before{counter-increment:p;content:counter(p);width:26px;height:26px;border-radius:999px;background:var(--sea);color:var(--on-sea);font-size:13px;font-weight:600;display:grid;place-items:center}
-.parts b{font-weight:600}
+.story{gap:0}
+.stick{position:sticky;top:8px;z-index:5;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--bg);box-shadow:0 10px 26px -18px rgba(0,0,0,.45)}
+.stick svg{display:block;width:100%;height:auto}
+.dots{position:absolute;left:0;right:0;top:8px;display:flex;justify-content:center;gap:5px;pointer-events:none}
+.dots i{width:6px;height:6px;border-radius:999px;background:var(--ink);opacity:.18;transition:opacity .25s,transform .25s}
+.dots i.on{opacity:.75;transform:scale(1.25)}
+.steps2{display:flex;flex-direction:column}
+.step{min-height:78vh;display:flex;align-items:flex-start}
+.step:first-child{min-height:60vh}
+.step:last-child{min-height:70vh}
+.step p{position:sticky;top:calc(var(--stb,300px) + 22px);font-size:clamp(19px,4.9vw,22px);line-height:1.42;max-width:30em;opacity:0;transition:opacity .3s;padding-bottom:22px}
+.step.on p{opacity:1}
+.step.near p{opacity:.22}
+.step sup,.txt sup,.wc sup,.sub sup,.limits sup,section>p sup{font-size:.62em;line-height:0;color:var(--sea);font-weight:600;margin-left:1px}
+sup a{color:inherit;text-decoration:none}
 .where{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 @media (max-width:560px){ .where{grid-template-columns:1fr} }
 .wc{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--raised);display:flex;flex-direction:column;gap:6px}
-.wc h3{font-size:16.5px;display:flex;align-items:center;gap:8px}
+.wc h3{font-size:16.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .wc p{font-size:14.5px;color:var(--muted)}
 .wc .tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:2px 9px;white-space:nowrap}
 .wc.yes .tag{background:var(--clay-soft);color:var(--clay)}
@@ -251,9 +248,10 @@ body.touring{padding-bottom:240px}
 .callout{padding:18px 20px;border-radius:18px;background:var(--sea-soft)}
 .callout h2{color:var(--sea)}
 .steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
+.notes{margin:0;padding-left:1.6em;display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--muted)}
 .wig{animation:wig 1.6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
 @keyframes wig{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
-@media (prefers-reduced-motion: reduce){ .wig{animation:none} }
+@media (prefers-reduced-motion: reduce){ .wig{animation:none} .step p{transition:none} }
 </style>
 </head>
 <body>
@@ -272,31 +270,9 @@ body.touring{padding-bottom:240px}
     <p class="lead1" data-i18n="lede"></p>
   </section>
 
-  <section aria-labelledby="h-a">
-    <h2 id="h-a" data-i18n="aH"></h2>
-    <div class="stage"><svg id="svgA" viewBox="0 0 720 280" role="img" aria-labelledby="h-a"></svg>
-      <div class="ctl"><button id="aPlay" type="button"></button><input id="aT" type="range" min="0" max="1000" value="0" data-i18n-aria="tAria" aria-label="Zaman"></div></div>
-    <div class="chips" id="aChips" role="group"></div>
-    <p class="cap" id="aCap" aria-live="polite"></p>
-    <div class="meter"><span data-i18n="aMeter"></span><div class="tr"><i id="aBar"></i></div><b id="aPct"></b></div>
-    <p class="sub" data-i18n="aNote"></p>
-  </section>
-
-  <section aria-labelledby="h-b">
-    <h2 id="h-b" data-i18n="bH"></h2>
-    <p data-i18n="bP"></p>
-    <div class="stage"><svg id="svgB" viewBox="0 0 720 230" role="img" aria-labelledby="h-b"></svg></div>
-    <ol class="parts"><li data-i18n="b1"></li><li data-i18n="b2"></li><li data-i18n="b3"></li><li data-i18n="b4"></li><li data-i18n="b5"></li></ol>
-    <p data-i18n="bP2"></p>
-  </section>
-
-  <section aria-labelledby="h-c">
-    <h2 id="h-c" data-i18n="cH"></h2>
-    <div class="stage"><svg id="svgC" viewBox="0 0 720 300" role="img" aria-labelledby="h-c"></svg>
-      <div class="ctl"><button id="cPlay" type="button"></button><input id="cT" type="range" min="0" max="1000" value="0" data-i18n-aria="tAria" aria-label="Zaman"></div></div>
-    <div class="chips" id="cChips" role="group"></div>
-    <p class="cap" id="cCap" aria-live="polite"></p>
-    <p class="sub" data-i18n="cNote"></p>
+  <section class="story" id="story" aria-label="Hikâye">
+    <div class="stick" id="stick"><svg id="scene" viewBox="0 0 720 440" aria-hidden="true" focusable="false"></svg><div class="dots" id="dots"></div></div>
+    <div class="steps2" id="steps"></div>
   </section>
 
   <section aria-labelledby="h-d">
@@ -311,34 +287,19 @@ body.touring{padding-bottom:240px}
     </div>
   </section>
 
-  <section class="txt" aria-labelledby="h-e">
-    <h2 id="h-e" data-i18n="eH"></h2>
-    <p data-i18n="eP"></p>
-  </section>
-
-  <section class="txt" aria-labelledby="h-f">
-    <h2 id="h-f" data-i18n="fH"></h2>
-    <p data-i18n="fP"></p>
-  </section>
-
-  <section class="txt" aria-labelledby="h-g">
-    <h2 id="h-g" data-i18n="gH"></h2>
-    <p data-i18n="gP"></p>
-  </section>
-
-  <section class="txt" aria-labelledby="h-h">
-    <h2 id="h-h" data-i18n="hH"></h2>
-    <p data-i18n="hP"></p>
-  </section>
+  <section class="txt" aria-labelledby="h-e"><h2 id="h-e" data-i18n="eH"></h2><p data-i18n="eP"></p></section>
+  <section class="txt" aria-labelledby="h-f"><h2 id="h-f" data-i18n="fH"></h2><p data-i18n="fP"></p></section>
+  <section class="txt" aria-labelledby="h-g"><h2 id="h-g" data-i18n="gH"></h2><p data-i18n="gP"></p></section>
+  <section class="txt" aria-labelledby="h-h"><h2 id="h-h" data-i18n="hH"></h2><p data-i18n="hP"></p></section>
 
   <section class="callout" aria-labelledby="h-i">
     <h2 id="h-i" data-i18n="iH"></h2>
     <ol class="steps"><li data-i18n="i1"></li><li data-i18n="i2"></li><li data-i18n="i3"></li><li data-i18n="i4"></li></ol>
-    <p class="sub" data-i18n="iSrc"></p>
   </section>
 
   <section aria-labelledby="h-ref">
     <h2 id="h-ref" data-i18n="refH"></h2>
+    <div class="ab"><h3 class="lab" data-i18n="notesH"></h3><ol class="notes" id="notes"></ol></div>
     <p class="sub" data-i18n="refNote"></p>
     <ul class="refs" id="refs"></ul>
   </section>
@@ -357,174 +318,136 @@ const NAV={
  tr:{navH:"Araçlar",navAmp:"Amphora tanıma",navAmpSub:"Underwater Heritage Recognizer · tek fotoğraftan amphora tipi",navRej:"Kırık seramik birleştirme",navRejSub:"Heritage Rejoiner · masadaki parçalardan kapları birleştirir",navCoin:"Sikke tanıma",navCoinSub:"Heritage Coin Recognizer · tek yüzden Roma imparatoru",navTer:"Herkes için Teredo navalis",navTerSub:"Heritage Explainer · ahşap batıkları tüketen deniz kurdu",navHere:"Bu sayfa",navMenu:"Menü"},
  en:{navH:"Tools",navAmp:"Amphora recognition",navAmpSub:"Underwater Heritage Recognizer · amphora type from a single photo",navRej:"Broken ceramic rejoining",navRejSub:"Heritage Rejoiner · reassembles vessels from the sherds on a table",navCoin:"Coin recognition",navCoinSub:"Heritage Coin Recognizer · Roman emperor from one face",navTer:"Teredo navalis for everyone",navTerSub:"Heritage Explainer · the shipworm that consumes wooden wrecks",navHere:"This page",navMenu:"Menu"},
  es:{navH:"Herramientas",navAmp:"Identificación de ánforas",navAmpSub:"Underwater Heritage Recognizer · tipo de ánfora a partir de una foto",navRej:"Remontaje de cerámica fragmentada",navRejSub:"Heritage Rejoiner · reconstruye piezas a partir de los fragmentos de una mesa",navCoin:"Reconocimiento de monedas",navCoinSub:"Heritage Coin Recognizer · emperador romano a partir de una cara",navTer:"Teredo navalis para todos",navTerSub:"Heritage Explainer · la broma que consume los pecios de madera",navHere:"Esta página",navMenu:"Menú"}};
+const n=k=>`<sup><a href="#n${k}">${k}</a></sup>`;
 const I18N={
 tr:{title:"Herkes için Teredo navalis",
  h1:"Herkes için <i>Teredo navalis</i>",
- lede:"Akdeniz’de batan ahşap bir gemiden geriye çoğu zaman yalnızca yükü kalır. Ahşabı tüketen, denizcilerin “deniz kurdu” dediği <i>Teredo navalis</i> ve akrabalarıdır. Bu sayfa onun ahşabı nasıl tükettiğini ve bir batığın neden amphora yığınına dönüştüğünü gösterir.",
- play:"Oynat", pause:"Duraklat", replay:"Baştan", tAria:"Zaman",
- aH:"Bir ahşabın içinde",
- a1:"Yerleşme", a2:"Tünel açma", a3:"İçi boşalır", a4:"Dağılır",
- aC1:"<b>Yerleşme.</b> Larvalar suda sürüklenir ve ahşabın yüzeyine tutunur.",
- aC2:"<b>Tünel açma.</b> Her biri ahşaba girer ve boyuna doğru ilerler; arkasında kireçli bir astar bırakır. Sifonları girişte, suyun içinde kalır.",
- aC3:"<b>İçi boşalır.</b> Hayvanlar gemiyi delip geçmek yerine ahşabın içinde ilerlediği için hasar dışarıdan az görünür.",
- aC4:"<b>Dağılır.</b> Ahşap tükenir; geriye canlının kireçli tüpleri kalır. Yok olmuş bir ahşap bu tüplerden anlaşılır.",
- aMeter:"Sağlam kalan ahşap",
- aNote:"Canlandırma süreci basitleştirerek gösterir. Süre ahşabın cinsine ve denizin koşullarına göre değişir; tuzlu denizlerde açıkta kalan ahşap aylar ya da yıllar içinde yok olabilir (WreckProtect, 2011; Öniz, 2023, s. 10).",
- bH:"Kurt değil, midye akrabası",
- bP:"Adı deniz kurdu olsa da <i>Teredo navalis</i> bir kurt değil, çift kabuklu bir yumuşakçadır; gövdesinin büyük bölümü kabuğun dışında kaldığı için kurda benzer (Langley, 2023). Teredinidae ailesindendir; bu ailenin yaklaşık 75 türü bilinir (Pournou, 2020, akt. Öniz, 2023, s. 10).",
- b1:"<span><b>Kabuklar.</b> Baş ucundaki iki küçük kabuğun üzerindeki diş sıraları hayvanın ahşaba tutunmasını ve ilerlemesini sağlar (Turner, 1971, akt. Öniz, 2023, s. 11).</span>",
- b2:"<span><b>Gövde.</b> Yumuşak, uzun gövde tünelin içinde kalır; bazı türlerde nadiren 185 cm’ye ulaşır (Öniz, 2023, s. 11).</span>",
- b3:"<span><b>Kireçli astar.</b> Hayvan ilerlerken tünelin çökmesini önleyen kireçli bir tabaka salgılar (Öniz, 2023, s. 11).</span>",
- b4:"<span><b>Sifonlar.</b> Kuyruk ucundaki sifon ahşaptan dışarı uzanır ve deniz suyuyla teması sağlar (Öniz, 2023, s. 11).</span>",
- b5:"<span><b>Paletler.</b> Sıcaklık ya da tuzluluk değiştiğinde paletler tünelin girişini kapatır; hayvan suyla temas etmeden 6 haftaya kadar yaşayabilir (Blum, 1928, akt. Öniz, 2023, s. 11).</span>",
- bP2:"Deniz kurdu ahşabı yalnızca oymaz, sindirir (Langley, 2023). Yüzemez; yakınında besin kaynağı yoksa yaşayamaz (Grave, 1928, akt. Öniz, 2023, s. 11).",
- cH:"Batığa ne olur?",
- c1:"Dibe oturur", c2:"Ahşap tükenir", c3:"Gövde çöker", c4:"Yığın kalır",
- cC1:"<b>Dibe oturur.</b> Gövdenin alt kısmı kuma gömülür; üst kısmı suyun içinde açıkta kalır.",
- cC2:"<b>Ahşap tükenir.</b> Deniz tabanında açıkta kalan ahşap, deniz kurtlarınca bir süre sonra yok edilir (Öniz, 2023, s. 10).",
- cC3:"<b>Gövde çöker.</b> Taşıyıcı ahşap kalmayınca yük dibe yayılır.",
- cC4:"<b>Yığın kalır.</b> Geriye amphora yığını kalır. Kumun ya da balçığın altında kalan ahşap ise bütünlüğünü koruyabilir (Öniz, 2023, s. 10).",
- cLabA:"amphora yığını", cLabB:"kumun altında korunan ahşap",
- cNote:"Kıyıya yakın yerlerde dalgalar, açıkta güçlü akıntılar ya da dip trolleri gömülü ahşabın üstünü açabilir; açığa çıkan kısım da bir süre sonra yok olur (Öniz, 2023, s. 10).",
- dH:"Nerede yaşar, nerede yaşayamaz",
- dP:"<i>Teredo navalis</i> soğuk bölgelerden tropiklere geniş bir alana yayılmıştır, ama hızla çoğalması için üç koşul gerekir (Steinmayer ve Turfa, 1996, akt. Öniz, 2023, s. 11):",
+ lede:"Deniz dibindeki bir batıkta neden amphoralar durur da geminin kendisi yoktur? Cevabını, bir geminin hikâyesini baştan izleyerek görelim.",
+ S:["Yüklü bir ticaret gemisi Akdeniz’de yol alıyor. Gövdesi ahşap, ambarı amphora dolu.",
+  `Denizciler suyun altındaki sessiz düşmanı binlerce yıldır tanır: deniz kurdu. Gemilerin altı onun yüzünden önce bakır, sonra kurşun levhalarla kaplanmış, daha sonra boyanmıştır.${n(1)}`,
+  "Bir gün gemi batar. Dibe oturur; gövdenin altı kuma gömülür, üstü suyun içinde açıkta kalır.",
+  `Deniz boş değildir. Oksijenli suda yaşayan bazı canlılar için ahşap doğal bir besindir; bunların başında deniz kurdu gelir. Suda sürüklenen larvaları ahşabı bulur ve yüzeyine tutunur.${n(2)}`,
+  `Her biri ahşaba girer ve boyuna doğru ilerlemeye başlar. Gemiyi delip geçmez; ahşabın içinde kalır.${n(3)}`,
+  `Yakından bakalım. Adı kurt, ama bu bir kurt değil: çift kabuklu bir yumuşakça, yani midyenin akrabası. Bilimsel adı <i>Teredo navalis</i>.${n(4)}`,
+  `Baş ucunda iki küçük kabuk taşır. Kabukların üzerindeki diş sıralarıyla ahşaba tutunur ve ilerler; ahşabı da sindirir.${n(5)}`,
+  `İlerlerken tünel çökmesin diye kireçli bir astar bırakır. Kuyruk ucundaki sifon girişte kalır, çünkü deniz suyuna ulaşması gerekir. Koşullar bozulursa iki palet girişi kapatır; hayvan böyle altı haftaya kadar yaşayabilir.${n(6)}`,
+  `Aynı ahşabın içinde pek çoğu birlikte ilerler. Ne kadar çok canlı yerleşirse ahşap o kadar çabuk tükenir; süre ahşabın cinsine ve denizin koşullarına da bağlıdır.${n(7)}`,
+  "İçi boşalan ahşap dayanımını yitirir. Direk devrilir, gövde çöker; parçaları akıntıyla dağılır.",
+  `Geriye geminin yükü kalır: bir amphora yığını. Seramik ve taş deniz kurdunun besini değildir; bu yüzden yerlerinde dururlar. Ahşabın yerinde ise canlının kireçli tüpleri kalır.${n(8)}`,
+  `Ama gemi tümüyle yok olmaz. Deniz kurdu suyla temas etmek zorundadır; kumun ya da balçığın altında yaşayamaz. Gömülü kalan ahşap bu yüzden bütünlüğünü koruyabilir.${n(9)}`,
+  `Dalgalar, güçlü akıntılar ya da dip trolleri bu örtüyü açarsa, açığa çıkan ahşap da bir süre sonra yok olur.${n(9)}`],
+ L:{cu:"bakır ve kurşun kaplama",lar:"larvalar",sh:"kabuklar",bo:"gövde",li:"kireçli astar",si:"sifon",pa:"paletler",mound:"amphora yığını",bur:"kumun altında korunan ahşap",open:"örtüsü açılan ahşap"},
+ dH:"Her denizde böyle olmaz",
+ dP:`<i>Teredo navalis</i> soğuk bölgelerden tropiklere geniş bir alana yayılmıştır, ama hızla çoğalması için üç koşul gerekir:${n(10)}`,
  dL1:"<b>Sıcaklık</b> 11 °C’nin üzerinde (larvalar için 12 °C)", dL2:"<b>Tuzluluk</b> 8 PSU’nun üzerinde", dL3:"<b>Çözünmüş oksijen</b> litrede 4 mg’ın üzerinde",
  wYes:"Yaşar", wNo:"Yaşayamaz",
- w1H:"Akdeniz", w1P:"Sıcaklık, tuzluluk ve oksijen uygundur. Batık gemilerin ahşap bölümleri, kullanılan ağacın cinsine bağlı olarak belli bir süre sonra yok olur (Öniz, 2023, s. 10).",
- w2H:"Karadeniz’in derinleri", w2P:"Yaklaşık 100 metreden derinde su oksijensizdir; <i>Teredo navalis</i> ve benzeri deniz kurtları bulunmaz (Öniz, 2023, s. 11).",
- w3H:"Baltık Denizi", w3P:"Tuzluluk çok düşüktür; saldırgan deniz oyucuları buraya yayılamamış, tarihî batıklar bozulmadan kalmıştır (WreckProtect, 2011).",
- w4H:"Tatlı su", w4P:"Antalya kıyılarındaki ahşap tekne sahipleri teknelerini Manavgat Çayı gibi soğuk ve tatlı sulara sokup 5–6 hafta bekletir; teknenin altında üremiş deniz kurtları dökülür. Bu gelenek yüzyıllardır sürmektedir (Öniz, 2023, s. 11).",
- eH:"Denizcilerin binlerce yıllık sorunu",
- eP:"Gemilerin altının binlerce yıl boyunca önce bakır, sonra kurşun levhalarla kaplanmasının, ardından çeşitli kimyasal boyaların kullanılmasının ana nedeni bu canlı ailesidir (Öniz, 2023, s. 10). Doğu Akdeniz’de Eski Çağ’da gemi yapımında en çok kullanılan ağaç sedirdir; ahşabın yoğunluğuna bağlı olarak farklı ağaç türleri deniz kurdundan farklı oranlarda etkilenir (Öniz, 2023, s. 11–12).",
- fH:"Amphoralardaki izleri",
- fP:"Deniz kurdu amphoraların yüzeyinde de kireçli kalıntılar bırakabilir. Dağlık Kilikya açıklarından çıkarılan amphoralarda bu izlerin yoğun görülmesi, batığın ahşabında yaşayan canlıların yükü oluşturan amphoraların üzerine de yayılmış olmasıyla açıklanır. Sertleşen bu tabaka seramiğin yüzeyini parçalayabilir; bezemeleri, mühürleri ve grafitileri yok edebilir (Öniz, 2023, s. 12; Pearson, 1987, akt. Öniz, 2023).",
- gH:"Ahşabı tüketen yalnızca o mu?",
- gP:"Hayır. <i>Limnoria</i> gibi küçük kabuklular da ahşabı oyar; mantarlar ve bakteriler de ahşabı çürütür (Langley, 2023). Ancak yumuşak çürüklük mantarlarının ve erozyon bakterilerinin bozma hızı, deniz oyucularına göre genellikle çok yavaştır (WreckProtect, 2011). Tuzlu ve oksijenli sularda açıkta kalan ahşabı kısa sürede tüketen, deniz kurtlarıdır.",
- hH:"Nasıl korunur?",
- hP:"Ahşap bir batığı yerinde korumanın yolu, üstünü kapalı tutmaktır: kum torbaları, kum katmanları, jeotekstil ya da kumaş örtüler (WreckProtect, 2011; Öniz vd., 2024).",
+ w1H:"Akdeniz", w1P:`Üç koşul da uygundur. Batık gemilerin ahşap bölümleri, kullanılan ağacın cinsine bağlı olarak belli bir süre sonra yok olur.${n(11)}`,
+ w2H:"Karadeniz’in derinleri", w2P:`Yaklaşık 100 metreden derinde su oksijensizdir; <i>Teredo navalis</i> ve benzeri deniz kurtları bulunmaz.${n(11)}`,
+ w3H:"Baltık Denizi", w3P:`Tuzluluk çok düşüktür; saldırgan deniz oyucuları buraya yayılamamış, tarihî batıklar bozulmadan kalmıştır.${n(12)}`,
+ w4H:"Tatlı su", w4P:`Antalya kıyılarındaki ahşap tekne sahipleri teknelerini Manavgat Çayı gibi soğuk ve tatlı sulara sokup 5–6 hafta bekletir; teknenin altında üremiş deniz kurtları dökülür. Bu gelenek yüzyıllardır sürmektedir.${n(11)}`,
+ eH:"Ne kadar sürer?",
+ eP:`Süre ahşabın cinsine ve denizin koşullarına göre değişir; tuzlu denizlerde açıkta kalan ahşap aylar ya da yıllar içinde yok olabilir.${n(12)} Doğu Akdeniz’de Eski Çağ’da gemi yapımında en çok sedir kullanılmıştır; yoğunluğuna bağlı olarak farklı ağaç türleri deniz kurdundan farklı oranlarda etkilenir.${n(13)}`,
+ fH:"Amphoralarda da izi kalır",
+ fP:`Deniz kurdu amphoraların yüzeyinde de kireçli kalıntılar bırakabilir. Dağlık Kilikya açıklarından çıkarılan amphoralarda bu izlerin yoğun görülmesi, batığın ahşabında yaşayan canlıların yükün üzerine de yayılmış olmasıyla açıklanır. Sertleşen bu tabaka seramiğin yüzeyini parçalayabilir; bezemeleri, mühürleri ve grafitileri yok edebilir.${n(14)}`,
+ gH:"Tek sorumlu o mu?",
+ gP:`Hayır. <i>Limnoria</i> gibi küçük kabuklular da ahşabı oyar; mantarlar ve bakteriler de ahşabı çürütür. Ancak yumuşak çürüklük mantarlarının ve erozyon bakterilerinin bozma hızı, deniz oyucularına göre genellikle çok yavaştır.${n(15)} Tuzlu ve oksijenli sularda açıkta kalan ahşabı kısa sürede tüketen, deniz kurtlarıdır.`,
+ hH:"Peki nasıl korunur?",
+ hP:`Hikâyenin sonu yolu da gösteriyor: ahşap bir batığı yerinde korumak, üstünü kapalı tutmaktır. Bunun için kum torbaları, kum katmanları, jeotekstil ya da kumaş örtüler kullanılır.${n(16)}`,
  iH:"Dalışta ahşap görürseniz",
  i1:"Kumu, çamuru ya da üzerindeki örtüyü açmayın. Gömülü ahşabı koruyan o örtüdür.",
- i2:"Dokunmayın, yerinden oynatmayın.",
- i3:"Konumu kaydedin ve fotoğraflayın.",
- i4:"En yakın müzeye bildirin.",
- iSrc:"Kaynak: Öniz (2023, s. 10); Öniz vd. (2024).",
- refH:"Kaynakça", refNote:"APA 7. baskı biçiminde. Metinde “akt.” ile verilen çalışmalara Öniz (2023) aracılığıyla atıf yapılmıştır.",
+ i2:"Dokunmayın, yerinden oynatmayın.", i3:"Konumu kaydedin ve fotoğraflayın.", i4:"En yakın müzeye bildirin.",
+ N:["Öniz (2023, s. 10).","Öniz (2023, s. 11–12).","Öniz (2023, s. 11).","Langley (2023); Pournou (2020), akt. Öniz (2023, s. 10).","Turner (1971), akt. Öniz (2023, s. 11); Langley (2023).","Öniz (2023, s. 11); Blum (1928), akt. Öniz (2023, s. 11).","WreckProtect (2011); Öniz (2023, s. 10, 12).","Öniz (2023, s. 12); Eriksen ve Gregory (2016), akt. Öniz (2023, s. 10).","Öniz (2023, s. 10–11).","Steinmayer ve Turfa (1996), akt. Öniz (2023, s. 11).","Öniz (2023, s. 10–11).","WreckProtect (2011).","Öniz (2023, s. 11–12).","Öniz (2023, s. 12); Pearson (1987), akt. Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz vd. (2024)."],
+ refH:"Kaynaklar", notesH:"Notlar", refNote:"Kaynakça APA 7. baskı biçimindedir. Notlarda “akt.” ile verilen çalışmalara Öniz (2023) aracılığıyla atıf yapılmıştır.",
  useH:"Kullanım",
- useSimple:"Bu sayfa konuyu herkesin anlayabileceği biçimde anlatmak için hazırlanmıştır; çizimler ve canlandırmalar şematiktir, ölçekli değildir.",
+ useSimple:"Bu sayfa konuyu herkesin anlayabileceği biçimde anlatmak için hazırlanmıştır; çizimler ve canlandırma şematiktir, ölçekli değildir.",
  credDev:"Hakan Öniz’in danışmanlığında Muhammed Parlak tarafından hazırlanmıştır (2026).",
  priv:"Sayfa ziyaretleri, çerez kullanılmadan ve kişisel veri toplanmadan anonim olarak sayılır.",
  rights:"© 2026 Muhammed Parlak. Tüm hakları saklıdır. Sayfa akademik, eğitsel ve kişisel amaçlarla ücretsiz kullanılabilir; kopyalanması, değiştirilmesi ya da yeniden dağıtılması yazılı izne bağlıdır.",
  famSub:"RecOniz ailesi", famH:"Amphora tanıma: Underwater Heritage Recognizer"},
 en:{title:"Teredo navalis for everyone",
  h1:"<i>Teredo navalis</i> for everyone",
- lede:"When a wooden ship sinks in the Mediterranean, often only its cargo is left. The wood is consumed by <i>Teredo navalis</i>, which sailors call the shipworm, and its relatives. This page shows how it consumes timber and why a wreck turns into a mound of amphorae.",
- play:"Play", pause:"Pause", replay:"Replay", tAria:"Time",
- aH:"Inside a timber",
- a1:"Settling", a2:"Tunnelling", a3:"Hollowed out", a4:"Falls apart",
- aC1:"<b>Settling.</b> Larvae drift in the water and attach to the surface of the wood.",
- aC2:"<b>Tunnelling.</b> Each one enters the wood and advances along its length, leaving a calcareous lining behind. Its siphons stay at the entrance, in the water.",
- aC3:"<b>Hollowed out.</b> Because the animals advance inside the timber instead of boring through the hull, little of the damage shows from outside.",
- aC4:"<b>Falls apart.</b> The wood is used up; the animal’s calcareous tubes remain. Timber that has disappeared can be recognised from these tubes.",
- aMeter:"Sound wood remaining",
- aNote:"The animation shows the process in simplified form. The time it takes depends on the kind of wood and the conditions of the sea; in saline seas exposed timber can be destroyed within months or years (WreckProtect, 2011; Öniz, 2023, p. 10).",
- bH:"Not a worm but a relative of the mussel",
- bP:"Despite its name, <i>Teredo navalis</i> is not a worm but a bivalve mollusc; it looks like a worm because most of its body lies outside the shell (Langley, 2023). It belongs to the family Teredinidae, of which about 75 species are known (Pournou, 2020, as cited in Öniz, 2023, p. 10).",
- b1:"<span><b>Shells.</b> Rows of teeth on the two small shells at the head end let the animal grip the wood and advance (Turner, 1971, as cited in Öniz, 2023, p. 11).</span>",
- b2:"<span><b>Body.</b> The long, soft body stays inside the tunnel; in some species it occasionally reaches 185 cm (Öniz, 2023, p. 11).</span>",
- b3:"<span><b>Calcareous lining.</b> As it advances the animal secretes a calcareous layer that keeps the tunnel from collapsing (Öniz, 2023, p. 11).</span>",
- b4:"<span><b>Siphons.</b> The siphon at the tail end extends out of the wood and keeps contact with the seawater (Öniz, 2023, p. 11).</span>",
- b5:"<span><b>Pallets.</b> When temperature or salinity changes, the pallets close the entrance of the tunnel; the animal can survive for up to 6 weeks without contact with the water (Blum, 1928, as cited in Öniz, 2023, p. 11).</span>",
- bP2:"The shipworm does not only bore the wood, it digests it (Langley, 2023). It cannot swim and cannot survive without a food source nearby (Grave, 1928, as cited in Öniz, 2023, p. 11).",
- cH:"What happens to the wreck?",
- c1:"Settles", c2:"Wood is consumed", c3:"Hull collapses", c4:"The mound remains",
- cC1:"<b>Settles.</b> The lower part of the hull is buried in sand; the upper part stays exposed in the water.",
- cC2:"<b>Wood is consumed.</b> Timber left exposed on the seabed is eventually destroyed by shipworms (Öniz, 2023, p. 10).",
- cC3:"<b>Hull collapses.</b> With no timber left to hold it, the cargo spreads over the seabed.",
- cC4:"<b>The mound remains.</b> What is left is a mound of amphorae. Timber lying under sand or mud, however, can keep its integrity (Öniz, 2023, p. 10).",
- cLabA:"amphora mound", cLabB:"timber preserved under the sand",
- cNote:"Near the coast waves, and offshore strong currents or bottom trawls, can uncover buried timber; the part that is exposed is in turn destroyed after a time (Öniz, 2023, p. 10).",
- dH:"Where it lives and where it cannot",
- dP:"<i>Teredo navalis</i> is found from cold regions to the tropics, but three conditions are needed for it to multiply rapidly (Steinmayer & Turfa, 1996, as cited in Öniz, 2023, p. 11):",
+ lede:"Why, at a wreck on the seabed, are the amphorae still there while the ship itself is gone? Let us find the answer by following the story of one ship from the beginning.",
+ S:["A laden merchant ship is sailing the Mediterranean. Her hull is wood; her hold is full of amphorae.",
+  `Sailors have known the silent enemy below the waterline for thousands of years: the shipworm. Because of it the bottoms of ships were sheathed first in copper, then in lead, and later painted.${n(1)}`,
+  "One day the ship sinks. She settles on the seabed; the bottom of the hull is buried in sand, the top stays exposed in the water.",
+  `The sea is not empty. For some of the creatures that live in oxygenated water, wood is natural food; chief among them is the shipworm. Its larvae, drifting in the water, find the wood and attach to its surface.${n(2)}`,
+  `Each one enters the wood and begins to advance along its length. It does not bore through the hull; it stays inside the timber.${n(3)}`,
+  `Let us look closer. It is called a worm, but it is not one: it is a bivalve mollusc, a relative of the mussel. Its scientific name is <i>Teredo navalis</i>.${n(4)}`,
+  `At the head end it carries two small shells. With the rows of teeth on them it grips the wood and advances; it also digests the wood.${n(5)}`,
+  `As it advances it leaves a calcareous lining so that the tunnel does not collapse. The siphon at the tail end stays at the entrance, because it has to reach the seawater. If conditions turn bad, two pallets close the entrance; like this the animal can survive for up to six weeks.${n(6)}`,
+  `Many of them advance together inside the same timber. The more animals settle, the sooner the wood is used up; the time also depends on the kind of wood and the conditions of the sea.${n(7)}`,
+  "Hollowed out, the timber loses its strength. The mast falls and the hull collapses; its pieces are scattered by the current.",
+  `What is left is the ship’s cargo: a mound of amphorae. Ceramic and stone are not food for the shipworm, so they stay where they are. Where the wood was, the animal’s calcareous tubes remain.${n(8)}`,
+  `But the ship does not vanish completely. The shipworm must stay in contact with the water; it cannot live under sand or mud. That is why buried timber can keep its integrity.${n(9)}`,
+  `If waves, strong currents or bottom trawls remove this cover, the timber that is exposed is in turn destroyed after a time.${n(9)}`],
+ L:{cu:"copper and lead sheathing",lar:"larvae",sh:"shells",bo:"body",li:"calcareous lining",si:"siphon",pa:"pallets",mound:"amphora mound",bur:"timber preserved under the sand",open:"uncovered timber"},
+ dH:"It does not happen in every sea",
+ dP:`<i>Teredo navalis</i> is found from cold regions to the tropics, but three conditions are needed for it to multiply rapidly:${n(10)}`,
  dL1:"<b>Temperature</b> above 11 °C (12 °C for larvae)", dL2:"<b>Salinity</b> above 8 PSU", dL3:"<b>Dissolved oxygen</b> above 4 mg per litre",
  wYes:"Lives", wNo:"Cannot live",
- w1H:"Mediterranean", w1P:"Temperature, salinity and oxygen are suitable. The wooden parts of sunken ships disappear after a time that depends on the kind of wood used (Öniz, 2023, p. 10).",
- w2H:"The deep Black Sea", w2P:"Below about 100 metres the water has no oxygen; <i>Teredo navalis</i> and similar shipworms are absent (Öniz, 2023, p. 11).",
- w3H:"Baltic Sea", w3P:"Salinity is very low; aggressive marine borers have not been able to spread here and historical shipwrecks have remained intact (WreckProtect, 2011).",
- w4H:"Fresh water", w4P:"Owners of wooden boats on the Antalya coast take their boats into cold, fresh waters such as the Manavgat River and leave them there for 5–6 weeks; the shipworms that have grown under the boat fall off. This tradition has continued for centuries (Öniz, 2023, p. 11).",
- eH:"A problem thousands of years old for sailors",
- eP:"This family of animals is the main reason why, for thousands of years, the bottoms of ships were sheathed first in copper and then in lead, and later coated with various chemical paints (Öniz, 2023, p. 10). In the Eastern Mediterranean the wood most used for shipbuilding in antiquity was cedar; depending on its density, different kinds of wood are affected by the shipworm to different degrees (Öniz, 2023, pp. 11–12).",
- fH:"Its traces on amphorae",
- fP:"The shipworm can also leave calcareous remains on the surface of amphorae. The density of these traces on amphorae recovered off Rough Cilicia is explained by the animals living in the timber of the wreck having spread onto the amphorae of the cargo as well. This layer hardens and can break up the ceramic surface, destroying decoration, stamps and graffiti (Öniz, 2023, p. 12; Pearson, 1987, as cited in Öniz, 2023).",
- gH:"Is it the only thing that consumes wood?",
- gP:"No. Small crustaceans such as <i>Limnoria</i> (gribble) also bore into wood, and fungi and bacteria rot it (Langley, 2023). However, the rate of degradation by soft rot fungi and erosion bacteria is generally very slow compared with marine borers (WreckProtect, 2011). In saline, oxygenated waters it is the shipworms that consume exposed timber in a short time.",
- hH:"How is it protected?",
- hP:"The way to preserve a wooden wreck in situ is to keep it covered: sandbags, layers of sand, geotextile or fabric sheets (WreckProtect, 2011; Öniz et al., 2024).",
+ w1H:"Mediterranean", w1P:`All three conditions are met. The wooden parts of sunken ships disappear after a time that depends on the kind of wood used.${n(11)}`,
+ w2H:"The deep Black Sea", w2P:`Below about 100 metres the water has no oxygen; <i>Teredo navalis</i> and similar shipworms are absent.${n(11)}`,
+ w3H:"Baltic Sea", w3P:`Salinity is very low; aggressive marine borers have not been able to spread here and historical shipwrecks have remained intact.${n(12)}`,
+ w4H:"Fresh water", w4P:`Owners of wooden boats on the Antalya coast take their boats into cold, fresh waters such as the Manavgat River and leave them there for 5–6 weeks; the shipworms that have grown under the boat fall off. This tradition has continued for centuries.${n(11)}`,
+ eH:"How long does it take?",
+ eP:`It depends on the kind of wood and the conditions of the sea; in saline seas exposed timber can be destroyed within months or years.${n(12)} In the Eastern Mediterranean the wood most used for shipbuilding in antiquity was cedar; depending on their density, different kinds of wood are affected by the shipworm to different degrees.${n(13)}`,
+ fH:"It leaves its trace on amphorae too",
+ fP:`The shipworm can also leave calcareous remains on the surface of amphorae. The density of these traces on amphorae recovered off Rough Cilicia is explained by the animals living in the timber of the wreck having spread onto the cargo as well. This layer hardens and can break up the ceramic surface, destroying decoration, stamps and graffiti.${n(14)}`,
+ gH:"Is it the only culprit?",
+ gP:`No. Small crustaceans such as <i>Limnoria</i> (gribble) also bore into wood, and fungi and bacteria rot it. However, the rate of degradation by soft rot fungi and erosion bacteria is generally very slow compared with marine borers.${n(15)} In saline, oxygenated waters it is the shipworms that consume exposed timber in a short time.`,
+ hH:"So how is it protected?",
+ hP:`The end of the story shows the way: to preserve a wooden wreck in situ is to keep it covered. Sandbags, layers of sand, geotextile or fabric sheets are used for this.${n(16)}`,
  iH:"If you see timber on a dive",
  i1:"Do not uncover sand, mud or any covering. That cover is what protects buried timber.",
- i2:"Do not touch it or move it.",
- i3:"Record the position and photograph it.",
- i4:"Report it to the nearest museum.",
- iSrc:"Source: Öniz (2023, p. 10); Öniz et al. (2024).",
- refH:"References", refNote:"Formatted in APA 7th edition. Works given in the text with “as cited in” are cited through Öniz (2023).",
+ i2:"Do not touch it or move it.", i3:"Record the position and photograph it.", i4:"Report it to the nearest museum.",
+ N:["Öniz (2023, p. 10).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 11).","Langley (2023); Pournou (2020), as cited in Öniz (2023, p. 10).","Turner (1971), as cited in Öniz (2023, p. 11); Langley (2023).","Öniz (2023, p. 11); Blum (1928), as cited in Öniz (2023, p. 11).","WreckProtect (2011); Öniz (2023, pp. 10, 12).","Öniz (2023, p. 12); Eriksen and Gregory (2016), as cited in Öniz (2023, p. 10).","Öniz (2023, pp. 10–11).","Steinmayer and Turfa (1996), as cited in Öniz (2023, p. 11).","Öniz (2023, pp. 10–11).","WreckProtect (2011).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 12); Pearson (1987), as cited in Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz et al. (2024)."],
+ refH:"Sources", notesH:"Notes", refNote:"References are formatted in APA 7th edition. Works given in the notes with “as cited in” are cited through Öniz (2023).",
  useH:"Use",
- useSimple:"This page was prepared to explain the subject in a way everyone can follow; the drawings and animations are schematic and not to scale.",
+ useSimple:"This page was prepared to explain the subject in a way everyone can follow; the drawings and the animation are schematic and not to scale.",
  credDev:"Prepared by Muhammed Parlak under the supervision of Hakan Öniz (2026).",
  priv:"Page visits are counted anonymously, without cookies and without collecting personal data.",
  rights:"© 2026 Muhammed Parlak. All rights reserved. The page may be used free of charge for academic, educational and personal purposes; copying, modifying or redistributing it requires written permission.",
  famSub:"The RecOniz family", famH:"Amphora recognition: Underwater Heritage Recognizer"},
 es:{title:"Teredo navalis para todos",
  h1:"<i>Teredo navalis</i> para todos",
- lede:"Cuando un barco de madera se hunde en el Mediterráneo, a menudo solo queda su cargamento. La madera la consume <i>Teredo navalis</i>, la broma de los marinos, y sus parientes. Esta página muestra cómo consume la madera y por qué un pecio se convierte en un túmulo de ánforas.",
- play:"Reproducir", pause:"Pausar", replay:"Repetir", tAria:"Tiempo",
- aH:"Dentro de un madero",
- a1:"Asentamiento", a2:"Perforación", a3:"Se vacía", a4:"Se deshace",
- aC1:"<b>Asentamiento.</b> Las larvas derivan en el agua y se fijan a la superficie de la madera.",
- aC2:"<b>Perforación.</b> Cada una entra en la madera y avanza a lo largo de ella, dejando tras de sí un revestimiento calcáreo. Sus sifones quedan en la entrada, en el agua.",
- aC3:"<b>Se vacía.</b> Como los animales avanzan por dentro del madero en lugar de atravesar el casco, el daño apenas se ve desde fuera.",
- aC4:"<b>Se deshace.</b> La madera se agota; quedan los tubos calcáreos del animal. Una madera desaparecida se reconoce por esos tubos.",
- aMeter:"Madera sana restante",
- aNote:"La animación muestra el proceso de forma simplificada. El tiempo depende del tipo de madera y de las condiciones del mar; en mares salinos la madera expuesta puede destruirse en meses o años (WreckProtect, 2011; Öniz, 2023, p. 10).",
- bH:"No es un gusano, sino un pariente del mejillón",
- bP:"A pesar de su nombre, <i>Teredo navalis</i> no es un gusano sino un molusco bivalvo; parece un gusano porque la mayor parte de su cuerpo queda fuera de la concha (Langley, 2023). Pertenece a la familia Teredinidae, de la que se conocen unas 75 especies (Pournou, 2020, citado en Öniz, 2023, p. 10).",
- b1:"<span><b>Valvas.</b> Las hileras de dientes de las dos pequeñas valvas del extremo de la cabeza permiten al animal sujetarse a la madera y avanzar (Turner, 1971, citado en Öniz, 2023, p. 11).</span>",
- b2:"<span><b>Cuerpo.</b> El cuerpo, largo y blando, queda dentro del túnel; en algunas especies llega ocasionalmente a 185 cm (Öniz, 2023, p. 11).</span>",
- b3:"<span><b>Revestimiento calcáreo.</b> Al avanzar, el animal segrega una capa calcárea que impide que el túnel se derrumbe (Öniz, 2023, p. 11).</span>",
- b4:"<span><b>Sifones.</b> El sifón del extremo de la cola sale de la madera y mantiene el contacto con el agua de mar (Öniz, 2023, p. 11).</span>",
- b5:"<span><b>Paletas.</b> Cuando cambian la temperatura o la salinidad, las paletas cierran la entrada del túnel; el animal puede sobrevivir hasta 6 semanas sin contacto con el agua (Blum, 1928, citado en Öniz, 2023, p. 11).</span>",
- bP2:"La broma no solo perfora la madera: la digiere (Langley, 2023). No puede nadar y no sobrevive sin una fuente de alimento cercana (Grave, 1928, citado en Öniz, 2023, p. 11).",
- cH:"¿Qué le ocurre al pecio?",
- c1:"Se asienta", c2:"La madera se consume", c3:"El casco se derrumba", c4:"Queda el túmulo",
- cC1:"<b>Se asienta.</b> La parte inferior del casco queda enterrada en la arena; la superior queda expuesta en el agua.",
- cC2:"<b>La madera se consume.</b> La madera que queda expuesta en el fondo marino acaba destruida por las bromas (Öniz, 2023, p. 10).",
- cC3:"<b>El casco se derrumba.</b> Sin madera que lo sostenga, el cargamento se esparce por el fondo.",
- cC4:"<b>Queda el túmulo.</b> Lo que queda es un túmulo de ánforas. La madera que yace bajo la arena o el fango, en cambio, puede conservar su integridad (Öniz, 2023, p. 10).",
- cLabA:"túmulo de ánforas", cLabB:"madera conservada bajo la arena",
- cNote:"Cerca de la costa el oleaje, y mar adentro las corrientes fuertes o la pesca de arrastre, pueden destapar la madera enterrada; la parte que queda expuesta acaba también destruida (Öniz, 2023, p. 10).",
- dH:"Dónde vive y dónde no puede vivir",
- dP:"<i>Teredo navalis</i> se encuentra desde las regiones frías hasta los trópicos, pero para multiplicarse con rapidez necesita tres condiciones (Steinmayer y Turfa, 1996, citado en Öniz, 2023, p. 11):",
+ lede:"¿Por qué en un pecio del fondo marino siguen ahí las ánforas y el barco ha desaparecido? Busquemos la respuesta siguiendo desde el principio la historia de un barco.",
+ S:["Un mercante cargado navega por el Mediterráneo. Su casco es de madera; su bodega va llena de ánforas.",
+  `Los marinos conocen desde hace miles de años al enemigo silencioso bajo la línea de flotación: la broma. Por su causa los fondos de los barcos se forraron primero con cobre, luego con plomo, y más tarde se pintaron.${n(1)}`,
+  "Un día el barco se hunde. Se asienta en el fondo; la parte baja del casco queda enterrada en la arena y la alta, expuesta en el agua.",
+  `El mar no está vacío. Para algunos de los seres que viven en el agua oxigenada, la madera es un alimento natural; la primera de ellos es la broma. Sus larvas, que derivan en el agua, encuentran la madera y se fijan a su superficie.${n(2)}`,
+  `Cada una entra en la madera y empieza a avanzar a lo largo de ella. No atraviesa el casco; se queda dentro del madero.${n(3)}`,
+  `Miremos de cerca. Se la llama gusano, pero no lo es: es un molusco bivalvo, pariente del mejillón. Su nombre científico es <i>Teredo navalis</i>.${n(4)}`,
+  `En el extremo de la cabeza lleva dos pequeñas valvas. Con las hileras de dientes que tienen se sujeta a la madera y avanza; además, digiere la madera.${n(5)}`,
+  `Al avanzar deja un revestimiento calcáreo para que el túnel no se derrumbe. El sifón del extremo de la cola queda en la entrada, porque tiene que alcanzar el agua de mar. Si las condiciones empeoran, dos paletas cierran la entrada; así el animal puede sobrevivir hasta seis semanas.${n(6)}`,
+  `Muchas avanzan juntas dentro del mismo madero. Cuantos más animales se asientan, antes se agota la madera; el tiempo depende también del tipo de madera y de las condiciones del mar.${n(7)}`,
+  "Vaciada por dentro, la madera pierde su resistencia. El mástil cae y el casco se derrumba; la corriente dispersa sus restos.",
+  `Lo que queda es el cargamento del barco: un túmulo de ánforas. La cerámica y la piedra no son alimento para la broma, por eso permanecen en su sitio. Donde estaba la madera quedan los tubos calcáreos del animal.${n(8)}`,
+  `Pero el barco no desaparece por completo. La broma tiene que estar en contacto con el agua; no puede vivir bajo la arena o el fango. Por eso la madera enterrada puede conservar su integridad.${n(9)}`,
+  `Si el oleaje, las corrientes fuertes o la pesca de arrastre retiran esa cubierta, la madera que queda expuesta acaba también destruida.${n(9)}`],
+ L:{cu:"forro de cobre y plomo",lar:"larvas",sh:"valvas",bo:"cuerpo",li:"revestimiento calcáreo",si:"sifón",pa:"paletas",mound:"túmulo de ánforas",bur:"madera conservada bajo la arena",open:"madera destapada"},
+ dH:"No ocurre en todos los mares",
+ dP:`<i>Teredo navalis</i> se encuentra desde las regiones frías hasta los trópicos, pero para multiplicarse con rapidez necesita tres condiciones:${n(10)}`,
  dL1:"<b>Temperatura</b> superior a 11 °C (12 °C para las larvas)", dL2:"<b>Salinidad</b> superior a 8 PSU", dL3:"<b>Oxígeno disuelto</b> superior a 4 mg por litro",
  wYes:"Vive", wNo:"No puede vivir",
- w1H:"Mediterráneo", w1P:"La temperatura, la salinidad y el oxígeno son adecuados. Las partes de madera de los barcos hundidos desaparecen al cabo de un tiempo que depende del tipo de madera empleada (Öniz, 2023, p. 10).",
- w2H:"El mar Negro profundo", w2P:"Por debajo de unos 100 metros el agua carece de oxígeno; <i>Teredo navalis</i> y las bromas similares están ausentes (Öniz, 2023, p. 11).",
- w3H:"Mar Báltico", w3P:"La salinidad es muy baja; los perforadores marinos agresivos no han podido extenderse aquí y los pecios históricos se han conservado intactos (WreckProtect, 2011).",
- w4H:"Agua dulce", w4P:"Los dueños de embarcaciones de madera de la costa de Antalya las llevan a aguas frías y dulces, como el río Manavgat, y las dejan allí 5–6 semanas; las bromas que han crecido bajo la embarcación se desprenden. Esta tradición se mantiene desde hace siglos (Öniz, 2023, p. 11).",
- eH:"Un problema milenario para los marinos",
- eP:"Esta familia de animales es la razón principal de que, durante miles de años, los fondos de los barcos se forraran primero con cobre y luego con plomo, y más tarde se cubrieran con diversas pinturas químicas (Öniz, 2023, p. 10). En el Mediterráneo oriental la madera más empleada en la construcción naval de la Antigüedad fue el cedro; según su densidad, las distintas maderas se ven afectadas por la broma en distinto grado (Öniz, 2023, pp. 11–12).",
- fH:"Sus huellas en las ánforas",
- fP:"La broma puede dejar también restos calcáreos en la superficie de las ánforas. La abundancia de estas huellas en las ánforas recuperadas frente a la Cilicia Traquea se explica porque los animales que vivían en la madera del pecio se extendieron también sobre las ánforas del cargamento. Esta capa se endurece y puede fragmentar la superficie cerámica, destruyendo decoración, sellos y grafitos (Öniz, 2023, p. 12; Pearson, 1987, citado en Öniz, 2023).",
- gH:"¿Es lo único que consume la madera?",
- gP:"No. Pequeños crustáceos como <i>Limnoria</i> también perforan la madera, y los hongos y las bacterias la pudren (Langley, 2023). Sin embargo, la velocidad de degradación de los hongos de pudrición blanda y de las bacterias de erosión es en general muy lenta en comparación con la de los perforadores marinos (WreckProtect, 2011). En aguas salinas y oxigenadas son las bromas las que consumen en poco tiempo la madera expuesta.",
- hH:"¿Cómo se protege?",
- hP:"La manera de conservar in situ un pecio de madera es mantenerlo cubierto: sacos de arena, capas de arena, geotextil o telas (WreckProtect, 2011; Öniz et al., 2024).",
+ w1H:"Mediterráneo", w1P:`Se cumplen las tres condiciones. Las partes de madera de los barcos hundidos desaparecen al cabo de un tiempo que depende del tipo de madera empleada.${n(11)}`,
+ w2H:"El mar Negro profundo", w2P:`Por debajo de unos 100 metros el agua carece de oxígeno; <i>Teredo navalis</i> y las bromas similares están ausentes.${n(11)}`,
+ w3H:"Mar Báltico", w3P:`La salinidad es muy baja; los perforadores marinos agresivos no han podido extenderse aquí y los pecios históricos se han conservado intactos.${n(12)}`,
+ w4H:"Agua dulce", w4P:`Los dueños de embarcaciones de madera de la costa de Antalya las llevan a aguas frías y dulces, como el río Manavgat, y las dejan allí 5–6 semanas; las bromas que han crecido bajo la embarcación se desprenden. Esta tradición se mantiene desde hace siglos.${n(11)}`,
+ eH:"¿Cuánto tarda?",
+ eP:`Depende del tipo de madera y de las condiciones del mar; en mares salinos la madera expuesta puede destruirse en meses o años.${n(12)} En el Mediterráneo oriental la madera más empleada en la construcción naval de la Antigüedad fue el cedro; según su densidad, las distintas maderas se ven afectadas por la broma en distinto grado.${n(13)}`,
+ fH:"También deja su huella en las ánforas",
+ fP:`La broma puede dejar también restos calcáreos en la superficie de las ánforas. La abundancia de estas huellas en las ánforas recuperadas frente a la Cilicia Traquea se explica porque los animales que vivían en la madera del pecio se extendieron también sobre el cargamento. Esta capa se endurece y puede fragmentar la superficie cerámica, destruyendo decoración, sellos y grafitos.${n(14)}`,
+ gH:"¿Es la única responsable?",
+ gP:`No. Pequeños crustáceos como <i>Limnoria</i> también perforan la madera, y los hongos y las bacterias la pudren. Sin embargo, la velocidad de degradación de los hongos de pudrición blanda y de las bacterias de erosión es en general muy lenta en comparación con la de los perforadores marinos.${n(15)} En aguas salinas y oxigenadas son las bromas las que consumen en poco tiempo la madera expuesta.`,
+ hH:"¿Y cómo se protege?",
+ hP:`El final de la historia señala el camino: conservar in situ un pecio de madera es mantenerlo cubierto. Para ello se emplean sacos de arena, capas de arena, geotextil o telas.${n(16)}`,
  iH:"Si ve madera durante una inmersión",
  i1:"No destape la arena, el fango ni ninguna cubierta. Esa cubierta es lo que protege la madera enterrada.",
- i2:"No la toque ni la mueva.",
- i3:"Registre la posición y fotografíela.",
- i4:"Comuníquelo al museo más cercano.",
- iSrc:"Fuente: Öniz (2023, p. 10); Öniz et al. (2024).",
- refH:"Referencias", refNote:"Formato APA, 7.ª edición. Los trabajos indicados en el texto con «citado en» se citan a través de Öniz (2023).",
+ i2:"No la toque ni la mueva.", i3:"Registre la posición y fotografíela.", i4:"Comuníquelo al museo más cercano.",
+ N:["Öniz (2023, p. 10).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 11).","Langley (2023); Pournou (2020), citado en Öniz (2023, p. 10).","Turner (1971), citado en Öniz (2023, p. 11); Langley (2023).","Öniz (2023, p. 11); Blum (1928), citado en Öniz (2023, p. 11).","WreckProtect (2011); Öniz (2023, pp. 10, 12).","Öniz (2023, p. 12); Eriksen y Gregory (2016), citado en Öniz (2023, p. 10).","Öniz (2023, pp. 10–11).","Steinmayer y Turfa (1996), citado en Öniz (2023, p. 11).","Öniz (2023, pp. 10–11).","WreckProtect (2011).","Öniz (2023, pp. 11–12).","Öniz (2023, p. 12); Pearson (1987), citado en Öniz (2023).","Langley (2023); WreckProtect (2011).","WreckProtect (2011); Öniz et al. (2024)."],
+ refH:"Fuentes", notesH:"Notas", refNote:"Las referencias siguen el formato APA, 7.ª edición. Los trabajos indicados en las notas con «citado en» se citan a través de Öniz (2023).",
  useH:"Uso",
- useSimple:"Esta página se ha preparado para explicar el tema de forma que todos puedan seguirlo; los dibujos y las animaciones son esquemáticos y no están a escala.",
+ useSimple:"Esta página se ha preparado para explicar el tema de forma que todos puedan seguirlo; los dibujos y la animación son esquemáticos y no están a escala.",
  credDev:"Preparada por Muhammed Parlak bajo la supervisión de Hakan Öniz (2026).",
  priv:"Las visitas a la página se cuentan de forma anónima, sin cookies y sin recopilar datos personales.",
  rights:"© 2026 Muhammed Parlak. Todos los derechos reservados. La página puede utilizarse gratuitamente con fines académicos, educativos y personales; su copia, modificación o redistribución requiere autorización por escrito.",
@@ -541,127 +464,135 @@ try{ const s=localStorage.getItem("amfora-lang"); if(s==="tr"||s==="en"||s==="es
 const T=k=>(I18N[LANG][k]!==undefined?I18N[LANG][k]:(NAV[LANG][k]!==undefined?NAV[LANG][k]:k));
 const REDUCE=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
 const NS="http://www.w3.org/2000/svg";
-const el=(p,n,a)=>{ const e=document.createElementNS(NS,n); for(const k in a) e.setAttribute(k,a[k]); p.append(e); return e; };
-const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2, seg=(t,a,b)=>clamp((t-a)/(b-a),0,1);
+const el=(p,nm,a)=>{ const e=document.createElementNS(NS,nm); for(const k in a) e.setAttribute(k,a[k]); p.append(e); return e; };
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2, seg=(t,a,b)=>clamp((t-a)/(b-a),0,1), lerp=(a,b,k)=>a+(b-a)*k;
 function rng(s){ return ()=>{ s=(s*1664525+1013904223)%4294967296; return s/4294967296; }; }
+const FF="Instrument Sans,system-ui,sans-serif";
 
-/* ---------- A: bir ahşabın içinde ---------- */
-const A={t:0,play:false,raf:0,tun:[]};
-(function buildA(){ const s=$("#svgA"), r=rng(7);
-  const d=el(s,"defs",{}); const g=el(d,"linearGradient",{id:"wA",x1:0,y1:0,x2:0,y2:1}); el(g,"stop",{offset:0,style:"stop-color:var(--water-a)"}); el(g,"stop",{offset:1,style:"stop-color:var(--water-b)"});
-  el(s,"rect",{x:0,y:0,width:720,height:280,fill:"url(#wA)"});
-  el(s,"path",{d:"M0 238 Q120 230 240 239 T480 236 T720 240 V280 H0Z",style:"fill:var(--sand)"});
-  A.wood=el(s,"g",{}); el(A.wood,"rect",{x:50,y:96,width:620,height:112,rx:9,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2});
-  for(let i=0;i<9;i++){ const y=106+i*11.5; let p=`M56 ${y}`; for(let x=96;x<=664;x+=40) p+=` Q${x-20} ${y+(r()-.5)*5} ${Math.min(x,664)} ${y+(r()-.5)*2}`; el(A.wood,"path",{d:p,fill:"none",style:"stroke:var(--grain)","stroke-width":1,opacity:.7}); }
-  A.gT=el(s,"g",{}); A.gL=el(s,"g",{});
-  const lanes=[112,123,134,146,157,168,180,191,200];
-  for(let i=0;i<22;i++){ const ex=78+i*26.5+(r()-.5)*14, ly=lanes[(i*4+2)%lanes.length], dir=(i%2?1:-1), len=170+r()*230;
-    let x=ex, y=96, pts=[[x,y],[x,y+ (ly-96)*0.55],[x+dir*14,ly]];
-    const n=Math.round(len/26); for(let k=1;k<=n;k++){ x=clamp(ex+dir*(14+k*26),62,658); pts.push([x, ly+Math.sin(k*1.3+i)*2.6]); if(x<=62||x>=658) break; }
-    let p=`M${pts[0][0].toFixed(1)} ${pts[0][1]} Q${pts[1][0].toFixed(1)} ${pts[2][1].toFixed(1)} ${pts[2][0].toFixed(1)} ${pts[2][1].toFixed(1)}`; for(let k=3;k<pts.length;k++) p+=` L${pts[k][0].toFixed(1)} ${pts[k][1].toFixed(1)}`;
-    const grp=el(A.gT,"g",{}), lin=el(grp,"path",{d:p,fill:"none",style:"stroke:var(--tube)","stroke-width":10.5,"stroke-linecap":"round","stroke-linejoin":"round"}),
-      edge=el(grp,"path",{d:p,fill:"none",style:"stroke:var(--tube-l)","stroke-width":8.5,"stroke-linecap":"round","stroke-linejoin":"round",opacity:.0}),
-      cav=el(grp,"path",{d:p,fill:"none",style:"stroke:var(--cavity)","stroke-width":7,"stroke-linecap":"round","stroke-linejoin":"round"}),
-      body=el(grp,"path",{d:p,fill:"none",style:"stroke:var(--flesh)","stroke-width":4.2,"stroke-linecap":"round","stroke-linejoin":"round"}),
-      head=el(grp,"circle",{r:4.4,style:"fill:var(--tube);stroke:var(--cavity)","stroke-width":1}),
-      sip=el(grp,"g",{class:REDUCE?"":"wig"}); el(sip,"path",{d:`M${ex-1.6} 96 l-1.5 -9 M${ex+1.6} 96 l1.8 -6.5`,fill:"none",style:"stroke:var(--flesh)","stroke-width":1.8,"stroke-linecap":"round"});
-    const L=lin.getTotalLength(); for(const q of [lin,edge,cav,body]){ q.setAttribute("stroke-dasharray",L); q.setAttribute("stroke-dashoffset",L); }
-    const lar=el(A.gL,"circle",{r:2.2,style:"fill:var(--flesh);stroke:var(--cavity)","stroke-width":.6});
-    A.tun.push({grp,lin,cav,body,head,sip,lar,L,ex,s:0.07+r()*0.36,d:0.34+r()*0.12,lx:ex+(r()-.5)*220,ly:18+r()*46,drop:(224-ly)*0.86+r()*4,rot:(r()-.5)*7}); }
-})();
-function drawA(t){ A.t=t; const fall=ease(seg(t,0.8,1));
-  A.wood.setAttribute("opacity",1-0.9*fall);
-  for(const q of A.tun){ const p=ease(seg(t,q.s,q.s+q.d)), off=q.L*(1-p);
-    q.lin.setAttribute("stroke-dashoffset",off); q.cav.setAttribute("stroke-dashoffset",off); q.body.setAttribute("stroke-dashoffset",off);
-    const pt=q.lin.getPointAtLength(q.L*p); q.head.setAttribute("cx",pt.x); q.head.setAttribute("cy",pt.y);
-    const on=t>=q.s; q.head.setAttribute("opacity",on?1-fall:0); q.sip.setAttribute("opacity",on?1-seg(t,0.78,0.86):0); q.body.setAttribute("opacity",1-seg(t,0.8,0.9)); q.cav.setAttribute("opacity",1-0.75*fall);
-    q.grp.setAttribute("transform",`translate(0 ${(q.drop*fall).toFixed(1)}) rotate(${(q.rot*fall).toFixed(2)} ${q.ex} 150)`);
-    const a=seg(t,q.s-0.09,q.s), drift=Math.sin(t*40+q.lx)*4; q.lar.setAttribute("cx",q.lx+(q.ex-q.lx)*ease(a)+drift*(1-a)); q.lar.setAttribute("cy",q.ly+(94-q.ly)*ease(a)); q.lar.setAttribute("opacity",t<q.s?1:0); }
-  const left=Math.round(100-88*ease(seg(t,0.1,0.82))); $("#aBar").style.width=left+"%"; $("#aPct").textContent=LANG==="tr"?"%"+left:left+"%";
-  setStage("a",t<0.12?0:t<0.5?1:t<0.8?2:3); }
-
-/* ---------- B: anatomi ---------- */
-(function buildB(){ const s=$("#svgB"); const d=el(s,"defs",{}); const g=el(d,"linearGradient",{id:"wB",x1:0,y1:0,x2:0,y2:1}); el(g,"stop",{offset:0,style:"stop-color:var(--water-a)"}); el(g,"stop",{offset:1,style:"stop-color:var(--water-b)"});
-  el(s,"rect",{x:0,y:0,width:720,height:230,fill:"url(#wB)"});
-  el(s,"rect",{x:120,y:36,width:600,height:158,style:"fill:var(--wood)"}); el(s,"line",{x1:120,y1:36,x2:120,y2:194,style:"stroke:var(--wood-d)","stroke-width":2.5});
-  for(let i=0;i<8;i++){ const y=50+i*19; if(Math.abs(y-115)<26) continue; el(s,"path",{d:`M124 ${y} Q300 ${y+4} 480 ${y-2} T720 ${y+1}`,fill:"none",style:"stroke:var(--grain)","stroke-width":1,opacity:.7}); }
-  // tünel: astar + boşluk
-  el(s,"path",{d:"M120 115 H640",fill:"none",style:"stroke:var(--tube)","stroke-width":46,"stroke-linecap":"round"});
-  el(s,"path",{d:"M120 115 H640",fill:"none",style:"stroke:var(--tube-l)","stroke-width":46,"stroke-linecap":"round",opacity:.35});
-  el(s,"path",{d:"M120 115 H640",fill:"none",style:"stroke:var(--cavity)","stroke-width":36,"stroke-linecap":"round"});
-  // gövde
-  el(s,"path",{d:"M150 115 C260 104 420 126 590 115",fill:"none",style:"stroke:var(--flesh)","stroke-width":24,"stroke-linecap":"round"});
-  // kabuklar (baş ucu)
-  const sh=el(s,"g",{style:"fill:var(--tube);stroke:var(--cavity)","stroke-width":1.6});
-  el(sh,"path",{d:"M596 98 a18 17 0 0 1 34 3 q-4 14 -16 14 q-14 0 -18 -17Z"}); el(sh,"path",{d:"M596 132 a18 17 0 0 0 34 -3 q-4 -14 -16 -14 q-14 0 -18 17Z"});
-  for(let k=0;k<5;k++){ el(s,"path",{d:`M${603+k*5} ${99+k*1.2} q4 6 2 14`,fill:"none",style:"stroke:var(--cavity)","stroke-width":.9}); el(s,"path",{d:`M${603+k*5} ${131-k*1.2} q4 -6 2 -14`,fill:"none",style:"stroke:var(--cavity)","stroke-width":.9}); }
-  // paletler ve sifonlar (kuyruk ucu, giriş)
-  el(s,"path",{d:"M150 109 L128 106 M150 121 L128 124",fill:"none",style:"stroke:var(--flesh)","stroke-width":7,"stroke-linecap":"round"});
-  const sg=el(s,"g",{class:REDUCE?"":"wig",style:"transform-origin:128px 115px;transform-box:view-box"});
-  el(sg,"path",{d:"M130 106 Q96 98 62 104",fill:"none",style:"stroke:var(--flesh)","stroke-width":6,"stroke-linecap":"round"}); el(sg,"path",{d:"M130 124 Q104 130 84 126",fill:"none",style:"stroke:var(--flesh)","stroke-width":6,"stroke-linecap":"round"});
-  const pal=el(s,"g",{style:"fill:var(--tube);stroke:var(--cavity)","stroke-width":1.3}); el(pal,"path",{d:"M140 100 l12 -2 l3 7 l-13 3Z"}); el(pal,"path",{d:"M140 130 l12 2 l3 -7 l-13 -3Z"});
-  // numaralar
-  const mk=(n,x,y,tx,ty)=>{ el(s,"line",{x1:x,y1:y,x2:tx,y2:ty,style:"stroke:var(--ink)","stroke-width":1.2}); el(s,"circle",{cx:x,cy:y,r:12,style:"fill:var(--sea)"}); const t=el(s,"text",{x:x,y:y+4.5,"text-anchor":"middle","font-size":13,"font-weight":600,"font-family":"Instrument Sans,system-ui,sans-serif",style:"fill:var(--on-sea)"}); t.textContent=n; };
-  mk(1,640,60,614,100); mk(2,380,172,380,122); mk(3,300,60,300,94); mk(4,64,60,84,100); mk(5,180,172,150,130);
-})();
-
-/* ---------- C: batığa ne olur ---------- */
-const C={t:0,play:false,raf:0,pots:[]};
-(function buildC(){ const s=$("#svgC"), r=rng(3); const d=el(s,"defs",{}); const g=el(d,"linearGradient",{id:"wC",x1:0,y1:0,x2:0,y2:1}); el(g,"stop",{offset:0,style:"stop-color:var(--water-a)"}); el(g,"stop",{offset:1,style:"stop-color:var(--water-b)"});
-  const SY=212, hull="M118 150 Q136 250 250 252 L470 252 Q584 250 604 150 L566 160 L156 160 Z";
-  el(el(d,"clipPath",{id:"up"}),"rect",{x:0,y:0,width:720,height:SY}); el(el(d,"clipPath",{id:"lo"}),"rect",{x:0,y:SY,width:720,height:100});
-  el(s,"rect",{x:0,y:0,width:720,height:300,fill:"url(#wC)"});
-  el(s,"path",{d:`M0 ${SY} Q180 ${SY-6} 360 ${SY} T720 ${SY-2} V300 H0Z`,style:"fill:var(--sand)"});
-  // gömülü alt gövde (kumun içinden görünür)
-  const lo=el(s,"g",{"clip-path":"url(#lo)"}); el(lo,"path",{d:hull,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2,opacity:.75});
-  for(let x=170;x<560;x+=30) el(lo,"line",{x1:x,y1:SY,x2:x+ (x<360?-6:6),y2:252,style:"stroke:var(--wood-d)","stroke-width":1.5,opacity:.6});
-  C.lo=lo;
-  // direk ve üst gövde
-  C.mast=el(s,"g",{}); el(C.mast,"line",{x1:360,y1:160,x2:360,y2:52,style:"stroke:var(--wood-d)","stroke-width":5,"stroke-linecap":"round"}); el(C.mast,"line",{x1:300,y1:78,x2:420,y2:78,style:"stroke:var(--wood-d)","stroke-width":3.5,"stroke-linecap":"round"});
-  C.up=el(s,"g",{"clip-path":"url(#up)"}); C.upHull=el(C.up,"path",{d:hull,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2});
-  C.ribs=el(C.up,"g",{}); for(let x=170;x<560;x+=30) el(C.ribs,"line",{x1:x,y1:160,x2:x+(x<360?-6:6),y2:SY,style:"stroke:var(--wood-d)","stroke-width":1.5,opacity:.7});
-  C.holes=el(C.up,"g",{}); for(let i=0;i<70;i++){ const x=140+r()*440, y=164+r()*44; el(C.holes,"circle",{cx:x,cy:y,r:1.4+r()*2.2,style:"fill:var(--cavity)"}).dataset.k=r().toFixed(3); }
-  // amphoralar
+/* ================= sahne ================= */
+const SC={}; const SURF=120, BED=760, SYL=212;       // dünya: su yüzeyi, deniz tabanı; gemi yerelinde kum çizgisi
+(function build(){ const s=$("#scene"), r=rng(3);
+  const d=el(s,"defs",{}); const g=el(d,"linearGradient",{id:"wG",x1:0,y1:0,x2:0,y2:1}); el(g,"stop",{offset:0,style:"stop-color:var(--water-a)"}); el(g,"stop",{offset:1,style:"stop-color:var(--water-b)"});
+  el(el(d,"clipPath",{id:"fr"}),"rect",{x:0,y:0,width:720,height:440});
+  el(el(d,"clipPath",{id:"up"}),"rect",{x:0,y:-200,width:720,height:SYL+200}); el(el(d,"clipPath",{id:"loL"}),"rect",{x:0,y:SYL,width:372,height:100}); el(el(d,"clipPath",{id:"loR"}),"rect",{x:372,y:SYL,width:348,height:100});
+  const root=el(s,"g",{"clip-path":"url(#fr)"});
+  /* --- 1. görünüm: deniz --- */
+  SC.v1=el(root,"g",{}); SC.world=el(SC.v1,"g",{});
+  const w=SC.world;
+  el(w,"rect",{x:-400,y:-400,width:1520,height:520,style:"fill:var(--sky)"});
+  el(w,"rect",{x:-400,y:SURF,width:1520,height:900,fill:"url(#wG)"});
+  SC.wave=el(w,"path",{fill:"none",style:"stroke:var(--tube)","stroke-width":2.5,opacity:.85});
+  el(w,"path",{d:`M-400 ${BED} Q0 ${BED-7} 360 ${BED} T1120 ${BED-2} V1100 H-400Z`,style:"fill:var(--sand)"});
+  const hull="M118 150 Q136 250 250 252 L470 252 Q584 250 604 150 L566 160 L156 160 Z";
+  SC.ship=el(w,"g",{});
+  SC.loL=el(SC.ship,"g",{"clip-path":"url(#loL)"}); SC.loR=el(SC.ship,"g",{"clip-path":"url(#loR)"});
+  for(const gg of [SC.loL,SC.loR]){ el(gg,"path",{d:hull,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2}); for(let x=170;x<560;x+=30) el(gg,"line",{x1:x,y1:SYL,x2:x+(x<360?-6:6),y2:252,style:"stroke:var(--wood-d)","stroke-width":1.5,opacity:.6}); }
+  SC.mast=el(SC.ship,"g",{}); el(SC.mast,"line",{x1:360,y1:160,x2:360,y2:40,style:"stroke:var(--wood-d)","stroke-width":5,"stroke-linecap":"round"}); el(SC.mast,"line",{x1:286,y1:62,x2:434,y2:62,style:"stroke:var(--wood-d)","stroke-width":3.5,"stroke-linecap":"round"});
+  SC.sail=el(SC.mast,"path",{d:"M292 66 H428 Q440 108 424 146 H296 Q280 108 292 66Z",style:"fill:var(--sail);stroke:var(--wood-d)","stroke-width":1.4});
+  SC.up=el(SC.ship,"g",{"clip-path":"url(#up)"}); SC.upHull=el(SC.up,"path",{d:hull,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2});
+  SC.ribs=el(SC.up,"g",{}); for(let x=170;x<560;x+=30) el(SC.ribs,"line",{x1:x,y1:160,x2:x+(x<360?-6:6),y2:SYL,style:"stroke:var(--wood-d)","stroke-width":1.5,opacity:.7});
+  SC.cu=el(SC.ship,"path",{d:"M127 190 Q150 250 250 252 L470 252 Q574 250 596 190Z",style:"fill:var(--cu)",opacity:0});
+  SC.holes=el(SC.up,"g",{}); for(let i=0;i<70;i++){ const h=el(SC.holes,"circle",{cx:140+r()*440,cy:164+r()*44,r:1.4+r()*2.2,style:"fill:var(--cavity)",opacity:0}); h.dataset.k=r().toFixed(3); }
   const pot="M-3 -13 h6 v3 q0 3 4 6 q3 4 1 10 q-2 6 -5 9 l-1 3 h-4 l-1 -3 q-3 -3 -5 -9 q-2 -6 1 -10 q4 -3 4 -6 Z";
-  C.gp=el(s,"g",{}); const rowsY=[178,202,228];
-  rowsY.forEach((y,ri)=>{ const n=ri===0?19:ri===1?17:15, x0=360-(n-1)*10.5; for(let i=0;i<n;i++){ const x=x0+i*21, edge=Math.abs(i-(n-1)/2)/((n-1)/2);
-      const p=el(C.gp,"g",{}); el(p,"path",{d:pot,style:"fill:var(--pot);stroke:var(--cavity)","stroke-width":.8});
-      C.pots.push({p,x,y,dx:ri===0?(x<360?-1:1)*(edge*34+r()*8):ri===1?(x<360?-1:1)*edge*14:0, dy:ri===0?14+edge*12:ri===1?6+edge*5:0, rot:ri===0?(x<360?-1:1)*(18+edge*52+r()*14):ri===1?(x<360?-1:1)*edge*26:0, del:r()*0.25}); } });
-  // üstte kum örtüsü (alt sıranın yarısı gömülü)
-  el(s,"path",{d:`M0 ${SY+22} Q180 ${SY+17} 360 ${SY+23} T720 ${SY+20} V300 H0Z`,style:"fill:var(--sand-d)",opacity:.55});
-  el(el(s,"g",{"clip-path":"url(#lo)"}),"path",{d:hull,fill:"none",style:"stroke:var(--wood-d)","stroke-width":2.2,"stroke-dasharray":"7 5"});
-  // etiketler
-  C.labs=el(s,"g",{"font-family":"Instrument Sans,system-ui,sans-serif","font-size":15,"font-weight":600,style:"fill:var(--ink)",opacity:0});
-  C.la=el(C.labs,"text",{x:360,y:132,"text-anchor":"middle"}); el(C.labs,"path",{d:"M360 140 V166",fill:"none",style:"stroke:var(--ink)","stroke-width":1.4});
-  C.lb=el(C.labs,"text",{x:360,y:288,"text-anchor":"middle"}); el(C.labs,"path",{d:"M360 272 V258",fill:"none",style:"stroke:var(--ink)","stroke-width":1.4});
+  SC.gp=el(SC.ship,"g",{}); SC.pots=[]; [178,202,228].forEach((y,ri)=>{ const nn=ri===0?19:ri===1?17:15, x0=360-(nn-1)*10.5; for(let i=0;i<nn;i++){ const x=x0+i*21, edge=Math.abs(i-(nn-1)/2)/((nn-1)/2), sd=x<360?-1:1;
+      const p=el(SC.gp,"g",{}); el(p,"path",{d:pot,style:"fill:var(--pot);stroke:var(--cavity)","stroke-width":.8});
+      SC.pots.push({p,x,y,dx:ri===0?sd*(edge*34+r()*8):ri===1?sd*edge*14:0, dy:ri===0?14+edge*12:ri===1?6+edge*5:0, rot:ri===0?sd*(18+edge*52+r()*14):ri===1?sd*edge*26:0, del:r()*0.25}); } });
+  SC.chips=[]; SC.gc=el(SC.ship,"g",{}); for(let i=0;i<16;i++){ const c=el(SC.gc,"rect",{x:-9,y:-2.5,width:18,height:5,rx:1.5,style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":.8,opacity:0}); SC.chips.push({c,x:150+r()*420,y:158+r()*46,vx:150+r()*260,vy:-20+r()*46,rot:r()*360,del:r()*0.5}); }
+  // kum örtüsü (sol ve sağ), gömülü gövde çizgisi, etiketler: yalnızca dipteyken
+  SC.bot=el(w,"g",{transform:`translate(0 ${BED-SYL})`,opacity:0});
+  SC.covL=el(SC.bot,"path",{d:`M-400 ${SYL+22} Q0 ${SYL+17} 372 ${SYL+23} V400 H-400Z`,style:"fill:var(--sand-d)",opacity:.6});
+  SC.covR=el(SC.bot,"path",{d:`M372 ${SYL+23} Q740 ${SYL+26} 1120 ${SYL+20} V400 H372Z`,style:"fill:var(--sand-d)",opacity:.6});
+  SC.dash=el(SC.bot,"g",{opacity:0}); el(el(SC.dash,"g",{"clip-path":"url(#loL)"}),"path",{d:hull,fill:"none",style:"stroke:var(--ink)","stroke-width":2.4,"stroke-dasharray":"7 5"}); SC.dashR=el(el(SC.dash,"g",{"clip-path":"url(#loR)"}),"path",{d:hull,fill:"none",style:"stroke:var(--ink)","stroke-width":2.4,"stroke-dasharray":"7 5"});
+  const lab=(p,x,y,x2,y2,anchor)=>{ const gg=el(p,"g",{opacity:0}); el(gg,"path",{d:`M${x} ${y} L${x2} ${y2}`,fill:"none",style:"stroke:var(--ink)","stroke-width":1.4}); const t=el(gg,"text",{x:x,y:y+(y<y2?-9:26),"text-anchor":anchor||"middle","font-family":FF,"font-size":25,"font-weight":600,style:"fill:var(--ink);stroke:var(--bg);paint-order:stroke","stroke-width":5,"stroke-linejoin":"round"}); gg.t=t; return gg; };
+  SC.lMound=lab(SC.bot,360,120,360,166); SC.lBur=lab(SC.bot,226,284,250,258); SC.lOpen=lab(SC.bot,545,284,500,258);
+  SC.lCu=lab(SC.ship,360,290,430,253);
+  /* --- 2. görünüm: ahşabın içi --- */
+  SC.v2=el(root,"g",{opacity:0}); el(SC.v2,"rect",{x:0,y:0,width:720,height:440,fill:"url(#wG)"});
+  SC.wood=el(SC.v2,"g",{}); el(SC.wood,"rect",{x:-20,y:150,width:760,height:330,style:"fill:var(--wood)"}); el(SC.wood,"line",{x1:-20,y1:150,x2:740,y2:150,style:"stroke:var(--wood-d)","stroke-width":3});
+  const r2=rng(7); for(let i=0;i<13;i++){ const y=168+i*21; let p=`M-10 ${y}`; for(let x=40;x<=740;x+=50) p+=` Q${x-25} ${(y+(r2()-.5)*7).toFixed(1)} ${x} ${(y+(r2()-.5)*3).toFixed(1)}`; el(SC.wood,"path",{d:p,fill:"none",style:"stroke:var(--grain)","stroke-width":1.1,opacity:.7}); }
+  SC.gT=el(SC.v2,"g",{}); SC.gL=el(SC.v2,"g",{}); SC.tun=[];
+  const lanes=[176,198,220,242,264,286,308,330,352,374,396,418];
+  for(let i=0;i<24;i++){ const ex=34+i*28.5+(r2()-.5)*16, ly=lanes[(i*5+2)%lanes.length], dir=(i%2?1:-1), len=220+r2()*300;
+    let pts=[[ex,150],[ex,150+(ly-150)*0.55],[ex+dir*18,ly]], x=ex; const nn=Math.round(len/30);
+    for(let k=1;k<=nn;k++){ x=clamp(ex+dir*(18+k*30),-6,726); pts.push([x,ly+Math.sin(k*1.3+i)*3.2]); if(x<=-6||x>=726) break; }
+    let p=`M${pts[0][0].toFixed(1)} 150 Q${pts[1][0].toFixed(1)} ${pts[2][1].toFixed(1)} ${pts[2][0].toFixed(1)} ${pts[2][1].toFixed(1)}`; for(let k=3;k<pts.length;k++) p+=` L${pts[k][0].toFixed(1)} ${pts[k][1].toFixed(1)}`;
+    const grp=el(SC.gT,"g",{}), mk=(st,wd)=>el(grp,"path",{d:p,fill:"none",style:"stroke:var("+st+")","stroke-width":wd,"stroke-linecap":"round","stroke-linejoin":"round"});
+    const lin=mk("--tube",15), cav=mk("--cavity",10), body=mk("--flesh",6.2), head=el(grp,"circle",{r:6,style:"fill:var(--tube);stroke:var(--cavity)","stroke-width":1.2,opacity:0}),
+      sip=el(grp,"g",{class:REDUCE?"":"wig",opacity:0}); el(sip,"path",{d:`M${(ex-2.4).toFixed(1)} 150 l-2 -14 M${(ex+2.4).toFixed(1)} 150 l2.6 -10`,fill:"none",style:"stroke:var(--flesh)","stroke-width":2.6,"stroke-linecap":"round"});
+    const L=lin.getTotalLength(); for(const q of [lin,cav,body]){ q.setAttribute("stroke-dasharray",L); q.setAttribute("stroke-dashoffset",L); }
+    const lar=el(SC.gL,"circle",{r:3.2,style:"fill:var(--flesh);stroke:var(--cavity)","stroke-width":.8});
+    SC.tun.push({lin,cav,body,head,sip,lar,L,ex,s:0.04+r2()*0.38,d:0.42+r2()*0.16,lx:ex+(r2()-.5)*260,ly:24+r2()*90}); }
+  SC.lLar=lab(SC.v2,600,60,600,60);
+  /* --- 3. görünüm: canlı --- */
+  SC.v3=el(root,"g",{opacity:0}); el(SC.v3,"rect",{x:0,y:0,width:720,height:440,fill:"url(#wG)"});
+  const a=el(SC.v3,"g",{transform:"translate(0 105)"});
+  el(a,"rect",{x:120,y:20,width:620,height:190,style:"fill:var(--wood)"}); el(a,"line",{x1:120,y1:20,x2:120,y2:210,style:"stroke:var(--wood-d)","stroke-width":3});
+  for(let i=0;i<9;i++){ const y=36+i*21; if(Math.abs(y-115)<32) continue; el(a,"path",{d:`M124 ${y} Q300 ${y+4} 480 ${y-2} T740 ${y+1}`,fill:"none",style:"stroke:var(--grain)","stroke-width":1.1,opacity:.7}); }
+  el(a,"path",{d:"M120 115 H640",fill:"none",style:"stroke:var(--tube)","stroke-width":50,"stroke-linecap":"round"});
+  el(a,"path",{d:"M120 115 H640",fill:"none",style:"stroke:var(--cavity)","stroke-width":38,"stroke-linecap":"round"});
+  el(a,"path",{d:"M150 115 C260 104 420 126 590 115",fill:"none",style:"stroke:var(--flesh)","stroke-width":25,"stroke-linecap":"round"});
+  SC.aSh=el(a,"g",{}); const sh=el(SC.aSh,"g",{style:"fill:var(--tube);stroke:var(--cavity)","stroke-width":1.8});
+  el(sh,"path",{d:"M596 97 a19 18 0 0 1 36 3 q-4 15 -17 15 q-15 0 -19 -18Z"}); el(sh,"path",{d:"M596 133 a19 18 0 0 0 36 -3 q-4 -15 -17 -15 q-15 0 -19 18Z"});
+  for(let k=0;k<5;k++){ el(SC.aSh,"path",{d:`M${603+k*5.4} ${98+k*1.2} q4 6 2 15`,fill:"none",style:"stroke:var(--cavity)","stroke-width":1}); el(SC.aSh,"path",{d:`M${603+k*5.4} ${132-k*1.2} q4 -6 2 -15`,fill:"none",style:"stroke:var(--cavity)","stroke-width":1}); }
+  el(a,"path",{d:"M150 109 L128 106 M150 121 L128 124",fill:"none",style:"stroke:var(--flesh)","stroke-width":7.5,"stroke-linecap":"round"});
+  const sg=el(a,"g",{class:REDUCE?"":"wig",style:"transform-origin:128px 115px;transform-box:view-box"});
+  el(sg,"path",{d:"M130 106 Q92 96 52 104",fill:"none",style:"stroke:var(--flesh)","stroke-width":6.5,"stroke-linecap":"round"}); el(sg,"path",{d:"M130 124 Q100 131 78 126",fill:"none",style:"stroke:var(--flesh)","stroke-width":6.5,"stroke-linecap":"round"});
+  SC.aPal=el(a,"g",{style:"fill:var(--tube);stroke:var(--cavity)","stroke-width":1.4}); el(SC.aPal,"path",{d:"M139 99 l14 -2 l3 8 l-15 3Z"}); el(SC.aPal,"path",{d:"M139 131 l14 2 l3 -8 l-15 -3Z"});
+  SC.lSh=lab(a,600,34,612,96,"end"); SC.lBo=lab(a,420,228,420,128); SC.lLi=lab(a,330,34,330,91); SC.lSi=lab(a,20,50,84,102,"start"); SC.lPa=lab(a,150,228,150,134,"start");
 })();
-function drawC(t){ C.t=t; const eat=ease(seg(t,0.18,0.6)), col=ease(seg(t,0.5,0.82));
-  C.upHull.setAttribute("opacity",1-eat); C.ribs.setAttribute("opacity",1-ease(seg(t,0.3,0.7)));
-  [...C.holes.children].forEach(h=>{ const k=+h.dataset.k; h.setAttribute("opacity",t<0.6?seg(t,0.14+k*0.3,0.2+k*0.3)*(1-seg(t,0.5,0.62)):0); });
-  const m=ease(seg(t,0.28,0.55)); C.mast.setAttribute("transform",`rotate(${78*m} 360 160)`); C.mast.setAttribute("opacity",1-seg(t,0.4,0.6));
-  for(const q of C.pots){ const k=ease(seg(col,q.del,1)); q.p.setAttribute("transform",`translate(${(q.x+q.dx*k).toFixed(1)} ${(q.y+q.dy*k).toFixed(1)}) rotate(${(q.rot*k).toFixed(1)})`); }
-  C.labs.setAttribute("opacity",seg(t,0.86,0.97));
-  setStage("c",t<0.16?0:t<0.5?1:t<0.84?2:3); }
 
-/* ---------- ortak: oynatma, aşamalar, dil ---------- */
-const ST={a:-1,c:-1}, JUMP={a:[0,0.2,0.6,1],c:[0,0.3,0.66,1]};
-function setStage(w,i,force){ if(ST[w]===i&&!force) return; ST[w]=i; $("#"+w+"Cap").innerHTML=T(w+"C"+(i+1)); [...$("#"+w+"Chips").children].forEach((b,k)=>b.setAttribute("aria-pressed",k===i)); }
-function wire(w,S,draw,dur){ const btn=$("#"+w+"Play"), rg=$("#"+w+"T");
-  const lab=()=>{ btn.textContent=T(S.play?"pause":S.t>=0.999?"replay":"play"); };
-  const stop=()=>{ S.play=false; cancelAnimationFrame(S.raf); lab(); };
-  const run=()=>{ if(S.t>=0.999) S.t=0; S.play=true; lab(); let last=performance.now(); const step=now=>{ if(!S.play) return; S.t=Math.min(1,S.t+(now-last)/dur); last=now; rg.value=Math.round(S.t*1000); draw(S.t); if(S.t>=1){ stop(); return; } S.raf=requestAnimationFrame(step); }; S.raf=requestAnimationFrame(step); };
-  btn.addEventListener("click",()=>S.play?stop():run());
-  rg.addEventListener("input",()=>{ stop(); draw(rg.value/1000); lab(); });
-  const ch=$("#"+w+"Chips"); ch.innerHTML=""; for(let i=0;i<4;i++){ const b=document.createElement("button"); b.type="button"; b.dataset.i=i; ch.append(b); b.addEventListener("click",()=>{ stop(); rg.value=Math.round(JUMP[w][i]*1000); draw(JUMP[w][i]); lab(); }); }
-  S.lab=lab; S.run=run; S.stop=stop;
-  if(!REDUCE&&"IntersectionObserver" in window){ let seen=false; new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting&&!seen){ seen=true; run(); } else if(!e.isIntersecting&&S.play) stop(); }); },{threshold:0.6}).observe($("#svg"+w.toUpperCase())); } }
-wire("a",A,drawA,16000); wire("c",C,drawC,13000);
-function applyLang(){ document.documentElement.lang=LANG; document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=T(e.dataset.i18n)); document.querySelectorAll("[data-i18n-aria]").forEach(e=>e.setAttribute("aria-label",T(e.dataset.i18nAria).replace(/<[^>]+>/g,""))); document.title="RecOniz · "+T("title");
+/* p: 0..13 arası sürekli ilerleme (adım + adım içi) */
+let P=0, IDLE=0;
+function draw(p){ P=p;
+  const sink=ease(seg(p,2,2.85)), shipY=lerp(SURF-SYL-2,BED-SYL,sink), bob=p<2?Math.sin(IDLE*1.3)*3:0, tilt=(p<2?Math.sin(IDLE*0.9)*1.6:0)-Math.sin(sink*Math.PI)*9;
+  const camY=lerp(lerp(-110,-60,ease(seg(p,0.7,1.6))), BED-290, ease(seg(p,2,2.9)));
+  const zin=ease(seg(p,3,3.55)), zout=ease(seg(p,9,9.5)), z=lerp(1,3.2,zin*(1-zout));
+  SC.world.setAttribute("transform",`translate(360 250) scale(${z.toFixed(3)}) translate(-360 -250) translate(0 ${(-camY).toFixed(1)})`);
+  SC.ship.setAttribute("transform",`translate(0 ${(shipY+bob).toFixed(1)}) rotate(${tilt.toFixed(2)} 360 210)`);
+  let wv="M-400 "+SURF; for(let x=-360;x<=1120;x+=40) wv+=` Q${x-20} ${(SURF+Math.sin(x*0.05+IDLE*1.6)*3).toFixed(1)} ${x} ${SURF}`; SC.wave.setAttribute("d",wv);
+  SC.sail.setAttribute("opacity",1-seg(p,2.1,2.7));
+  const cu=seg(p,0.95,1.3)*(1-seg(p,2,2.4)); SC.cu.setAttribute("opacity",0.55*cu); SC.lCu.setAttribute("opacity",cu);
+  const eat=ease(seg(p,9.2,10)), col=ease(seg(p,9.6,10.6));
+  SC.upHull.setAttribute("opacity",1-eat); SC.ribs.setAttribute("opacity",1-ease(seg(p,9.35,10.1)));
+  for(const h of SC.holes.children){ const k=+h.dataset.k; h.setAttribute("opacity",seg(p,9.05+k*0.5,9.2+k*0.5)*(1-seg(p,9.8,10.05))); }
+  const mf=ease(seg(p,9.45,10.1)); SC.mast.setAttribute("transform",`rotate(${(78*mf).toFixed(1)} 360 160)`); SC.mast.setAttribute("opacity",1-seg(p,9.8,10.2));
+  for(const q of SC.pots){ const k=ease(seg(col,q.del,1)); q.p.setAttribute("transform",`translate(${(q.x+q.dx*k).toFixed(1)} ${(q.y+q.dy*k).toFixed(1)}) rotate(${(q.rot*k).toFixed(1)})`); }
+  for(const q of SC.chips){ const k=seg(p,9.55+q.del,10.6+q.del); q.c.setAttribute("opacity",k>0&&k<1?Math.sin(k*Math.PI):0); q.c.setAttribute("transform",`translate(${(q.x+q.vx*ease(k)).toFixed(1)} ${(q.y+q.vy*k).toFixed(1)}) rotate(${(q.rot+k*140).toFixed(0)})`); }
+  SC.bot.setAttribute("opacity",seg(p,2.6,2.9));
+  SC.lMound.setAttribute("opacity",seg(p,10.5,10.8)*(1-seg(p,11,11.2)));
+  const bur=seg(p,11,11.35); SC.dash.setAttribute("opacity",bur); SC.lBur.setAttribute("opacity",bur);
+  const un=ease(seg(p,12.05,12.5)), gone=ease(seg(p,12.4,12.95));
+  SC.covR.setAttribute("opacity",0.6*(1-un)); SC.covR.setAttribute("transform",`translate(${(70*un).toFixed(1)} ${(26*un).toFixed(1)})`);
+  SC.loR.setAttribute("opacity",1-0.88*gone); SC.dashR.setAttribute("opacity",1-gone); SC.lOpen.setAttribute("opacity",seg(p,12.3,12.6));
+  const v2=seg(p,3.3,3.6)*(1-seg(p,9,9.3)), v3=seg(p,5,5.3)*(1-seg(p,8,8.3));
+  SC.v2.setAttribute("opacity",v2); SC.v2.style.display=v2>0?"":"none";
+  const at = p<4 ? lerp(0,0.1,seg(p,3.55,4)) : p<5 ? lerp(0.1,0.52,seg(p,4,5)) : lerp(0.52,1,seg(p,8.1,9));
+  if(v2>0) for(const q of SC.tun){ const k=ease(seg(at,q.s,q.s+q.d)), off=q.L*(1-k); q.lin.setAttribute("stroke-dashoffset",off); q.cav.setAttribute("stroke-dashoffset",off); q.body.setAttribute("stroke-dashoffset",off);
+    const pt=q.lin.getPointAtLength(q.L*k); q.head.setAttribute("cx",pt.x); q.head.setAttribute("cy",pt.y); const on=at>=q.s; q.head.setAttribute("opacity",on?1:0); q.sip.setAttribute("opacity",on?1:0);
+    const a=seg(at,q.s-0.06,q.s), dr=Math.sin(IDLE*1.1+q.lx)*7; q.lar.setAttribute("cx",(q.lx+(q.ex-q.lx)*ease(a)+dr*(1-a)).toFixed(1)); q.lar.setAttribute("cy",(q.ly+(147-q.ly)*ease(a)+Math.cos(IDLE*0.8+q.ex)*4*(1-a)).toFixed(1)); q.lar.setAttribute("opacity",at<q.s?1:0); }
+  SC.lLar.setAttribute("opacity",seg(p,3.6,3.8)*(1-seg(p,4.2,4.5)));
+  SC.v3.setAttribute("opacity",v3); SC.v3.style.display=v3>0?"":"none";
+  SC.lSh.setAttribute("opacity",seg(p,6,6.25)); SC.lBo.setAttribute("opacity",seg(p,6.3,6.55)*(1-seg(p,7,7.2)));
+  SC.lLi.setAttribute("opacity",seg(p,7,7.2)); SC.lSi.setAttribute("opacity",seg(p,7.25,7.45)); SC.lPa.setAttribute("opacity",seg(p,7.5,7.7));
+  SC.aSh.setAttribute("transform",p>=6&&p<7?`translate(${(Math.sin(IDLE*5)*1.6).toFixed(2)} 0)`:"");
+}
+/* kaydırmayla ilerleme */
+let stepEls=[], curStep=-1;
+function progress(){ const sb=$("#stick").getBoundingClientRect().bottom, vh=window.innerHeight, trig=sb+(vh-sb)*0.42; let i=-1;
+  for(let k=0;k<stepEls.length;k++){ if(stepEls[k].getBoundingClientRect().top<=trig) i=k; else break; }
+  if(i<0) return {p:0,i:0}; const r=stepEls[i].getBoundingClientRect(); return {p:i+clamp((trig-r.top)/Math.max(1,r.height),0,0.999),i}; }
+function onScroll(){ document.documentElement.style.setProperty('--stb',Math.round($("#stick").getBoundingClientRect().height+8)+'px'); const {p,i}=progress(); if(i!==curStep){ curStep=i; stepEls.forEach((e,k)=>{ e.classList.toggle("on",k===i); e.classList.toggle("near",k===i+1); }); [...$("#dots").children].forEach((d,k)=>d.classList.toggle("on",k===i)); } draw(p); }
+let ticking=false; addEventListener("scroll",()=>{ if(!ticking){ ticking=true; requestAnimationFrame(()=>{ ticking=false; onScroll(); }); } },{passive:true}); addEventListener("resize",onScroll);
+if(!REDUCE){ let vis=true; if("IntersectionObserver" in window) new IntersectionObserver(es=>{ vis=es[0].isIntersecting; }).observe($("#story")); const t0=performance.now(); const loop=now=>{ if(vis&&!document.hidden){ IDLE=(now-t0)/1000; draw(P); } requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+
+function applyLang(){ document.documentElement.lang=LANG; document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=T(e.dataset.i18n)); document.querySelectorAll("[data-i18n-aria]").forEach(e=>e.setAttribute("aria-label",T(e.dataset.i18nAria))); document.title="RecOniz · "+T("title");
   [...$("#lang").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===LANG));
-  for(const w of ["a","c"]) [...$("#"+w+"Chips").children].forEach((b,i)=>b.textContent=T(w+(i+1)));
-  C.la.textContent=T("cLabA"); C.lb.textContent=T("cLabB");
+  const S=T("S"), st=$("#steps"); if(!stepEls.length){ S.forEach(()=>{ const d=document.createElement("div"); d.className="step"; d.append(document.createElement("p")); st.append(d); stepEls.push(d); $("#dots").append(document.createElement("i")); }); }
+  stepEls.forEach((e,k)=>e.firstChild.innerHTML=S[k]);
+  const L=T("L"); SC.lCu.t.textContent=L.cu; SC.lLar.t.textContent=L.lar; SC.lSh.t.textContent=L.sh; SC.lBo.t.textContent=L.bo; SC.lLi.t.textContent=L.li; SC.lSi.t.textContent=L.si; SC.lPa.t.textContent=L.pa; SC.lMound.t.textContent=L.mound; SC.lBur.t.textContent=L.bur; SC.lOpen.t.textContent=L.open;
+  $("#notes").innerHTML=T("N").map((x,k)=>`<li id="n${k+1}">${x}</li>`).join("");
   $("#refs").innerHTML=REFLIST.map(r=>`<li>${refLoc(r)}</li>`).join("");
-  drawA(A.t); drawC(C.t); setStage("a",ST.a,true); setStage("c",ST.c,true); A.lab(); C.lab(); }
+  curStep=-1; onScroll(); }
 $("#lang").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; LANG=b.dataset.v; try{ localStorage.setItem("amfora-lang",LANG); }catch(_){} applyLang(); });
 const isDark=()=>{ const t=document.documentElement.dataset.theme; return t? t==="dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
 try{ const t=localStorage.getItem("amfora-theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch(_){}
