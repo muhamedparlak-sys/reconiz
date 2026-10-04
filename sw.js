@@ -1,5 +1,5 @@
 // RecOniz service worker: çevrimdışı çalışma için uygulama, model ve kütüphaneler önbellekte tutulur
-const C='reconiz-v44';
+const C='reconiz-v45';
 const CORE=['/','/rejoiner/','/coins/','/onem/','/teredo/','/arastirma/','/koruma/','/sorumluluk/','/coins/data.json','/coins/model.json','/manifest.webmanifest','/icon-192.png','/icon-512.png','/icon-maskable-512.png','/apple-touch-icon.png','/favicon.svg','/favicon-32.png','/ml/ort.wasm.min.js','/ml/three.min.js','/ml/ort-wasm-simd.wasm','/ml/ort-wasm.wasm','/ml/u2netp.onnx.b64.txt'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
