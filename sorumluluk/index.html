@@ -218,7 +218,7 @@ body.touring{padding-bottom:240px}
 .hero h2 i,.step i,.txt i,.wc i{font-style:italic}
 .lead1{font-size:18px;line-height:1.5;max-width:60ch}
 .story{gap:0}
-.stick{position:sticky;top:8px;z-index:5;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--bg);box-shadow:0 10px 26px -18px rgba(0,0,0,.45)}
+.stick{position:sticky;top:calc(var(--hb,0px) + 6px);z-index:5;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--bg);box-shadow:0 10px 26px -18px rgba(0,0,0,.45)}
 .stick svg{display:block;width:100%;height:auto}
 .dots{position:absolute;left:0;right:0;top:8px;display:flex;justify-content:center;gap:5px;pointer-events:none}
 .dots i{width:6px;height:6px;border-radius:999px;background:var(--ink);opacity:.18;transition:opacity .25s,transform .25s}
@@ -227,7 +227,8 @@ body.touring{padding-bottom:240px}
 .step{min-height:78vh;display:flex;align-items:flex-start}
 .step:first-child{min-height:60vh}
 .step:last-child{min-height:70vh}
-.step p{position:sticky;top:calc(var(--stb,300px) + 22px);font-size:clamp(19px,4.9vw,22px);line-height:1.42;max-width:30em;opacity:0;transition:opacity .3s;padding-bottom:22px}
+.step p{position:sticky;top:calc(var(--stb,300px) + 22px);font-size:clamp(19px,4.9vw,22px);line-height:1.42;max-width:30em;opacity:0;transition:opacity .22s;padding-bottom:22px}
+.step p.gone{opacity:0;transition:none}
 .step.on p{opacity:1}
 .step.near p{opacity:.22}
 .step sup,.txt sup,.wc sup,.sub sup,.limits sup,section>p sup{font-size:.62em;line-height:0;color:var(--sea);font-weight:600;margin-left:1px}
@@ -266,6 +267,11 @@ sup a{color:inherit;text-decoration:none}
 .wig{animation:wig 1.6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
 @keyframes wig{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
 @media (prefers-reduced-motion: reduce){ .wig{animation:none} .step p{transition:none} }
+/* üst başlık kaydırırken yerinde kalır */
+.bar{position:sticky;top:0;z-index:40;background:var(--bg);margin-inline:-16px;padding:8px 16px 7px;box-shadow:0 1px 0 var(--line)}
+.bar .menu{right:16px;width:min(340px,calc(100% - 32px));max-height:calc(100vh - 84px);max-height:calc(100dvh - 84px);overflow-y:auto}
+:target{scroll-margin-top:84px}
+@media (max-height:600px){ .bar{position:relative} }
 @media (max-width:460px){ .bar{gap:8px} .wm svg{height:26px} .tools{gap:4px} .tools .lang button{padding:4px 4px;font-size:12px;letter-spacing:0} }
 @media (max-width:380px){ .wm svg{height:23px} }
 @media (max-width:340px){ .wm svg{height:18px} .tools{gap:3px} .tools .lang button{padding:4px 3px;font-size:11px} }
@@ -747,10 +753,14 @@ function draw(p){ P=p; const t=IDLE, bob=Math.sin(t*1.3)*2.5;
 }
 /* kaydırmayla ilerleme */
 let stepEls=[], curStep=-1;
-function progress(){ const sb=$("#stick").getBoundingClientRect().bottom, vh=window.innerHeight, trig=sb+(vh-sb)*0.42; let i=-1;
-  for(let k=0;k<stepEls.length;k++){ if(stepEls[k].getBoundingClientRect().top<=trig) i=k; else break; }
-  if(i<0) return {p:0,i:0}; const r=stepEls[i].getBoundingClientRect(); return {p:i+clamp((trig-r.top)/Math.max(1,r.height),0,0.999),i}; }
-function onScroll(){ document.documentElement.style.setProperty('--stb',Math.round($("#stick").getBoundingClientRect().height+8)+'px'); const {p,i}=progress(); { const h=$("#hint"), st=$("#story").getBoundingClientRect(); h.classList.toggle("show",st.top<innerHeight*0.9&&st.bottom>innerHeight&&i<stepEls.length-1); h.classList.toggle("mini",p>=1); $("#scrim").classList.toggle("show",h.classList.contains("show")&&p<1); } if(i!==curStep){ curStep=i; stepEls.forEach((e,k)=>{ e.classList.toggle("on",k===i); e.classList.toggle("near",k===i+1); }); [...$("#dots").children].forEach((d,k)=>d.classList.toggle("on",k===i)); } draw(p); }
+/* Metin sahnenin altına kaymaz: bir adımın metni yukarı itilmeden önce sıradaki adıma geçilir; son metin sahneyle birlikte çıkar. */
+function progress(){ const sb=$("#stick").getBoundingClientRect().bottom, vh=window.innerHeight, base=sb+(vh-sb)*0.42, pt=sb+24, n=stepEls.length; if(!n) return {p:0,i:0};
+  const ph=k=>stepEls[k].firstElementChild.offsetHeight, T=k=>k<=0?base:Math.max(base,Math.min(pt+ph(k-1)+26,vh-36));
+  let i=-1; for(let k=0;k<n;k++){ if(stepEls[k].getBoundingClientRect().top<=T(k)) i=k; else break; }
+  { const lp=ph(n-1)+24, st=$("#steps"); if(st.__lp!==lp){ st.__lp=lp; st.style.marginBottom=-lp+"px"; $("#story").style.marginBottom=lp+"px"; }
+    for(let k=Math.max(0,i-2);k<=Math.min(n-1,i+1);k++){ const q=stepEls[k].firstElementChild; q.classList.toggle("gone",k<i&&q.getBoundingClientRect().top<pt-3); } }
+  if(i<0) return {p:0,i:0}; const r=stepEls[i].getBoundingClientRect(), a=T(i), b=i+1<n?T(i+1):a; return {p:i+clamp((a-r.top)/Math.max(1,r.height-(b-a)),0,0.999),i}; }
+function onScroll(){ { const bar=document.querySelector('.bar'), hb=bar&&getComputedStyle(bar).position==='sticky'?Math.round(bar.getBoundingClientRect().height):0, ds=document.documentElement.style; ds.setProperty('--hb',hb+'px'); ds.setProperty('--stb',Math.round($("#stick").getBoundingClientRect().height+8+hb)+'px'); } const {p,i}=progress(); { const h=$("#hint"), st=$("#story").getBoundingClientRect(); h.classList.toggle("show",st.top<innerHeight*0.9&&st.bottom>innerHeight&&i<stepEls.length-1); h.classList.toggle("mini",p>=1); $("#scrim").classList.toggle("show",h.classList.contains("show")&&p<1); } if(i!==curStep){ curStep=i; stepEls.forEach((e,k)=>{ e.classList.toggle("on",k===i); e.classList.toggle("near",k===i+1); }); [...$("#dots").children].forEach((d,k)=>d.classList.toggle("on",k===i)); } draw(p); }
 let ticking=false; addEventListener("scroll",()=>{ if(!ticking){ ticking=true; requestAnimationFrame(()=>{ ticking=false; onScroll(); }); } },{passive:true}); addEventListener("resize",onScroll);
 if(!REDUCE){ let vis=true; if("IntersectionObserver" in window) new IntersectionObserver(es=>{ vis=es[0].isIntersecting; }).observe($("#story")); const t0=performance.now(); const loop=now=>{ if(vis&&!document.hidden){ IDLE=(now-t0)/1000; draw(P); } requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
 
