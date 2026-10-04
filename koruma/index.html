@@ -785,5 +785,20 @@ $("#themeBtn").addEventListener("click",()=>{ const t=isDark()?"light":"dark"; d
 applyLang();
 </script>
 <script data-goatcounter="https://reconiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(function(){ var box=document.querySelector(".usenotes"); if(!box||!window.fetch) return;
+  var F={tr:function(n,s){return "Bu sayfa bugüne kadar "+s+" kez ziyaret edildi.";},
+         en:function(n,s){return n===1?"This page has been visited once so far.":"This page has been visited "+s+" times so far.";},
+         es:function(n,s){return "Esta página se ha visitado "+s+(n===1?" vez":" veces")+" hasta ahora.";},
+         fr:function(n,s){return "Cette page a été visitée "+s+" fois à ce jour.";}};
+  var c=document.querySelector('link[rel="canonical"]'), path=c?new URL(c.href).pathname:location.pathname, n=0, p=null;
+  function show(){ if(!n) return; var l=document.documentElement.lang||"tr"; if(!F[l]) l="tr";
+    if(!p){ p=document.createElement("p"); p.id="vc"; box.insertBefore(p,box.lastElementChild); }
+    p.textContent=F[l](n,n.toLocaleString(l)); }
+  fetch("https://reconiz.goatcounter.com/counter/"+encodeURIComponent(path)+".json").then(function(r){ return r.ok?r.json():null; }).then(function(j){
+    if(!j) return; n=+String(j.count).replace(/\D/g,"")||0; show();
+    new MutationObserver(show).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]}); }).catch(function(){});
+})();
+</script>
 </body>
 </html>
