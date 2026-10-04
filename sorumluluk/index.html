@@ -267,7 +267,7 @@ sup a{color:inherit;text-decoration:none}
 @keyframes wig{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
 @media (prefers-reduced-motion: reduce){ .wig{animation:none} .step p{transition:none} }
 /* Sualtı Mirasına Sahip Çıkmak: Ortak Bir Sorumluluk */
-:root{ --skin:#E3B48A; --paper:#FBF7EC; --gold:#D8A93A; --stone:#DDD6C6; }
+:root{ --skin:#E9BF9B; --suit:#C2E6F3; --suit-d:#3F7F97; --blond:#EBCB6A; --blond-d:#B58A2A; --paper:#FBF7EC; --gold:#D8A93A; --stone:#DDD6C6; }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --paper:#2B2A24; --gold:#E0B64A; --stone:#7C7667; } }
 :root[data-theme="dark"]{ --paper:#2B2A24; --gold:#E0B64A; --stone:#7C7667; }
 </style>
@@ -572,18 +572,18 @@ const SC={waves:[],sc:[]}; const SURF=128, BED=372, GR=352;
   const deck=B=>{ el(B,"rect",{x:0,y:210,width:720,height:130,fill:"url(#wG)"}); el(B,"path",{d:"M0 210 H720",fill:"none",style:"stroke:var(--tube)","stroke-width":2,opacity:.8});
     el(B,"rect",{x:0,y:338,width:720,height:102,style:"fill:var(--wood)"}); for(let i=0;i<5;i++) el(B,"path",{d:`M0 ${358+i*20} H720`,fill:"none",style:"stroke:var(--wood-d)","stroke-width":1.2,opacity:.6}); el(B,"path",{d:"M0 338 H720",fill:"none",style:"stroke:var(--wood-d)","stroke-width":3}); };
   /* Mehmet Çakır: dalış elbiseli, bıyıklı; ayak ucu (0,0), sağa bakar, boy ~120 */
-  const cakir=(p,o)=>{ o=o||{}; const gg=el(p,"g",{});
-    el(gg,"path",{d:"M-10 0 L-8 -48 L0 -48 L-1 0Z M2 0 L1 -48 L9 -48 L12 0Z",style:INK});
-    el(gg,"path",{d:"M-13 -40 Q-17 -70 -11 -94 Q-6 -99 -5 -104 L7 -104 Q8 -98 11 -94 Q17 -70 14 -40Z",style:INK});
-    el(gg,"path",{d:"M-13.2 -46 Q-15.6 -70 -10.6 -92 M12.4 -92 Q16 -70 14 -46",fill:"none",style:"stroke:var(--clay)","stroke-width":1.7,"stroke-linecap":"round"});
-    el(gg,"path",{d:"M-9.6 -103 Q-11.4 -121.6 1.4 -121.6 Q12.6 -121.6 12 -108 L11 -101 Q1 -98 -9.6 -103Z",style:INK});
-    el(gg,"path",{d:"M3 -117.4 Q11 -118 11 -109.4 Q11 -102.4 6.2 -101.6 Q0.6 -102 0.4 -109 Q0.4 -114.6 3 -117.4Z",style:"fill:var(--skin)"});
-    el(gg,"circle",{cx:7.6,cy:-111.2,r:.95,style:"fill:#1d2522"}); el(gg,"path",{d:"M5.4 -113.4 q2.2 -1.2 4.4 -.2",fill:"none",style:"stroke:#1d2522","stroke-width":.7,"stroke-linecap":"round"});
-    el(gg,"path",{d:"M2.6 -106.6 Q7 -109.6 12.4 -105.6 Q7.6 -103.8 2.6 -106.6Z",style:"fill:#1d2522"});
-    gg.mask=el(gg,"g",{}); el(gg.mask,"path",{d:"M-9 -117 Q0 -122 11 -119",fill:"none",style:"stroke:var(--clay)","stroke-width":1.5}); el(gg.mask,"rect",{x:2.4,y:-122.4,width:10,height:5.8,rx:1.8,style:"fill:var(--water-a);stroke:var(--clay)","stroke-width":1.3});
-    gg.arm=el(gg,"path",{d:o.arm||"M3 -88 L8 -66 L12 -50",fill:"none",style:"stroke:var(--ink)","stroke-width":7.5,"stroke-linecap":"round","stroke-linejoin":"round"});
+  const cakir=(p,o)=>{ o=o||{}; const gg=el(p,"g",{}), SU="fill:var(--suit);stroke:var(--suit-d)", arm=o.arm||"M3 -88 L8 -66 L12 -50";
+    el(gg,"path",{d:"M-10 0 L-8 -48 L0 -48 L-1 0Z M2 0 L1 -48 L9 -48 L12 0Z",style:SU,"stroke-width":1,"stroke-linejoin":"round"});
+    el(gg,"path",{d:"M-13 -40 Q-17 -70 -11 -94 Q-6 -99 -5 -103 L7 -103 Q8 -98 11 -94 Q17 -70 14 -40Z",style:SU,"stroke-width":1,"stroke-linejoin":"round"});
+    el(gg,"circle",{cx:1,cy:-110,r:9.5,style:"fill:var(--skin);stroke:var(--cavity)","stroke-width":.6});
+    el(gg,"path",{d:"M-8.6 -110 Q-10.4 -121 1 -120.6 Q11.4 -121 10.6 -113.4 Q7 -117 0 -116.6 Q-6 -116 -8.6 -110Z",style:"fill:var(--blond);stroke:var(--blond-d)","stroke-width":.6,"stroke-linejoin":"round"});
+    el(gg,"circle",{cx:6.4,cy:-111,r:.95,style:"fill:#1d2522"});
+    el(gg,"path",{d:"M2 -106.4 Q6.6 -109.4 11.8 -105.4 Q7 -103.6 2 -106.4Z",style:"fill:var(--blond-d)"});
+    gg.mask=el(gg,"g",{}); el(gg.mask,"rect",{x:1,y:-121.6,width:10,height:5.4,rx:1.8,style:"fill:var(--water-a);stroke:var(--suit-d)","stroke-width":1.2});
+    el(gg,"path",{d:arm,fill:"none",style:"stroke:var(--suit-d)","stroke-width":9.2,"stroke-linecap":"round","stroke-linejoin":"round"});
+    gg.arm=el(gg,"path",{d:arm,fill:"none",style:"stroke:var(--suit)","stroke-width":7.2,"stroke-linecap":"round","stroke-linejoin":"round"});
     return gg; };
-  const dive=()=>{ const A=scene(); slope(A); A.sp=[170,244,384,414].map(x=>sponge(A,x)); mkPot(A,296,slY(296)-14,-58,1.7); A.ing=finds(A); sponge(A,330); A.rope=el(A,"path",{fill:"none",style:"stroke:var(--ink)","stroke-width":1.5,opacity:.7}); A.boat=boat(A); A.div=diver(A);
+  const dive=()=>{ const A=scene(); slope(A); A.sp=[170,244,384,414].map(x=>sponge(A,x)); mkPot(A,296,slY(296)-14,-58,1.7); A.ing=finds(A); sponge(A,330); A.rope=el(A,"path",{fill:"none",style:"stroke:var(--ink)","stroke-width":1.5,opacity:.7}); A.boat=boat(A); A.div=diver(A); [...A.div.children].forEach(c=>c.setAttribute("style","fill:var(--suit);stroke:var(--suit-d);stroke-width:1.1"));
     A.gl=[[240,-18],[280,-24],[318,-14]].map(([x,dy])=>star(A,x,slY(x)+dy,1)); A.c=yc(A,30,34,"1982"); return A; };
 
   /* ===== A · olağan dünya: teknenin kıçında Mehmet Çakır ve süngerler (0) ===== */
@@ -593,15 +593,16 @@ const SC={waves:[],sc:[]}; const SURF=128, BED=372, GR=352;
     el(A,"rect",{x:474,y:234,width:54,height:46,rx:4,style:"fill:var(--water-a);stroke:var(--wood-d)","stroke-width":2}); el(A,"rect",{x:590,y:234,width:46,height:46,rx:4,style:"fill:var(--water-a);stroke:var(--wood-d)","stroke-width":2});
     el(A,"path",{d:"M48 84 Q300 132 560 62",fill:"none",style:"stroke:var(--wood-d)","stroke-width":2});
     A.sps=[[.08,15],[.19,18],[.47,16],[.6,19],[.73,15],[.86,17]].map(([u,r])=>{ const x=48*(1-u)*(1-u)+600*u*(1-u)+560*u*u, y=84*(1-u)*(1-u)+264*u*(1-u)+62*u*u; return spg(A,x,y+r+9,r,9); });
-    { const D="fill:#1d2522", g=A.me=el(A,"g",{});
-      el(g,"path",{d:"M146 356 V264 Q146 238 178 231 L198 226 V204 H228 V226 L248 231 Q280 238 280 264 V356Z",style:INK});
-      el(g,"path",{d:"M170 356 V270 M256 356 V270",fill:"none",style:"stroke:var(--clay)","stroke-width":3,"stroke-linecap":"round"}); el(g,"path",{d:"M213 232 V356",fill:"none",style:"stroke:var(--tube-l)","stroke-width":2.4,"stroke-dasharray":"3 4"});
-      el(g,"path",{d:"M198 228 Q213 238 228 228",fill:"none",style:"stroke:var(--clay)","stroke-width":3,"stroke-linecap":"round"});
-      el(g,"ellipse",{cx:212,cy:176,rx:31,ry:35,style:INK}); el(g,"ellipse",{cx:219,cy:179,rx:21,ry:25,style:"fill:var(--skin)"});
-      el(g,"circle",{cx:211,cy:173,r:2.5,style:D}); el(g,"circle",{cx:228,cy:173,r:2.5,style:D}); el(g,"path",{d:"M205 166 q6 -4 11 -1 M223 165 q6 -3 11 1",fill:"none",style:"stroke:#1d2522","stroke-width":2.2,"stroke-linecap":"round"});
-      el(g,"path",{d:"M221 174 q5 8 -1 12",fill:"none",style:"stroke:#1d2522","stroke-width":1.6,"stroke-linecap":"round",opacity:.55});
-      el(g,"path",{d:"M201 191 Q211 183 220 188 Q229 183 239 191 Q229 197 220 193 Q211 197 201 191Z",style:D});
-      g.mask=el(g,"g",{}); el(g.mask,"path",{d:"M196 149 L182 156 M244 149 L243 157",fill:"none",style:"stroke:var(--clay)","stroke-width":3,"stroke-linecap":"round"}); el(g.mask,"rect",{x:196,y:139,width:48,height:19,rx:8,style:"fill:var(--water-a);stroke:var(--clay)","stroke-width":3}); el(g.mask,"path",{d:"M204 146 l8 -3",fill:"none",style:"stroke:var(--tube)","stroke-width":2,"stroke-linecap":"round"}); }
+    { const D="fill:#1d2522", SD="stroke:var(--suit-d)", g=A.me=el(A,"g",{});
+      el(g,"path",{d:"M146 356 V264 Q146 238 178 231 L198 226 V204 H230 V226 L250 231 Q282 238 282 264 V356Z",style:"fill:var(--suit);"+SD,"stroke-width":2.6,"stroke-linejoin":"round"});
+      el(g,"path",{d:"M171 356 V270 M257 356 V270 M198 226 Q214 238 230 226",fill:"none",style:SD,"stroke-width":2.6,"stroke-linecap":"round"}); el(g,"path",{d:"M214 234 V356",fill:"none",style:SD,"stroke-width":2.4,"stroke-dasharray":"3 4"});
+      el(g,"ellipse",{cx:189,cy:181,rx:4.6,ry:7,style:"fill:var(--skin);stroke:var(--cavity)","stroke-width":1.4});
+      el(g,"ellipse",{cx:214,cy:178,rx:25,ry:29,style:"fill:var(--skin);stroke:var(--cavity)","stroke-width":1.6});
+      el(g,"path",{d:"M188 178 Q182 144 214 142 Q246 144 240 174 Q237 161 227 159 Q209 156 197 163 Q190 168 188 178Z",style:"fill:var(--blond);stroke:var(--blond-d)","stroke-width":1.6,"stroke-linejoin":"round"});
+      el(g,"circle",{cx:206,cy:179,r:2.5,style:D}); el(g,"circle",{cx:224,cy:179,r:2.5,style:D}); el(g,"path",{d:"M199 172 q6 -4 11 -1 M218 171 q6 -3 11 1",fill:"none",style:"stroke:var(--blond-d)","stroke-width":2.4,"stroke-linecap":"round"});
+      el(g,"path",{d:"M216 181 q5 8 -1 12",fill:"none",style:"stroke:var(--cavity)","stroke-width":1.6,"stroke-linecap":"round",opacity:.55});
+      el(g,"path",{d:"M196 197 Q206 189 215 194 Q224 189 234 197 Q224 203 215 199 Q206 203 196 197Z",style:"fill:var(--blond);stroke:var(--blond-d)","stroke-width":1.4,"stroke-linejoin":"round"});
+      g.mask=el(g,"g",{}); el(g.mask,"path",{d:"M191 152 L186 158 M239 152 L242 158",fill:"none",style:SD,"stroke-width":3,"stroke-linecap":"round"}); el(g.mask,"rect",{x:190,y:142,width:49,height:19,rx:8,style:"fill:var(--water-a);"+SD,"stroke-width":3}); el(g.mask,"path",{d:"M198 149 l8 -3",fill:"none",style:"stroke:var(--tube)","stroke-width":2,"stroke-linecap":"round"}); }
     el(A,"path",{d:"M26 352 Q16 404 66 440 H720 V352Z",style:"fill:var(--wood);stroke:var(--wood-d)","stroke-width":2}); el(A,"path",{d:"M20 352 H720",fill:"none",style:"stroke:var(--wood-d)","stroke-width":6,"stroke-linecap":"round"});
     for(let i=0;i<3;i++) el(A,"path",{d:`M${34+i*12} ${376+i*22} H720`,fill:"none",style:"stroke:var(--wood-d)","stroke-width":1.3,opacity:.55});
     spg(A,352,334,17); spg(A,410,336,15); spg(A,381,322,18);
@@ -682,7 +683,7 @@ function draw(p){ P=p; const t=IDLE, bob=Math.sin(t*1.3)*2.5;
   SC.sc.forEach((g,i)=>{ const a=START[i], b=START[i+1], o=i===0?1:seg(p,a-.04,a+.14), hide=o<=0||(b!==undefined&&p>b+.16); g.style.display=hide?"none":""; g.setAttribute("opacity",o); g.on=!hide; });
   let wv="M0 "+SURF; for(let x=40;x<=720;x+=40) wv+=` Q${x-20} ${(SURF+Math.sin(x*0.05+t*1.6)*3).toFixed(1)} ${x} ${SURF}`; for(const w of SC.waves) w.setAttribute("d",wv);
   const {A,N,C,B,D,E,F,G,H,I,L}=SC;
-  if(A.on){ drop(A.c,p,.05); A.nm.setAttribute("opacity",seg(p,.12,.3)); A.me.mask.setAttribute("transform",`translate(0 ${(25*ease(seg(p,.62,.82))).toFixed(2)})`);
+  if(A.on){ drop(A.c,p,.05); A.nm.setAttribute("opacity",seg(p,.12,.3)); A.me.mask.setAttribute("transform",`translate(0 ${(28*ease(seg(p,.62,.82))).toFixed(2)})`);
     A.sps.forEach((g,i)=>g.setAttribute("transform",`rotate(${(Math.sin(t*1.1+i*1.7)*4).toFixed(1)} ${g.x.toFixed(1)} ${g.y0.toFixed(1)})`)); }
   if(N.on){ N.p.forEach((c,i)=>c.setAttribute("stroke-dashoffset",(c.L*(1-ease(seg(p,1.12+i*.2,1.36+i*.2)))).toFixed(1)));
     const pt=seg(p,1.1,1.3); N.a.arm.setAttribute("d",`M3 -88 L${lerp(8,22,pt).toFixed(1)} ${lerp(-66,-82,pt).toFixed(1)} L${lerp(12,42,pt).toFixed(1)} ${lerp(-50,-90,pt).toFixed(1)}`); }
