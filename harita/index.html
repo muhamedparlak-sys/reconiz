@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RecOniz · Son 150.000 Yılda Deniz Düzeyi ve Dünya Kıyılarının Değişimi</title>
+<meta name="description" content="Deniz düzeyi değiştikçe dünya kıyıları nasıl yer değiştirdi? Tarihi kaydırın; son 150.000 yılda bugün su altında olan hangi yerlerin kara olduğunu dünya haritasında görün.">
+<meta name="theme-color" content="#17495A">
+<link rel="canonical" href="https://reconiz.org/harita/">
+<meta name="apple-mobile-web-app-title" content="Harita">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Heritage Rejoiner: RecOniz ana sayfasıyla aynı tokenlar ve düzen (tek sütun, 720px, kutusuz bölümler, aynı başlık ve fotoğraf kartı) */
+/* Düzen: tek sütun, 720px okuma genişliği; çekim kartı en üstte, katalog bir "tip levhası" ızgarası.
+   Kimlik: deniz mavisi (sea) + pişmiş toprak (clay); tek yazı ailesi: Instrument Sans (başlık 600, metin 400). */
+:root{
+  --bg:#F6F7F5; --ink:#152021; --muted:#5B6664; --faint:#8C9795; --line:#DCE2E0; --soft:#ECF0EE; --raised:#FFFFFF;
+  --sea:#17495A; --sea-soft:#DCE8EB; --on-sea:#FFFFFF; --clay:#9C5B38; --clay-soft:#F1E3D6;
+  --z-rim:#2F6DB3; --z-handle:#8A4BC4; --z-body:#2E8554; --z-base:#C9620C;
+  --paper:#FFFFFF; --paper-ink:#111111; --well-a:#EDF2F3; --well-b:#DCE6E8; --chartfill:#E9C9A0;
+  --bar:#CCD5D3; --map-sea:#CFE0E6; --map-land:#EFE8DC; --map-coast:#9A8F80; --map-ink:#3A2A20; --map-ink2:#1D3A4C; --map-pin:#A0461E; --map-pin-a:rgba(160,70,30,.45); --map-reg:#285A78; --map-reg-a:rgba(40,90,120,.18); --map-sel:#17495A; --map-sel-a:rgba(23,73,90,.75);
+  --shadow:0 1px 2px rgba(21,32,33,.06),0 8px 24px -12px rgba(21,32,33,.18);
+  --sans:"Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#111617; --ink:#E6EAE8; --muted:#A1ABA9; --faint:#6E7977; --line:#283133; --soft:#182022; --raised:#1A2224;
+    --sea:#8CC3D1; --sea-soft:#1B3037; --on-sea:#0C1A1E; --clay:#DB9A72; --clay-soft:#33251D;
+    --z-rim:#72AAEA; --z-handle:#C49AF0; --z-body:#66C28D; --z-base:#F2A259;
+    --paper:#D5DBD9; --paper-ink:#111111; --well-a:#1C2A2E; --well-b:#142024; --chartfill:#C9A47A;
+    --bar:#3A4749; --map-sea:#132329; --map-land:#243033; --map-coast:#47575A; --map-ink:#E6EAE8; --map-ink2:#CFE3E8; --map-pin:#E29A6E; --map-pin-a:rgba(226,154,110,.42); --map-reg:#8CC3D1; --map-reg-a:rgba(140,195,209,.16); --map-sel:#8CC3D1; --map-sel-a:rgba(140,195,209,.8);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#111617; --ink:#E6EAE8; --muted:#A1ABA9; --faint:#6E7977; --line:#283133; --soft:#182022; --raised:#1A2224;
+  --sea:#8CC3D1; --sea-soft:#1B3037; --on-sea:#0C1A1E; --clay:#DB9A72; --clay-soft:#33251D;
+  --z-rim:#72AAEA; --z-handle:#C49AF0; --z-body:#66C28D; --z-base:#F2A259;
+  --paper:#D5DBD9; --paper-ink:#111111; --well-a:#1C2A2E; --well-b:#142024; --chartfill:#C9A47A;
+  --bar:#3A4749; --map-sea:#132329; --map-land:#243033; --map-coast:#47575A; --map-ink:#E6EAE8; --map-ink2:#CFE3E8; --map-pin:#E29A6E; --map-pin-a:rgba(226,154,110,.42); --map-reg:#8CC3D1; --map-reg-a:rgba(140,195,209,.16); --map-sel:#8CC3D1; --map-sel-a:rgba(140,195,209,.8);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:12px 56px;-webkit-font-smoothing:antialiased}
+main{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--sans);font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.02em}
+h2{font-size:clamp(21px,4.6vw,25px);line-height:1.2}
+p{margin:0}
+a{color:var(--sea);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sea);outline-offset:3px}
+section{display:flex;flex-direction:column;gap:16px;min-width:0}
+.sub{color:var(--muted);font-size:15px;max-width:66ch}
+.lab,.dlab,.citeLabel,.tagline,.eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.center{text-align:center}
+
+/* araçlar menüsü */
+.bar{position:relative}
+.menu{position:absolute;top:calc(100% + 6px);right:0;z-index:30;width:min(340px,100%);background:var(--raised);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 44px -12px rgba(0,0,0,.35);padding:12px;display:flex;flex-direction:column;gap:6px}
+.menu .lab{padding:4px 8px 6px}
+.menu a,.menu .soon{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:12px;text-decoration:none;color:var(--ink);position:relative}
+.menu a:hover{background:var(--soft)}
+.menu a[aria-current="page"]{background:var(--sea-soft)}
+.menu b{font-size:15.5px;font-weight:600;padding-right:72px}
+.menu span{font-size:13.5px;color:var(--muted);line-height:1.4}
+.menu i{position:absolute;top:12px;right:12px;font-style:normal;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sea)}
+.menu .soon{opacity:.55}
+@media (max-width:420px){ .tools .lang button{padding:4px 6px} .tools{gap:4px} .tools .themebtn{width:32px;height:32px} }
+/* başlık */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:6px}
+.brand{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
+.wm{margin:0;line-height:0;color:var(--ink)}
+.wm svg{display:block;height:34px;width:auto}
+.mark{flex:none;width:34px;height:48px;color:var(--sea)}
+.bar h1{font-size:32px;line-height:1}
+h1 .on{color:var(--sea);font-style:italic}
+.tagline{margin-top:5px;letter-spacing:.14em;white-space:nowrap;font-size:10.5px}
+
+.tools{display:flex;align-items:center;gap:8px;flex:none}
+.themebtn{width:38px;height:38px;border-radius:999px;border:1px solid var(--line);background:var(--raised);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.themebtn:hover{border-color:var(--faint)}
+.themebtn svg{width:18px;height:18px}
+.themebtn .i-sun{display:none}
+:root[data-theme="dark"] .themebtn .i-sun{display:block}:root[data-theme="dark"] .themebtn .i-moon{display:none}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .themebtn .i-sun{display:block} :root:not([data-theme="light"]) .themebtn .i-moon{display:none} }
+@media (max-width:420px){ .wm svg{height:29px} .tagline{letter-spacing:.1em;font-size:9.5px;white-space:normal;max-width:16.5em;line-height:1.35} .lang button{padding:4px 8px;min-height:30px} .tools{gap:6px} .themebtn{width:34px;height:34px} }
+/* segment düğmeleri */
+.seg{display:inline-flex;flex-wrap:nowrap;max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;background:var(--raised)}
+.seg button{border:0;background:none;padding:6px 14px;min-height:34px;border-radius:999px;font-size:14px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.lang button{padding:4px 11px;font-size:13px;min-height:30px;letter-spacing:.04em}
+
+/* çekim kartı */
+.capture{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px;border-radius:20px;background:var(--raised);box-shadow:var(--shadow);border:1px solid var(--line)}
+.guide{grid-column:1/-1;display:flex;align-items:center;gap:14px;padding:4px 2px 8px}
+.guide svg{flex:none;width:64px;height:84px;color:var(--sea)}
+.guide .sub{font-size:14.5px}
+.pick{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;background:var(--sea);color:var(--on-sea);font-weight:600;padding:12px 18px;cursor:pointer;overflow:hidden;border:0;transition:transform .12s ease,filter .12s ease}
+.pick:hover{filter:brightness(1.08)}
+.pick:active{transform:scale(.985)}
+.pick input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.pick:focus-within{outline:2px solid var(--sea);outline-offset:3px}
+.pick.alt{background:var(--sea-soft);color:var(--sea)}
+.pick.big{min-height:54px;font-size:16px;width:100%}
+.pick svg{width:20px;height:20px;flex:none}
+.scanbtn{grid-column:1/-1;cursor:pointer}
+.picks{display:flex;flex-wrap:wrap;gap:10px}
+@media (min-width:700px){ .capture{grid-template-columns:repeat(3,1fr);padding:22px 24px} .scanbtn{grid-column:auto} }
+
+/* hakkında */
+.about{gap:14px}
+.about{gap:18px}
+.about p{color:var(--muted);font-size:15px;max-width:66ch}
+.about .lead1{color:var(--ink);font-size:18px;line-height:1.5;font-weight:500;letter-spacing:-.01em;max-width:52ch}
+.ab{display:flex;flex-direction:column;gap:10px}
+.ab h3.lab{margin:0}
+ol.steps.sm{gap:10px}
+ol.steps.sm li{grid-template-columns:24px 1fr;gap:12px;font-size:15px;color:var(--ink);padding-top:0}
+ol.steps.sm li::before{width:24px;height:24px;line-height:24px;font-size:12.5px;background:var(--sea-soft);color:var(--sea)}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start;line-height:1.5;padding-top:2px}
+ol.steps li::before{content:counter(s);font-weight:600;font-size:15px;line-height:28px;width:28px;height:28px;border-radius:50%;text-align:center;background:var(--sea);color:var(--on-sea)}
+/* kaynaklar, künye */
+.usenotes{display:flex;flex-direction:column;gap:10px;padding:16px 18px;border-radius:14px;background:var(--soft);border:1px solid var(--line)}
+.usenotes p{font-size:15px;max-width:66ch}
+.usenotes p:first-child{font-weight:600}
+.rights{margin-top:14px}
+.refs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.refs li{padding-left:2em;text-indent:-2em;font-size:14.5px;line-height:1.5;overflow-wrap:anywhere}
+.credits p,.use p{max-width:66ch}
+.cite-tool{font-size:14.5px;overflow-wrap:anywhere;padding:12px 16px 12px calc(16px + 1.4em);text-indent:-1.4em;background:var(--raised);border:1px solid var(--line);border-radius:12px}
+footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:20px}
+footer a{color:var(--muted)}
+
+/* Heritage Rejoiner: masa, kaplar, adaylar */
+:root{--g1:#2F6DB3;--g2:#C9620C;--g3:#2E8554;--g4:#8A4BC4;--g5:#B23A48;--g6:#6B7A1E;--g7:#0E7C86;--g8:#A0527A;--hit:#E0A030}
+.capture .demo{grid-column:1/-1}
+@media (min-width:700px){ .capture .demo{grid-column:auto} }
+.work{display:flex;flex-direction:column;gap:12px}
+.status{font-size:15px;color:var(--ink);min-height:1.5em}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.link{background:none;border:0;color:var(--sea);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
+.th{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px;border-radius:12px;background:var(--soft);border:1px solid var(--line)}
+.th canvas{max-width:100%;height:56px;width:auto;border-radius:6px}
+.th figcaption{font-size:12px;font-weight:600;color:var(--muted)}
+#results{display:flex;flex-direction:column;gap:44px}
+#results:empty{display:none}
+.tzoom{overflow:auto;border-radius:16px;border:1px solid var(--line);cursor:zoom-in;-webkit-overflow-scrolling:touch}
+.tzoom.big{cursor:zoom-out}
+.tablecv{width:100%;height:auto;display:block}
+.tzoom.big .tablecv{width:260%;max-width:none}
+.jn{font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.plates{display:grid;grid-template-columns:1fr;gap:16px}
+.plates.part{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.plate{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--raised);box-shadow:var(--shadow);display:flex;flex-direction:column}
+.plate canvas{width:100%;height:auto;display:block;background:var(--soft)}
+.pmeta{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;border-top:3px solid var(--gc)}
+.ptitle{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.pname{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.pdot{width:24px;height:24px;border-radius:50%;background:var(--gc);color:#fff;display:grid;place-items:center;font-size:12.5px}
+.pct{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--gc);color:#fff;font-variant-numeric:tabular-nums}
+.pct.part{background:var(--soft);color:var(--muted)}
+.porder{font-size:13.5px;color:var(--muted);line-height:1.6}
+.mini{border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:6px 14px;font-size:13.5px;cursor:pointer}
+.mini[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.play{align-self:flex-start}
+.second .plate{box-shadow:none}
+.loose{display:flex;flex-wrap:wrap;gap:10px}
+.loose canvas{border-radius:6px}
+details.all{border:1px solid var(--line);border-radius:14px;padding:0 16px;background:var(--raised)}
+details.all summary{padding:14px 0;font-weight:600;font-size:15px;cursor:pointer}
+details.all[open]{padding-bottom:16px}
+details.all .sub{margin-bottom:12px}
+.joins{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.join{border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;background:var(--bg)}
+.join canvas{display:block;align-self:center;background:repeating-conic-gradient(var(--soft) 0 25%,var(--bg) 0 50%) 0 0/16px 16px}
+.jmeta{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--gc)}
+.jt{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lvl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px}
+.lvl.strong{background:var(--sea);color:var(--on-sea)}.lvl.medium{background:var(--sea-soft);color:var(--sea)}.lvl.weak{background:var(--soft);color:var(--muted)}
+.jacts{display:flex;gap:8px}
+.family{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;border-radius:16px;background:var(--sea-soft);color:var(--sea);text-decoration:none;font-weight:600}
+.family span{font-weight:400;color:var(--muted);font-size:14px;display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* adımlar ve önizleme rehberi */
+h2 .stepn{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sea);color:var(--on-sea);font-size:15px;margin-right:10px;vertical-align:3px;letter-spacing:0}
+[id^="st-"],.capture,.plate{scroll-margin-top:16px}
+.nextstep{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--raised);border-radius:999px;padding:9px 16px;font-weight:600;font-size:14.5px;color:var(--sea);cursor:pointer;margin-top:4px}
+.nextstep:hover{border-color:var(--sea)}
+.coach{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));width:min(688px,calc(100% - 24px));z-index:40;background:var(--raised);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 44px -12px rgba(0,0,0,.45);padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px}
+.coach p{font-size:15.5px;line-height:1.5}
+.chead{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cx{border:0;background:none;color:var(--muted);font-size:22px;line-height:1;padding:2px 6px;cursor:pointer}
+.cbtns{display:grid;grid-template-columns:1fr 2fr;gap:10px}
+.cbtns .pick{min-height:46px;padding:10px 14px}
+.cbtns .pick:disabled{opacity:.45;cursor:default;filter:none}
+.hl{outline:3px solid var(--sea);outline-offset:6px;border-radius:18px}
+.capture.hl{outline-offset:4px}
+body.touring{padding-bottom:240px}
+/* Herkes için Sualtı Mirası, 1. bölüm (Teredo navalis): tek bir geminin hikâyesi; sahne kaydırdıkça değişir */
+:root{ --wood:#C9A27A; --wood-d:#A9825A; --grain:#B58E63; --cavity:#4A3120; --tube:#F4EFE3; --tube-l:#CFC6B2; --flesh:#E6B4A0; --sand:#E3D5B8; --sand-d:#CDBB97; --water-a:#D6E8EF; --water-b:#B9D3DF; --sky:#F1F5F4; --pot:#B8683E; --pot2:#8C8472; --sail:#F7F3EA; --cu:#C7773F; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --wood:#8D6B48; --wood-d:#6E5236; --grain:#7A5B3C; --cavity:#1E140D; --tube:#E9E3D3; --tube-l:#9E9685; --flesh:#D9A08A; --sand:#4A4130; --sand-d:#39321F; --water-a:#17303A; --water-b:#0E2028; --sky:#141C1E; --pot:#C97A50; --pot2:#A39A86; --sail:#CFC9BC; --cu:#D38A52; } }
+:root[data-theme="dark"]{ --wood:#8D6B48; --wood-d:#6E5236; --grain:#7A5B3C; --cavity:#1E140D; --tube:#E9E3D3; --tube-l:#9E9685; --flesh:#D9A08A; --sand:#4A4130; --sand-d:#39321F; --water-a:#17303A; --water-b:#0E2028; --sky:#141C1E; --pot:#C97A50; --pot2:#A39A86; --sail:#CFC9BC; --cu:#D38A52; }
+.hero h2{font-size:clamp(28px,7vw,38px);line-height:1.1}
+.hero h2 i,.step i,.txt i,.wc i{font-style:italic}
+.lead1{font-size:18px;line-height:1.5;max-width:60ch}
+.story{gap:0}
+.stick{position:sticky;top:calc(var(--hb,0px) + 6px);z-index:5;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--bg);box-shadow:0 10px 26px -18px rgba(0,0,0,.45)}
+.stick svg{display:block;width:100%;height:auto}
+.dots{position:absolute;left:0;right:0;top:8px;display:flex;justify-content:center;gap:5px;pointer-events:none}
+.dots i{width:6px;height:6px;border-radius:999px;background:var(--ink);opacity:.18;transition:opacity .25s,transform .25s}
+.dots i.on{opacity:.75;transform:scale(1.25)}
+.steps2{display:flex;flex-direction:column}
+.step{min-height:78vh;display:flex;align-items:flex-start}
+.step:first-child{min-height:60vh}
+.step:last-child{min-height:70vh}
+.step p{position:sticky;top:calc(var(--stb,300px) + 22px);font-size:clamp(19px,4.9vw,22px);line-height:1.42;max-width:30em;opacity:0;transition:opacity .22s;padding-bottom:22px}
+.step p.gone{opacity:0;transition:none}
+.step.on p{opacity:1}
+.step.near p{opacity:.22}
+.step sup,.txt sup,.wc sup,.sub sup,.limits sup,section>p sup{font-size:.62em;line-height:0;color:var(--sea);font-weight:600;margin-left:1px}
+sup a{color:inherit;text-decoration:none}
+.where{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:560px){ .where{grid-template-columns:1fr} }
+.wc{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--raised);display:flex;flex-direction:column;gap:6px}
+.wc h3{font-size:16.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wc p{font-size:14.5px;color:var(--muted)}
+.wc .tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.wc.yes .tag{background:var(--clay-soft);color:var(--clay)}
+.wc.no .tag{background:var(--sea-soft);color:var(--sea)}
+.limits{display:flex;flex-wrap:wrap;gap:8px}
+.limits span{border-radius:12px;background:var(--soft);border:1px solid var(--line);padding:8px 12px;font-size:14.5px}
+.limits b{font-weight:600}
+.txt{display:flex;flex-direction:column;gap:10px}
+.txt p{max-width:66ch}
+.kick{margin:2px 0 8px;font-size:19px;font-weight:600;color:var(--sea)}
+.chap{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 8px}
+.chap a{border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:14.5px;font-weight:600;text-decoration:none;color:var(--ink);background:var(--raised)}
+.chap a[aria-current]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.hint{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:6;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--raised);color:var(--ink);border-radius:999px;padding:9px 13px 9px 16px;font:600 14.5px var(--sans);cursor:pointer;box-shadow:0 8px 22px -14px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .3s}
+.hint.show{opacity:1;pointer-events:auto}
+.scrim{position:fixed;left:0;right:0;bottom:0;height:104px;z-index:5;pointer-events:none;background:linear-gradient(to bottom,transparent,var(--bg) 58%);opacity:0;transition:opacity .3s}
+.scrim.show{opacity:1}
+.hint.mini{padding:9px;opacity:0}
+.hint.mini.show{opacity:.82}
+.hint.mini span{display:none}
+.hint svg{width:18px;height:18px;animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+@media (prefers-reduced-motion: reduce){ .hint svg{animation:none} }
+.callout{padding:18px 20px;border-radius:18px;background:var(--sea-soft)}
+.callout h2{color:var(--sea)}
+.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
+.notes{margin:0;padding-left:1.6em;display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--muted)}
+.wig{animation:wig 1.6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes wig{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+@media (prefers-reduced-motion: reduce){ .wig{animation:none} .step p{transition:none} }
+/* üst başlık kaydırırken yerinde kalır */
+.bar{position:sticky;top:0;z-index:40;background:var(--bg);margin-inline:-16px;padding:8px 16px 7px;box-shadow:0 1px 0 var(--line)}
+.bar .menu{right:16px;width:min(340px,calc(100% - 32px));max-height:calc(100vh - 84px);max-height:calc(100dvh - 84px);overflow-y:auto}
+:target{scroll-margin-top:84px}
+@media (max-height:600px){ .bar{position:relative} }
+@media (max-width:460px){ .bar{gap:8px} .wm svg{height:26px} .tools{gap:4px} .tools .lang button{padding:4px 4px;font-size:12px;letter-spacing:0} }
+@media (max-width:380px){ .wm svg{height:23px} }
+@media (max-width:340px){ .wm svg{height:18px} .tools{gap:3px} .tools .lang button{padding:4px 3px;font-size:11px} }
+/* Kıyı çizgisi haritası */
+:root{ --mp-sea1:#D3E6EE; --mp-sea2:#A6C8D8; --mp-land:#D9CBA8; --mp-shelf:#D8A93A; --mp-lake:#8DB6CB; --mp-flood:#6A9FBA; --mp-basin:#9DBDAE; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --mp-sea1:#1C3C49; --mp-sea2:#0E2028; --mp-land:#3B3424; --mp-shelf:#C79A32; --mp-lake:#2D5869; --mp-flood:#44798F; --mp-basin:#2F5B50; } }
+:root[data-theme="dark"]{ --mp-sea1:#1C3C49; --mp-sea2:#0E2028; --mp-land:#3B3424; --mp-shelf:#C79A32; --mp-lake:#2D5869; --mp-flood:#44798F; --mp-basin:#2F5B50; }
+.mapsec{gap:14px}
+.wide{align-self:center;width:min(1120px,calc(100vw - 32px));max-width:none}
+.mapwrap{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--mp-sea2);box-shadow:0 10px 26px -18px rgba(0,0,0,.45)}
+#map{display:block;width:100%;height:clamp(280px,min(64vh,80vw),680px);touch-action:none;cursor:grab;outline-offset:-3px}
+#map.drag{cursor:grabbing}
+.pill{position:absolute;left:10px;top:10px;max-width:calc(100% - 72px);padding:6px 12px;border-radius:999px;background:var(--sea);color:var(--on-sea);font-weight:600;font-size:15px;line-height:1.25;pointer-events:none}
+.zoom{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}
+.zoom button{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--raised);color:var(--ink);font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.zoom button:hover{border-color:var(--faint)}
+.attr{position:absolute;right:8px;bottom:6px;font-size:11px;line-height:1.2;color:var(--ink);background:color-mix(in srgb,var(--bg) 78%,transparent);padding:2px 7px;border-radius:8px;pointer-events:none;max-width:calc(100% - 16px)}
+.ctl{display:flex;flex-direction:column;gap:12px}
+.read{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.read div{padding:10px 12px;border-radius:14px;background:var(--raised);border:1px solid var(--line);min-width:0}
+.read .lab{display:block;margin-bottom:2px}
+.read b{font-size:clamp(16px,4.2vw,20px);font-weight:600;line-height:1.2;display:block}
+.read small{display:block;font-size:12.5px;color:var(--muted);line-height:1.3;margin-top:2px}
+@media (max-width:520px){ .read{grid-template-columns:1fr 1fr} .read div:last-child{grid-column:1 / -1} }
+.chart{border-radius:14px;background:var(--raised);border:1px solid var(--line);padding:8px 8px 4px;touch-action:pan-y}
+.chart svg{display:block;width:100%;height:150px;cursor:ew-resize;user-select:none;-webkit-user-select:none}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.sl{display:flex;flex-direction:column;gap:2px}
+.sl label{font-size:13px;font-weight:600;color:var(--muted)}
+.sl input[type=range]{width:100%;accent-color:var(--sea);height:30px;margin:0}
+.ends{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)}
+.pbtn{flex:none;border-radius:999px;border:1px solid var(--sea);background:var(--sea);color:var(--on-sea);font-weight:600;padding:8px 18px;cursor:pointer}
+.pbtn.alt{background:transparent;color:var(--sea)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{border-radius:999px;border:1px solid var(--line);background:var(--raised);color:var(--ink);padding:6px 13px;font-size:14px;cursor:pointer}
+.chips button:hover{border-color:var(--faint)}
+.chips button[aria-pressed="true"]{background:var(--sea-soft);border-color:var(--sea);color:var(--sea);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:14px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:18px;height:14px;border-radius:4px;border:1px solid var(--line);flex:none}
+.sw-sea{background:linear-gradient(90deg,var(--mp-sea1),var(--mp-sea2))} .sw-shelf{background:var(--mp-shelf)} .sw-land{background:var(--mp-land)} .sw-lake{background:var(--mp-lake)} .sw-flood{background:var(--mp-flood)}
+.sw-basin{background:var(--mp-basin)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:560px){ .cards{grid-template-columns:1fr} }
+.cards .wc{min-width:0}
+.cards .wc h3{font-size:16.5px}
+ol.how,ul.lim{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:8px;max-width:66ch}
+ul.lim b{font-weight:600}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RecOniz">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Son 150.000 Yılda Deniz Düzeyi ve Dünya Kıyılarının Değişimi">
+<meta property="og:description" content="Deniz düzeyi değiştikçe dünya kıyıları nasıl yer değiştirdi? Tarihi kaydırın; bugün su altında olan hangi yerlerin kara olduğunu dünya haritasında görün.">
+<meta property="og:url" content="https://reconiz.org/harita/">
+<meta property="og:image" content="https://reconiz.org/og-harita.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Yirmi bin yıl önceki deniz düzeyiyle dünya haritası: bugün su altında olan kıta sahanlıkları sarı">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Son 150.000 Yılda Deniz Düzeyi ve Dünya Kıyılarının Değişimi">
+<meta name="twitter:description" content="Deniz düzeyi değiştikçe dünya kıyıları nasıl yer değiştirdi? Tarihi kaydırın; bugün su altında olan hangi yerlerin kara olduğunu dünya haritasında görün.">
+<meta name="twitter:image" content="https://reconiz.org/og-harita.jpg">
+</head>
+<body>
+<main>
+<header class="bar">
+    <div class="brand"><h1 class="wm"><span class="vh">RecOniz</span><svg viewBox="0 -640 3491 652" fill="currentColor" aria-hidden="true" focusable="false"><path d="M73 0V-510H172V-383H177V0ZM177 -266 164 -387Q182 -452 226.0 -486.0Q270 -520 331 -520Q354 -520 363 -516V-418Q358 -420 349.0 -420.5Q340 -421 327 -421Q252 -421 214.5 -382.0Q177 -343 177 -266Z"/><path d="M676 10Q599 10 540.5 -24.0Q482 -58 449.0 -118.0Q416 -178 416 -256Q416 -335 448.5 -394.5Q481 -454 540.0 -487.0Q599 -520 675 -520Q749 -520 803.5 -488.5Q858 -457 887.5 -401.0Q917 -345 917 -268Q917 -256 916.5 -245.5Q916 -235 914 -224H486V-302H841L815 -271Q815 -353 778.0 -396.0Q741 -439 675 -439Q604 -439 562.5 -390.5Q521 -342 521 -256Q521 -169 562.5 -120.0Q604 -71 678 -71Q723 -71 756.0 -89.5Q789 -108 805 -144H903Q878 -72 818.5 -31.0Q759 10 676 10Z"/><path d="M1235 10Q1162 10 1105.0 -24.5Q1048 -59 1015.5 -119.0Q983 -179 983 -256Q983 -333 1015.5 -392.5Q1048 -452 1105.0 -486.0Q1162 -520 1234 -520Q1295 -520 1343.0 -497.0Q1391 -474 1422.0 -433.0Q1453 -392 1462 -336H1364Q1354 -381 1320.5 -408.0Q1287 -435 1236 -435Q1192 -435 1159.0 -413.0Q1126 -391 1108.0 -351.0Q1090 -311 1090 -256Q1090 -202 1108.0 -161.0Q1126 -120 1159.0 -97.5Q1192 -75 1237 -75Q1286 -75 1320.5 -101.5Q1355 -128 1365 -173H1463Q1453 -118 1421.5 -77.0Q1390 -36 1342.0 -13.0Q1294 10 1235 10Z"/><path d="M1788 10Q1710 10 1651.0 -24.5Q1592 -59 1559.0 -119.5Q1526 -180 1526 -257Q1526 -335 1559.5 -394.0Q1593 -453 1651.5 -486.5Q1710 -520 1788 -520Q1867 -520 1926.0 -486.5Q1985 -453 2017.5 -394.0Q2050 -335 2050 -257Q2050 -180 2017.5 -119.5Q1985 -59 1926.0 -24.5Q1867 10 1788 10ZM1788 -75Q1835 -75 1869.5 -98.0Q1904 -121 1924.0 -162.0Q1944 -203 1944 -258Q1944 -340 1900.5 -387.5Q1857 -435 1788 -435Q1720 -435 1676.5 -387.0Q1633 -339 1633 -258Q1633 -203 1652.5 -162.0Q1672 -121 1707.5 -98.0Q1743 -75 1788 -75Z"/><path d="M2157 0V-510H2256V-390H2261V0ZM2519 0V-328Q2519 -381 2492.5 -407.0Q2466 -433 2414 -433Q2369 -433 2334.5 -413.0Q2300 -393 2280.5 -358.0Q2261 -323 2261 -275L2248 -397Q2273 -454 2325.0 -487.0Q2377 -520 2446 -520Q2528 -520 2575.0 -474.0Q2622 -428 2622 -352V0Z"/><path d="M2783 -510L2893 -510L2893 -474L2873 -464L2873 -412C2873 -384 2914 -372 2914 -318C2914 -222 2870 -112 2861 -44L2857 -12Q2854 0 2838 0Q2822 0 2819 -12L2815 -44C2806 -112 2762 -222 2762 -318C2762 -372 2803 -384 2803 -412L2803 -464L2783 -474Z"/><path d="M2776 -560Q2776 -548 2788 -548L2888 -548Q2900 -548 2900 -560L2900 -578Q2900 -588 2890 -588L2864 -588L2864 -612Q2864 -626 2850 -626L2826 -626Q2812 -626 2812 -612L2812 -588L2786 -588Q2776 -588 2776 -578Z"/><path d="M2873 -452C2936 -452 2938 -410 2912 -346M2803 -452C2740 -452 2738 -410 2764 -346" fill="none" stroke="currentColor" stroke-width="30" stroke-linecap="round"/><path d="M3037 0V-73L3338 -469L3368 -427H3046V-510H3439V-437L3139 -43L3110 -83H3447V0Z"/></svg></h1><p class="tagline" lang="en">Heritage Mapper</p></div>
+    <div class="tools"><button class="themebtn menubtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" data-i18n-aria="navMenu" aria-label="Menü"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></button><button class="themebtn" id="themeBtn" type="button" aria-label="Tema"><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    <div class="seg lang" id="lang" role="group" aria-label="Dil / Language / Idioma">
+      <button data-v="tr" aria-pressed="true">TR</button><button data-v="en" aria-pressed="false">EN</button><button data-v="es" aria-pressed="false">ES</button><button data-v="fr" aria-pressed="false">FR</button>
+    </div></div>
+    <nav class="menu" id="menu" hidden data-i18n-aria="navH" aria-label="RecOniz"><p class="lab" data-i18n="navH"></p><a href="/"><b data-i18n="navAmp"></b><span data-i18n="navAmpSub"></span></a><a href="/rejoiner/"><b data-i18n="navRej"></b><span data-i18n="navRejSub"></span></a><a href="/coins/"><b data-i18n="navCoin"></b><span data-i18n="navCoinSub"></span></a><a href="/harita/" aria-current="page"><b data-i18n="navMap"></b><span data-i18n="navMapSub"></span><i data-i18n="navHere"></i></a><a href="/onem/"><b data-i18n="navOn"></b><span data-i18n="navOnSub"></span></a><a href="/teredo/"><b data-i18n="navTer"></b><span data-i18n="navTerSub"></span></a><a href="/koruma/"><b data-i18n="navKor"></b><span data-i18n="navKorSub"></span></a><a href="/sorumluluk/"><b data-i18n="navSor"></b><span data-i18n="navSorSub"></span></a></nav>
+  </header>
+
+  <section class="hero" aria-labelledby="h-title">
+    <h2 id="h-title" data-i18n="h1"></h2>
+    <p class="lead1" data-i18n="lede"></p>
+  </section>
+
+  <section class="mapsec" aria-labelledby="h-map">
+    <h2 id="h-map" class="vh" data-i18n="mapH"></h2>
+    <div class="wide mapwrap">
+      <canvas id="map" tabindex="0" role="img"></canvas>
+      <div class="pill" id="pill" aria-hidden="true"></div>
+      <div class="zoom"><button type="button" id="zin" data-i18n-aria="zin">+</button><button type="button" id="zout" data-i18n-aria="zout">−</button></div>
+      <div class="attr" data-i18n="attr"></div>
+    </div>
+    <div class="wide ctl">
+      <div class="read" aria-live="polite">
+        <div><span class="lab" data-i18n="rDate"></span><b id="rk"></b></div>
+        <div><span class="lab" data-i18n="rLevel"></span><b id="rm"></b><small id="rmr"></small></div>
+        <div><span class="lab" id="ral"></span><b id="ra"></b><small data-i18n="rAreaNote"></small></div>
+      </div>
+      <div class="chart"><svg id="chart" role="img" data-i18n-aria="chartAria"></svg></div>
+      <div class="btns"><button class="pbtn" id="play" type="button"></button><button class="pbtn alt" id="now" type="button" data-i18n="nowBtn"></button></div>
+      <div class="sl"><label for="tk" data-i18n="rDate"></label><input id="tk" type="range" min="0" max="300" step="1" value="260"><div class="ends"><span data-i18n="end150"></span><span data-i18n="today"></span></div></div>
+      <div class="sl"><label for="lv" data-i18n="slLevel"></label><input id="lv" type="range" min="-130" max="10" step="1" value="-123"><div class="ends"><span>−130 m</span><span>+10 m</span></div></div>
+      <div class="chips" id="chips" role="group" data-i18n-aria="chipsAria"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-read">
+    <h2 id="h-read" data-i18n="readH"></h2>
+    <div class="cards">
+      <div class="wc"><h3 data-i18n="c1H"></h3><p data-i18n="c1P"></p></div>
+      <div class="wc"><h3 data-i18n="c2H"></h3><p data-i18n="c2P"></p></div>
+      <div class="wc"><h3 data-i18n="c3H"></h3><p data-i18n="c3P"></p></div>
+      <div class="wc"><h3 data-i18n="c4H"></h3><p data-i18n="c4P"></p></div>
+    </div>
+  </section>
+
+  <section class="txt" aria-labelledby="h-how">
+    <h2 id="h-how" data-i18n="howH"></h2>
+    <ol class="how"><li data-i18n="how1"></li><li data-i18n="how2"></li><li data-i18n="how3"></li><li data-i18n="how4"></li><li data-i18n="how5"></li></ol>
+  </section>
+
+  <section class="callout" aria-labelledby="h-lim">
+    <h2 id="h-lim" data-i18n="limH"></h2>
+    <ul class="lim"><li data-i18n="lim1"></li><li data-i18n="lim2"></li><li data-i18n="lim3"></li><li data-i18n="lim4"></li><li data-i18n="lim5"></li><li data-i18n="lim6"></li></ul>
+  </section>
+
+  <section class="txt" aria-labelledby="h-why"><h2 id="h-why" data-i18n="whyH"></h2><p data-i18n="whyP"></p></section>
+
+  <section aria-labelledby="h-ref">
+    <h2 id="h-ref" data-i18n="refH"></h2>
+    <ol class="notes" id="notes"></ol>
+  </section>
+
+  <section class="use" aria-labelledby="h-use">
+    <h2 id="h-use" data-i18n="useH"></h2>
+    <div class="usenotes"><p data-i18n="useSimple"></p><p data-i18n="credDev"></p><p data-i18n="priv"></p></div>
+    <p class="sub rights" data-i18n="rights"></p>
+  </section>
+
+  <a class="family" href="/"><div><span data-i18n="famSub"></span><b data-i18n="famH"></b></div><span aria-hidden="true">→</span></a>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const NAV={
+ tr:{navH:"Araçlar",navAmp:"Amphora tanıma",navAmpSub:"Underwater Heritage Recognizer · tek fotoğraftan amphora tipi",navRej:"Kırık seramik birleştirme",navRejSub:"Heritage Rejoiner · masadaki parçalardan kapları birleştirir",navCoin:"Sikke tanıma",navCoinSub:"Heritage Coin Recognizer · tek yüzden Roma imparatoru",navMap:"Kıyı çizgisi haritası",navMapSub:"Heritage Mapper · deniz düzeyi değiştikçe dünya kıyıları",navOn:"Sualtı mirasının önemi ve korunma gerekçeleri",navOnSub:"Heritage Explainer · Adrasan batığı ve Çiçero’nun mektubu",navTer:"Herkes için Sualtı Mirası",navTerSub:"Heritage Explainer · batıktan geriye ne kalır",navAra:"Sualtı mirasının keşfi: yüzey araştırması",navAraSub:"Heritage Explainer · karelaj, sonar, robot ve keşif dalışı",navKor:"Sualtı mirasının korunmaya başlanması",navKorSub:"Heritage Explainer · dünyada ilk kurallardan 1884 nizamnamesine",navSor:"Sualtı mirasına sahip çıkmak",navSorSub:"Heritage Explainer · Uluburun’un keşfi ve ortak sorumluluk",navHere:"Bu sayfa",navMenu:"Menü"},
+ en:{navH:"Tools",navAmp:"Amphora recognition",navAmpSub:"Underwater Heritage Recognizer · amphora type from a single photo",navRej:"Broken ceramic rejoining",navRejSub:"Heritage Rejoiner · reassembles vessels from the sherds on a table",navCoin:"Coin recognition",navCoinSub:"Heritage Coin Recognizer · Roman emperor from one face",navMap:"Shoreline map",navMapSub:"Heritage Mapper · the world’s coasts as sea level changes",navOn:"Why underwater heritage matters",navOnSub:"Heritage Explainer · the Adrasan wreck and Cicero’s letter",navTer:"Underwater Heritage for Everyone",navTerSub:"Heritage Explainer · what is left of a wreck",navAra:"Discovering underwater heritage: the survey",navAraSub:"Heritage Explainer · grid, sonar, robot and exploration dive",navKor:"The beginnings of underwater heritage protection",navKorSub:"Heritage Explainer · from the world’s first rules to the 1884 regulation",navSor:"Standing up for underwater heritage",navSorSub:"Heritage Explainer · the discovery of Uluburun and a shared responsibility",navHere:"This page",navMenu:"Menu"},
+ es:{navH:"Herramientas",navAmp:"Identificación de ánforas",navAmpSub:"Underwater Heritage Recognizer · tipo de ánfora a partir de una foto",navRej:"Remontaje de cerámica fragmentada",navRejSub:"Heritage Rejoiner · reconstruye piezas a partir de los fragmentos de una mesa",navCoin:"Reconocimiento de monedas",navCoinSub:"Heritage Coin Recognizer · emperador romano a partir de una cara",navMap:"Mapa de la línea de costa",navMapSub:"Heritage Mapper · las costas del mundo según el nivel del mar",navOn:"La importancia del patrimonio subacuático",navOnSub:"Heritage Explainer · el pecio de Adrasan y la carta de Cicerón",navTer:"Patrimonio subacuático para todos",navTerSub:"Heritage Explainer · qué queda de un pecio",navAra:"El descubrimiento del patrimonio subacuático: la prospección",navAraSub:"Heritage Explainer · cuadrícula, sonar, robot e inmersión de reconocimiento",navKor:"Los inicios de la protección del patrimonio subacuático",navKorSub:"Heritage Explainer · de las primeras normas del mundo al reglamento de 1884",navSor:"Hacerse cargo del patrimonio subacuático",navSorSub:"Heritage Explainer · el descubrimiento de Uluburun y una responsabilidad compartida",navHere:"Esta página",navMenu:"Menú"},
+ fr:{navH:"Outils",navAmp:"Reconnaissance d’amphores",navAmpSub:"Underwater Heritage Recognizer · type d’amphore à partir d’une seule photo",navRej:"Remontage de céramique brisée",navRejSub:"Heritage Rejoiner · reconstitue des vases à partir des tessons d’une table",navCoin:"Reconnaissance de monnaies",navCoinSub:"Heritage Coin Recognizer · empereur romain à partir d’une face",navMap:"Carte du trait de côte",navMapSub:"Heritage Mapper · les côtes du monde selon le niveau de la mer",navOn:"L’importance du patrimoine subaquatique",navOnSub:"Heritage Explainer · l’épave d’Adrasan et la lettre de Cicéron",navTer:"Le patrimoine subaquatique pour tous",navTerSub:"Heritage Explainer · ce qui reste d’une épave",navAra:"La découverte du patrimoine subaquatique : la prospection",navAraSub:"Heritage Explainer · carroyage, sonar, robot et plongée de reconnaissance",navKor:"Les débuts de la protection du patrimoine subaquatique",navKorSub:"Heritage Explainer · des premières règles du monde au règlement de 1884",navSor:"Prendre soin du patrimoine subaquatique",navSorSub:"Heritage Explainer · la découverte d’Uluburun et une responsabilité partagée",navHere:"Cette page",navMenu:"Menu"}};
+const n=k=>`<sup><a href="#n${k}">${k}</a></sup>`;
+/* Kıyı çizgisi haritası: metinler (tr / en / es / fr) */
+const SRC={
+ w:`Waelbroeck, C., Labeyrie, L., Michel, E., Duplessy, J. C., McManus, J., Lambeck, K., Balbon, E. &amp; Labracherie, M. (2002), “Sea-level and deep water temperature changes derived from benthic foraminifera isotopic records”, <i>Quaternary Science Reviews</i> 21: 295–305`,
+ wd:`<a href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/waelbroeck2002/waelbroeck2002.txt">NOAA World Data Center for Paleoclimatology, 2010-126</a>`,
+ e:`NOAA National Centers for Environmental Information (2022), <a href="https://www.ncei.noaa.gov/products/etopo-global-relief-model">ETOPO 2022 Global Relief Model</a>`,
+ m:`Myers, P. G., Wielki, C., Goldstein, S. B. &amp; Rohling, E. J. (2003), “Hydraulic calculations of postglacial connections between the Mediterranean and the Black Sea”, <i>Marine Geology</i> 201(4): 253–267, <a href="https://doi.org/10.1016/S0025-3227(03)00225-1">doi:10.1016/S0025-3227(03)00225-1</a>`,
+ g:`Gowan, E. J. et al. (2021), “A new global ice sheet reconstruction for the past 80 000 years”, <i>Nature Communications</i> 12: 1199`,
+ c:`<a href="https://en.wikipedia.org/wiki/Cosquer_Cave">Cosquer Cave (Wikipedia)</a>`,
+ ne:`<a href="https://www.naturalearthdata.com/">Natural Earth</a>`
+};
+const I18N={
+tr:{title:"Son 150.000 Yılda Deniz Düzeyi ve Dünya Kıyılarının Değişimi",
+ h1:"Son 150.000 Yılda Deniz Düzeyi ve Dünya Kıyılarının Değişimi",
+ kick:"Kıyı çizgisi sabit değildir: deniz alçaldıkça açılır, yükseldikçe karaya doğru çekilir.",
+ lede:"Bu harita, son 150.000 yılın deniz düzeyini bugünkü deniz dibine uygular. Tarihi kaydırın; bugün su altında olan hangi yerlerin o gün kara olduğunu görün.",
+ mapH:"Harita", zin:"Yakınlaş", zout:"Uzaklaş", attr:"Veri: NOAA ETOPO 2022 · Waelbroeck vd. 2002",
+ rDate:"Tarih", rLevel:"Deniz düzeyi", rArea:"Açığa çıkan kara", rFlood:"Su altında kalan kara", rAreaNote:"bugüne göre, bu haritadan hesaplandı",
+ today:"bugün", nowBtn:"Bugüne dön", slLevel:"Deniz düzeyini elle ayarlayın", lvl0:"bugünkü düzey", manual:"elle ayarlandı", manualNote:"eğrideki çizgi bu düzeyin görüldüğü tarihleri gösterir",
+ ago:a=>a+" yıl önce", kaAgo:a=>a+" bin yıl önce", end150:"150 bin yıl önce", range:(a,b)=>a+" ile "+b+" arası", mkm:v=>v+" milyon km²",
+ play:"Oynat", pause:"Durdur", chipsAria:"Bölgeler", chartAria:"Son 150.000 yılda küresel ortalama deniz düzeyi eğrisi; tarihi seçmek için sürükleyin",
+ mapAria:(d,l)=>"Dünya haritası. "+d+", deniz düzeyi "+l+".",
+ regs:{world:"Dünya",med:"Akdeniz",blk:"Karadeniz ve Ege",nsea:"Kuzey Denizi ve Manş",gulf:"Basra Körfezi ve Kızıldeniz",sunda:"Güneydoğu Asya",sahul:"Avustralya ve Yeni Gine",bering:"Bering Boğazı",japan:"Japonya ve Kore",carib:"Meksika Körfezi ve Karayipler",pata:"Patagonya"},
+ leg:{sea:"Deniz",shelf:"O gün kara olan, bugün su altındaki yer",flood:"O gün su altında olan, bugün kara olan yer",basin:"Okyanustan kopan çukur (göl olabilir)",lake:"Bugünkü göller",land:"Kara"},
+ readH:"Harita nasıl okunur",
+ c1H:"Sarı alanlar", c1P:"Seçtiğiniz tarihte deniz düzeyinin üstünde kalan, bugün ise su altında bulunan yerlerdir. 20.000 yıl önce bugünkü denizlerin yaklaşık 22 milyon kilometrekaresi deniz düzeyinin üstündeydi; bu değer bu haritadan hesaplanmıştır.",
+ c2H:"Yeşil alanlar", c2P:`Deniz alçalınca okyanusla bağlantısı kesilen çukurlardır. En büyüğü Karadeniz’dir: İstanbul Boğazı’nın eşiği 35 metre derindedir; deniz bunun altına indiğinde Karadeniz okyanustan ayrılır.${n(3)} Harita bu çukurları eşik düzeyine kadar dolu gösterir; gerçek su düzeyi bilinmez.`,
+ c3H:"Zaman eğrisi", c3P:`Küresel ortalama deniz düzeyi, derin deniz çökellerindeki oksijen izotoplarından hesaplanmış, yayımlanmış bir eğriden alınmıştır.${n(1)} Bu eğriye göre deniz 20.000 yıl önce bugünden yaklaşık 123 metre alçakta, 124.000 yıl önce ise yaklaşık 6 metre yüksekteydi. Soluk bant eğrinin belirsizlik aralığıdır.`,
+ c4H:"Deniz düzeyini elle ayarlamak", c4P:"İkinci kaydırıcı tarihten bağımsızdır: düzeyi 130 metre aşağıdan 10 metre yukarıya kadar doğrudan seçersiniz. Eğrinin üstündeki kesikli çizgi, o düzeyin hangi tarihlerde görüldüğünü gösterir.",
+ howH:"Harita nasıl hesaplandı",
+ how1:`Derinlik ve yükseklik verisi NOAA’nın ETOPO 2022 küresel modelinden alındı; kullanılan ızgaranın bir hücresi 1 yay dakikası, yani ekvatorda yaklaşık 1,8 kilometredir.${n(2)}`,
+ how2:"Her hücre için okyanusun o hücreye ulaşabildiği en düşük deniz düzeyi hesaplandı. Böylece bir eşiğin ardındaki çukur, deniz o eşiği aşmadan dolmaz.",
+ how3:`İstanbul ve Çanakkale boğazları bu ızgarada görünmeyecek kadar dardır; yayımlanmış eşik derinlikleriyle (35 metre ve 80 ± 5 metre) elle açıldı.${n(3)}`,
+ how4:`Bugünkü kıyı çizgisi ve göller Natural Earth 1:10 milyon ölçekli veriye göre düzeltildi.${n(6)}`,
+ how5:`Her tarih için deniz düzeyi yayımlanmış eğriden okunur ve metreye yuvarlanır.${n(1)}`,
+ limH:"Haritanın sınırları",
+ lim1:"<b>Deniz dibi bugünkü haliyle alınır.</b> Çökel birikimi, aşınma, yer kabuğunun çökmesi ya da yükselmesi ve buz yükünün etkisi hesaba katılmaz. Nehir deltalarının önünde yanılma büyüktür.",
+ lim2:`<b>Buz örtüleri gösterilmez.</b> Buzul çağlarında Kuzey Amerika’nın ve Kuzey Avrupa’nın büyük bölümü buzla kaplıydı; haritada sarı görünen Hudson Körfezi, Baltık Denizi ve Barents Denizi o gün açık kara değil, buz altındaydı.${n(4)}`,
+ lim3:"<b>Deniz düzeyi tek bir küresel ortalamadır.</b> Yerel deniz düzeyi bölgeden bölgeye değişir; eğrinin kendisinin de en alçak dönemde yaklaşık ± 13 metre belirsizliği vardır.",
+ lim4:"<b>Ayrıntı sınırlıdır.</b> Bir hücre yaklaşık 1,8 kilometredir ve deniz dibinin büyük bölümü doğrudan ölçülmemiştir. Küçük koylar, dar boğazlar ve adalar görünmeyebilir.",
+ lim5:"<b>Göller bugünkü haliyle çizilir.</b> Geçmişteki göl düzeyleri ve nehir yatakları bu haritada yoktur.",
+ lim6:"<b>Bu bir canlandırmadır.</b> Bir yerin belirli bir tarihte kara ya da deniz olduğunun kanıtı sayılmaz; yerel çalışmaların yerini tutmaz.",
+ whyH:"Sualtı mirasıyla ilgisi",
+ whyP:`Buzul çağlarında insanlar bugün su altında olan kıyılarda da yaşadı. Marsilya yakınındaki Cosquer Mağarası’nın girişi bugün 37 metre derindedir; duvarlarında yaklaşık 27.000 ve 19.000 yıllık resimler vardır.${n(5)} Deniz yükselirken su altında kalan yerleşim ve kullanım izleri de sualtı mirasının parçasıdır.`,
+ refH:"Notlar ve kaynaklar",
+ N:[`${SRC.w}. Veri: ${SRC.wd}. Sayfadaki 123 metre, 6 metre ve ± 13 metre değerleri bu veriden okunmuştur.`,`${SRC.e}. Kullanılan sürüm: 60 yay saniyesi, yüzey yüksekliği.`,`${SRC.m}. Çanakkale Boğazı’nın önündeki sahanlık nedeniyle Marmara Denizi’nin eşiği bu haritada 76 metre çıkar.`,`${SRC.g}.`,`${SRC.c}.`,`${SRC.ne}, 1:10m kara ve göl verisi.`],
+ useH:"Kullanım", useSimple:"Bu harita konuyu herkesin anlayabileceği biçimde göstermek için hazırlanmış bir canlandırmadır; ölçüm ya da seyir amacıyla kullanılamaz.",
+ credDev:"Hazırlayan: Muhammed Parlak (2026).", priv:"Sayfa ziyaretleri, çerez kullanılmadan ve kişisel veri toplanmadan anonim olarak sayılır.",
+ rights:"© 2026 Muhammed Parlak. Tüm hakları saklıdır. Sayfa akademik, eğitsel ve kişisel amaçlarla ücretsiz kullanılabilir; kopyalanması, değiştirilmesi ya da yeniden dağıtılması yazılı izne bağlıdır.",
+ famH:"Amphora tanıma: Underwater Heritage Recognizer", famSub:"RecOniz ailesi"},
+en:{title:"Sea Level and the World’s Shorelines over the Last 150,000 Years",
+ h1:"Sea Level and the World’s Shorelines over the Last 150,000 Years",
+ kick:"A shoreline is not fixed: it moves seaward as the sea falls and landward as it rises.",
+ lede:"This map applies the sea level of the last 150,000 years to today’s seabed. Move the date and see which places now under water were dry land then.",
+ mapH:"Map", zin:"Zoom in", zout:"Zoom out", attr:"Data: NOAA ETOPO 2022 · Waelbroeck et al. 2002",
+ rDate:"Date", rLevel:"Sea level", rArea:"Land exposed", rFlood:"Land under water", rAreaNote:"relative to today, computed from this map",
+ today:"today", nowBtn:"Back to today", slLevel:"Set sea level by hand", lvl0:"today’s level", manual:"set by hand", manualNote:"the line on the curve shows when this level occurred",
+ ago:a=>a+" years ago", kaAgo:a=>a+" thousand years ago", end150:"150 thousand years ago", range:(a,b)=>"between "+a+" and "+b, mkm:v=>v+" million km²",
+ play:"Play", pause:"Pause", chipsAria:"Regions", chartAria:"Global mean sea level over the last 150,000 years; drag to choose a date",
+ mapAria:(d,l)=>"World map. "+d+", sea level "+l+".",
+ regs:{world:"World",med:"Mediterranean",blk:"Black Sea and Aegean",nsea:"North Sea and Channel",gulf:"Persian Gulf and Red Sea",sunda:"Southeast Asia",sahul:"Australia and New Guinea",bering:"Bering Strait",japan:"Japan and Korea",carib:"Gulf of Mexico and Caribbean",pata:"Patagonia"},
+ leg:{sea:"Sea",shelf:"Land then, under water today",flood:"Under water then, land today",basin:"Basin cut off from the ocean (possibly a lake)",lake:"Present-day lakes",land:"Land"},
+ readH:"How to read the map",
+ c1H:"Yellow areas", c1P:"Places that stood above sea level at the chosen date and are under water today. 20,000 years ago about 22 million square kilometres of today’s seas stood above sea level; this figure is computed from this map.",
+ c2H:"Green areas", c2P:`Basins that lose their connection to the ocean when the sea falls. The largest is the Black Sea: the sill of the Bosphorus lies 35 metres deep, and once the sea drops below it the Black Sea is cut off from the ocean.${n(3)} The map shows these basins filled up to their sill; the real water level is not known.`,
+ c3H:"The time curve", c3P:`Global mean sea level is taken from a published curve derived from oxygen isotopes in deep-sea sediments.${n(1)} According to this curve the sea stood about 123 metres below today’s level 20,000 years ago, and about 6 metres above it 124,000 years ago. The pale band is the curve’s uncertainty range.`,
+ c4H:"Setting sea level by hand", c4P:"The second slider is independent of the date: you choose a level directly, from 130 metres below to 10 metres above today. The dashed line on the curve shows when that level occurred.",
+ howH:"How the map was computed",
+ how1:`Depth and elevation come from NOAA’s ETOPO 2022 global relief model; one cell of the grid used here is 1 arc-minute, about 1.8 kilometres at the equator.${n(2)}`,
+ how2:"For every cell we computed the lowest sea level at which the ocean can reach it. A basin behind a sill therefore does not fill until the sea rises above that sill.",
+ how3:`The Bosphorus and the Dardanelles are too narrow to appear in this grid; they were opened by hand at their published sill depths (35 metres and 80 ± 5 metres).${n(3)}`,
+ how4:`Today’s coastline and lakes were corrected against Natural Earth 1:10 million data.${n(6)}`,
+ how5:`For each date, sea level is read from the published curve and rounded to the metre.${n(1)}`,
+ limH:"Limits of the map",
+ lim1:"<b>The seabed is taken as it is today.</b> Sediment build-up, erosion, subsidence or uplift of the crust and the effect of ice load are not taken into account. Errors are large in front of river deltas.",
+ lim2:`<b>Ice sheets are not shown.</b> During glacial periods much of North America and northern Europe was covered by ice; Hudson Bay, the Baltic Sea and the Barents Sea, shown in yellow, were not open land then but lay under ice.${n(4)}`,
+ lim3:"<b>Sea level is a single global mean.</b> Local sea level differs from region to region, and the curve itself carries an uncertainty of about ± 13 metres at the lowest stand.",
+ lim4:"<b>Detail is limited.</b> One cell is about 1.8 kilometres and most of the seabed has not been measured directly. Small bays, narrow straits and islands may not appear.",
+ lim5:"<b>Lakes are drawn as they are today.</b> Past lake levels and river courses are not on this map.",
+ lim6:"<b>This is a simulation.</b> It is not evidence that a given place was land or sea at a given date, and it does not replace local studies.",
+ whyH:"What this has to do with underwater heritage",
+ whyP:`During glacial periods people also lived on coasts that are now under water. The entrance of Cosquer Cave near Marseille lies 37 metres deep today; its walls bear paintings about 27,000 and 19,000 years old.${n(5)} Traces of settlement and use that were drowned as the sea rose are also part of underwater heritage.`,
+ refH:"Notes and sources",
+ N:[`${SRC.w}. Data: ${SRC.wd}. The values of 123 metres, 6 metres and ± 13 metres on this page are read from these data.`,`${SRC.e}. Version used: 60 arc-second, surface elevation.`,`${SRC.m}. Because of the shelf in front of the Dardanelles, the sill of the Sea of Marmara comes out at 76 metres on this map.`,`${SRC.g}.`,`${SRC.c}.`,`${SRC.ne}, 1:10m land and lakes.`],
+ useH:"Use", useSimple:"This map is a simulation prepared to show the subject in a way everyone can follow; it must not be used for measurement or navigation.",
+ credDev:"Prepared by Muhammed Parlak (2026).", priv:"Page visits are counted anonymously, without cookies and without collecting personal data.",
+ rights:"© 2026 Muhammed Parlak. All rights reserved. The page may be used free of charge for academic, educational and personal purposes; copying, modifying or redistributing it requires written permission.",
+ famH:"Amphora recognition: Underwater Heritage Recognizer", famSub:"The RecOniz family"},
+es:{title:"El nivel del mar y las costas del mundo en los últimos 150.000 años",
+ h1:"El nivel del mar y las costas del mundo en los últimos 150.000 años",
+ kick:"La línea de costa no es fija: avanza hacia el mar cuando este baja y retrocede hacia tierra cuando sube.",
+ lede:"Este mapa aplica el nivel del mar de los últimos 150.000 años al fondo marino actual. Mueva la fecha y vea qué lugares hoy sumergidos eran entonces tierra firme.",
+ mapH:"Mapa", zin:"Acercar", zout:"Alejar", attr:"Datos: NOAA ETOPO 2022 · Waelbroeck et al. 2002",
+ rDate:"Fecha", rLevel:"Nivel del mar", rArea:"Tierra emergida", rFlood:"Tierra sumergida", rAreaNote:"respecto a hoy, calculado a partir de este mapa",
+ today:"hoy", nowBtn:"Volver a hoy", slLevel:"Ajustar el nivel del mar a mano", lvl0:"nivel actual", manual:"ajustado a mano", manualNote:"la línea sobre la curva indica cuándo se dio este nivel",
+ ago:a=>"hace "+a+" años", kaAgo:a=>"hace "+a+" mil años", end150:"hace 150 mil años", range:(a,b)=>"entre "+a+" y "+b, mkm:v=>v+" millones de km²",
+ play:"Reproducir", pause:"Pausa", chipsAria:"Regiones", chartAria:"Nivel medio global del mar en los últimos 150.000 años; arrastre para elegir una fecha",
+ mapAria:(d,l)=>"Mapa del mundo. "+d+", nivel del mar "+l+".",
+ regs:{world:"Mundo",med:"Mediterráneo",blk:"Mar Negro y Egeo",nsea:"Mar del Norte y Canal de la Mancha",gulf:"Golfo Pérsico y Mar Rojo",sunda:"Sudeste Asiático",sahul:"Australia y Nueva Guinea",bering:"Estrecho de Bering",japan:"Japón y Corea",carib:"Golfo de México y Caribe",pata:"Patagonia"},
+ leg:{sea:"Mar",shelf:"Tierra entonces, hoy bajo el agua",flood:"Bajo el agua entonces, hoy tierra",basin:"Cuenca aislada del océano (posible lago)",lake:"Lagos actuales",land:"Tierra"},
+ readH:"Cómo leer el mapa",
+ c1H:"Zonas amarillas", c1P:"Lugares que quedaban por encima del nivel del mar en la fecha elegida y hoy están bajo el agua. Hace 20.000 años, unos 22 millones de kilómetros cuadrados de los mares actuales quedaban por encima del nivel del mar; esta cifra se ha calculado a partir de este mapa.",
+ c2H:"Zonas verdes", c2P:`Cuencas que pierden su conexión con el océano cuando el mar baja. La mayor es el Mar Negro: el umbral del Bósforo está a 35 metros de profundidad y, cuando el mar desciende por debajo, el Mar Negro queda separado del océano.${n(3)} El mapa muestra estas cuencas llenas hasta su umbral; el nivel real del agua no se conoce.`,
+ c3H:"La curva temporal", c3P:`El nivel medio global del mar procede de una curva publicada, calculada a partir de isótopos de oxígeno en sedimentos de aguas profundas.${n(1)} Según esta curva, hace 20.000 años el mar estaba unos 123 metros por debajo del nivel actual y hace 124.000 años unos 6 metros por encima. La banda clara es el intervalo de incertidumbre de la curva.`,
+ c4H:"Ajustar el nivel del mar a mano", c4P:"El segundo control es independiente de la fecha: se elige directamente un nivel, desde 130 metros por debajo hasta 10 metros por encima del actual. La línea discontinua sobre la curva indica cuándo se dio ese nivel.",
+ howH:"Cómo se calculó el mapa",
+ how1:`La profundidad y la altitud proceden del modelo global ETOPO 2022 de la NOAA; una celda de la malla utilizada mide 1 minuto de arco, unos 1,8 kilómetros en el ecuador.${n(2)}`,
+ how2:"Para cada celda se calculó el nivel del mar más bajo con el que el océano puede alcanzarla. Así, una cuenca situada tras un umbral no se llena hasta que el mar supera ese umbral.",
+ how3:`El Bósforo y los Dardanelos son demasiado estrechos para aparecer en esta malla; se abrieron a mano con sus profundidades de umbral publicadas (35 metros y 80 ± 5 metros).${n(3)}`,
+ how4:`La línea de costa actual y los lagos se corrigieron con los datos de Natural Earth a escala 1:10 millones.${n(6)}`,
+ how5:`Para cada fecha, el nivel del mar se lee en la curva publicada y se redondea al metro.${n(1)}`,
+ limH:"Límites del mapa",
+ lim1:"<b>El fondo marino se toma tal como es hoy.</b> No se tienen en cuenta la acumulación de sedimentos, la erosión, el hundimiento o el levantamiento de la corteza ni el efecto de la carga del hielo. El error es grande frente a los deltas de los ríos.",
+ lim2:`<b>No se muestran los mantos de hielo.</b> Durante los periodos glaciales gran parte de América del Norte y del norte de Europa estaba cubierta de hielo; la bahía de Hudson, el mar Báltico y el mar de Barents, que aparecen en amarillo, no eran entonces tierra abierta, sino que estaban bajo el hielo.${n(4)}`,
+ lim3:"<b>El nivel del mar es una única media global.</b> El nivel local varía de una región a otra, y la propia curva tiene una incertidumbre de unos ± 13 metros en el nivel más bajo.",
+ lim4:"<b>El detalle es limitado.</b> Una celda mide unos 1,8 kilómetros y la mayor parte del fondo marino no se ha medido directamente. Pueden no aparecer bahías pequeñas, estrechos angostos e islas.",
+ lim5:"<b>Los lagos se dibujan tal como son hoy.</b> Los niveles lacustres y los cauces fluviales del pasado no figuran en este mapa.",
+ lim6:"<b>Es una simulación.</b> No constituye una prueba de que un lugar fuera tierra o mar en una fecha determinada y no sustituye a los estudios locales.",
+ whyH:"Su relación con el patrimonio subacuático",
+ whyP:`Durante los periodos glaciales también se vivió en costas que hoy están bajo el agua. La entrada de la cueva de Cosquer, cerca de Marsella, se encuentra hoy a 37 metros de profundidad; en sus paredes hay pinturas de unos 27.000 y 19.000 años de antigüedad.${n(5)} Las huellas de asentamiento y de uso que quedaron sumergidas al subir el mar también forman parte del patrimonio subacuático.`,
+ refH:"Notas y fuentes",
+ N:[`${SRC.w}. Datos: ${SRC.wd}. Los valores de 123 metros, 6 metros y ± 13 metros de esta página se han leído en estos datos.`,`${SRC.e}. Versión utilizada: 60 segundos de arco, altitud de la superficie.`,`${SRC.m}. Debido a la plataforma situada frente a los Dardanelos, el umbral del mar de Mármara resulta en este mapa de 76 metros.`,`${SRC.g}.`,`${SRC.c}.`,`${SRC.ne}, tierra y lagos a escala 1:10m.`],
+ useH:"Uso", useSimple:"Este mapa es una simulación preparada para mostrar el tema de forma que todos puedan seguirlo; no debe utilizarse para medir ni para navegar.",
+ credDev:"Elaborado por Muhammed Parlak (2026).", priv:"Las visitas a la página se cuentan de forma anónima, sin cookies y sin recopilar datos personales.",
+ rights:"© 2026 Muhammed Parlak. Todos los derechos reservados. La página puede utilizarse gratuitamente con fines académicos, educativos y personales; su copia, modificación o redistribución requiere autorización por escrito.",
+ famH:"Identificación de ánforas: Underwater Heritage Recognizer", famSub:"La familia RecOniz"},
+fr:{title:"Le niveau de la mer et les côtes du monde depuis 150 000 ans",
+ h1:"Le niveau de la mer et les côtes du monde depuis 150 000 ans",
+ kick:"Le trait de côte n’est pas fixe : il avance vers le large quand la mer baisse et recule vers les terres quand elle monte.",
+ lede:"Cette carte applique le niveau de la mer des 150 000 dernières années au fond marin actuel. Déplacez la date et voyez quels lieux aujourd’hui immergés étaient alors des terres émergées.",
+ mapH:"Carte", zin:"Zoom avant", zout:"Zoom arrière", attr:"Données : NOAA ETOPO 2022 · Waelbroeck et al. 2002",
+ rDate:"Date", rLevel:"Niveau de la mer", rArea:"Terres émergées", rFlood:"Terres immergées", rAreaNote:"par rapport à aujourd’hui, calculé à partir de cette carte",
+ today:"aujourd’hui", nowBtn:"Revenir à aujourd’hui", slLevel:"Régler le niveau de la mer à la main", lvl0:"niveau actuel", manual:"réglé à la main", manualNote:"la ligne sur la courbe indique quand ce niveau a été atteint",
+ ago:a=>"il y a "+a+" ans", kaAgo:a=>"il y a "+a+" mille ans", end150:"il y a 150 mille ans", range:(a,b)=>"entre "+a+" et "+b, mkm:v=>v+" millions de km²",
+ play:"Lecture", pause:"Pause", chipsAria:"Régions", chartAria:"Niveau moyen global de la mer depuis 150 000 ans ; faites glisser pour choisir une date",
+ mapAria:(d,l)=>"Carte du monde. "+d+", niveau de la mer "+l+".",
+ regs:{world:"Monde",med:"Méditerranée",blk:"Mer Noire et mer Égée",nsea:"Mer du Nord et Manche",gulf:"Golfe Persique et mer Rouge",sunda:"Asie du Sud-Est",sahul:"Australie et Nouvelle-Guinée",bering:"Détroit de Béring",japan:"Japon et Corée",carib:"Golfe du Mexique et Caraïbes",pata:"Patagonie"},
+ leg:{sea:"Mer",shelf:"Terre alors, sous l’eau aujourd’hui",flood:"Sous l’eau alors, terre aujourd’hui",basin:"Bassin coupé de l’océan (lac possible)",lake:"Lacs actuels",land:"Terre"},
+ readH:"Comment lire la carte",
+ c1H:"Zones jaunes", c1P:"Lieux qui se trouvaient au-dessus du niveau de la mer à la date choisie et qui sont aujourd’hui sous l’eau. Il y a 20 000 ans, environ 22 millions de kilomètres carrés des mers actuelles se trouvaient au-dessus du niveau de la mer ; ce chiffre est calculé à partir de cette carte.",
+ c2H:"Zones vertes", c2P:`Bassins qui perdent leur liaison avec l’océan lorsque la mer baisse. Le plus grand est la mer Noire : le seuil du Bosphore se trouve à 35 mètres de profondeur ; lorsque la mer descend en dessous, la mer Noire est coupée de l’océan.${n(3)} La carte montre ces bassins remplis jusqu’à leur seuil ; le niveau réel de l’eau n’est pas connu.`,
+ c3H:"La courbe du temps", c3P:`Le niveau moyen global de la mer provient d’une courbe publiée, calculée à partir des isotopes de l’oxygène dans les sédiments des grands fonds.${n(1)} Selon cette courbe, la mer se trouvait il y a 20 000 ans environ 123 mètres sous le niveau actuel et il y a 124 000 ans environ 6 mètres au-dessus. La bande claire représente l’intervalle d’incertitude de la courbe.`,
+ c4H:"Régler le niveau de la mer à la main", c4P:"Le second curseur est indépendant de la date : on choisit directement un niveau, de 130 mètres sous le niveau actuel à 10 mètres au-dessus. La ligne en tirets sur la courbe indique quand ce niveau a été atteint.",
+ howH:"Comment la carte a été calculée",
+ how1:`La profondeur et l’altitude proviennent du modèle global ETOPO 2022 de la NOAA ; une maille de la grille utilisée mesure 1 minute d’arc, soit environ 1,8 kilomètre à l’équateur.${n(2)}`,
+ how2:"Pour chaque maille, on a calculé le niveau de la mer le plus bas auquel l’océan peut l’atteindre. Un bassin situé derrière un seuil ne se remplit donc pas tant que la mer ne dépasse pas ce seuil.",
+ how3:`Le Bosphore et les Dardanelles sont trop étroits pour apparaître dans cette grille ; ils ont été ouverts à la main à leurs profondeurs de seuil publiées (35 mètres et 80 ± 5 mètres).${n(3)}`,
+ how4:`Le trait de côte actuel et les lacs ont été corrigés d’après les données Natural Earth au 1:10 000 000.${n(6)}`,
+ how5:`Pour chaque date, le niveau de la mer est lu sur la courbe publiée et arrondi au mètre.${n(1)}`,
+ limH:"Limites de la carte",
+ lim1:"<b>Le fond marin est pris tel qu’il est aujourd’hui.</b> L’accumulation de sédiments, l’érosion, l’affaissement ou le soulèvement de la croûte et l’effet de la charge de glace ne sont pas pris en compte. L’erreur est importante devant les deltas des fleuves.",
+ lim2:`<b>Les calottes glaciaires ne sont pas représentées.</b> Pendant les périodes glaciaires, une grande partie de l’Amérique du Nord et du nord de l’Europe était couverte de glace ; la baie d’Hudson, la mer Baltique et la mer de Barents, figurées en jaune, n’étaient pas alors des terres dégagées mais se trouvaient sous la glace.${n(4)}`,
+ lim3:"<b>Le niveau de la mer est une seule moyenne globale.</b> Le niveau local varie d’une région à l’autre, et la courbe elle-même comporte une incertitude d’environ ± 13 mètres au plus bas niveau.",
+ lim4:"<b>Le détail est limité.</b> Une maille mesure environ 1,8 kilomètre et la plus grande partie du fond marin n’a pas été mesurée directement. De petites baies, des détroits étroits et des îles peuvent ne pas apparaître.",
+ lim5:"<b>Les lacs sont dessinés tels qu’ils sont aujourd’hui.</b> Les niveaux lacustres et les cours des fleuves du passé ne figurent pas sur cette carte.",
+ lim6:"<b>Il s’agit d’une simulation.</b> Elle ne prouve pas qu’un lieu était terre ou mer à une date donnée et ne remplace pas les études locales.",
+ whyH:"Le lien avec le patrimoine subaquatique",
+ whyP:`Pendant les périodes glaciaires, des hommes ont aussi vécu sur des côtes aujourd’hui immergées. L’entrée de la grotte Cosquer, près de Marseille, se trouve aujourd’hui à 37 mètres de profondeur ; ses parois portent des peintures vieilles d’environ 27 000 et 19 000 ans.${n(5)} Les traces d’habitat et d’usage immergées lors de la remontée de la mer font elles aussi partie du patrimoine subaquatique.`,
+ refH:"Notes et sources",
+ N:[`${SRC.w}. Données : ${SRC.wd}. Les valeurs de 123 mètres, 6 mètres et ± 13 mètres de cette page sont lues dans ces données.`,`${SRC.e}. Version utilisée : 60 secondes d’arc, altitude de la surface.`,`${SRC.m}. En raison du plateau situé devant les Dardanelles, le seuil de la mer de Marmara ressort à 76 mètres sur cette carte.`,`${SRC.g}.`,`${SRC.c}.`,`${SRC.ne}, terres et lacs au 1:10m.`],
+ useH:"Utilisation", useSimple:"Cette carte est une simulation préparée pour montrer le sujet de manière accessible à tous ; elle ne doit pas servir à mesurer ni à naviguer.",
+ credDev:"Réalisation : Muhammed Parlak (2026).", priv:"Les visites de la page sont comptées de façon anonyme, sans cookies et sans collecte de données personnelles.",
+ rights:"© 2026 Muhammed Parlak. Tous droits réservés. La page peut être utilisée gratuitement à des fins académiques, éducatives et personnelles ; sa copie, sa modification ou sa redistribution nécessitent une autorisation écrite.",
+ famH:"Reconnaissance d’amphores : Underwater Heritage Recognizer", famSub:"La famille RecOniz"}
+};
+
+const MAN={"zmax":7,"off":200,"m":{"7":"0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002220000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002222000000002222220000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002222222200000222222220000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000222222222200222222222222000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000022222222222222222222122222000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000022222222222222222221211122220000000000000000000000020200000000000000000000000000000000000000000000000000000000000000000000000000222221112122222222211222222222000000000000000000222222200000000020000000000000000000000000000000000000000000000000000000000000002222221222222222221112222222220000000000000000002222222220022200222200000000000000000000000000000000000000000000000000000000002222222212222222212111111222222200000000022222222022222222200222202222200000000000000000000000000000000000000000000000000000000022222222222222111111111111222222200000022222222222222222222002222022222200000000000000000000000000000000000000000000000000000022222222221222221111111111122222222000002222222222222222222220022222222222000000000000000000000000000000000000000000000000000000022212222122222111111111111122222220000022222222222202222222000222222222220000000000000000220000000000000000000000000000000000022222222222222221111111111111222222200002222222222222222222220002222222222220000000000002222222000000000000000000000000000000222222222222222222111111111111111222222000002222222222222202222200002222222222222000000000222222222000000000000000000000000000022222222222221222111111111111111112222220000022222222222220222220000022222222222220000000222222222220000000000000000000000000022222222222222222222211111111111111122222200000222222222222002222022000222222222222222000222222222222220000000000000000000000000222222222222222222222111111111111112222222000000222222222220200222222222222222222222222222222222222222220000000000000000000000022222222222222222222222211111111111122222200000002222222222222222222222222222222222222222222222222222222220000002200000000000000222222222222222222002222211111111111122222000000002222220220022222222222222222222211222222222222222222222220020002000000000000000022222222222222200002222111111111111222200000000022222022222022222222222222221222222222222222222222222222222222222000000000000222222222222222222000002222111111111122222000000000222200222222222222222222222212222222222222222222222222222222222222000000000002222222222222222222000002221111111112222200000000000220002222002222222222222222222222222222222222222222222222222222222000000000022222222222222222222000022211111111122220000000000000000022200222222222222222222222222222222222222222222222222222222222200000002222222222222222222222000022211111112222000000000000000000200022222222222222222222222222222222222222222222222222222222222222202222222222222222222222222200222111111122220022200000000222222222222222222222222222222211222222222222222222222222222222222222222222222222222222222222222222002222111111222200020000000022222222222222222222222222222222112212222222222222222222222222222222221122222222222222222222222222222022221111111220000000000002222222222222222222222222222221111112222211221222222222222222222222111111112222212222222222222222222220222211111222000000000000222221222222222222222222222222211111112122111112222222221221122222222211111122222222222222222222222222222222111122202222200000002222222222222222222122222222222112111111221111112122222111211222222222111111122222222222222122222222222222211122220222222000000022222222222222222222222222222221111111112211111111221111122222222222222111111112222222222222222222222220022211222002221220000002222222222222222222222222222222111111111112211111112111111222222222222221112111111222122222222222222222200022122200022222200000222222222222222211112222122222211111122211111111111111111122222222222222122212211111122222222222222222222000221220000000000222222222222222222222211122222222122211111221111111111111112222212222222222212222222211121222222222222222222220000222200000000002222222222222222221222111222222221122111111111111111111111222222222222222222222222222211122222222122222222222220000222000000000002222222222222221221111222222222221221111111111111111122222222222000222222222222022221111112222222222222222222200000000000000022222222222222222212221112211222112211111121111111111112222222222000000022222222200002221221111222222222222222222200000000000000222222222222222222221222221112221111111112212211111111222222222220000000022222200000002222212222222221222222222222200000000000000022222222222222211111122212222212221221112122211112122222202222220002202222200000000222211211112222222122222222222200000000000022222222222222211111111221112222222211211122221111121122220022220022222222000000002000022212211221222222222222222222000000000000022222222222211121221122212221212221121112222121111111222200022000022200000000000000000022222112112222222222222222220000000000000022222221112112222222222212212121122222121111121111122222002200000000000000000000000000022222122221222222222222222222200000000000222222121121122222222222122111111222222111111211112222220022000000000000000000000000020221112111222222222222222222222000000000000022212222211222222222222221112222111111111112112222222222200000000000000000000000000002221122112112222222222222222000000000000022222222222222222222222222211122121111111111121112222222220000002000000000000000000000022212222221112222222222200220000000000000221122222222222222222222212222221122211111211122212222220000000000000000000000000000000222122221111111112222200000000000222000002222222222222222122222222112221111111111112122222222222000000000000000000000000000000002222121111111211222200000000000000222002022222222220222222222222221111111111222121111222222222220000000002000000000000000000000002222112211122222220000000000000000000002022222222202222222121121111112212212222211112222222222200000000020000000000000000000000002221222122222222000220000000000000002202221112222222022211222111111122222122111111222222222220000000000020000000000000000000000002222122222222200002000000000000200002221111111122222222112222111111112222221111112222222200200000000000000220000000000000000000222222222222222200000000000000000000222211111111122222221112222211221111111211111122222222000220000000000200222200000000000000000222211220002222200000000000000000000221111111111111122221112222222222112222211111122222220002000000000000000002222000000000000000022212202222222200000000000000000022111111111111111122211112222222221112222111222222220000020002002000020000000222000000000000000202222222222222200000000000000000221111111111111111212211111220022211222221112222222000000020000020200000002000020000000000000022022222220222222222000000000002220221111111111111111122211222000222122200222222220220000002200000002000000200000000000000000000000002222222220000220000000000002022221211111111111112222222000002222220002222222222220000002000002202000200000000000000000000000000000022222022222200000000000000222111111111211111122222222000002222000222222222222200000020002222220000000200200000000000000000200000002222222222200000000000022221112222111111111122222220000022220002222222222222002220222200222200000000020000000000000000000000000022222222222220000000000002222222222211111111211120000000222220002222222222222022222222222022200000000220000000000000000000000000222211211222220000000000000222222221111111122112200000002200000022222222222222200002222020222000200000220000000000000000000000220022111222112222000020000000000002211111122222220022000022000000222222222222222000000020000022000200002000000000000000000000002200211122222222222200000000000002222112111222222000000000220000000222222222222222222222000022220022200002000000000000000000000000002111222222222222220000000000020022111112222200022200002000000000222222222222222222222200000200000000020000220000000000000000000021111222211111122000000200002220021111122122020222200020000000000222222222222222222222200002222220222002002200000000000000000000221111211111122220000000000002000221112222220222022200000000000000202222222222222222222222002222202200022000000000000000000000000211121111111212000000000022000002111112121222200022000000000002200000002222222222220220222222222200022222220000000000000000000002222111111111220000000000220000021111122222222220200000000000000000000222222222222000002002222222222022022220000000000000000000000222122112222220000000000000000211112212222220022000000000000000000022222122222222222222022222020022200222200000000000000000000002211111222222222000000000000022211211122222202222000000000000000002222111111112222222220202200000202220022222000000000000000020022111122222220000000000000000022111112202222000000000000000000000222121221111112222222200020000000000020000202000002222202222200211112212220000000000000000020221112222002200000000000000000000002211211212221122020000000200000000000200000000000020000000000002111222222000000000000000000000221122200002000000000000002000000002222112122211120200200002000000000000000000000020000000000000021122222200000000000000000002002212222000000000000000000020000000022221222222111202002000200000000000000000000000000000000000220211122222000000000000000020000002222200002000000000000000000000000222222222221222200020200000000000000000000022020000000000000022111222200000000000000000020000022220000000000000000000000000000002222200222222200000002200000000000000000000000000000000000000222122220000000000000020000000000020000000000000000000200000000000000000000222222020000022200000000000000000000000000000000000002222222200000000000000022200000000000000000000000000002000000000000000000000022200000002222000000000000000000000000000000000000022122220000000000000000000020000000000000200000000000000000000000000000000000022000000022202200000000000000000000000000020000000221222000000000000000000002200000000000000000000000000000000000000000000000000220000002222000000000000000000000020000000020002002222220000000000000000000000000000000002222022000000000000000000000000000000000000000222200000000000002000000000000000000000000222222200000000000000000000000220000000002020000000222000000000000000000000000000000000220020000000000000000000000000000000000002222222200000000000000000000002000000000000000000002220000000000000000000000000000000022220200000000000000000000000000000000000022222222000000000000000000000000000000000020000200000022000000000000000000000000000002222000000000000000020000000000000000000000022222220000222200000000000000000000000000022200000002200000000000000000000000000000220220000000000000000000000000000000000000000222222220000022000000000000020000000000000002000000000000000002000000000000000000002000000000000000000000000000000000000000000000222000000000000220000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000022000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200220000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002222000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000022220000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000022222000000000000000000000000000000000000000000000000000022222000000000000000000000000000000000000000000000000000000000000000000222200000000000000000000000000200000000000222200000002222222222222202222222222000020000002000000000000000000000000000000000000002222000000000000000000000000000000000000022212222220222222222112222222221122220000220000000000000000000000000000000000000000000222220000000000000000000000000000000022222221111222222221111111111111111111112222200200000200000000000000000000000000000020000022222200000000000000000000220002220002222211111111122221111111111111111111111111122200000000000000000000000000000000000000000002222122000000000000000002222222222222222222111111111222111111111111111111111111111112222000000000000000000000000000000000000000222222220000000000000002222222222211222211111111111112211111111111111111111111111111112222000000000000000000000000000000222200002222222200000000000000022221211111111111111111111111121111111111111111111111111111111111120000000000000000000000000000022222222022222212000000000000022222111111111111111111111111111211111111111111111111111111111111112200000000000000000000022222200222222222222221120000000000022222111111111111111111111111111111111111111111111111111111111111111222000000000000000002222222222222221111111111112200000000000222221111111111111111111111111111111111111111111111111111111111111122200000000000000002222222121122222211111111111122200000000002222111111111111111111111111111111111111111111111111111111111111111220000000000000002222211111111111111111111111112222200000000022211111111111111111111111111111111111111111111111111111111111111112220000000000022222211111111111111111111111111211222200000022211111111111111111111111111111111111111111111111111111111111111111122200020000000222222111111111111111111111111111111122200002221111111111111111111111111111111111111111111111111111111111111111111222220022000002112111111111111111111111111111212211222222221111111111111111111111111111111111111111111111111111111111111111111112222222222222222111111111111111111111111111111122111121222211111111111111111111111111111111111111111111111111111111111111111111112222222222222121111111111111111111111111111111211111112211111111111111111111111111111111111111111111111111111111111111111111111222222222222222111111111111111111111111111111111121111111111111111111111111111111111111111111111111111111111111111111111111111122222222222212211111111111111111111111111111111111211111111111111111111111111111111111111111111111111111111111111111111111111111222222222222211111111111111111111111111111111111111111111111211111111111111111111111111111111111111111111111111111111111111111112222222222222211111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112222222222222222111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111122222222222222222111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111222222222222221221111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112222222222222111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112222211222212111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112222111111122211111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111122221111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111222222111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111122221111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111122221111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111","6":"0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000022000000000000000000000000000000000000000000000000000000222220022220000000000000000000000000000000000000000000000000000222222222222220000000000000000000000000000000000000000000000000222222222222222200000000222200002000000000000000000000000000000222222222221222220000222222222022222000000000000000000000000000222222222111112222002222222222202222220000000000000000000000000022222222111111222200222222222220222222000000222200000000000000222222222211111112220022222222222022222220002222220000000000000222222222221111112222002222222222222222222222222222200022000000222222222222211111222200022222222222222222222222222222022200000022222222200222111122200002222222222222222222222222222222222000002222222222002211112220000020222222222222222222222222222222222222222222222222221112222200002222222222222222222222222222222222222222222222222222211222020002222222222222222222222222222222222211222222222222222221222220002222222222222222121222112222221222221112222222222222222222222000222222222222222211112211122112222222222112222222222202222022222222222222122222221122111111222222222222221222222222222022000002222222222222222222111111112222222222222222222222222222200000002222222222222222121122211112222220022222002222222222222222000000222222222112222222221222122222222222200002022222222222222200000022222222222222222222222211222022022000000002222222222222222200000222222222222221222221121222222000000000000022222222222222200000022222222222222222221122222222000200000000002222211222220000022022222222222222221122212222222000020000000000022222222202000000022222222222222112222221222222200002020000000002222222220200000202221112222222222222221122222220000022222000000022222222200000000221111111221222222222122222202022002020220000002222222222200000222111111122212202222222222000200220022000000000000222222220000022222112111222200222022222220020222200022000000002000222222200000222222211122220022202222222222222220200220000000000222212222202000222211122222202200222222220022222222022000000000022212222222200000222212220220220002222222222222222222222200000000022122112200020220212222222220000022222222222222222222220000000000222111220000220021122222220000020002222222222222222222000000000002222222200000022122222222000000002222222222222002222222002222220212222200000002212222200000000002222222222220200000200002200000022222000000000222220020000002000022222212220200000000022200000222122200000002200222020000000000002222222202220000000000000000002222200000022200020000000002000000000022220022200000000000002000222200000000022000000200000000000000000220022200000200002000020222220000000000020000222202200000000000000002220000000000000000002222000000000002000002020222000000000000002222000000200000000000222220220000002000000220002200020000000000222000000000000000000002200000220000000000000000000000000000000000000000000000000000000000222022000000000000000000000000000000000000000000000000000000002220000000000020000000000000000000000000000000000000000000000002220000000000002000002220002222222222222020002000000000000000000222000000000000000222222222222212222222222200200000000000000200222200000000222222222211112211111111111112220000000000000002220222220000000222222222111111211111111111111122200000000002220222222222000002222111111111111121111111111111111220000000222222222111112200000222111111111111111111111111111111220000022222111111111111222000222111111111111111111111111111111122022002222111111111111221222221111111111111111111111111111111112222222221111111111111112112221111111111111111111111111111111111222222221111111111111111121111111111111111111111111111111111111122222221111111111111111111111121111111111111111111111111111111112222222221111111111111111111111111111111111111111111111111111111222222222111111111111111111111111111111111111111111111111111111122222222211111111111111111111111111111111111111111111111111111111222211111111111111111111111111111111111111111111111111111111111122221111111111111111111111111111111111111111111111111111111111111121111111111111111111111111111111111111111111111111111111111111111","5":"0000000000002200000000000000000000000000222222200000000000000000000000022222222202222222200000000000002222211222222222222200222000000222222112222222222222222220220022222222122202222222222222222222222222221222022222222222222222222222222222222222222222222222222222222222222222222222222212222222222222222022222222222211222222222222222200222222222222222222000022222222200222222222222222020000222222200222222222222222200222000222222002221222222222222222222002222220022212222222222222222220002222222222222222222222222222220002222222222222222022222222222200000222220222222200202222222222222222222000222220020222222200002200222200222222002000222222202002022220000220022220000022220002000002222000200222202000002200000000022222000000000000000000000000000222000002002202222222202000000202200002222222222222222000002222222002222221112111111122022222221122022111111111111111222222111112222211111111111111112222111111112112111111111111111122222111111111111111111111111111222211111111111111111111111111112221111111111111111111111111111112","4":"0000222200000000000222222222202220222222222222222222222222222222222222222222222222222222222222222022222222222222222222222222222222022222222222222222222222222222222222222222202200002220202222222022222222222222222222221111111222111211111111122111111111111112","3":"0222222222222222222222222222222222222222222222222222222221211112","2":"2222222222222222","1":"2222","0":"2"}};
+const CUR=[[0.5,0.0,0.0,0.0],[2.0,-0.1,-0.1,-0.1],[3.5,-1.2,0.0,-2.4],[5.0,-2.5,-1.3,-3.7],[6.5,-4.9,-2.5,-7.2],[8.0,-9.7,-3.8,-15.7],[9.5,-24.3,-11.4,-37.4],[11.0,-45.0,-32.1,-58.1],[12.5,-67.3,-54.4,-80.4],[14.0,-88.9,-76.1,-102.1],[15.5,-105.2,-92.3,-118.3],[17.0,-114.2,-101.3,-127.3],[18.5,-120.1,-107.2,-133.2],[20.0,-123.0,-110.2,-136.2],[21.5,-120.5,-107.7,-133.7],[23.0,-117.7,-104.9,-130.9],[24.5,-113.0,-100.2,-126.2],[26.0,-106.2,-93.4,-119.5],[27.5,-98.5,-85.7,-111.7],[29.0,-88.1,-73.3,-101.2],[30.5,-81.7,-68.7,-94.8],[32.0,-78.5,-65.6,-91.6],[33.5,-79.2,-66.3,-92.3],[35.0,-80.7,-67.8,-93.8],[36.5,-78.0,-65.2,-91.2],[38.0,-66.7,-53.8,-79.8],[39.5,-62.1,-49.2,-75.2],[41.0,-67.8,-54.9,-80.9],[42.5,-73.5,-60.7,-86.7],[44.0,-75.6,-62.7,-88.7],[45.5,-73.5,-60.6,-86.6],[47.0,-73.2,-60.3,-86.3],[48.5,-74.0,-61.1,-87.1],[50.0,-71.6,-58.7,-84.7],[51.5,-68.9,-56.0,-82.0],[53.0,-57.6,-44.6,-70.7],[54.5,-52.1,-39.2,-65.2],[56.0,-55.9,-43.0,-69.0],[57.5,-60.5,-47.6,-73.6],[59.0,-56.2,-43.3,-69.3],[60.5,-48.0,-35.1,-64.7],[62.0,-54.7,-41.8,-67.8],[63.5,-74.6,-61.7,-87.7],[65.0,-84.7,-61.6,-97.8],[66.5,-84.4,-59.5,-97.5],[68.0,-78.0,-60.4,-91.2],[69.5,-76.4,-62.0,-89.5],[71.0,-72.8,-59.8,-85.9],[72.5,-67.3,-53.9,-80.4],[74.0,-44.4,-31.4,-57.5],[75.5,-39.6,-26.7,-52.7],[77.0,-36.3,-23.4,-49.4],[78.5,-25.4,-12.5,-38.5],[80.0,-19.7,-6.7,-32.7],[81.5,-18.7,-5.7,-31.7],[83.0,-22.3,-9.3,-35.3],[84.5,-32.1,-19.1,-45.1],[86.0,-41.9,-28.9,-54.9],[87.5,-48.6,-34.4,-61.7],[89.0,-48.3,-35.4,-61.4],[90.5,-47.2,-34.3,-60.3],[92.0,-42.2,-29.3,-55.3],[93.5,-34.7,-21.8,-47.8],[95.0,-27.0,-14.1,-40.1],[96.5,-27.6,-14.6,-40.6],[98.0,-27.8,-14.8,-40.9],[99.5,-23.8,-10.9,-36.9],[101.0,-20.9,-7.9,-33.9],[102.5,-21.2,-8.2,-34.2],[104.0,-27.8,-14.8,-40.8],[105.5,-31.6,-18.7,-44.7],[107.0,-38.0,-25.1,-51.1],[108.5,-44.6,-31.7,-57.7],[110.0,-44.7,-31.8,-57.8],[111.5,-40.9,-28.0,-54.0],[113.0,-26.7,-13.7,-39.7],[114.5,-17.1,-4.1,-30.1],[116.0,-11.4,1.6,-24.4],[117.5,-5.5,7.5,-18.5],[119.0,-1.2,11.8,-14.2],[121.438,2.2,15.2,-10.8],[123.875,6.3,19.3,-6.7],[126.313,4.9,17.9,-8.1],[128.75,-1.2,11.8,-14.7],[131.188,-29.4,-16.4,-47.6],[132.714,-68.4,-55.5,-81.5],[133.786,-84.6,-71.8,-109.9],[134.857,-111.5,-98.6,-124.6],[135.929,-125.5,-112.7,-138.7],[137.0,-128.9,-116.1,-142.1],[138.071,-127.0,-114.2,-140.2],[139.143,-121.4,-108.6,-134.6],[140.214,-117.3,-104.5,-130.4],[141.286,-113.3,-92.8,-126.5],[142.357,-108.6,-82.6,-121.8],[143.429,-105.0,-73.1,-118.2],[144.5,-103.8,-71.9,-117.0],[146.0,-105.0,-79.5,-118.2],[147.5,-113.3,-87.1,-126.5],[149.0,-118.8,-92.4,-132.0],[150.5,-120.0,-95.0,-133.2]];      /* [yaş (bin yıl), düzey, üst, alt] : Waelbroeck vd. 2002 */
+const AREA=[-24.702,-24.646,-24.587,-24.528,-24.471,-24.329,-24.268,-24.18,-24.116,-24.043,-23.975,-23.908,-23.826,-23.748,-23.399,-22.483,-22.412,-22.338,-22.252,-22.174,-22.104,-22.032,-21.959,-21.877,-21.805,-21.717,-21.641,-21.564,-21.49,-21.407,-21.331,-21.256,-21.176,-21.085,-21.002,-20.923,-20.842,-20.759,-20.675,-20.59,-20.502,-20.41,-20.32,-20.229,-20.133,-20.037,-19.945,-19.845,-19.743,-19.638,-19.529,-19.38,-19.266,-19.139,-19.017,-18.906,-18.789,-18.678,-18.566,-18.445,-18.32,-18.205,-18.089,-17.959,-17.831,-17.707,-17.583,-17.457,-17.325,-17.194,-17.054,-16.905,-16.768,-16.628,-16.489,-16.345,-16.2,-16.055,-15.887,-15.737,-15.586,-15.431,-15.271,-15.119,-14.964,-14.804,-14.637,-14.471,-14.306,-14.137,-13.973,-13.801,-13.631,-13.457,-13.288,-13.101,-12.728,-12.426,-12.229,-11.994,-11.78,-11.541,-11.321,-11.108,-10.89,-10.677,-10.451,-10.235,-10.037,-9.833,-9.608,-9.383,-9.176,-8.969,-8.766,-8.521,-7.918,-7.715,-7.471,-7.258,-7.044,-6.818,-6.603,-6.385,-6.169,-5.952,-5.731,-5.514,-5.299,-5.071,-4.841,-4.59,-4.079,-3.864,-3.648,-3.44,-3.222,-3.009,-2.82,-2.621,-2.428,-2.212,-2.028,-1.847,-1.668,-1.479,-1.268,-1.053,-0.876,-0.656,0.0,0.802,1.085,1.49,1.858,2.206,2.522,2.82,3.089,3.348,3.585,3.81,4.03,4.222,4.411,4.601,4.796,4.984,5.17,5.351,5.537,5.726,5.911,6.092,6.283,6.469,6.652,6.848,7.038,7.231,8.285,8.479,8.672,8.876,9.076,9.287,9.503,9.723,9.931,10.138,10.346,10.568,10.776,10.997,11.224,11.44,11.692,11.946,12.218,12.463,12.691,12.912,13.129,13.346,13.555];    /* düzey -150..+54 m için bugüne göre deniz alanı farkı, milyon km² */
+let LANG="tr"; try{ const s=localStorage.getItem("amfora-lang"); if(s==="tr"||s==="en"||s==="es"||s==="fr") LANG=s; }catch(_){}
+const T=k=>(I18N[LANG][k]!==undefined?I18N[LANG][k]:(NAV[LANG][k]!==undefined?NAV[LANG][k]:k));
+const clamp=(v,a,b)=>v<a?a:v>b?b:v, lerp=(a,b,t)=>a+(b-a)*t;
+const isDark=()=>{ const t=document.documentElement.dataset.theme; return t? t==="dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+
+/* ---------- deniz düzeyi eğrisi ---------- */
+const AMAX=150;
+function curveAt(a){ a=clamp(a,CUR[0][0],CUR[CUR.length-1][0]); for(let i=1;i<CUR.length;i++){ if(a<=CUR[i][0]){ const p=CUR[i-1], q=CUR[i], t=(a-p[0])/(q[0]-p[0]); return [lerp(p[1],q[1],t),lerp(p[2],q[2],t),lerp(p[3],q[3],t)]; } } const q=CUR[CUR.length-1]; return [q[1],q[2],q[3]]; }
+let MODE="time", AGE=20, S=Math.round(curveAt(20)[0]);
+
+/* ---------- harita ---------- */
+const ZMAX=MAN.zmax, OFF=MAN.off, TP="/harita/t/";
+const cv=$("#map"), cx=cv.getContext("2d",{alpha:false});
+let W=0,HH=0,DPR=1, V={x:.5,y:.42,z:1}, stamp=1, frame=0, raf=0;
+const tiles=new Map(); let loading=0; const queue=[];
+let SEA=new Uint32Array(256), SEAC=[], LAND=0, SHELF=0, LAKE=0, FLOOD=0, BASIN=0, CSS={};
+function rgb(v){ v=v.trim(); if(v[0]==="#"){ if(v.length===4) v="#"+v[1]+v[1]+v[2]+v[2]+v[3]+v[3]; return [parseInt(v.slice(1,3),16),parseInt(v.slice(3,5),16),parseInt(v.slice(5,7),16)]; } const m=v.match(/[\d.]+/g)||[0,0,0]; return [+m[0],+m[1],+m[2]]; }
+const u32=c=>(255<<24|c[2]<<16|c[1]<<8|c[0])>>>0;
+function palette(){ const cs=getComputedStyle(document.documentElement), g=k=>rgb(cs.getPropertyValue(k));
+  const a=g("--mp-sea1"), b=g("--mp-sea2"); for(let d=0;d<256;d++){ const t=Math.pow(clamp(d/70,0,1),.8), c=[Math.round(lerp(a[0],b[0],t)),Math.round(lerp(a[1],b[1],t)),Math.round(lerp(a[2],b[2],t))]; SEA[d]=u32(c); SEAC[d]=`rgb(${c[0]},${c[1]},${c[2]})`; }
+  LAND=u32(g("--mp-land")); SHELF=u32(g("--mp-shelf")); LAKE=u32(g("--mp-lake")); FLOOD=u32(g("--mp-flood")); BASIN=u32(g("--mp-basin"));
+  CSS={sea:cs.getPropertyValue("--mp-sea2").trim(), land:cs.getPropertyValue("--mp-land").trim(), bg:cs.getPropertyValue("--bg").trim()}; stamp++; }
+function recolor(t){ const s=S+OFF, L=t.L, D=t.D, F=t.F, o=t.u;
+  for(let i=0;i<65536;i++){ const l=L[i]; let c;
+    if(l<s){ if(l>=OFF) c=FLOOD; else { const dep=s-l+D[i]; c=SEA[dep>255?255:dep]; } }
+    else if(F[i]) c=LAKE;
+    else if(l<OFF) c=D[i]>=3?BASIN:SHELF;
+    else c=LAND;
+    o[i]=c; }
+  t.cx.putImageData(t.img,0,0); t.stamp=stamp; }
+function code(z,x,y){ const m=MAN.m[z]; return m?m.charCodeAt(y*(1<<z)+x)-48:2; }
+function getTile(z,x,y,want){ const k=z+"/"+x+"/"+y; let t=tiles.get(k);
+  if(!t){ const c=code(z,x,y); if(c!==2){ t={st:"const",c}; tiles.set(k,t); } else if(want){ t={st:"wait",z,x,y,k}; tiles.set(k,t); queue.push(t); pump(); } }
+  if(t) t.used=frame; return t; }
+function pump(){ while(loading<6&&queue.length){ const t=queue.pop(); if(t.used<frame-2){ tiles.delete(t.k); continue; } loading++; t.st="load"; load(t).then(()=>{ loading--; t.st="ok"; need(); pump(); },()=>{ loading--; t.st="err"; pump(); }); } }
+const tmp=document.createElement("canvas"); tmp.width=tmp.height=256; const tcx=tmp.getContext("2d",{willReadFrequently:true});
+async function load(t){ const url=TP+t.z+"/"+t.x+"/"+t.y+".png"; let src;
+  if(window.createImageBitmap){ const r=await fetch(url); if(!r.ok) throw 0; const b=await r.blob(); try{ src=await createImageBitmap(b,{colorSpaceConversion:"none",premultiplyAlpha:"none"}); }catch(_){ src=await createImageBitmap(b); } }
+  else { src=await new Promise((ok,no)=>{ const im=new Image(); im.onload=()=>ok(im); im.onerror=no; im.src=url; }); }
+  tcx.clearRect(0,0,256,256); tcx.drawImage(src,0,0); if(src.close) src.close();
+  const d=tcx.getImageData(0,0,256,256).data, L=new Uint8Array(65536), D=new Uint8Array(65536), F=new Uint8Array(65536);
+  for(let i=0,j=0;i<65536;i++,j+=4){ L[i]=d[j]; D[i]=d[j+1]; F[i]=d[j+2]>127?1:0; }
+  const c=document.createElement("canvas"); c.width=c.height=256; const x=c.getContext("2d"); const img=x.createImageData(256,256);
+  t.L=L; t.D=D; t.F=F; t.cv=c; t.cx=x; t.img=img; t.u=new Uint32Array(img.data.buffer); t.stamp=0; }
+function constColor(c){ return c===0?SEAC[clamp(S+OFF,0,255)]:CSS.land; }
+function size(){ const r=cv.getBoundingClientRect(); DPR=Math.min(window.devicePixelRatio||1,2); W=Math.max(1,r.width); HH=Math.max(1,r.height); const w=Math.round(W*DPR), h=Math.round(HH*DPR); if(cv.width!==w||cv.height!==h){ cv.width=w; cv.height=h; } }
+const zmin=()=>Math.log2(Math.min(W,HH*1.15)/256), ZTOP=9;
+function fix(){ V.z=clamp(V.z,zmin(),ZTOP); const wp=256*Math.pow(2,V.z), hy=HH/2/wp; V.y=wp<=HH?.5:clamp(V.y,hy,1-hy); V.x=((V.x%1)+1)%1; }
+function need(){ if(!raf) raf=requestAnimationFrame(draw); }
+function draw(){ raf=0; frame++; fix();
+  const wp=256*Math.pow(2,V.z), tz=clamp(Math.ceil(V.z+Math.log2(DPR)*.5-.35),0,ZMAX), nn=1<<tz, ts=wp/nn, ox=V.x*wp-W/2, oy=V.y*wp-HH/2;
+  cx.setTransform(1,0,0,1,0,0); cx.fillStyle=CSS.bg; cx.fillRect(0,0,cv.width,cv.height);
+  const x0=Math.floor(ox/ts), x1=Math.floor((ox+W)/ts), y0=Math.max(0,Math.floor(oy/ts)), y1=Math.min(nn-1,Math.floor((oy+HH)/ts));
+  for(let ty=y0;ty<=y1;ty++) for(let tx=x0;tx<=x1;tx++){
+    const X0=Math.round((tx*ts-ox)*DPR), X1=Math.round(((tx+1)*ts-ox)*DPR), Y0=Math.round((ty*ts-oy)*DPR), Y1=Math.round(((ty+1)*ts-oy)*DPR), wx=((tx%nn)+nn)%nn;
+    let t=getTile(tz,wx,ty,true), z=tz, sx=0, sy=0, sw=256, px=wx, py=ty;
+    while(t&&t.st!=="ok"&&t.st!=="const"&&z>0){ z--; sw/=2; sx=sx/2+(px&1)*128; sy=sy/2+(py&1)*128; px>>=1; py>>=1; t=getTile(z,px,py,false); }
+    if(!t||(t.st!=="ok"&&t.st!=="const")){ cx.fillStyle=SEAC[clamp(S+OFF,0,255)]; cx.fillRect(X0,Y0,X1-X0,Y1-Y0); continue; }
+    if(t.st==="const"){ cx.fillStyle=constColor(t.c); cx.fillRect(X0,Y0,X1-X0,Y1-Y0); continue; }
+    if(t.stamp!==stamp) recolor(t);
+    cx.imageSmoothingEnabled=(X1-X0)<sw*1.01; cx.drawImage(t.cv,sx,sy,sw,sw,X0,Y0,X1-X0,Y1-Y0); }
+  if(tiles.size>260){ for(const [k,t] of tiles){ if(t.used<frame-40&&t.st!=="load"&&t.st!=="wait") tiles.delete(k); } }
+  hashLater(); }
+const mercY=la=>{ const s=Math.sin(la*Math.PI/180); return .5-Math.log((1+s)/(1-s))/(4*Math.PI); };
+const latOf=y=>Math.atan(Math.sinh(Math.PI*(1-2*y)))*180/Math.PI;
+function fit(lo0,la0,lo1,la1){ const xa=(lo0+180)/360, xb=(lo1+180)/360, ya=mercY(la1), yb=mercY(la0); V.z=Math.min(Math.log2(W/((xb-xa)*256)),Math.log2(HH/((yb-ya)*256))); V.x=(xa+xb)/2; V.y=(ya+yb)/2; need(); }
+function zoomAt(px,py,nz){ fix(); const wp=256*Math.pow(2,V.z), wx=V.x+(px-W/2)/wp, wy=V.y+(py-HH/2)/wp; V.z=clamp(nz,zmin(),ZTOP); const w2=256*Math.pow(2,V.z); V.x=wx-(px-W/2)/w2; V.y=wy-(py-HH/2)/w2; unchip(); need(); }
+const pts=new Map(); let pinch=0;
+cv.addEventListener("pointerdown",e=>{ cv.setPointerCapture(e.pointerId); pts.set(e.pointerId,{x:e.offsetX,y:e.offsetY}); cv.classList.add("drag"); pinch=0; });
+cv.addEventListener("pointermove",e=>{ const p=pts.get(e.pointerId); if(!p) return; const wp=256*Math.pow(2,V.z);
+  if(pts.size===1){ V.x-=(e.offsetX-p.x)/wp; V.y-=(e.offsetY-p.y)/wp; p.x=e.offsetX; p.y=e.offsetY; unchip(); need(); }
+  else if(pts.size===2){ p.x=e.offsetX; p.y=e.offsetY; const [a,b]=[...pts.values()], d=Math.hypot(a.x-b.x,a.y-b.y), mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
+    if(pinch){ V.x-=(mx-pinch.mx)/wp; V.y-=(my-pinch.my)/wp; zoomAt(mx,my,V.z+Math.log2(d/pinch.d)); } pinch={d,mx,my}; } });
+const up=e=>{ pts.delete(e.pointerId); pinch=0; if(!pts.size) cv.classList.remove("drag"); };
+cv.addEventListener("pointerup",up); cv.addEventListener("pointercancel",up);
+cv.addEventListener("wheel",e=>{ e.preventDefault(); const k=e.deltaMode===1?32:1; zoomAt(e.offsetX,e.offsetY,V.z-e.deltaY*k*(e.ctrlKey?.01:.0022)); },{passive:false});
+cv.addEventListener("dblclick",e=>{ zoomAt(e.offsetX,e.offsetY,V.z+1); });
+cv.addEventListener("keydown",e=>{ const wp=256*Math.pow(2,V.z), d=60/wp; let u=true;
+  if(e.key==="ArrowLeft") V.x-=d; else if(e.key==="ArrowRight") V.x+=d; else if(e.key==="ArrowUp") V.y-=d; else if(e.key==="ArrowDown") V.y+=d; else if(e.key==="+"||e.key==="=") V.z+=.5; else if(e.key==="-"||e.key==="_") V.z-=.5; else u=false;
+  if(u){ e.preventDefault(); unchip(); need(); } });
+$("#zin").addEventListener("click",()=>zoomAt(W/2,HH/2,V.z+.75)); $("#zout").addEventListener("click",()=>zoomAt(W/2,HH/2,V.z-.75));
+
+/* ---------- bölgeler ---------- */
+const REG=[["world",-180,-56,180,76],["med",-7,29.5,37,47],["blk",21,34.5,43,48],["nsea",-12,47,14,62],["gulf",31,11,60,32],["sunda",92,-12,124,24],["sahul",108,-45,158,2],["bering",150,50,216,75],["japan",115,28,148,48],["carib",-100,7,-58,33],["pata",-78,-57,-48,-34]];
+let CHIP="world";
+function goto(id){ const r=REG.find(r=>r[0]===id); if(!r) return; CHIP=id; if(id==="world"){ V.x=.5; V.y=(mercY(76)+mercY(-56))/2; V.z=Math.max(zmin(),Math.min(Math.log2(W/256),Math.log2(HH/((mercY(-56)-mercY(76))*256)))); need(); } else fit(r[1],r[2],r[3],r[4]); chips(); }
+function unchip(){ if(CHIP){ CHIP=""; chips(); } }
+function chips(){ const R=T("regs"); $("#chips").innerHTML=REG.map(r=>`<button type="button" data-r="${r[0]}" aria-pressed="${r[0]===CHIP}">${R[r[0]]}</button>`).join(""); }
+$("#chips").addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) goto(b.dataset.r); });
+
+/* ---------- okumalar, eğri, kaydırıcılar ---------- */
+const nf=(v,d)=>v.toLocaleString(LANG,{maximumFractionDigits:d||0,minimumFractionDigits:d||0});
+const lvTxt=s=>s===0?T("lvl0"):(s<0?"−":"+")+nf(Math.abs(s))+" m";
+const dateTxt=()=>MODE==="time"?(AGE<=0?T("today"):T("ago")(nf(Math.round(AGE*1000)))):T("manual");
+let chartW=0;
+function chart(){ const sv=$("#chart"), w=Math.max(260,Math.round(sv.getBoundingClientRect().width)), h=150, ml=40, mr=10, mt=8, mb=24; chartW=w;
+  const X=a=>ml+(AMAX-a)/AMAX*(w-ml-mr), Y=v=>mt+(20-v)/160*(h-mt-mb);
+  let band="", line=""; CUR.forEach((r,i)=>{ line+=(i?"L":"M")+X(r[0]).toFixed(1)+" "+Y(r[1]).toFixed(1); });
+  band="M"+CUR.map(r=>X(r[0]).toFixed(1)+" "+Y(Math.min(20,r[2])).toFixed(1)).join("L")+"L"+CUR.slice().reverse().map(r=>X(r[0]).toFixed(1)+" "+Y(Math.max(-140,r[3])).toFixed(1)).join("L")+"Z";
+  let g=""; for(const v of [0,-40,-80,-120]) g+=`<path d="M${ml} ${Y(v).toFixed(1)}H${w-mr}" style="stroke:var(--line)" stroke-width="1" ${v===0?'':'stroke-dasharray="2 4"'}/><text x="${ml-6}" y="${(Y(v)+4).toFixed(1)}" text-anchor="end" font-size="11.5" style="fill:var(--muted)">${v===0?"0":"−"+(-v)}</text>`;
+  const step=w<420?50:25; for(let a=0;a<=AMAX;a+=step) g+=`<path d="M${X(a).toFixed(1)} ${h-mb}v4" style="stroke:var(--faint)" stroke-width="1"/><text x="${X(a).toFixed(1)}" y="${h-6}" text-anchor="${a===0?"end":a===AMAX?"start":"middle"}" font-size="11.5" style="fill:var(--muted)">${a===0?T("today"):a===AMAX&&w>=520?T("kaAgo")(a):a}</text>`;
+  sv.setAttribute("viewBox",`0 0 ${w} ${h}`); sv.innerHTML=g+`<path d="${band}" style="fill:var(--sea-soft)" opacity=".9"/><path d="${line}" fill="none" style="stroke:var(--sea)" stroke-width="2" stroke-linejoin="round"/><path id="hl" style="stroke:var(--clay)" stroke-width="1.4" stroke-dasharray="5 4"/><path id="cl" style="stroke:var(--clay)" stroke-width="1.6"/><circle id="cd" r="5" style="fill:var(--clay);stroke:var(--raised)" stroke-width="2"/>`;
+  sv.__X=X; sv.__Y=Y; sv.__g={ml,mr,mt,mb,w,h}; cursor(); }
+function cursor(){ const sv=$("#chart"); if(!sv.__X) return; const {ml,mr,mt,mb,w,h}=sv.__g, cl=sv.querySelector("#cl"), cd=sv.querySelector("#cd"), hl=sv.querySelector("#hl");
+  if(MODE==="time"){ const x=sv.__X(AGE), y=sv.__Y(curveAt(AGE)[0]); cl.setAttribute("d",`M${x.toFixed(1)} ${mt}V${h-mb}`); cd.setAttribute("cx",x.toFixed(1)); cd.setAttribute("cy",y.toFixed(1)); cd.style.display=cl.style.display=""; hl.style.display="none"; }
+  else { const y=sv.__Y(S); hl.setAttribute("d",`M${ml} ${y.toFixed(1)}H${w-mr}`); hl.style.display=""; cd.style.display=cl.style.display="none"; } }
+function legend(){ const L=T("leg"), it=[["sea",L.sea]]; if(S<0) it.push(["shelf",L.shelf]); if(S>0) it.push(["flood",L.flood]); if(S<0) it.push(["basin",L.basin]); it.push(["lake",L.lake],["land",L.land]);
+  $("#legend").innerHTML=it.map(([c,t])=>`<span><i class="sw-${c}"></i>${t}</span>`).join(""); }
+let lastSign=2;
+function readout(){ const c=curveAt(AGE);
+  $("#rk").textContent=dateTxt(); $("#rm").textContent=lvTxt(S);
+  $("#rmr").textContent=MODE==="time"&&AGE>0?T("range")(lvTxt(Math.round(c[1])),lvTxt(Math.round(c[2]))):(MODE==="time"?"":T("manualNote"));
+  const a=AREA[clamp(S,-150,54)+150]; $("#ral").textContent=S>0?T("rFlood"):T("rArea"); $("#ra").textContent=S===0?"0":T("mkm")(nf(Math.abs(a),1));
+  $("#pill").textContent=(MODE==="time"?dateTxt()+" · ":"")+lvTxt(S);
+  cv.setAttribute("aria-label",T("mapAria")(dateTxt(),lvTxt(S)));
+  $("#tk").value=Math.round((AMAX-AGE)*2); $("#lv").value=clamp(S,-130,10); $("#tk").setAttribute("aria-valuetext",dateTxt()); $("#lv").setAttribute("aria-valuetext",lvTxt(S));
+  const sg=Math.sign(S); if(sg!==lastSign){ lastSign=sg; legend(); } cursor(); }
+function setAge(a){ MODE="time"; AGE=clamp(Math.round(a*2)/2,0,AMAX); const s=Math.round(curveAt(AGE)[0]); if(s!==S){ S=s; stamp++; need(); } readout(); hashLater(); }
+function setLevel(s){ stop(); MODE="level"; s=clamp(Math.round(s),-130,10); if(s!==S){ S=s; stamp++; need(); } readout(); hashLater(); }
+$("#tk").addEventListener("input",e=>{ stop(); setAge(AMAX-e.target.value/2); });
+$("#lv").addEventListener("input",e=>setLevel(+e.target.value));
+$("#now").addEventListener("click",()=>{ stop(); setAge(0); });
+{ const sv=$("#chart"); let on=false; const at=e=>{ const r=sv.getBoundingClientRect(), g=sv.__g; if(!g) return; const x=(e.clientX-r.left)/r.width*g.w; stop(); setAge(AMAX-(x-g.ml)/(g.w-g.ml-g.mr)*AMAX); };
+  sv.addEventListener("pointerdown",e=>{ on=true; sv.setPointerCapture(e.pointerId); at(e); }); sv.addEventListener("pointermove",e=>{ if(on) at(e); }); const off=()=>{ on=false; }; sv.addEventListener("pointerup",off); sv.addEventListener("pointercancel",off); }
+let playing=0;
+function stop(){ if(playing){ cancelAnimationFrame(playing); playing=0; $("#play").textContent=T("play"); } }
+$("#play").addEventListener("click",()=>{ if(playing){ stop(); return; } let a=AGE<=0.5||MODE!=="time"?AMAX:AGE, last=performance.now(); $("#play").textContent=T("pause");
+  const tick=now=>{ a-=(now-last)/1000*(AMAX/26); last=now; if(a<=0){ setAge(0); playing=0; $("#play").textContent=T("play"); return; } setAge(a); playing=requestAnimationFrame(tick); }; playing=requestAnimationFrame(tick); });
+
+/* ---------- adres çubuğu: görünüm paylaşılabilir ---------- */
+let hashT=0;
+function hashLater(){ clearTimeout(hashT); hashT=setTimeout(()=>{ const s="#"+(MODE==="time"?"t="+AGE:"l="+S)+"&v="+V.z.toFixed(2)+"/"+latOf(V.y).toFixed(3)+"/"+(V.x*360-180).toFixed(3); try{ history.replaceState(null,"",s); }catch(_){} },400); }
+function readHash(){ const h=location.hash.slice(1); if(!h) return false; let ok=false; for(const kv of h.split("&")){ const [k,v]=kv.split("=");
+    if(k==="t"&&isFinite(+v)){ MODE="time"; AGE=clamp(+v,0,AMAX); S=Math.round(curveAt(AGE)[0]); }
+    else if(k==="l"&&isFinite(+v)){ MODE="level"; S=clamp(Math.round(+v),-130,10); }
+    else if(k==="v"){ const p=v.split("/").map(Number); if(p.length===3&&p.every(isFinite)){ V.z=p[0]; V.y=mercY(clamp(p[1],-84,84)); V.x=(p[2]+180)/360; CHIP=""; ok=true; } } }
+  return ok; }
+
+/* ---------- dil, tema, menü ---------- */
+function applyLang(){ document.documentElement.lang=LANG; document.querySelectorAll("[data-i18n]").forEach(e=>e.innerHTML=T(e.dataset.i18n)); document.querySelectorAll("[data-i18n-aria]").forEach(e=>e.setAttribute("aria-label",T(e.dataset.i18nAria))); document.title="RecOniz · "+T("title");
+  [...$("#lang").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===LANG));
+  $("#notes").innerHTML=T("N").map((x,k)=>`<li id="n${k+1}">${x}</li>`).join(""); $("#play").textContent=playing?T("pause"):T("play");
+  chips(); lastSign=2; chart(); readout(); }
+$("#lang").addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; LANG=b.dataset.v; try{ localStorage.setItem("amfora-lang",LANG); }catch(_){} applyLang(); });
+try{ const t=localStorage.getItem("amfora-theme"); if(t==="dark"||t==="light") document.documentElement.dataset.theme=t; }catch(_){}
+$("#themeBtn").addEventListener("click",()=>{ const t=isDark()?"light":"dark"; document.documentElement.dataset.theme=t; try{ localStorage.setItem("amfora-theme",t); }catch(_){} palette(); need(); });
+if(window.matchMedia) matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{ palette(); need(); });
+(()=>{ const b=document.getElementById("menuBtn"), m=document.getElementById("menu"); if(!b||!m) return;
+  const set=o=>{ m.hidden=!o; b.setAttribute("aria-expanded",o); };
+  b.addEventListener("click",e=>{ e.stopPropagation(); set(m.hidden); });
+  document.addEventListener("click",e=>{ if(!m.hidden&&!m.contains(e.target)) set(false); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!m.hidden){ set(false); b.focus(); } }); })();
+let rsT=0; addEventListener("resize",()=>{ size(); need(); clearTimeout(rsT); rsT=setTimeout(()=>{ if(Math.abs($("#chart").getBoundingClientRect().width-chartW)>4) chart(); },120); });
+size(); palette(); const hadView=readHash(); applyLang(); if(!hadView) goto("world"); else need();
+addEventListener("hashchange",()=>{ stop(); const v=readHash(); stamp++; if(v) chips(); readout(); need(); });
+</script>
+<script data-goatcounter="https://reconiz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(function(){ var box=document.querySelector(".usenotes"); if(!box||!window.fetch) return;
+  var F={tr:function(n,s){return "Bu sayfa bugüne kadar "+s+" kez ziyaret edildi.";},
+         en:function(n,s){return n===1?"This page has been visited once so far.":"This page has been visited "+s+" times so far.";},
+         es:function(n,s){return "Esta página se ha visitado "+s+(n===1?" vez":" veces")+" hasta ahora.";},
+         fr:function(n,s){return "Cette page a été visitée "+s+" fois à ce jour.";}};
+  var c=document.querySelector('link[rel="canonical"]'), path=c?new URL(c.href).pathname:location.pathname, n=0, p=null;
+  function show(){ if(!n) return; var l=document.documentElement.lang||"tr"; if(!F[l]) l="tr";
+    if(!p){ p=document.createElement("p"); p.id="vc"; box.insertBefore(p,box.lastElementChild); }
+    p.textContent=F[l](n,n.toLocaleString(l)); }
+  fetch("https://reconiz.goatcounter.com/counter/"+encodeURIComponent(path)+".json").then(function(r){ return r.ok?r.json():null; }).then(function(j){
+    if(!j) return; n=+String(j.count).replace(/\D/g,"")||0; show();
+    new MutationObserver(show).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]}); }).catch(function(){});
+})();
+</script>
+</body>
+</html>
